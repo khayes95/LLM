@@ -1,0 +1,14 @@
+# secrets
+.env
+*.key
+
+# outputs
+runs/
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.dist-info/
+.venv/
+configs/env.local.sh
