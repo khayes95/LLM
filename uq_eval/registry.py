@@ -12,6 +12,12 @@ from .benchmarks.sanity_unanswerable import SanityUnanswerableBenchmark
 from .benchmarks.sanity_long_context import SanityLongContextBenchmark
 from .benchmarks.jsonl_qa import JsonlQABenchmark
 from .benchmarks.gpqa_diamond import GPQADiamondBenchmark
+from .benchmarks.simpleqa import SimpleQABenchmark
+from .benchmarks.healthbench import (
+    HealthBenchMainBenchmark,
+    HealthBenchHardBenchmark,
+    HealthBenchConsensusBenchmark,
+)
 
 from .models.openai_client import OpenAIResponsesClient
 from .models.chat_completions_http_client import ChatCompletionsHTTPClient
@@ -25,6 +31,11 @@ _BENCH_REGISTRY: dict[str, type[BaseBenchmark]] = {
     "sanity_long_context": SanityLongContextBenchmark,
     "jsonl_qa": JsonlQABenchmark,
     "gpqa_diamond": GPQADiamondBenchmark,
+    "gpqa_diamond": GPQADiamondBenchmark,
+    "simpleqa": SimpleQABenchmark,
+    "healthbench_main": HealthBenchMainBenchmark,
+    "healthbench_hard": HealthBenchHardBenchmark,
+    "healthbench_consensus": HealthBenchConsensusBenchmark,
 }
 
 _MODEL_REGISTRY: dict[str, type[BaseModelClient]] = {

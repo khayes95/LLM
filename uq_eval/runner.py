@@ -29,7 +29,7 @@ def aggregate_metrics(predictions_path: Path) -> dict[str, Any]:
         score = row.get("score", {}) or {}
         correct = score.get("correct", None)
         if isinstance(correct, (int, float)):
-            correct_sum += int(correct)
+            correct_sum += float(correct)
 
         pred = row.get("prediction", {}) or {}
         conf = pred.get("confidence", None)
