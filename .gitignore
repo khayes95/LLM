@@ -1,14 +1,25 @@
-# secrets
-.env
-*.key
-
-# outputs
+# Large files and directories
+uq_models/
 runs/
+data/bbeh/
+data/finetune/*.jsonl
+logs/*.out
+logs/*.err
+*.safetensors
+*.bin
+*.pt
+*.pth
 
-# python
+# Python
 __pycache__/
-*.py[cod]
-*.egg-info/
-.dist-info/
+*.pyc
 .venv/
-configs/env.local.sh
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# Keep these
+!data/finetune/.gitkeep
+!logs/.gitkeep

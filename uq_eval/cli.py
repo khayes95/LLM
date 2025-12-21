@@ -18,6 +18,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     # Benchmark data (optional; used by jsonl_qa)
     p.add_argument("--bench_data", default=None, help="Path to benchmark data file (e.g., JSONL).")
+    # GPQA subset selection
+    p.add_argument("--subset", default=None, help="Dataset subset (e.g., gpqa_diamond, gpqa_main, gpqa_extended)")
+    # BBEH options
+    p.add_argument("--bbeh_mini", action="store_true", help="Use BBEH mini version (460 examples) instead of full (4520)")
+    p.add_argument("--bbeh_tasks", default=None, help="Comma-separated list of BBEH tasks to run (default: all 23)")
+    # HLE options
+    p.add_argument("--hle_with_images", action="store_true", help="Include HLE questions with images (requires vision model)")
+    p.add_argument("--hle_answer_type", default=None, help="Filter HLE by answer type: 'mcq' or 'short_answer'")
+    p.add_argument("--hle_category", default=None, help="Filter HLE by category (e.g., 'Mathematics', 'Physics')")
 
     # API config
     p.add_argument("--api_key", default=None, help="API key (or set env UQ_API_KEY / OPENAI_API_KEY)")
@@ -55,6 +64,20 @@ def main() -> None:
     bench_kwargs = {}
     if args.bench_data:
         bench_kwargs["data_path"] = args.bench_data
+    if args.subset:
+        bench_kwargs["subset"] = args.subset
+    # BBEH-specific options
+    if args.bbeh_mini:
+        bench_kwargs["use_mini"] = True
+    if args.bbeh_tasks:
+        bench_kwargs["tasks"] = [t.strip() for t in args.bbeh_tasks.split(",")]
+    # HLE-specific options
+    if args.hle_with_images:
+        bench_kwargs["text_only"] = False
+    if args.hle_answer_type:
+        bench_kwargs["answer_type_filter"] = args.hle_answer_type
+    if args.hle_category:
+        bench_kwargs["category_filter"] = args.hle_category
     bench = load_benchmark(args.bench, **bench_kwargs)
 
     metrics = run_eval(
