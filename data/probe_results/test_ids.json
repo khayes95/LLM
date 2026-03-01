@@ -1,0 +1,4206 @@
+[
+  {
+    "question_id": "vsr_test_1069",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_442",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Agriculture_28",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_474",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_281",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1831",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1817",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_8",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_331",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1443",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1034",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_19",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_868",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_649",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_55",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Finance_20",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_290",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1994",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_304",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_959",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_985",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1276",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Art_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1035",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_12",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_949",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_276",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_28",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_565",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_247",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1537",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_82",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1816",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_860",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_582",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_379",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1220",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Geography_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Music_29",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_119",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1366",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_719",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_20",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_185",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Finance_7",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_854",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_665",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_496",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1364",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_756",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1250",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_95",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_846",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_257",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_479",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_413",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_613",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1170",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_193",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_592",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_321",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_242",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_364",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_689",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_73",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_386",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_232",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_238",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Physics_4",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_26",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_833",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_405",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_474",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1768",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_781",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Design_4",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_574",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_735",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1192",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1723",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Design_15",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1020",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_322",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_553",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_102",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_402",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_679",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_727",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_418",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_364",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_917",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_505",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_381",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Basic_Medical_Science_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1397",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Math_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1645",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1921",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_652",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1038",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_562",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1939",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1660",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1835",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_350",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Materials_10",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1064",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_671",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_159",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1023",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_384",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_395",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_153",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Music_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_65",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_196",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Physics_15",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1960",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_41",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_198",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_169",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1571",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_369",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_858",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_890",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Art_Theory_21",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_272",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1258",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_117",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1669",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_41",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_716",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_863",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_214",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1152",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Manage_21",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1511",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_40",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_416",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_627",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_745",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1082",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_499",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_389",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Geography_14",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_90",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_967",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_183",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_690",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1146",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_673",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_398",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_606",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_371",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_269",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_776",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_255",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1882",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1483",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_554",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_329",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Pharmacy_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1404",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_641",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_401",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_391",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_786",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_436",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_920",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Music_11",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_383",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_796",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_146",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_835",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_650",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_464",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1761",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1376",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_896",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Art_Theory_6",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1363",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_525",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_396",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1001",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1476",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_202",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_542",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1508",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1429",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_39",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_511",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Electronics_7",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_497",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_36",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Sociology_4",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_967",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1782",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_258",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_360",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_258",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_237",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1585",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_287",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_454",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Pharmacy_26",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_385",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1704",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_195",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Computer_Science_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_960",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Physics_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Art_Theory_17",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1455",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_89",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Math_26",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_656",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1711",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_674",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1603",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_948",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Electronics_2",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_94",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_434",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_30",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1524",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_128",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_905",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_772",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1050",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_603",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1308",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_462",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_232",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_8",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_695",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_33",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Energy_and_Power_19",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_407",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1393",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_403",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_747",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1302",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1480",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_98",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_434",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_310",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_185",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_231",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_396",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_323",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_318",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_739",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_130",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_496",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_915",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_253",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_244",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1566",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_753",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1648",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_873",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_889",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_780",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Psychology_13",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Manage_26",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_253",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_75",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_11",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_470",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_639",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_414",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1686",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1633",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1954",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_570",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1915",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1531",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1362",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_502",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1906",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_477",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_952",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_62",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_841",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1031",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_385",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1722",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_797",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_40",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1110",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Music_27",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_920",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_208",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Pharmacy_10",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1359",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_205",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1990",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_278",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_6",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Basic_Medical_Science_4",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1780",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_564",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1889",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Public_Health_11",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_179",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_959",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_296",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1916",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_511",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1649",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_578",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_623",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Chemistry_15",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_359",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_543",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1375",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_303",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Energy_and_Power_16",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_130",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1408",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_517",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_21",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_861",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_56",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_386",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_988",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_808",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_738",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_1",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1385",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_136",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Agriculture_10",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_22",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_375",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_100",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_723",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Psychology_3",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1759",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Marketing_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Manage_19",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_939",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Manage_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_404",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Pharmacy_5",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_876",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_206",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1073",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_456",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Art_Theory_16",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_124",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_751",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_53",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_181",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Geography_20",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_237",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Sociology_24",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_438",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_83",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Art_29",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1820",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_611",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1692",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_76",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Psychology_26",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Public_Health_14",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_379",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1194",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_372",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Art_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_616",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_791",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_178",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_401",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_544",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_42",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Design_17",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Design_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Public_Health_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_402",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1312",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1932",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_537",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Music_26",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1043",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1419",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_865",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_365",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_172",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_571",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Finance_24",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1433",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_908",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Economics_18",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_966",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1819",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_787",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_227",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_340",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Art_Theory_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_364",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Art_Theory_4",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_865",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_226",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1333",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_308",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1745",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_727",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_539",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1949",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1988",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_131",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_778",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Computer_Science_29",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_943",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_748",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_764",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_689",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_777",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_4",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_220",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1911",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_427",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_616",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_260",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_880",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_574",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_289",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_841",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_746",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_450",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_875",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_201",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_172",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1689",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_75",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_126",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_994",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_693",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_20",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_9",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1202",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1178",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_339",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Math_28",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_347",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_516",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_334",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_436",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_766",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_946",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_779",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1945",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_123",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_7",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_26",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_353",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Economics_19",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_475",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_142",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_750",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Biology_11",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_76",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_39",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1862",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_294",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_163",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Chemistry_20",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1407",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_579",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1033",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Art_Theory_1",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Diagnostics_and_Laboratory_Medicine_30",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_644",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_685",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_199",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1126",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_298",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_675",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_20",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1552",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_3",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_473",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_827",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_904",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_506",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1496",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_555",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_503",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_301",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1784",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1467",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_67",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_History_2",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_765",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_774",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_358",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_629",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_55",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Design_6",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_68",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_164",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_916",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_761",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_333",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_951",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_10",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_526",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_647",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1787",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_51",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_404",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_701",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Design_21",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_700",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_735",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_931",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_874",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Music_21",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_937",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1891",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_432",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_111",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1545",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Art_22",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_947",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Art_18",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_129",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1815",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1936",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_972",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_122",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_443",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1655",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_285",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_114",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1667",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1752",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Architecture_and_Engineering_9",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Literature_9",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1824",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_138",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_277",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_345",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Electronics_15",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_498",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_866",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_53",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1549",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1267",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_864",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_639",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_313",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_65",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_134",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Physics_17",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_545",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_23",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Architecture_and_Engineering_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1665",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Math_19",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1409",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_726",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_50",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Electronics_14",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_509",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Basic_Medical_Science_6",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_804",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1017",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_870",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1773",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_278",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_224",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_574",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_222",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_646",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_11",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_750",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Finance_16",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1574",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_799",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_17",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1842",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Psychology_2",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_899",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Geography_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1019",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1682",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_279",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_799",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_626",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_173",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_877",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Art_20",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_408",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_853",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_141",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1489",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1437",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_3",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_368",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_339",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_701",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_916",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1428",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_417",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_643",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_15",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1183",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1719",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_619",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_694",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_483",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1417",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_695",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_128",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_13",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_224",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Marketing_9",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_22",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_446",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_983",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_284",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_978",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Manage_24",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_200",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1781",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1653",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1688",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_898",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_354",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_126",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Biology_1",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1593",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_293",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_296",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_944",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1641",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_607",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1201",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_155",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_980",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_849",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_240",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1950",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_935",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_596",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_174",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_308",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_834",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1700",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1423",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1157",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_137",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_818",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_410",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_142",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_591",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Accounting_20",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_250",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_618",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_712",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Music_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1627",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_705",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_30",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_265",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1818",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_127",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_45",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Manage_18",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_361",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_300",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_16",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1812",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_939",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1252",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Finance_10",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_410",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Computer_Science_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Manage_7",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Biology_3",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Geography_6",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_80",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_518",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Public_Health_29",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Materials_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1501",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_340",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_118",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1534",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1421",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Art_12",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_685",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_669",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1264",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_559",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_825",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1951",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_47",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_714",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Psychology_27",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1093",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_768",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_195",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_180",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Marketing_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_739",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_374",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1959",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Geography_29",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_81",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_69",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1378",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Literature_24",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_318",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_979",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_577",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1317",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Music_22",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Design_27",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_322",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1742",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_658",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_872",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1061",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_152",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_228",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1628",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_351",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_150",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_357",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_549",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_192",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_297",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1350",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1555",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_66",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_5",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1304",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_385",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_77",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1041",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_564",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_236",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_822",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_483",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1671",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_855",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_256",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_702",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_393",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1644",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_572",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Music_12",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Basic_Medical_Science_21",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_234",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_615",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Architecture_and_Engineering_12",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1864",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_836",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_820",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_136",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_99",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1116",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_418",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1957",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Economics_10",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_192",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_620",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_990",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_448",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_742",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_102",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1827",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Chemistry_19",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_46",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_389",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_189",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_10",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_103",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "ERQA_252",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_920",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1184",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_12",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_305",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_History_10",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1767",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1229",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_809",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_805",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_480",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_597",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_116",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_736",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_274",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_256",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_363",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Sociology_30",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_803",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_624",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1720",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_293",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1581",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_644",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Materials_18",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_754",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Geography_1",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_522",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_714",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_761",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_200",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_352",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Math_3",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1937",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_604",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1643",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_9",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_183",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_745",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_453",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1468",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1332",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1326",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_834",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_683",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_478",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_288",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_280",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Literature_13",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_449",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1072",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Psychology_7",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_174",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_649",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_487",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_18",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Materials_2",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_911",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_383",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_445",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Psychology_24",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_272",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1900",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_154",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_590",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Agriculture_25",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1582",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Public_Health_18",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1739",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Agriculture_18",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_606",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_964",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1163",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_770",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_367",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_223",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_300",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1148",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1056",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_110",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_23",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_91",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_28",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_792",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_353",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_91",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_482",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Literature_26",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Chemistry_14",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_223",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_1",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_133",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1111",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1349",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1971",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1852",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_305",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_195",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_742",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Architecture_and_Engineering_5",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_641",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Electronics_22",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1529",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1996",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_973",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Sociology_26",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_134",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_546",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_692",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_602",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_633",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_680",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_636",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_799",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_585",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1320",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_821",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Design_29",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_573",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_628",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_419",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_486",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1322",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_303",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_940",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_504",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_523",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_636",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_478",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_762",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_357",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1490",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_383",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_428",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_837",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_817",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1572",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_118",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "hallusion_182",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_459",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1386",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_677",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1096",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Marketing_3",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1076",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_155",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Biology_30",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1829",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Public_Health_21",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_359",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1338",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_275",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_613",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_4",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_352",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Sociology_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_925",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_933",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1089",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_186",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_198",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_479",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_906",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Architecture_and_Engineering_2",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_289",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_755",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_607",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1513",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_109",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_807",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_659",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1962",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_172",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "charxiv_961",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_957",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1657",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_29",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Clinical_Medicine_3",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_613",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_176",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Diagnostics_and_Laboratory_Medicine_28",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_59",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_942",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1838",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_328",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Agriculture_24",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_760",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_87",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_438",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1142",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_99",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "charxiv_563",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1162",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_601",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1698",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1584",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1881",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_254",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "validation_Marketing_14",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "ERQA_235",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1873",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_440",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_871",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "validation_Accounting_28",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Psychology_1",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_728",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_1",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Accounting_1",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1821",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1063",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1708",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Pharmacy_19",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1205",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1411",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Pharmacy_16",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Electronics_24",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_721",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_60",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1563",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1928",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_323",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_996",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1613",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1869",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_688",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "hallusion_26",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_282",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_621",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_280",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1579",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Psychology_8",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1796",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_588",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1296",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Architecture_and_Engineering_3",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "hallusion_712",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1992",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Marketing_30",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_950",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "ERQA_44",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_1516",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_550",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "hallusion_430",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "hallusion_715",
+    "benchmark": "hallusionbench"
+  },
+  {
+    "question_id": "vsr_test_1439",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_919",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "charxiv_778",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "ERQA_194",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "ERQA_51",
+    "benchmark": "erqa"
+  },
+  {
+    "question_id": "vsr_test_485",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1420",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1756",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1175",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1540",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Math_15",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_987",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_1592",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_1465",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "vsr_test_58",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "charxiv_855",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "validation_Mechanical_Engineering_5",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "validation_Sociology_22",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_1518",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Basic_Medical_Science_23",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "vsr_test_459",
+    "benchmark": "vsr"
+  },
+  {
+    "question_id": "validation_Basic_Medical_Science_28",
+    "benchmark": "mmmu"
+  },
+  {
+    "question_id": "charxiv_654",
+    "benchmark": "charxiv"
+  },
+  {
+    "question_id": "vsr_test_380",
+    "benchmark": "vsr"
+  }
+]

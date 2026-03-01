@@ -1,0 +1,373 @@
+{
+  "verbalized_confidence": {
+    "name": "Verbalized (raw)",
+    "n_samples": 3860,
+    "baseline_auroc": 0.6344384448768392,
+    "calibrator_auroc": 0.9120115876628774,
+    "permutation_test": {
+      "observed_diff": 0.2775731427860382,
+      "p_value": 0.0,
+      "n_permutations": 10000,
+      "significant_001": true,
+      "significant_005": true,
+      "significant_01": true
+    },
+    "delong_test": {
+      "auroc_a": 0.9120115876628774,
+      "auroc_b": 0.6344384448768392,
+      "diff": 0.2775731427860382,
+      "se": 0.010154298854210068,
+      "z": 27.335530180003882,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "mcnemar_test": {
+      "chi2": 588.9546722454672,
+      "p_value": 0.0,
+      "a_only_correct": 1177,
+      "b_only_correct": 257,
+      "both_correct": 2055,
+      "both_wrong": 371,
+      "acc_a": 0.8373056994818653,
+      "acc_b": 0.5989637305699482
+    }
+  },
+  "p_platt_verbalized": {
+    "name": "Verbalized (Platt)",
+    "n_samples": 3860,
+    "baseline_auroc": 0.6617887374039363,
+    "calibrator_auroc": 0.9120115876628774,
+    "permutation_test": {
+      "observed_diff": 0.2502228502589411,
+      "p_value": 0.0,
+      "n_permutations": 10000,
+      "significant_001": true,
+      "significant_005": true,
+      "significant_01": true
+    },
+    "delong_test": {
+      "auroc_a": 0.9120115876628774,
+      "auroc_b": 0.6617887374039363,
+      "diff": 0.2502228502589411,
+      "se": 0.010040830239431515,
+      "z": 24.920533889347784,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "mcnemar_test": {
+      "chi2": 410.1442748091603,
+      "p_value": 0.0,
+      "a_only_correct": 1022,
+      "b_only_correct": 288,
+      "both_correct": 2210,
+      "both_wrong": 340,
+      "acc_a": 0.8373056994818653,
+      "acc_b": 0.6471502590673575
+    }
+  },
+  "p_isotonic_verbalized": {
+    "name": "Verbalized (Isotonic)",
+    "n_samples": 3860,
+    "baseline_auroc": 0.6757455779571223,
+    "calibrator_auroc": 0.9120115876628774,
+    "permutation_test": {
+      "observed_diff": 0.23626600970575506,
+      "p_value": 0.0,
+      "n_permutations": 10000,
+      "significant_001": true,
+      "significant_005": true,
+      "significant_01": true
+    },
+    "delong_test": {
+      "auroc_a": 0.9120115876628774,
+      "auroc_b": 0.6757455779571223,
+      "diff": 0.23626600970575506,
+      "se": 0.009934423947689978,
+      "z": 23.78255759466489,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "mcnemar_test": {
+      "chi2": 375.89931350114415,
+      "p_value": 0.0,
+      "a_only_correct": 1007,
+      "b_only_correct": 304,
+      "both_correct": 2225,
+      "both_wrong": 324,
+      "acc_a": 0.8373056994818653,
+      "acc_b": 0.6551813471502591
+    }
+  },
+  "p_length_baseline": {
+    "name": "Response length",
+    "n_samples": 4152,
+    "baseline_auroc": 0.6209735270690789,
+    "calibrator_auroc": 0.9146999435302566,
+    "permutation_test": {
+      "observed_diff": 0.2937264164611777,
+      "p_value": 0.0,
+      "n_permutations": 10000,
+      "significant_001": true,
+      "significant_005": true,
+      "significant_01": true
+    },
+    "delong_test": {
+      "auroc_a": 0.9146999435302566,
+      "auroc_b": 0.6209735270690789,
+      "diff": 0.2937264164611777,
+      "se": 0.009701781649706745,
+      "z": 30.2755130002391,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "mcnemar_test": {
+      "chi2": 615.6871890547263,
+      "p_value": 0.0,
+      "a_only_correct": 1302,
+      "b_only_correct": 306,
+      "both_correct": 2177,
+      "both_wrong": 367,
+      "acc_a": 0.8379094412331407,
+      "acc_b": 0.5980250481695568
+    }
+  },
+  "p_combined_baseline": {
+    "name": "Combined (verb+len)",
+    "n_samples": 3860,
+    "baseline_auroc": 0.6714675136903563,
+    "calibrator_auroc": 0.9120115876628774,
+    "permutation_test": {
+      "observed_diff": 0.2405440739725211,
+      "p_value": 0.0,
+      "n_permutations": 10000,
+      "significant_001": true,
+      "significant_005": true,
+      "significant_01": true
+    },
+    "delong_test": {
+      "auroc_a": 0.9120115876628774,
+      "auroc_b": 0.6714675136903563,
+      "diff": 0.2405440739725211,
+      "se": 0.009874849679600927,
+      "z": 24.35926437132785,
+      "p_value": 0.0,
+      "significant_001": true
+    },
+    "mcnemar_test": {
+      "chi2": 436.2766740250184,
+      "p_value": 0.0,
+      "a_only_correct": 1065,
+      "b_only_correct": 294,
+      "both_correct": 2167,
+      "both_wrong": 334,
+      "acc_a": 0.8373056994818653,
+      "acc_b": 0.6375647668393782
+    }
+  },
+  "per_target": {
+    "gpt5mini": {
+      "calibrator_auroc": 0.9172807196428976,
+      "n_samples": 1331,
+      "best_baseline": "Combined (verb+len)",
+      "best_baseline_auroc": 0.7200449848975984,
+      "tests": {
+        "verbalized_confidence": {
+          "name": "Verbalized (raw)",
+          "auroc": 0.6873538105937821,
+          "permutation_test": {
+            "observed_diff": 0.22975679608074273,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_platt_verbalized": {
+          "name": "Verbalized (Platt)",
+          "auroc": 0.6873538105937821,
+          "permutation_test": {
+            "observed_diff": 0.22975679608074273,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_isotonic_verbalized": {
+          "name": "Verbalized (Isotonic)",
+          "auroc": 0.6865549487991749,
+          "permutation_test": {
+            "observed_diff": 0.23055565787534993,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_length_baseline": {
+          "name": "Response length",
+          "auroc": 0.6532254775338182,
+          "permutation_test": {
+            "observed_diff": 0.2640552421090794,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_combined_baseline": {
+          "name": "Combined (verb+len)",
+          "auroc": 0.7200449848975984,
+          "permutation_test": {
+            "observed_diff": 0.19706562177692644,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        }
+      }
+    },
+    "gpt52": {
+      "calibrator_auroc": 0.9157692200245838,
+      "n_samples": 1550,
+      "best_baseline": "Combined (verb+len)",
+      "best_baseline_auroc": 0.6713904239142527,
+      "tests": {
+        "verbalized_confidence": {
+          "name": "Verbalized (raw)",
+          "auroc": 0.6618152653636464,
+          "permutation_test": {
+            "observed_diff": 0.2518831361495384,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_platt_verbalized": {
+          "name": "Verbalized (Platt)",
+          "auroc": 0.6618152653636464,
+          "permutation_test": {
+            "observed_diff": 0.2518831361495384,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_isotonic_verbalized": {
+          "name": "Verbalized (Isotonic)",
+          "auroc": 0.6661601082965546,
+          "permutation_test": {
+            "observed_diff": 0.24753829321663023,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_length_baseline": {
+          "name": "Response length",
+          "auroc": 0.6117661540395576,
+          "permutation_test": {
+            "observed_diff": 0.30400306598502624,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_combined_baseline": {
+          "name": "Combined (verb+len)",
+          "auroc": 0.6713904239142527,
+          "permutation_test": {
+            "observed_diff": 0.24230797759893208,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        }
+      }
+    },
+    "qwen35": {
+      "calibrator_auroc": 0.9110304153341902,
+      "n_samples": 1271,
+      "best_baseline": "Verbalized (Isotonic)",
+      "best_baseline_auroc": 0.6410477946874128,
+      "tests": {
+        "verbalized_confidence": {
+          "name": "Verbalized (raw)",
+          "auroc": 0.6401101881412145,
+          "permutation_test": {
+            "observed_diff": 0.2621598270464619,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_platt_verbalized": {
+          "name": "Verbalized (Platt)",
+          "auroc": 0.6401101881412145,
+          "permutation_test": {
+            "observed_diff": 0.2621598270464619,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_isotonic_verbalized": {
+          "name": "Verbalized (Isotonic)",
+          "auroc": 0.6410477946874128,
+          "permutation_test": {
+            "observed_diff": 0.26122222050026356,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_length_baseline": {
+          "name": "Response length",
+          "auroc": 0.6079990934178149,
+          "permutation_test": {
+            "observed_diff": 0.3030313219163753,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        },
+        "p_combined_baseline": {
+          "name": "Combined (verb+len)",
+          "auroc": 0.6273498279763194,
+          "permutation_test": {
+            "observed_diff": 0.2749201872113569,
+            "p_value": 0.0,
+            "n_permutations": 10000,
+            "significant_001": true,
+            "significant_005": true,
+            "significant_01": true
+          }
+        }
+      }
+    }
+  }
+}

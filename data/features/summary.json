@@ -1,0 +1,38 @@
+{
+  "benchmarks": {
+    "vsr": {
+      "total": 2000,
+      "correct": 1707,
+      "errors": 0,
+      "skipped": 0
+    },
+    "mmmu": {
+      "total": 900,
+      "correct": 565,
+      "errors": 0,
+      "skipped": 0
+    },
+    "charxiv": {
+      "total": 1000,
+      "correct": 385,
+      "errors": 0,
+      "skipped": 0
+    },
+    "hallusionbench": {
+      "total": 951,
+      "correct": 665,
+      "errors": 0,
+      "skipped": 0
+    },
+    "erqa": {
+      "total": 400,
+      "correct": 185,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "total_samples": 5251,
+  "total_correct": 3507,
+  "total_errors": 0,
+  "total_time_seconds": 7415.447134971619
+}

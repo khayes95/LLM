@@ -1,0 +1,527 @@
+{
+  "mathvision": {
+    "name": "MathVision",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 3040,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 55.85448463285554,
+    "grading_type": "mixed",
+    "answer_format": "MCQ (A-E) or numeric",
+    "sample_answers": [
+      "numeric",
+      "A-E MCQ"
+    ],
+    "categories": {
+      "arithmetic": 7,
+      "metric geometry - length": 1,
+      "counting": 3,
+      "logic": 1,
+      "graph theory": 1,
+      "solid geometry": 1,
+      "transformation geometry": 1
+    },
+    "class_balance": {
+      "2": 8,
+      "1": 6,
+      "3": 1
+    },
+    "warnings": []
+  },
+  "mathverse": {
+    "name": "MathVerse",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 3940,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 37.627842263273244,
+    "grading_type": "mixed",
+    "answer_format": "MCQ or numeric",
+    "sample_answers": [],
+    "categories": {
+      "Text Dominant": 3,
+      "Text Lite": 3,
+      "Vision Intensive": 3,
+      "Vision Dominant": 3,
+      "Vision Only": 3
+    },
+    "class_balance": {},
+    "warnings": []
+  },
+  "hallusionbench": {
+    "name": "HallusionBench",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 951,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 57.81455664554782,
+    "grading_type": "binary",
+    "answer_format": "yes/no (gt_answer: '0'=No, '1'=Yes)",
+    "sample_answers": [
+      "0",
+      "1"
+    ],
+    "categories": {
+      "VS/chart": 15
+    },
+    "class_balance": {
+      "0": 10,
+      "1": 5
+    },
+    "warnings": [
+      "Ground truth uses '0'/'1' format, not 'yes'/'no' - ensure grader handles this"
+    ]
+  },
+  "zerobench": {
+    "name": "ZeroBench",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 100,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 54.19743609753234,
+    "grading_type": "open_ended",
+    "answer_format": "Free-form (very hard)",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {},
+    "warnings": [
+      "Multi-image samples: 1/15",
+      "Expected 0% accuracy - designed to be unsolvable"
+    ]
+  },
+  "vsr": {
+    "name": "VSR",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 2195,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 70.34736249610184,
+    "grading_type": "binary",
+    "answer_format": "true/false (label: 1=True, 0=False)",
+    "sample_answers": [
+      "true",
+      "false"
+    ],
+    "categories": {
+      "inside": 3,
+      "consists of": 1,
+      "above": 1,
+      "facing": 1,
+      "at the edge of": 1,
+      "touching": 1,
+      "in front of": 2,
+      "beside": 1,
+      "behind": 2,
+      "at the left side of": 1
+    },
+    "class_balance": {
+      "1": 9,
+      "0": 6
+    },
+    "warnings": []
+  },
+  "mathvista": {
+    "name": "MathVista",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 1000,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 41.01070866035434,
+    "grading_type": "mixed",
+    "answer_format": "MCQ or numeric",
+    "sample_answers": [],
+    "categories": {
+      "free_form": 5,
+      "multi_choice": 10
+    },
+    "class_balance": {},
+    "warnings": []
+  },
+  "mmmu": {
+    "name": "MMMU",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 12,
+    "samples_with_images": 12,
+    "samples_with_valid_images": 12,
+    "samples_with_answers": 12,
+    "gray_images": 0,
+    "real_images": 12,
+    "image_load_failures": 0,
+    "avg_image_std": 50.03316378967082,
+    "grading_type": "mcq",
+    "answer_format": "Letter (A/B/C/D) - options stored as string repr of list",
+    "sample_answers": [
+      "C",
+      "B",
+      "D",
+      "A"
+    ],
+    "categories": {
+      "Art": 2,
+      "Biology": 2,
+      "Chemistry": 2,
+      "Computer_Science": 2,
+      "Math": 2,
+      "Physics": 2
+    },
+    "class_balance": {
+      "C": 3,
+      "B": 4,
+      "D": 2,
+      "A": 3
+    },
+    "warnings": [
+      "Options are stored as string: '['Aurelia', 'Matilda', 'Hermione', 'Juno']...'"
+    ]
+  },
+  "mmstar": {
+    "name": "MMStar",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 1500,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 60.79729083161203,
+    "grading_type": "mcq",
+    "answer_format": "Letter (A/B/C/D)",
+    "sample_answers": [
+      "A",
+      "B",
+      "D",
+      "C"
+    ],
+    "categories": {
+      "coarse perception/image scene and topic": 13,
+      "coarse perception/image emotion": 2
+    },
+    "class_balance": {
+      "A": 5,
+      "B": 3,
+      "D": 6,
+      "C": 1
+    },
+    "warnings": []
+  },
+  "charxiv": {
+    "name": "CharXiv",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 1000,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 44.08557314638386,
+    "grading_type": "open_ended",
+    "answer_format": "Free-form text (reasoning_a field)",
+    "sample_answers": [
+      "Avg length: 9 chars"
+    ],
+    "categories": {
+      "1": 10,
+      "3": 2,
+      "4": 2,
+      "2": 1
+    },
+    "class_balance": {},
+    "warnings": []
+  },
+  "realworldqa": {
+    "name": "RealWorldQA",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 765,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 50.9261369705233,
+    "grading_type": "mcq",
+    "answer_format": "Letter (A/B/C) or number",
+    "sample_answers": [
+      "C",
+      "B",
+      "0",
+      "Downhill",
+      "A"
+    ],
+    "categories": {},
+    "class_balance": {
+      "C": 3,
+      "B": 6,
+      "0": 1,
+      "Downhill": 1,
+      "A": 3,
+      "Yes": 1
+    },
+    "warnings": []
+  },
+  "aokvqa": {
+    "name": "A-OKVQA",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 6702,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 0,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 62.62282383931244,
+    "grading_type": "mcq",
+    "answer_format": "MCQ with rationales",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {},
+    "warnings": []
+  },
+  "vizwiz": {
+    "name": "VizWiz",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 8000,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 0,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 64.3856034199103,
+    "grading_type": "open_ended",
+    "answer_format": "Free-form (some unanswerable)",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {},
+    "warnings": [
+      "Answerable: 0/15 samples"
+    ]
+  },
+  "mmvet": {
+    "name": "MM-Vet",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 218,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 58.145519210271345,
+    "grading_type": "open_ended",
+    "answer_format": "Free-form (needs LLM grader)",
+    "sample_answers": [],
+    "categories": {
+      "ocr,math": 8,
+      "ocr,spat,math": 6,
+      "rec,ocr,spat,math": 1
+    },
+    "class_balance": {},
+    "warnings": []
+  },
+  "ai2d": {
+    "name": "AI2D",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 3088,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 61.267538366553374,
+    "grading_type": "mcq",
+    "answer_format": "Index (0-3)",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {
+      "1": 4,
+      "3": 3,
+      "2": 5,
+      "0": 3
+    },
+    "warnings": []
+  },
+  "chartqa": {
+    "name": "ChartQA",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 2500,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 69.88985269628262,
+    "grading_type": "open_ended",
+    "answer_format": "Free-form (often numeric)",
+    "sample_answers": [
+      "Avg answer length: 3 chars"
+    ],
+    "categories": {},
+    "class_balance": {},
+    "warnings": []
+  },
+  "docvqa": {
+    "name": "DocVQA",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 5188,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 0,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 62.393441734080746,
+    "grading_type": "open_ended",
+    "answer_format": "Free-form text (document reading)",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {},
+    "warnings": []
+  },
+  "nlvr2": {
+    "name": "NLVR2",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 2316,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 82.39730932133094,
+    "grading_type": "binary",
+    "answer_format": "True/False",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {
+      "": 15
+    },
+    "warnings": [
+      "Multi-image benchmark - uses 2 images per sample"
+    ]
+  },
+  "pope": {
+    "name": "POPE",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 9000,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 46.675928888454365,
+    "grading_type": "binary",
+    "answer_format": "yes/no",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {
+      "yes": 8,
+      "no": 7
+    },
+    "warnings": []
+  },
+  "ocrbench": {
+    "name": "OCRBench",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 1000,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 15,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 59.039572377732,
+    "grading_type": "open_ended",
+    "answer_format": "Extracted text",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {},
+    "warnings": []
+  },
+  "gqa": {
+    "name": "GQA",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 398,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 0,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 65.94185096686851,
+    "grading_type": "open_ended",
+    "answer_format": "Short answer",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {},
+    "warnings": []
+  },
+  "infographicvqa": {
+    "name": "InfographicVQA",
+    "status": "success",
+    "error_message": null,
+    "total_samples": 3288,
+    "samples_with_images": 15,
+    "samples_with_valid_images": 15,
+    "samples_with_answers": 0,
+    "gray_images": 0,
+    "real_images": 15,
+    "image_load_failures": 0,
+    "avg_image_std": 66.97740603145378,
+    "grading_type": "open_ended",
+    "answer_format": "Free-form text",
+    "sample_answers": [],
+    "categories": {},
+    "class_balance": {},
+    "warnings": []
+  }
+}

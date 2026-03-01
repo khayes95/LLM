@@ -1,0 +1,187 @@
+{
+  "target_model": "gpt5mini",
+  "target_name": "GPT-5-mini",
+  "calibrator": "unified (Qwen3-VL-8B + LoRA)",
+  "n_samples": 95,
+  "n_correct": 51,
+  "n_vlm": 55,
+  "mean_p_correct": 0.5413494970453413,
+  "elapsed_seconds": 10.005054712295532,
+  "data_stats": {
+    "bbeh": {
+      "used": 5,
+      "correct": 4
+    },
+    "charxiv": {
+      "used": 5,
+      "correct": 4
+    },
+    "chembench": {
+      "used": 5,
+      "correct": 3
+    },
+    "gpqa": {
+      "used": 5,
+      "correct": 3
+    },
+    "hallusionbench": {
+      "used": 5,
+      "correct": 5
+    },
+    "hle": {
+      "used": 5,
+      "correct": 2
+    },
+    "hle_multimodal": {
+      "used": 5,
+      "correct": 1
+    },
+    "livebench": {
+      "used": 5,
+      "correct": 3
+    },
+    "mathverse": {
+      "used": 5,
+      "correct": 1
+    },
+    "mathvision": {
+      "used": 5,
+      "correct": 2
+    },
+    "mathvista": {
+      "used": 5,
+      "correct": 2
+    },
+    "mmmu": {
+      "used": 5,
+      "correct": 2
+    },
+    "mmstar": {
+      "used": 5,
+      "correct": 3
+    },
+    "mmvet": {
+      "used": 5,
+      "correct": 4
+    },
+    "omnimath": {
+      "used": 5,
+      "correct": 3
+    },
+    "prbench": {
+      "used": 5,
+      "correct": 3
+    },
+    "realworldqa": {
+      "used": 5,
+      "correct": 2
+    },
+    "simpleqa": {
+      "used": 5,
+      "correct": 1
+    },
+    "vizwiz": {
+      "used": 5,
+      "correct": 3
+    }
+  },
+  "auroc": 0.9471925133689839,
+  "per_benchmark": {
+    "bbeh": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 1.0
+    },
+    "charxiv": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 1.0
+    },
+    "chembench": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 0.9166666666666666
+    },
+    "gpqa": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 1.0
+    },
+    "hallusionbench": {
+      "n_samples": 5,
+      "is_vlm": true
+    },
+    "hle": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 1.0
+    },
+    "hle_multimodal": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 1.0
+    },
+    "livebench": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 1.0
+    },
+    "mathverse": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 1.0
+    },
+    "mathvision": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 0.6666666666666667
+    },
+    "mathvista": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 0.6666666666666667
+    },
+    "mmmu": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 0.8333333333333334
+    },
+    "mmstar": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 1.0
+    },
+    "mmvet": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 0.75
+    },
+    "omnimath": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 1.0
+    },
+    "prbench": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 1.0
+    },
+    "realworldqa": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 1.0
+    },
+    "simpleqa": {
+      "n_samples": 5,
+      "is_vlm": false,
+      "auroc": 1.0
+    },
+    "vizwiz": {
+      "n_samples": 5,
+      "is_vlm": true,
+      "auroc": 1.0
+    }
+  },
+  "vlm_auroc": 0.9396551724137931,
+  "text_auroc": 0.9608585858585859
+}

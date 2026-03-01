@@ -26,6 +26,15 @@ def _normalize_messages(messages: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
+# Models that don't support temperature parameter
+_NO_TEMPERATURE_MODELS = {"gpt-5-mini", "gpt-5", "gpt-5.2", "o1", "o1-mini", "o1-preview", "o3", "o3-mini"}
+
+# Reasoning models need higher max_output_tokens because reasoning tokens count against the limit
+# Default CLI uses 256 which gets consumed by reasoning, leaving no visible output
+_REASONING_MODELS = {"gpt-5-mini", "gpt-5", "gpt-5.2", "o1", "o1-mini", "o1-preview", "o3", "o3-mini"}
+_REASONING_MODEL_MIN_OUTPUT_TOKENS = 16384  # High limit to ensure reasoning + visible output; analyze usage after to optimize
+
+
 @dataclass(slots=True)
 class OpenAIResponsesClient(BaseModelClient):
     """OpenAI backend via the Responses API."""
@@ -56,16 +65,31 @@ class OpenAIResponsesClient(BaseModelClient):
         if self.timeout_s is not None and hasattr(self._client, "with_options"):
             client = self._client.with_options(timeout=float(self.timeout_s))
 
-        resp = client.responses.create(
-            model=self.model_name,
-            input=_normalize_messages(req.messages),
-            temperature=req.temperature,
-            max_output_tokens=req.max_output_tokens,
-            tools=req.tools,
-            tool_choice=req.tool_choice,
-            include=include or None,
-            metadata=req.metadata or None,
-        )
+        # Ensure reasoning models have sufficient output tokens
+        max_output_tokens = req.max_output_tokens
+        if any(self.model_name.startswith(m) for m in _REASONING_MODELS):
+            max_output_tokens = max(max_output_tokens or 256, _REASONING_MODEL_MIN_OUTPUT_TOKENS)
+
+        # Build request kwargs, excluding temperature for models that don't support it
+        create_kwargs: dict[str, Any] = {
+            "model": self.model_name,
+            "input": _normalize_messages(req.messages),
+            "max_output_tokens": max_output_tokens,
+            "tools": req.tools,
+            "tool_choice": req.tool_choice,
+            "include": include or None,
+            "metadata": req.metadata or None,
+        }
+
+        # Only include temperature if model supports it
+        if not any(self.model_name.startswith(m) for m in _NO_TEMPERATURE_MODELS):
+            create_kwargs["temperature"] = req.temperature
+
+        # Add reasoning effort for reasoning models (low/medium/high)
+        if req.reasoning_effort and any(self.model_name.startswith(m) for m in _REASONING_MODELS):
+            create_kwargs["reasoning"] = {"effort": req.reasoning_effort}
+
+        resp = client.responses.create(**create_kwargs)
 
         text = getattr(resp, "output_text", None)
         if text is None:

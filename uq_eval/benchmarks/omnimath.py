@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from typing import Iterable
 
-from datasets import load_dataset
+from huggingface_hub import hf_hub_download
 
 from ..types import Example, ModelRequest, ModelResponse, Prediction
 from .base import BaseBenchmark
@@ -42,29 +43,37 @@ class OmniMathBenchmark(BaseBenchmark):
     domain_filter: str | None = None
 
     def iter_examples(self, split: str) -> Iterable[Example]:
-        ds = load_dataset("KbsdJames/Omni-MATH", split="test", trust_remote_code=True)
+        # Download JSONL directly (datasets library has metadata bug)
+        jsonl_path = hf_hub_download(
+            "KbsdJames/Omni-MATH",
+            "test.jsonl",
+            repo_type="dataset"
+        )
 
-        for idx, row in enumerate(ds):
-            difficulty = row.get("difficulty", "")
-            domain = row.get("domain", "")
+        with open(jsonl_path, "r") as f:
+            for idx, line in enumerate(f):
+                row = json.loads(line.strip())
 
-            if self.difficulty_filter and difficulty != self.difficulty_filter:
-                continue
-            if self.domain_filter and domain != self.domain_filter:
-                continue
+                difficulty = row.get("difficulty", "")
+                domain = row.get("domain", "")
 
-            yield Example(
-                id=f"omnimath_{idx}",
-                input=row["problem"],
-                target=row.get("answer", ""),
-                meta={
-                    "split": split,
-                    "difficulty": difficulty,
-                    "domain": domain,
-                    "source": row.get("source", ""),
-                    "solution": row.get("solution", ""),
-                },
-            )
+                if self.difficulty_filter and difficulty != self.difficulty_filter:
+                    continue
+                if self.domain_filter and domain != self.domain_filter:
+                    continue
+
+                yield Example(
+                    id=f"omnimath_{idx}",
+                    input=row["problem"],
+                    target=row.get("answer", ""),
+                    meta={
+                        "split": split,
+                        "difficulty": difficulty,
+                        "domain": domain,
+                        "source": row.get("source", ""),
+                        "solution": row.get("solution", ""),
+                    },
+                )
 
     def build_request(self, ex: Example) -> ModelRequest:
         system = (
@@ -83,13 +92,40 @@ class OmniMathBenchmark(BaseBenchmark):
         raw_text = resp.text or ""
         obj = extract_first_json_obj(raw_text)
 
-        answer = obj.get("answer", raw_text) if obj else raw_text
+        answer = None
         confidence = None
-        if obj and obj.get("confidence") is not None:
-            try:
-                confidence = clamp01(float(obj["confidence"]))
-            except:
-                pass
+
+        if obj:
+            answer = obj.get("answer", "")
+            if obj.get("confidence") is not None:
+                try:
+                    confidence = clamp01(float(obj["confidence"]))
+                except:
+                    pass
+
+        # Fallback: try to extract answer from common patterns
+        if not answer:
+            # Try \boxed{...} pattern (LaTeX)
+            boxed_match = re.search(r"\\boxed\{([^}]+)\}", raw_text)
+            if boxed_match:
+                answer = boxed_match.group(1)
+            else:
+                # Try "answer is X" or "answer: X" patterns
+                ans_match = re.search(r"(?:answer|result|solution)\s*(?:is|:)\s*[\"']?([^\n\"']+)", raw_text, re.IGNORECASE)
+                if ans_match:
+                    answer = ans_match.group(1).strip()
+                else:
+                    # Try "= X" at end of reasoning
+                    eq_match = re.search(r"=\s*([^\n=]+?)\s*(?:\.|$)", raw_text)
+                    if eq_match:
+                        answer = eq_match.group(1).strip()
+                    else:
+                        # Last resort: use last line if it's short
+                        lines = [l.strip() for l in raw_text.strip().split('\n') if l.strip()]
+                        if lines and len(lines[-1]) < 100:
+                            answer = lines[-1]
+                        else:
+                            answer = raw_text[:200]  # Truncate to avoid huge answers
 
         return Prediction(
             example_id=ex.id,

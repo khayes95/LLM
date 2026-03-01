@@ -1,0 +1,24 @@
+{
+  "n_paired": 886,
+  "cost_ratio": 3.6985915447165043,
+  "mini_accuracy": 0.54627539503386,
+  "gpt52_accuracy": 0.6038374717832957,
+  "methods": {
+    "Calibrator": {
+      "accuracy_at_50pct_escalation": 0.6151241534988713,
+      "accuracy_at_30pct_escalation": 0.5812641083521445,
+      "cost_at_iso_accuracy": 1.9777064174424355
+    },
+    "Verbalized": {
+      "accuracy_at_50pct_escalation": null,
+      "accuracy_at_30pct_escalation": 0.5873015873015873,
+      "cost_at_iso_accuracy": 2.818852127319527
+    },
+    "Random": {
+      "accuracy_at_50pct_escalation": 0.5756207674943566,
+      "accuracy_at_30pct_escalation": 0.5575620767494357,
+      "cost_at_iso_accuracy": 3.1838489137265618
+    }
+  },
+  "oracle_accuracy": 0.6659142212189616
+}

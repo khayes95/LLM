@@ -1,0 +1,92 @@
+{
+  "target_model": "gpt52",
+  "target_name": "GPT-5.2 (high reasoning)",
+  "calibrator": "uq_models/text_calibrator_gpt52",
+  "n_samples": 4108,
+  "n_correct": 2504,
+  "auroc": 0.7723784090094254,
+  "mean_p_correct": 0.5927473772117666,
+  "elapsed_seconds": 171.9731800556183,
+  "data_stats": {
+    "arc_agi": {
+      "used": 250,
+      "correct": 206
+    },
+    "bbeh": {
+      "used": 250,
+      "correct": 173
+    },
+    "charxiv": {
+      "used": 250,
+      "correct": 184
+    },
+    "chembench": {
+      "used": 250,
+      "correct": 161
+    },
+    "gpqa": {
+      "used": 198,
+      "correct": 174
+    },
+    "hallusionbench": {
+      "used": 250,
+      "correct": 203
+    },
+    "hle": {
+      "used": 217,
+      "correct": 72
+    },
+    "livebench": {
+      "used": 249,
+      "correct": 185
+    },
+    "mathverse": {
+      "used": 250,
+      "correct": 115
+    },
+    "mathvision": {
+      "used": 250,
+      "correct": 117
+    },
+    "mathvista": {
+      "used": 250,
+      "correct": 89
+    },
+    "mmmu": {
+      "used": 150,
+      "correct": 120
+    },
+    "mmstar": {
+      "used": 250,
+      "correct": 210
+    },
+    "mmvet": {
+      "used": 0,
+      "correct": 0
+    },
+    "omnimath": {
+      "used": 172,
+      "correct": 65
+    },
+    "oolong": {
+      "used": 4,
+      "correct": 0
+    },
+    "prbench": {
+      "used": 160,
+      "correct": 104
+    },
+    "realworldqa": {
+      "used": 250,
+      "correct": 118
+    },
+    "simpleqa": {
+      "used": 250,
+      "correct": 72
+    },
+    "vizwiz": {
+      "used": 208,
+      "correct": 136
+    }
+  }
+}

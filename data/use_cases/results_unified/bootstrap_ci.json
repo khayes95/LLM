@@ -1,0 +1,234 @@
+{
+  "gpt5mini": [
+    {
+      "auroc": 0.9554830293731038,
+      "ci_low": 0.9498493572278259,
+      "ci_high": 0.9609036701177476,
+      "n": 4102,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.6995437857054149,
+      "ci_low": 0.6836290512907819,
+      "ci_high": 0.7155788393030975,
+      "n": 4064,
+      "n_bootstrap": 2000,
+      "method": "Combined (verb+len)"
+    },
+    {
+      "auroc": 0.6664416885944486,
+      "ci_low": 0.650278045807581,
+      "ci_high": 0.6824603169195622,
+      "n": 4064,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Isotonic)"
+    },
+    {
+      "auroc": 0.666212950780862,
+      "ci_low": 0.6498982390157009,
+      "ci_high": 0.682491090590252,
+      "n": 4064,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    },
+    {
+      "auroc": 0.666212950780862,
+      "ci_low": 0.6498982390157009,
+      "ci_high": 0.682491090590252,
+      "n": 4064,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Platt)"
+    },
+    {
+      "auroc": 0.616333480178623,
+      "ci_low": 0.5986997524377103,
+      "ci_high": 0.6324898924549056,
+      "n": 4102,
+      "n_bootstrap": 2000,
+      "method": "Response length"
+    },
+    {
+      "auroc": 0.5542900363448042,
+      "ci_low": 0.5369147273502529,
+      "ci_high": 0.5716133538171142,
+      "n": 4102,
+      "n_bootstrap": 2000,
+      "method": "Zero-shot base model"
+    }
+  ],
+  "gpt52": [
+    {
+      "auroc": 0.9333782235447021,
+      "ci_low": 0.9257349181841393,
+      "ci_high": 0.9405369206832388,
+      "n": 4412,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.636810588019907,
+      "ci_low": 0.6201350578023335,
+      "ci_high": 0.651847206935228,
+      "n": 4314,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Isotonic)"
+    },
+    {
+      "auroc": 0.635907853643419,
+      "ci_low": 0.6182462938017613,
+      "ci_high": 0.6517531322962348,
+      "n": 4314,
+      "n_bootstrap": 2000,
+      "method": "Combined (verb+len)"
+    },
+    {
+      "auroc": 0.6323433021411734,
+      "ci_low": 0.6147457569202859,
+      "ci_high": 0.6485242192536227,
+      "n": 4314,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    },
+    {
+      "auroc": 0.6323433021411734,
+      "ci_low": 0.6147457569202859,
+      "ci_high": 0.6485242192536227,
+      "n": 4314,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Platt)"
+    },
+    {
+      "auroc": 0.5617142075381354,
+      "ci_low": 0.5444348492153789,
+      "ci_high": 0.5794905173587215,
+      "n": 4412,
+      "n_bootstrap": 2000,
+      "method": "Response length"
+    },
+    {
+      "auroc": 0.4928903524522881,
+      "ci_low": 0.47613742692862804,
+      "ci_high": 0.5101967757564233,
+      "n": 4412,
+      "n_bootstrap": 2000,
+      "method": "Zero-shot base model"
+    }
+  ],
+  "qwen35": [
+    {
+      "auroc": 0.9113579081359594,
+      "ci_low": 0.9012833068654977,
+      "ci_high": 0.9214671263088569,
+      "n": 3225,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.6034246295798606,
+      "ci_low": 0.5844322379545991,
+      "ci_high": 0.6226015635278396,
+      "n": 3225,
+      "n_bootstrap": 2000,
+      "method": "Response length"
+    },
+    {
+      "auroc": 0.5942629643587196,
+      "ci_low": 0.5745291111545688,
+      "ci_high": 0.6127910978428999,
+      "n": 2671,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Isotonic)"
+    },
+    {
+      "auroc": 0.5922262381947537,
+      "ci_low": 0.572636378756951,
+      "ci_high": 0.6116044980894879,
+      "n": 2671,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    },
+    {
+      "auroc": 0.5922262381947537,
+      "ci_low": 0.572636378756951,
+      "ci_high": 0.6116044980894879,
+      "n": 2671,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Platt)"
+    },
+    {
+      "auroc": 0.5679645300170155,
+      "ci_low": 0.5443645840663514,
+      "ci_high": 0.590822466033516,
+      "n": 2671,
+      "n_bootstrap": 2000,
+      "method": "Combined (verb+len)"
+    },
+    {
+      "auroc": 0.5387140158617827,
+      "ci_low": 0.518655954481802,
+      "ci_high": 0.5586317812106496,
+      "n": 3225,
+      "n_bootstrap": 2000,
+      "method": "Zero-shot base model"
+    }
+  ],
+  "combined": [
+    {
+      "auroc": 0.9357968579612567,
+      "ci_low": 0.9316417083770454,
+      "ci_high": 0.939868624904583,
+      "n": 11739,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.6521062624723752,
+      "ci_low": 0.6415189705236496,
+      "ci_high": 0.6626648910962715,
+      "n": 11049,
+      "n_bootstrap": 2000,
+      "method": "Combined (verb+len)"
+    },
+    {
+      "auroc": 0.6495966058493067,
+      "ci_low": 0.6389356971280795,
+      "ci_high": 0.6605272907379872,
+      "n": 11049,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Isotonic)"
+    },
+    {
+      "auroc": 0.6412056812438782,
+      "ci_low": 0.63049805481066,
+      "ci_high": 0.651538258090203,
+      "n": 11049,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (Platt)"
+    },
+    {
+      "auroc": 0.6068979184575505,
+      "ci_low": 0.5961124482523583,
+      "ci_high": 0.6167031345830725,
+      "n": 11049,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    },
+    {
+      "auroc": 0.5976381983969822,
+      "ci_low": 0.5878020732211087,
+      "ci_high": 0.6080583584180752,
+      "n": 11739,
+      "n_bootstrap": 2000,
+      "method": "Response length"
+    },
+    {
+      "auroc": 0.5241815046837193,
+      "ci_low": 0.5138142807541507,
+      "ci_high": 0.5345222309204821,
+      "n": 11739,
+      "n_bootstrap": 2000,
+      "method": "Zero-shot base model"
+    }
+  ]
+}

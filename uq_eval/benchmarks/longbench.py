@@ -49,7 +49,7 @@ class LongBenchBenchmark(BaseBenchmark):
 
         for subset in subsets:
             try:
-                ds = load_dataset("THUDM/LongBench", subset, split="test", trust_remote_code=True)
+                ds = load_dataset("THUDM/LongBench", subset, split="test")
             except Exception:
                 continue
 

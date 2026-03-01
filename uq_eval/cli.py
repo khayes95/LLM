@@ -33,13 +33,20 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--base_url", default=None, help="Base URL like https://.../v1 (or full .../v1/chat/completions).")
 
     p.add_argument("--max_examples", type=int, default=None, help="cap number of examples (for smoke tests)")
+    p.add_argument("--seed", type=int, default=None, help="random seed for reproducible sampling (requires --max_examples)")
+    p.add_argument("--exclude_ids", default=None, help="path to JSON file with IDs to exclude (from previous runs)")
+    p.add_argument("--include_ids", default=None, help="path to JSON file with IDs to include (for cross-model comparison)")
     p.add_argument("--temperature", type=float, default=0.0)
     p.add_argument("--max_output_tokens", type=int, default=256)
-    p.add_argument("--timeout_s", type=float, default=30.0, help="HTTP timeout in seconds")
+    p.add_argument("--timeout_s", type=float, default=600.0, help="HTTP timeout in seconds (default 600s for long-context)")
     p.add_argument("--resume", action="store_true", help="resume if predictions.jsonl already exists")
     p.add_argument("--no-resume", dest="resume", action="store_false")
     p.set_defaults(resume=True)
     p.add_argument("--logprobs", action="store_true", help="request logprobs (if backend/model supports it)")
+    p.add_argument("--reasoning_effort", default=None, choices=["low", "medium", "high"],
+                   help="Reasoning effort for reasoning models like gpt-5.2 (low/medium/high)")
+    p.add_argument("--disable_thinking", action="store_true",
+                   help="Disable thinking mode for Qwen3-style models (faster inference)")
     return p
 
 
@@ -53,13 +60,15 @@ def main() -> None:
         safe_model = args.model_name.replace("/", "_")
         out_dir = Path("runs") / f"{ts}_{args.bench}_{safe_model}"
 
-    model = load_model_client(
-        args.model_backend,
+    model_kwargs = dict(
         model_name=args.model_name,
         api_key=args.api_key,
         base_url=args.base_url,
         timeout_s=args.timeout_s,
     )
+    if args.disable_thinking:
+        model_kwargs["disable_thinking"] = True
+    model = load_model_client(args.model_backend, **model_kwargs)
 
     bench_kwargs = {}
     if args.bench_data:
@@ -73,6 +82,7 @@ def main() -> None:
         bench_kwargs["tasks"] = [t.strip() for t in args.bbeh_tasks.split(",")]
     # HLE-specific options
     if args.hle_with_images:
+        bench_kwargs["include_images"] = True
         bench_kwargs["text_only"] = False
     if args.hle_answer_type:
         bench_kwargs["answer_type_filter"] = args.hle_answer_type
@@ -80,16 +90,32 @@ def main() -> None:
         bench_kwargs["category_filter"] = args.hle_category
     bench = load_benchmark(args.bench, **bench_kwargs)
 
+    # Load exclude IDs if provided
+    exclude_ids = None
+    if args.exclude_ids:
+        import json
+        exclude_ids = set(json.loads(Path(args.exclude_ids).read_text()))
+
+    # Load include IDs if provided (for cross-model comparison)
+    include_ids = None
+    if args.include_ids:
+        import json
+        include_ids = set(json.loads(Path(args.include_ids).read_text()))
+
     metrics = run_eval(
         model=model,
         bench=bench,
         split=args.split,
         out_dir=out_dir,
         max_examples=args.max_examples,
+        seed=args.seed,
+        exclude_ids=exclude_ids,
+        include_ids=include_ids,
         resume=args.resume,
         temperature=args.temperature,
         max_output_tokens=args.max_output_tokens,
         logprobs=args.logprobs,
+        reasoning_effort=args.reasoning_effort,
     )
 
     print(f"[done] wrote: {out_dir}")

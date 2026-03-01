@@ -1,105 +1,172 @@
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Iterable
-
-from datasets import load_dataset
 
 from ..types import Example, ModelRequest, ModelResponse, Prediction
 from .base import BaseBenchmark
 from .common import clamp01, extract_first_json_obj
 
 
+# Default path to local MultiChallenge data
+DEFAULT_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "multichallenge" / "benchmark_questions.jsonl"
+
+
 @dataclass(slots=True)
 class MultiChallengeBenchmark(BaseBenchmark):
-    """MultiChallenge: Challenging multi-step reasoning benchmark.
+    """MultiChallenge: Multi-turn conversation benchmark.
 
-    Tests complex multi-step reasoning across various domains.
-    Dataset: https://huggingface.co/datasets/ScaleAI/MultiChallenge
+    Tests LLMs on complex multi-turn conversations across four axes:
+    - INFERENCE_MEMORY: Remembering and reasoning about prior context
+    - INSTRUCTION_COMPLIANCE: Following complex/nested instructions
+    - CONTEXT_SHIFT: Handling topic changes mid-conversation
+    - PERSONA_CONSISTENCY: Maintaining consistent persona/role
+
+    Dataset: https://github.com/ekwinox117/multi-challenge
+    Paper: https://scale.com/leaderboard/multichallenge
+
+    273 examples with binary YES/NO pass criteria.
+    GPT-5 scores ~58-64%.
     """
 
     name: str = "multichallenge"
     mode: str = "text"
 
-    # Filter by category
-    category_filter: str | None = None
+    # Path to local JSONL file
+    data_path: str | None = None
+
+    # Filter by axis (INFERENCE_MEMORY, INSTRUCTION_COMPLIANCE, CONTEXT_SHIFT, PERSONA_CONSISTENCY)
+    axis_filter: str | None = None
 
     def iter_examples(self, split: str) -> Iterable[Example]:
-        # MultiChallenge may not be on HuggingFace yet - try alternatives
-        try:
-            ds = load_dataset("ScaleAI/MultiChallenge", split="test", trust_remote_code=True)
-        except Exception:
-            try:
-                # Try Scale AI's other datasets as fallback
-                ds = load_dataset("ScaleAI/msr_bench", split="test", trust_remote_code=True)
-            except Exception:
-                return  # Dataset not available
+        # Use provided path or default
+        path = Path(self.data_path) if self.data_path else DEFAULT_DATA_PATH
 
-        for idx, row in enumerate(ds):
-            category = row.get("category", row.get("type", ""))
-            if self.category_filter and self.category_filter.lower() not in category.lower():
-                continue
-
-            yield Example(
-                id=f"multichallenge_{idx}",
-                input=row.get("question", row.get("prompt", "")),
-                target=row.get("answer", row.get("response", "")),
-                meta={
-                    "split": split,
-                    "category": category,
-                    "difficulty": row.get("difficulty", ""),
-                },
+        if not path.exists():
+            raise FileNotFoundError(
+                f"MultiChallenge data not found at {path}. "
+                "Download from https://github.com/ekwinox117/multi-challenge/blob/main/data/benchmark_questions.jsonl"
             )
 
+        with open(path, "r") as f:
+            for idx, line in enumerate(f):
+                row = json.loads(line.strip())
+
+                axis = row.get("AXIS", "")
+                if self.axis_filter and self.axis_filter.upper() != axis.upper():
+                    continue
+
+                # Build the full conversation context
+                conversation = row.get("CONVERSATION", [])
+                target_question = row.get("TARGET_QUESTION", "")
+                pass_criteria = row.get("PASS_CRITERIA", "")
+
+                # Format conversation as context
+                conv_parts = []
+                for msg in conversation:
+                    role = msg.get("role", "user")
+                    content = msg.get("content", "")
+                    conv_parts.append(f"{role.capitalize()}: {content}")
+
+                context = "\n\n".join(conv_parts)
+
+                yield Example(
+                    id=f"multichallenge_{row.get('QUESTION_ID', idx)}",
+                    input=context,
+                    target=pass_criteria,  # YES or NO
+                    meta={
+                        "split": split,
+                        "axis": axis,
+                        "target_question": target_question,
+                        "question_id": row.get("QUESTION_ID", ""),
+                        "num_turns": len(conversation),
+                    },
+                )
+
     def build_request(self, ex: Example) -> ModelRequest:
+        target_question = ex.meta.get("target_question", "")
+
         system = (
-            "You are an expert problem solver handling complex multi-step challenges.\n"
-            "Think through each step carefully before answering.\n"
-            'Return a JSON object with keys: "reasoning" (your steps), "answer" (final answer), and "confidence" (0..1).'
+            "You are evaluating a multi-turn conversation for correctness and consistency.\n"
+            "You will be given a conversation history and a verification question.\n"
+            "Answer the verification question with YES or NO based on the conversation.\n"
+            'Return a JSON object with keys: "reasoning" (your analysis), '
+            '"answer" (YES or NO), and "confidence" (0..1).'
+        )
+
+        user_content = (
+            f"## Conversation History\n\n{ex.input}\n\n"
+            f"## Verification Question\n\n{target_question}\n\n"
+            "Based on the conversation above, answer the verification question with YES or NO."
         )
 
         messages = [
             {"role": "system", "content": system},
-            {"role": "user", "content": str(ex.input)},
+            {"role": "user", "content": user_content},
         ]
-        return ModelRequest(messages=messages, temperature=0.0, max_output_tokens=2048)
+        return ModelRequest(messages=messages, temperature=0.0, max_output_tokens=1024)
 
     def parse_prediction(self, ex: Example, resp: ModelResponse) -> Prediction:
         raw_text = resp.text or ""
         obj = extract_first_json_obj(raw_text)
 
-        answer = obj.get("answer", raw_text) if obj else raw_text
+        answer = None
         confidence = None
-        if obj and obj.get("confidence") is not None:
-            try:
-                confidence = clamp01(float(obj["confidence"]))
-            except:
-                pass
+
+        if obj:
+            answer = obj.get("answer", "")
+            if obj.get("confidence") is not None:
+                try:
+                    confidence = clamp01(float(obj["confidence"]))
+                except Exception:
+                    pass
+
+        # Normalize answer to YES/NO
+        if answer:
+            answer_upper = str(answer).strip().upper()
+            if "YES" in answer_upper:
+                answer = "YES"
+            elif "NO" in answer_upper:
+                answer = "NO"
+            else:
+                answer = answer_upper
+        else:
+            # Fallback: try to extract from raw text
+            raw_upper = raw_text.upper()
+            if "YES" in raw_upper and "NO" not in raw_upper:
+                answer = "YES"
+            elif "NO" in raw_upper and "YES" not in raw_upper:
+                answer = "NO"
+            else:
+                answer = raw_text.strip()[:50]
 
         return Prediction(
             example_id=ex.id,
-            answer=str(answer).strip(),
+            answer=answer,
             confidence=confidence,
             raw_text=raw_text,
-            extra={"parsed_json": obj is not None},
+            extra={
+                "parsed_json": obj is not None,
+                "axis": ex.meta.get("axis", ""),
+            },
         )
 
     def score(self, ex: Example, pred: Prediction) -> dict:
-        gold = str(ex.target).strip().lower()
-        got = str(pred.answer).strip().lower()
+        gold = str(ex.target).strip().upper()
+        got = str(pred.answer).strip().upper()
 
-        # Normalize for comparison
-        gold_norm = re.sub(r"\s+", " ", gold)
-        got_norm = re.sub(r"\s+", " ", got)
-
-        correct = int(gold_norm == got_norm or gold_norm in got_norm)
+        # Simple YES/NO matching
+        correct = int(gold == got)
 
         out = {
             "correct": correct,
-            "gold": str(ex.target),
-            "predicted": pred.answer,
-            "category": ex.meta.get("category", ""),
+            "gold": gold,
+            "predicted": got,
+            "axis": ex.meta.get("axis", ""),
+            "target_question": ex.meta.get("target_question", ""),
         }
         if pred.confidence is not None:
             out["brier"] = (float(pred.confidence) - correct) ** 2

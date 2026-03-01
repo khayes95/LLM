@@ -1,0 +1,199 @@
+{
+  "auroc_all_data": {
+    "gpt5mini": 0.9555,
+    "gpt52": 0.9334,
+    "qwen35": 0.9114,
+    "overall": 0.9358
+  },
+  "auroc_test_only": {
+    "gpt5mini": 0.9173,
+    "gpt52": 0.9158,
+    "qwen35": 0.911,
+    "overall": 0.9147
+  },
+  "use_case_comparison": [
+    {
+      "metric": "UC-A Inform Acc",
+      "old": 0.8401486988847584,
+      "new": 0.8021978021978022,
+      "delta": -0.03795089668695617
+    },
+    {
+      "metric": "UC-A N Pairs",
+      "old": 6958,
+      "new": 2862,
+      "delta": -4096
+    },
+    {
+      "metric": "UC-A Pairwise Acc",
+      "old": 0.9629203794193734,
+      "new": 0.9559748427672956,
+      "delta": -0.006945536652077755
+    },
+    {
+      "metric": "UC1 AURC (gpt52)",
+      "old": 0.12489953881918531,
+      "new": 0.12783914829945797,
+      "delta": 0.0029396094802726647
+    },
+    {
+      "metric": "UC1 AURC (gpt5mini)",
+      "old": 0.1650377083189974,
+      "new": 0.17684275063962285,
+      "delta": 0.011805042320625458
+    },
+    {
+      "metric": "UC1 AURC (qwen35)",
+      "old": 0.18886708413901102,
+      "new": 0.17594429984455368,
+      "delta": -0.01292278429445734
+    },
+    {
+      "metric": "UC1 Cov@90 (gpt52)",
+      "old": 0.5621033544877606,
+      "new": 0.5303225806451612,
+      "delta": -0.031780773842599364
+    },
+    {
+      "metric": "UC1 Cov@90 (gpt5mini)",
+      "old": 0.5007313505607021,
+      "new": 0.4184823441021788,
+      "delta": -0.08224900645852323
+    },
+    {
+      "metric": "UC1 Cov@90 (qwen35)",
+      "old": 0.39689922480620154,
+      "new": 0.4209284028324154,
+      "delta": 0.02402917802621385
+    },
+    {
+      "metric": "UC3 AUROC (gpt52)",
+      "old": 0.9321164879608728,
+      "new": 0.9157692200245837,
+      "delta": -0.016347267936289045
+    },
+    {
+      "metric": "UC3 AUROC (gpt5mini)",
+      "old": 0.9554830293731039,
+      "new": 0.9172807196428976,
+      "delta": -0.03820230973020633
+    },
+    {
+      "metric": "UC3 AUROC (qwen35)",
+      "old": 0.9161958365708115,
+      "new": 0.91103041533419,
+      "delta": -0.005165421236621448
+    },
+    {
+      "metric": "UC3 Best F1 (gpt52)",
+      "old": 0.8306849315068493,
+      "new": 0.8061389337641357,
+      "delta": -0.0245459977427136
+    },
+    {
+      "metric": "UC3 Best F1 (gpt5mini)",
+      "old": 0.8833117723156533,
+      "new": 0.8326596604688763,
+      "delta": -0.05065211184677698
+    },
+    {
+      "metric": "UC3 Best F1 (qwen35)",
+      "old": 0.8398162327718224,
+      "new": 0.8292682926829268,
+      "delta": -0.010547940088895591
+    },
+    {
+      "metric": "UC4 Rank Corr (gpt52)",
+      "old": 0.9596491228070174,
+      "new": 0.9298245614035087,
+      "delta": -0.029824561403508754
+    },
+    {
+      "metric": "UC4 Rank Corr (gpt5mini)",
+      "old": 0.9719298245614034,
+      "new": 0.9859649122807018,
+      "delta": 0.0140350877192984
+    },
+    {
+      "metric": "UC4 Rank Corr (qwen35)",
+      "old": 0.9491228070175438,
+      "new": 0.9607843137254902,
+      "delta": 0.011661506707946412
+    },
+    {
+      "metric": "UC9 AUEDR (gpt52)",
+      "old": 0.7539221218961625,
+      "new": 0.7482730263157894,
+      "delta": -0.005649095580373076
+    },
+    {
+      "metric": "UC9 AUEDR (gpt5mini)",
+      "old": 0.7312720848056536,
+      "new": 0.7168130990415336,
+      "delta": -0.01445898576412008
+    },
+    {
+      "metric": "UC9 AUEDR (qwen35)",
+      "old": 0.7109274711168164,
+      "new": 0.7166524701873934,
+      "delta": 0.005724999070576997
+    }
+  ],
+  "run_results": {
+    "UC1 Selective Prediction": {
+      "success": true,
+      "elapsed": 2.1639044284820557,
+      "error": null
+    },
+    "UC2 Model Routing": {
+      "success": true,
+      "elapsed": 1.6229276657104492,
+      "error": null
+    },
+    "UC3 Error Detection": {
+      "success": true,
+      "elapsed": 2.3585920333862305,
+      "error": null
+    },
+    "UC4 Difficulty Estimation": {
+      "success": true,
+      "elapsed": 2.2891793251037598,
+      "error": null
+    },
+    "UC5 UQ Reward Model": {
+      "success": true,
+      "elapsed": 1.2446484565734863,
+      "error": null
+    },
+    "UC8 OOD Detection": {
+      "success": true,
+      "elapsed": 1.776569128036499,
+      "error": null
+    },
+    "UC9 Annotation Priority": {
+      "success": true,
+      "elapsed": 0.9461002349853516,
+      "error": null
+    },
+    "UC-A DPO Reward": {
+      "success": true,
+      "elapsed": 1.2426693439483643,
+      "error": null
+    },
+    "UC-B Best-of-N": {
+      "success": true,
+      "elapsed": 6.029705047607422,
+      "error": null
+    },
+    "UC-C Data Curation": {
+      "success": true,
+      "elapsed": 1.8748469352722168,
+      "error": null
+    },
+    "UC-D Agent Steps": {
+      "success": true,
+      "elapsed": 2.2769522666931152,
+      "error": null
+    }
+  }
+}

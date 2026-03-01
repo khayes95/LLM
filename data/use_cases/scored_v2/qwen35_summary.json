@@ -1,0 +1,92 @@
+{
+  "target_model": "qwen35",
+  "target_name": "Qwen3.5-397B-A17B-FP8",
+  "calibrator": "uq_models/text_calibrator_qwen35",
+  "n_samples": 3077,
+  "n_correct": 1567,
+  "auroc": 0.7938377208738171,
+  "mean_p_correct": 0.5034593207750144,
+  "elapsed_seconds": 128.88185095787048,
+  "data_stats": {
+    "arc_agi": {
+      "used": 180,
+      "correct": 32
+    },
+    "bbeh": {
+      "used": 75,
+      "correct": 14
+    },
+    "charxiv": {
+      "used": 250,
+      "correct": 160
+    },
+    "chembench": {
+      "used": 250,
+      "correct": 162
+    },
+    "gpqa": {
+      "used": 198,
+      "correct": 107
+    },
+    "hallusionbench": {
+      "used": 250,
+      "correct": 198
+    },
+    "hle": {
+      "used": 83,
+      "correct": 16
+    },
+    "livebench": {
+      "used": 75,
+      "correct": 43
+    },
+    "mathverse": {
+      "used": 126,
+      "correct": 76
+    },
+    "mathvision": {
+      "used": 63,
+      "correct": 10
+    },
+    "mathvista": {
+      "used": 207,
+      "correct": 70
+    },
+    "mmmu": {
+      "used": 150,
+      "correct": 106
+    },
+    "mmstar": {
+      "used": 250,
+      "correct": 208
+    },
+    "mmvet": {
+      "used": 0,
+      "correct": 0
+    },
+    "omnimath": {
+      "used": 63,
+      "correct": 11
+    },
+    "oolong": {
+      "used": 149,
+      "correct": 2
+    },
+    "prbench": {
+      "used": 0,
+      "correct": 0
+    },
+    "realworldqa": {
+      "used": 250,
+      "correct": 107
+    },
+    "simpleqa": {
+      "used": 250,
+      "correct": 103
+    },
+    "vizwiz": {
+      "used": 208,
+      "correct": 142
+    }
+  }
+}

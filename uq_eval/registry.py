@@ -42,9 +42,34 @@ from .benchmarks.humaneval import HumanEvalBenchmark, HumanEvalPlusBenchmark
 from .benchmarks.mbpp import MBPPBenchmark
 from .benchmarks.naturalqa import NaturalQuestionsBenchmark
 from .benchmarks.boolq import BoolQBenchmark
+from .benchmarks.arc_agi import ARCAGIBenchmark
+from .benchmarks.babilong import BABILongBenchmark
+from .benchmarks.chembench import ChemBenchBenchmark
+from .benchmarks.prbench import PRBenchBenchmark
+from .benchmarks.mmmu import MMMUBenchmark
+from .benchmarks.charxiv import CharXivBenchmark
+from .benchmarks.erqa import ERQABenchmark
+from .benchmarks.mathvista import MathVistaBenchmark
+from .benchmarks.mathverse import MathVerseBenchmark
+from .benchmarks.hallusionbench import HallusionBenchBenchmark
+from .benchmarks.mathvision import MathVisionBenchmark
+from .benchmarks.mmstar import MMStarBenchmark
+from .benchmarks.realworldqa import RealWorldQABenchmark
+from .benchmarks.aokvqa import AOKVQABenchmark
+from .benchmarks.vizwiz import VizWizBenchmark
+from .benchmarks.mmvet import MMVetBenchmark
+from .benchmarks.vsr import VSRBenchmark
 
 from .models.openai_client import OpenAIResponsesClient
 from .models.chat_completions_http_client import ChatCompletionsHTTPClient
+from .models.internvl_client import InternVLClient
+from .models.qwen3_vl_client import Qwen3VLClient
+from .models.qwen3_vl_vllm_client import Qwen3VLvLLMClient
+
+
+# Factory function for HLE multimodal variant
+def _hle_multimodal(**kw):
+    return HLEBenchmark(include_images=True, text_only=False, **kw)
 
 
 _BENCH_REGISTRY: dict[str, type[BaseBenchmark]] = {
@@ -58,6 +83,7 @@ _BENCH_REGISTRY: dict[str, type[BaseBenchmark]] = {
     "simpleqa": SimpleQABenchmark,
     "bbeh": BBEHBenchmark,
     "hle": HLEBenchmark,
+    "hle_multimodal": _hle_multimodal,
     "healthbench": HealthBenchBenchmark,
     "tutorbench": TutorBenchBenchmark,
     "multinrc": MultiNRCBenchmark,
@@ -87,11 +113,31 @@ _BENCH_REGISTRY: dict[str, type[BaseBenchmark]] = {
     "mbpp": MBPPBenchmark,
     "naturalqa": NaturalQuestionsBenchmark,
     "boolq": BoolQBenchmark,
+    "arc_agi": ARCAGIBenchmark,
+    "babilong": BABILongBenchmark,
+    "chembench": ChemBenchBenchmark,
+    "prbench": PRBenchBenchmark,
+    "mmmu": MMMUBenchmark,
+    "charxiv": CharXivBenchmark,
+    "erqa": ERQABenchmark,
+    "mathvista": MathVistaBenchmark,
+    "mathverse": MathVerseBenchmark,
+    "hallusionbench": HallusionBenchBenchmark,
+    "mathvision": MathVisionBenchmark,
+    "mmstar": MMStarBenchmark,
+    "realworldqa": RealWorldQABenchmark,
+    "aokvqa": AOKVQABenchmark,
+    "vizwiz": VizWizBenchmark,
+    "mmvet": MMVetBenchmark,
+    "vsr": VSRBenchmark,
 }
 
 _MODEL_REGISTRY: dict[str, type[BaseModelClient]] = {
     "openai": OpenAIResponsesClient,
     "chat_http": ChatCompletionsHTTPClient,
+    "internvl": InternVLClient,
+    "qwen3_vl": Qwen3VLClient,
+    "qwen3_vl_vllm": Qwen3VLvLLMClient,
 }
 
 

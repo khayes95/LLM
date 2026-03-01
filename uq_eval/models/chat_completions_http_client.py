@@ -19,6 +19,20 @@ _ROLE_MAP = {
 }
 
 
+def _convert_content_item(item: dict[str, Any]) -> dict[str, Any]:
+    """Convert Responses API content items to Chat Completions format.
+
+    Responses API: {"type": "input_image", "image_url": "data:..."}
+    Chat Completions: {"type": "image_url", "image_url": {"url": "data:..."}}
+    """
+    t = item.get("type", "")
+    if t == "input_image":
+        return {"type": "image_url", "image_url": {"url": item["image_url"]}}
+    if t == "input_text":
+        return {"type": "text", "text": item["text"]}
+    return item
+
+
 def _normalize_messages(messages: list[dict[str, Any]]) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for m in messages:
@@ -26,8 +40,28 @@ def _normalize_messages(messages: list[dict[str, Any]]) -> list[dict[str, Any]]:
         role = mm.get("role")
         if isinstance(role, str):
             mm["role"] = _ROLE_MAP.get(role, role)
+        # Convert multimodal content from Responses API format to Chat Completions
+        content = mm.get("content")
+        if isinstance(content, list):
+            mm["content"] = [_convert_content_item(c) if isinstance(c, dict) else c for c in content]
         out.append(mm)
     return out
+
+
+def _extract_thinking(text: str) -> tuple[str, str | None]:
+    """Extract and strip <think>...</think> blocks from model output.
+
+    Returns (stripped_text, thinking_content).
+    """
+    if "</think>" in text:
+        parts = text.split("</think>", 1)
+        thinking = parts[0]
+        # Remove opening <think> tag if present
+        if "<think>" in thinking:
+            thinking = thinking.split("<think>", 1)[-1]
+        stripped = parts[-1].strip()
+        return stripped, thinking.strip()
+    return text, None
 
 
 @dataclass(slots=True)
@@ -46,6 +80,8 @@ class ChatCompletionsHTTPClient(BaseModelClient):
     timeout_s: float = 30.0
     max_try: int = 5
     sleep_s: float = 1.0
+    disable_thinking: bool = False  # Disable thinking for Qwen3-style models (faster)
+    strip_thinking: bool = True  # Strip <think>...</think> from response text
 
     def __post_init__(self) -> None:
         if not self.api_key:
@@ -89,6 +125,10 @@ class ChatCompletionsHTTPClient(BaseModelClient):
             if req.top_logprobs:
                 payload["top_logprobs"] = int(req.top_logprobs)
 
+        # Disable thinking for Qwen3-style models (much faster inference)
+        if self.disable_thinking:
+            payload["chat_template_kwargs"] = {"enable_thinking": False}
+
         last_err: str | None = None
         last_resp_text: str | None = None
 
@@ -107,8 +147,13 @@ class ChatCompletionsHTTPClient(BaseModelClient):
                     # fallback
                     text = str(result)
 
+                # Extract and strip thinking tokens (Qwen3-style <think>...</think>)
+                thinking = None
+                if self.strip_thinking and text:
+                    text, thinking = _extract_thinking(text)
+
                 usage = result.get("usage", None) if isinstance(result, dict) else None
-                return ModelResponse(text=text or "", raw=result, usage=usage)
+                return ModelResponse(text=text or "", raw=result, usage=usage, thinking=thinking)
 
             except Exception as e:
                 last_err = f"{type(e).__name__}: {e}"

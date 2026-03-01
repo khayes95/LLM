@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uq-eval"
+version = "0.1.0"
+description = "Uncertainty Quantification for LLMs and VLMs via Cross-Model Transfer"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Kevin Hayes", email = "kevindavidhayes1@gmail.com"},
+]
+keywords = ["uncertainty-quantification", "llm", "vlm", "calibration", "cross-model"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "torch>=2.1.0",
+    "transformers>=4.45.0",
+    "peft>=0.13.0",
+    "datasets>=2.14.0",
+    "accelerate>=0.34.0",
+    "openai>=1.0.0",
+    "requests>=2.31.0",
+    "numpy>=1.24.0",
+    "scipy>=1.11.0",
+    "scikit-learn>=1.3.0",
+    "pandas>=2.0.0",
+    "matplotlib>=3.7.0",
+    "tqdm>=4.65.0",
+    "Pillow>=10.0.0",
+    "huggingface-hub>=0.20.0",
+]
+
+[project.optional-dependencies]
+vlm = ["qwen-vl-utils>=0.0.2"]
+inference = ["vllm>=0.6.0"]
+dev = ["pytest", "ruff"]
+
+[project.urls]
+Repository = "https://github.com/khayes95/LLM"
+
+[project.scripts]
+uq-eval = "uq_eval.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["uq_eval*"]
+
+[tool.ruff]
+line-length = 120

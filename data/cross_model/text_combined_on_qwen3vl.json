@@ -1,0 +1,280 @@
+{
+  "auroc": 0.6425272175869635,
+  "auprc": 0.49024788069794645,
+  "n_samples": 2246,
+  "n_correct": 782,
+  "base_rate": 0.3481745325022262,
+  "brier": 0.24999794757403335,
+  "ece": 0.17525215182894588,
+  "per_benchmark": {
+    "bbeh": {
+      "n_samples": 122,
+      "n_correct": 10,
+      "accuracy": 0.08196721311475409,
+      "mean_p_correct": 0.6345094774590164,
+      "std_p_correct": 0.13594582426871338,
+      "auroc": 0.321875
+    },
+    "charxiv": {
+      "n_samples": 250,
+      "n_correct": 23,
+      "accuracy": 0.092,
+      "mean_p_correct": 0.408572265625,
+      "std_p_correct": 0.14329381495702367,
+      "auroc": 0.4934878375790078
+    },
+    "chembench": {
+      "n_samples": 103,
+      "n_correct": 49,
+      "accuracy": 0.47572815533980584,
+      "mean_p_correct": 0.5719622269417476,
+      "std_p_correct": 0.058830778969013786,
+      "auroc": 0.5438397581254724
+    },
+    "gpqa": {
+      "n_samples": 198,
+      "n_correct": 93,
+      "accuracy": 0.4696969696969697,
+      "mean_p_correct": 0.5594075520833334,
+      "std_p_correct": 0.14918316176620267,
+      "auroc": 0.5053763440860215
+    },
+    "hallusionbench": {
+      "n_samples": 100,
+      "n_correct": 75,
+      "accuracy": 0.75,
+      "mean_p_correct": 0.5421826171875,
+      "std_p_correct": 0.22561314955892667,
+      "auroc": 0.6786666666666666
+    },
+    "hle": {
+      "n_samples": 116,
+      "n_correct": 24,
+      "accuracy": 0.20689655172413793,
+      "mean_p_correct": 0.4717512459590517,
+      "std_p_correct": 0.18980645719021483,
+      "auroc": 0.5763134057971014
+    },
+    "hle_multimodal": {
+      "n_samples": 68,
+      "n_correct": 11,
+      "accuracy": 0.16176470588235295,
+      "mean_p_correct": 0.44228946461397056,
+      "std_p_correct": 0.1815540753168154,
+      "auroc": 0.5964912280701755
+    },
+    "livebench": {
+      "n_samples": 175,
+      "n_correct": 75,
+      "accuracy": 0.42857142857142855,
+      "mean_p_correct": 0.6501953125,
+      "std_p_correct": 0.21750615454173328,
+      "auroc": 0.7297333333333333
+    },
+    "mathverse": {
+      "n_samples": 75,
+      "n_correct": 41,
+      "accuracy": 0.5466666666666666,
+      "mean_p_correct": 0.5398828125,
+      "std_p_correct": 0.1200202373818053,
+      "auroc": 0.511119081779053
+    },
+    "mathvision": {
+      "n_samples": 183,
+      "n_correct": 20,
+      "accuracy": 0.1092896174863388,
+      "mean_p_correct": 0.5092693391393442,
+      "std_p_correct": 0.18028698697985246,
+      "auroc": 0.6001533742331289
+    },
+    "mathvista": {
+      "n_samples": 250,
+      "n_correct": 84,
+      "accuracy": 0.336,
+      "mean_p_correct": 0.574380859375,
+      "std_p_correct": 0.18606245556139842,
+      "auroc": 0.687679288582903
+    },
+    "mmstar": {
+      "n_samples": 164,
+      "n_correct": 130,
+      "accuracy": 0.7926829268292683,
+      "mean_p_correct": 0.5689012480945121,
+      "std_p_correct": 0.18671174795622048,
+      "auroc": 0.485633484162896
+    },
+    "omnimath": {
+      "n_samples": 66,
+      "n_correct": 2,
+      "accuracy": 0.030303030303030304,
+      "mean_p_correct": 0.27094430634469696,
+      "std_p_correct": 0.17683913575861326,
+      "auroc": 0.93359375
+    },
+    "realworldqa": {
+      "n_samples": 250,
+      "n_correct": 100,
+      "accuracy": 0.4,
+      "mean_p_correct": 0.45751806640625,
+      "std_p_correct": 0.2683557036440501,
+      "auroc": 0.8661
+    },
+    "simpleqa": {
+      "n_samples": 70,
+      "n_correct": 16,
+      "accuracy": 0.22857142857142856,
+      "mean_p_correct": 0.6495814732142857,
+      "std_p_correct": 0.15723409852487144,
+      "auroc": 0.4785879629629629
+    },
+    "vizwiz": {
+      "n_samples": 56,
+      "n_correct": 29,
+      "accuracy": 0.5178571428571429,
+      "mean_p_correct": 0.4512852260044643,
+      "std_p_correct": 0.17208990041093172,
+      "auroc": 0.3314176245210728
+    }
+  },
+  "source_model": "GPT-5-mini",
+  "target_model": "Qwen3-VL-30B-A3B-Thinking",
+  "calibrator": "uq_models/text_calibrator_combined",
+  "data_stats": {
+    "bbeh": {
+      "total": 1000,
+      "matched": 122,
+      "no_question": 878,
+      "used": 122,
+      "correct": 10,
+      "accuracy": 0.08196721311475409
+    },
+    "charxiv": {
+      "total": 250,
+      "matched": 250,
+      "no_question": 0,
+      "used": 250,
+      "correct": 23,
+      "accuracy": 0.092
+    },
+    "chembench": {
+      "total": 1000,
+      "matched": 103,
+      "no_question": 897,
+      "used": 103,
+      "correct": 49,
+      "accuracy": 0.47572815533980584
+    },
+    "gpqa": {
+      "total": 198,
+      "matched": 198,
+      "no_question": 0,
+      "used": 198,
+      "correct": 93,
+      "accuracy": 0.4696969696969697
+    },
+    "hallusionbench": {
+      "total": 951,
+      "matched": 100,
+      "no_question": 851,
+      "used": 100,
+      "correct": 75,
+      "accuracy": 0.75
+    },
+    "hle": {
+      "total": 1000,
+      "matched": 116,
+      "no_question": 884,
+      "used": 116,
+      "correct": 24,
+      "accuracy": 0.20689655172413793
+    },
+    "hle_multimodal": {
+      "total": 1000,
+      "matched": 68,
+      "no_question": 932,
+      "used": 68,
+      "correct": 11,
+      "accuracy": 0.16176470588235295
+    },
+    "livebench": {
+      "total": 1000,
+      "matched": 175,
+      "no_question": 825,
+      "used": 175,
+      "correct": 75,
+      "accuracy": 0.42857142857142855
+    },
+    "mathverse": {
+      "total": 1000,
+      "matched": 75,
+      "no_question": 925,
+      "used": 75,
+      "correct": 41,
+      "accuracy": 0.5466666666666666
+    },
+    "mathvision": {
+      "total": 1000,
+      "matched": 183,
+      "no_question": 817,
+      "used": 183,
+      "correct": 20,
+      "accuracy": 0.1092896174863388
+    },
+    "mathvista": {
+      "total": 1000,
+      "matched": 250,
+      "no_question": 750,
+      "used": 250,
+      "correct": 84,
+      "accuracy": 0.336
+    },
+    "mmmu": {
+      "total": 900,
+      "matched": 0,
+      "no_question": 900,
+      "used": 0,
+      "correct": 0,
+      "accuracy": 0
+    },
+    "mmstar": {
+      "total": 1000,
+      "matched": 164,
+      "no_question": 836,
+      "used": 164,
+      "correct": 130,
+      "accuracy": 0.7926829268292683
+    },
+    "omnimath": {
+      "total": 1000,
+      "matched": 66,
+      "no_question": 934,
+      "used": 66,
+      "correct": 2,
+      "accuracy": 0.030303030303030304
+    },
+    "realworldqa": {
+      "total": 765,
+      "matched": 250,
+      "no_question": 515,
+      "used": 250,
+      "correct": 100,
+      "accuracy": 0.4
+    },
+    "simpleqa": {
+      "total": 1000,
+      "matched": 70,
+      "no_question": 930,
+      "used": 70,
+      "correct": 16,
+      "accuracy": 0.22857142857142856
+    },
+    "vizwiz": {
+      "total": 1000,
+      "matched": 56,
+      "no_question": 737,
+      "used": 56,
+      "correct": 29,
+      "accuracy": 0.5178571428571429
+    }
+  }
+}

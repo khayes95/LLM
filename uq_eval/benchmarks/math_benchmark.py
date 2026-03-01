@@ -59,7 +59,7 @@ class MATHBenchmark(BaseBenchmark):
             if self.subject_filter and self.subject_filter.lower() not in subject.lower():
                 continue
             try:
-                ds = load_dataset("EleutherAI/hendrycks_math", subject, split=split, trust_remote_code=True)
+                ds = load_dataset("EleutherAI/hendrycks_math", subject, split=split)
             except Exception:
                 continue
 

@@ -11,81 +11,83 @@ from .base import BaseBenchmark
 from .common import clamp01, extract_first_json_obj
 
 
-# Oolong has multiple task types
-OOLONG_TASKS = [
-    "analogies",
-    "associations",
-    "collocations",
-    "semantic_similarity",
-    "text_classification",
-]
-
-
 @dataclass(slots=True)
 class OolongBenchmark(BaseBenchmark):
     """Oolong: Long context understanding benchmark.
 
-    Tests understanding of long documents with various tasks.
-    Dataset: https://huggingface.co/datasets/yuchenlin/oolong
+    Tests understanding of long documents (8K-128K tokens) with various tasks.
+    Dataset: https://huggingface.co/datasets/oolongbench/oolong-synth
 
-    Tasks:
-    - analogies: Word analogy completion
-    - associations: Word association tasks
-    - collocations: Common word combinations
-    - semantic_similarity: Sentence similarity
-    - text_classification: Document classification
+    5,200 examples in the synthetic version.
+    GPT-5 scores ~47-70% depending on context length.
     """
 
     name: str = "oolong"
     mode: str = "longtext"
 
-    # Which task to run (None = all tasks)
-    task: str | None = None
+    # Which variant: "synth" (synthetic, 5200 examples) or "real" (requires config)
+    variant: str = "synth"
+
+    # Filter by task group (e.g., "counting", "classification")
+    task_filter: str | None = None
 
     def iter_examples(self, split: str) -> Iterable[Example]:
-        tasks_to_run = [self.task] if self.task else OOLONG_TASKS
+        # Load the appropriate dataset
+        if self.variant == "synth":
+            ds = load_dataset("oolongbench/oolong-synth", split="test")
+        else:
+            # Real variant requires a config (dnd, toy_dnd)
+            ds = load_dataset("oolongbench/oolong-real", "dnd", split="test")
 
-        for task_name in tasks_to_run:
-            try:
-                ds = load_dataset("princeton-nlp/OolongBench", task_name, split="test", trust_remote_code=True)
-            except Exception:
-                try:
-                    ds = load_dataset("yuchenlin/oolong", task_name, split="test", trust_remote_code=True)
-                except Exception:
-                    continue
+        for idx, row in enumerate(ds):
+            task_group = row.get("task_group", "")
+            task = row.get("task", "")
 
-            for idx, row in enumerate(ds):
-                # Get input - could be "text", "sentence", "word", etc.
-                input_text = row.get("text", row.get("sentence", row.get("input", "")))
+            if self.task_filter and self.task_filter.lower() not in task_group.lower():
+                continue
 
-                # Get target
-                target = row.get("label", row.get("answer", row.get("target", "")))
+            # Build input: context + question
+            context = row.get("context_window_text", "")
+            question = row.get("question", "")
 
-                yield Example(
-                    id=f"oolong_{task_name}_{idx}",
-                    input=input_text,
-                    target=str(target),
-                    meta={
-                        "split": split,
-                        "task": task_name,
-                    },
-                )
+            # Combine context and question
+            if context and question:
+                input_text = f"{context}\n\n{question}"
+            else:
+                input_text = question or context
+
+            # Get answer - may be a list
+            answer = row.get("answer", "")
+            if isinstance(answer, list):
+                answer = answer[0] if answer else ""
+
+            yield Example(
+                id=f"oolong_{self.variant}_{idx}",
+                input=input_text,
+                target=str(answer),
+                meta={
+                    "split": split,
+                    "variant": self.variant,
+                    "task_group": task_group,
+                    "task": task,
+                    "context_len": row.get("context_len", 0),
+                    "answer_type": row.get("answer_type", ""),
+                    "dataset": row.get("dataset", ""),
+                },
+            )
 
     def build_request(self, ex: Example) -> ModelRequest:
-        task = ex.meta.get("task", "")
+        task_group = ex.meta.get("task_group", "")
 
-        if task == "analogies":
-            instruction = "Complete the word analogy. A is to B as C is to ?"
-        elif task == "associations":
-            instruction = "What word is most associated with the given words?"
-        elif task == "collocations":
-            instruction = "What word commonly appears with the given word?"
-        elif task == "semantic_similarity":
-            instruction = "Rate the semantic similarity of these sentences (0-5)."
-        elif task == "text_classification":
-            instruction = "Classify the given text into the appropriate category."
+        # Build task-specific instruction
+        if "count" in task_group.lower():
+            instruction = "Count the requested items in the given context and provide the number."
+        elif "classif" in task_group.lower():
+            instruction = "Classify or identify the label as requested based on the context."
+        elif "extract" in task_group.lower():
+            instruction = "Extract the requested information from the context."
         else:
-            instruction = "Answer the following question."
+            instruction = "Answer the question based on the given context."
 
         system = (
             f"{instruction}\n"
@@ -107,7 +109,7 @@ class OolongBenchmark(BaseBenchmark):
         if obj and obj.get("confidence") is not None:
             try:
                 confidence = clamp01(float(obj["confidence"]))
-            except:
+            except Exception:
                 pass
 
         return Prediction(
@@ -115,33 +117,38 @@ class OolongBenchmark(BaseBenchmark):
             answer=str(answer).strip(),
             confidence=confidence,
             raw_text=raw_text,
-            extra={"parsed_json": obj is not None, "task": ex.meta.get("task", "")},
+            extra={
+                "parsed_json": obj is not None,
+                "task_group": ex.meta.get("task_group", ""),
+            },
         )
 
     def score(self, ex: Example, pred: Prediction) -> dict:
         gold = str(ex.target).strip().lower()
         got = str(pred.answer).strip().lower()
 
-        # Task-specific scoring
-        task = ex.meta.get("task", "")
+        answer_type = ex.meta.get("answer_type", "")
 
-        if task == "semantic_similarity":
-            # Numeric comparison for similarity scores
+        # Scoring depends on answer type
+        if answer_type == "number" or "count" in ex.meta.get("task_group", "").lower():
+            # Numeric comparison
             try:
-                gold_num = float(gold)
+                gold_num = float(re.search(r"[\d.]+", gold).group())
                 got_num = float(re.search(r"[\d.]+", got).group())
-                correct = int(abs(gold_num - got_num) < 0.5)
-            except:
+                correct = int(abs(gold_num - got_num) < 0.01)
+            except Exception:
                 correct = int(gold == got)
         else:
-            # String matching for other tasks
-            correct = int(gold == got or gold in got)
+            # String matching
+            correct = int(gold == got or gold in got or got in gold)
 
         out = {
             "correct": correct,
             "gold": str(ex.target),
             "predicted": pred.answer,
-            "task": task,
+            "task_group": ex.meta.get("task_group", ""),
+            "task": ex.meta.get("task", ""),
+            "context_len": ex.meta.get("context_len", 0),
         }
         if pred.confidence is not None:
             out["brier"] = (float(pred.confidence) - correct) ** 2

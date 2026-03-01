@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Cross-model transfer AUROC. Calibrator trained on Source model responses, evaluated on Target model responses.}
+\label{tab:cross_model}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{Target Model}} \\
+\cmidrule(lr){2-4}
+\textbf{Calibrator} & GPT-5.2 & Qwen3-VL-30B & Qwen3.5-397B \\
+\midrule
+v3 (GPT-5-mini) & 0.702 & 0.675 & 0.725 \\
+GPT-5.2 only & 0.772 & 0.614 & 0.539 \\
+Combined & 0.804 & 0.643 & 0.557 \\
+\midrule
+VLM Judge & 0.589 & 0.682 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}

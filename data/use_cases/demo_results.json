@@ -1,0 +1,48 @@
+{
+  "selective_prediction": [
+    {
+      "threshold": 0.99,
+      "coverage": 0.4540478248343417,
+      "accuracy": 0.7823604060913706,
+      "n_answered": 1576
+    },
+    {
+      "threshold": 0.95,
+      "coverage": 0.8928262748487468,
+      "accuracy": 0.7086156824782188,
+      "n_answered": 3099
+    },
+    {
+      "threshold": 0.9,
+      "coverage": 0.9492941515413426,
+      "accuracy": 0.7028831562974204,
+      "n_answered": 3295
+    },
+    {
+      "threshold": 0.8,
+      "coverage": 0.993085566119274,
+      "accuracy": 0.6974180446765303,
+      "n_answered": 3447
+    },
+    {
+      "threshold": 0.7,
+      "coverage": 0.996830884471334,
+      "accuracy": 0.6953757225433526,
+      "n_answered": 3460
+    },
+    {
+      "threshold": 0.5,
+      "coverage": 0.9976951887064247,
+      "accuracy": 0.695350851862547,
+      "n_answered": 3463
+    },
+    {
+      "threshold": 0.0,
+      "coverage": 1.0,
+      "accuracy": 0.6951887064246615,
+      "n_answered": 3471
+    }
+  ],
+  "n_samples": 3471,
+  "model": "Qwen3.5-397B-A17B-FP8"
+}

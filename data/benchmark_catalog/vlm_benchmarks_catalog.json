@@ -1,0 +1,3255 @@
+[
+  {
+    "hf_id": "cambridgeltl/vsr_random",
+    "config": null,
+    "expected_gpt5_accuracy": "~70%",
+    "notes": "Spatial reasoning, true/false",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 2195,
+      "columns": [
+        "image",
+        "image_link",
+        "caption",
+        "label",
+        "relation",
+        "annotator_id",
+        "vote_true_validator_id",
+        "vote_false_validator_id",
+        "reference_frame"
+      ],
+      "image_columns": [
+        "image",
+        "image_link"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": true,
+      "answer_columns": [
+        "label"
+      ],
+      "class_balance": {
+        "1": 0.529,
+        "0": 0.471
+      },
+      "num_classes": 2,
+      "question_columns": [],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "caption": "The person is inside the refrigerator.",
+          "label": 1,
+          "relation": "inside",
+          "annotator_id": 29,
+          "vote_true_validator_id": "[2, 9]",
+          "vote_false_validator_id": "[3]"
+        },
+        {
+          "caption": "The cake consists of the dog.",
+          "label": 1,
+          "relation": "consists of",
+          "annotator_id": 4,
+          "vote_true_validator_id": "[3, 54, 2]",
+          "vote_false_validator_id": "[]"
+        },
+        {
+          "caption": "The bird is above the cat.",
+          "label": 0,
+          "relation": "above",
+          "annotator_id": 27,
+          "vote_true_validator_id": "[]",
+          "vote_false_validator_id": "[2, 17, 52]"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "AI4Math/MathVerse",
+    "config": null,
+    "expected_gpt5_accuracy": "~25%",
+    "notes": "Visual math, 6 versions per problem",
+    "status": "error",
+    "error": "Config name is missing.\nPlease pick one among the available configs: ['testmini', 'testmini_text_only']\nExample of usage:\n\t`load_dataset('AI4Math/MathVerse', 'testmini')`",
+    "metadata": {
+      "available_configs": [
+        "testmini",
+        "testmini_text_only"
+      ]
+    }
+  },
+  {
+    "hf_id": "MathLLMs/MathVision",
+    "config": null,
+    "expected_gpt5_accuracy": "~24%",
+    "notes": "Competition math with images",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test",
+        "testmini"
+      ],
+      "main_split": "test",
+      "size": 3040,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "image",
+        "decoded_image",
+        "answer",
+        "solution",
+        "level",
+        "subject"
+      ],
+      "image_columns": [
+        "image",
+        "decoded_image"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "num_classes": 92,
+      "class_balance": "92 unique values (sampled 1000)",
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "1",
+          "question": "Which number should be written in place of the question mark?\n<image1>",
+          "options": [],
+          "answer": "60",
+          "level": 2,
+          "subject": "arithmetic"
+        },
+        {
+          "id": "2",
+          "question": "Which bike is most expensive?\n<image1>",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "answer": "A",
+          "level": 2,
+          "subject": "arithmetic"
+        },
+        {
+          "id": "3",
+          "question": "Which kite has the longest string?\n<image1>",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "answer": "C",
+          "level": 1,
+          "subject": "metric geometry - length"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "AI4Math/MathVista",
+    "config": "testmini",
+    "expected_gpt5_accuracy": "~50%",
+    "notes": "IQ tests, plots, figures",
+    "status": "error",
+    "error": "BuilderConfig 'testmini' not found. Available: ['default']",
+    "metadata": {
+      "available_configs": [
+        "default"
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/HallusionBench",
+    "config": null,
+    "expected_gpt5_accuracy": "~31%",
+    "notes": "Hallucination detection",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "image",
+        "non_image"
+      ],
+      "main_split": "image",
+      "size": 951,
+      "columns": [
+        "category",
+        "subcategory",
+        "visual_input",
+        "set_id",
+        "figure_id",
+        "sample_note",
+        "question_id",
+        "question",
+        "gt_answer_details",
+        "gt_answer",
+        "filename",
+        "image"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "gt_answer_details",
+        "gt_answer"
+      ],
+      "num_classes": 558,
+      "class_balance": "558 unique values (sampled 951)",
+      "question_columns": [
+        "question_id",
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "category": "VS",
+          "subcategory": "chart",
+          "visual_input": "1",
+          "set_id": "0",
+          "figure_id": "1",
+          "sample_note": "import",
+          "question_id": "0",
+          "question": "Is China, Hongkong SAR, the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer_details": "Switzerland is the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer": "0",
+          "filename": "./VS/chart/0_1.png"
+        },
+        {
+          "category": "VS",
+          "subcategory": "chart",
+          "visual_input": "1",
+          "set_id": "0",
+          "figure_id": "1",
+          "sample_note": "import",
+          "question_id": "1",
+          "question": "Is Switzerland, the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer_details": "Switzerland is the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer": "1",
+          "filename": "./VS/chart/0_1.png"
+        },
+        {
+          "category": "VS",
+          "subcategory": "chart",
+          "visual_input": "1",
+          "set_id": "0",
+          "figure_id": "1",
+          "sample_note": "import",
+          "question_id": "2",
+          "question": "Is France, the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer_details": "Switzerland is the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer": "0",
+          "filename": "./VS/chart/0_1.png"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "jonathan-roberts1/zerobench",
+    "config": null,
+    "expected_gpt5_accuracy": "0%",
+    "notes": "Designed to be unsolvable",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "zerobench",
+        "zerobench_subquestions"
+      ],
+      "main_split": "zerobench",
+      "size": 100,
+      "columns": [
+        "question_id",
+        "question_text",
+        "question_images_decoded",
+        "question_answer",
+        "question_images",
+        "image_attribution"
+      ],
+      "image_columns": [
+        "question_images_decoded",
+        "question_images",
+        "image_attribution"
+      ],
+      "num_image_columns": 3,
+      "is_multi_image": true,
+      "answer_columns": [
+        "question_answer"
+      ],
+      "num_classes": 98,
+      "class_balance": "98 unique values (sampled 100)",
+      "question_columns": [
+        "question_id",
+        "question_text",
+        "question_images_decoded",
+        "question_answer",
+        "question_images"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "question_id": "1",
+          "question_text": "I want to purchase all the Montellier bottles from the top three shelves. How much do I save by purchasing the bottles with a loyalty card? Give your final answer in dollars.",
+          "question_answer": "11.90"
+        },
+        {
+          "question_id": "2",
+          "question_text": "Image 1 shows the three sample types of screws for reference. Based on this reference, we assign scores to the screws as follows: largest=1, middle=2, small=3. Now take a look at image 2. \n\n(1) Find t...",
+          "question_answer": "2704"
+        },
+        {
+          "question_id": "3",
+          "question_text": "Based on the following rules:\n\u2022\tYou control the smiley face character\n\u2022\tYou can move up, down, left, and right, and only a single square at a time\n\u2022\tWalls are dark grey and cannot be moved into\n\u2022\tThe ...",
+          "question_answer": "down, right, right, right, up, right, down, down, down, down, down, left, down, right, right, right, down, right, right, right, right, right, right, right, up, up, up, up, up, up, up, left, left, left..."
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "validation",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal",
+    "status": "error",
+    "error": "BuilderConfig 'validation' not found. Available: ['Accounting', 'Agriculture', 'Architecture_and_Engineering', 'Art', 'Art_Theory', 'Basic_Medical_Science', 'Biology', 'Chemistry', 'Clinical_Medicine', 'Computer_Science', 'Design', 'Diagnostics_and_Laboratory_Medicine', 'Economics', 'Electronics', 'Energy_and_Power', 'Finance', 'Geography', 'History', 'Literature', 'Manage', 'Marketing', 'Materials', 'Math', 'Mechanical_Engineering', 'Music', 'Pharmacy', 'Physics', 'Psychology', 'Public_Health', 'Sociology']",
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ]
+    }
+  },
+  {
+    "hf_id": "Lin-Chen/MMStar",
+    "config": null,
+    "expected_gpt5_accuracy": "~55%",
+    "notes": "Vision-indispensable",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "val"
+      ],
+      "splits": [
+        "val"
+      ],
+      "main_split": "val",
+      "size": 1500,
+      "columns": [
+        "index",
+        "question",
+        "image",
+        "answer",
+        "category",
+        "l2_category",
+        "meta_info"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "B": 0.318,
+        "A": 0.282,
+        "D": 0.206,
+        "C": 0.194
+      },
+      "num_classes": 4,
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "index": 0,
+          "question": "Which option describe the object relationship in the image correctly?\nOptions: A: The suitcase is on the book., B: The suitcase is beneath the cat., C: The suitcase is beneath the bed., D: The suitcas...",
+          "answer": "A",
+          "category": "coarse perception",
+          "l2_category": "image scene and topic"
+        },
+        {
+          "index": 1,
+          "question": "What is the main feature in the background of the image?\nOptions: A: A park bench near the water., B: A couple sitting on a bench., C: A body of water and the Golden Gate Bridge., D: A mountain in the...",
+          "answer": "B",
+          "category": "coarse perception",
+          "l2_category": "image scene and topic"
+        },
+        {
+          "index": 2,
+          "question": "What seems to be the theme of the image?\nOptions: A: Hanging Posters, B: Music, C: Home decoration, D: Playing guitar",
+          "answer": "D",
+          "category": "coarse perception",
+          "l2_category": "image scene and topic"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/RealWorldQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~70%",
+    "notes": "Real-world spatial",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 765,
+      "columns": [
+        "image",
+        "image_path",
+        "question",
+        "answer"
+      ],
+      "image_columns": [
+        "image",
+        "image_path"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "num_classes": 29,
+      "class_balance": "29 unique values (sampled 765)",
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "question": "In which direction is the front wheel of the car on the right side facing?\n\nA. Left\nB. Straight\nC. Right\nPlease answer directly with only the letter of the correct option and nothing else.",
+          "answer": "C"
+        },
+        {
+          "question": "How many bars are here?\nA. There are two parallel bars in this photo.\nB. There are three bars in the photo. two are the same height and one is higher.\nC. There are two bars in this photo. one is high ...",
+          "answer": "B"
+        },
+        {
+          "question": "how many pedestrians are there?\nPlease answer directly with a single word or number.",
+          "answer": "0"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/ai2d",
+    "config": null,
+    "expected_gpt5_accuracy": "~85%",
+    "notes": "Science diagrams",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 3088,
+      "columns": [
+        "question",
+        "options",
+        "answer",
+        "image"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "2": 0.281,
+        "1": 0.262,
+        "0": 0.241,
+        "3": 0.216
+      },
+      "num_classes": 4,
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "question": "which of these define dairy item",
+          "options": [
+            "c",
+            "D",
+            "b",
+            "a"
+          ],
+          "answer": "1"
+        },
+        {
+          "question": "which of these define oil",
+          "options": [
+            "b",
+            "a",
+            "d",
+            "k"
+          ],
+          "answer": "3"
+        },
+        {
+          "question": "According to the given food chain what would happen if phytoplankton decreases?",
+          "options": [
+            "Seal population will become extinct",
+            "Fish population would decrease.",
+            "Whale population would decrease.",
+            "Penguin population would increase."
+          ],
+          "answer": "1"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "HuggingFaceM4/ChartQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~75%",
+    "notes": "Chart understanding",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "train",
+        "val",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 2500,
+      "columns": [
+        "image",
+        "query",
+        "label",
+        "human_or_machine"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "label"
+      ],
+      "num_classes": 574,
+      "class_balance": "574 unique values (sampled 1000)",
+      "question_columns": [
+        "query"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "query": "How many food item is shown in the bar graph?",
+          "label": [
+            "14"
+          ],
+          "human_or_machine": 0
+        },
+        {
+          "query": "What is the difference in value between Lamb and Corn?",
+          "label": [
+            "0.57"
+          ],
+          "human_or_machine": 0
+        },
+        {
+          "query": "How many bars are shown in the chart?",
+          "label": [
+            "3"
+          ],
+          "human_or_machine": 0
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "princeton-nlp/CharXiv",
+    "config": null,
+    "expected_gpt5_accuracy": "~60%",
+    "notes": "arXiv figure reasoning",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 1323,
+      "columns": [
+        "image",
+        "category",
+        "year",
+        "original_figure_path",
+        "original_id",
+        "figure_path",
+        "num_subplots",
+        "subplot_row",
+        "subplot_col",
+        "subplot_loc",
+        "descriptive_q1",
+        "descriptive_q2",
+        "descriptive_q3",
+        "descriptive_q4",
+        "descriptive_a1",
+        "descriptive_a2",
+        "descriptive_a3",
+        "descriptive_a4",
+        "reasoning_q",
+        "reasoning_q_source",
+        "reasoning_a",
+        "reasoning_a_type"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [],
+      "question_columns": [],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "category": "cs",
+          "year": "20",
+          "original_figure_path": "arXiv_src_2002_041/2002/2002.12459/experiments/ssjoptimizations.jpg",
+          "original_id": "2002.12459",
+          "figure_path": "images/1.jpg",
+          "num_subplots": 1,
+          "subplot_row": 0,
+          "subplot_col": 0,
+          "descriptive_q1": 13,
+          "descriptive_q2": 7,
+          "descriptive_q3": 18,
+          "descriptive_q4": 14,
+          "reasoning_q": "Among all bars, what is the least time percentage difference between any two neighboring bars?",
+          "reasoning_q_source": 2,
+          "reasoning_a_type": 4
+        },
+        {
+          "category": "cs",
+          "year": "20",
+          "original_figure_path": "arXiv_src_2006_021/2006/2006.05993/figs/boundary_hueristic_plot.jpg",
+          "original_id": "2006.05993",
+          "figure_path": "images/4.jpg",
+          "num_subplots": 1,
+          "subplot_row": 0,
+          "subplot_col": 0,
+          "descriptive_q1": 3,
+          "descriptive_q2": 2,
+          "descriptive_q3": 13,
+          "descriptive_q4": 15,
+          "reasoning_q": "Is the number of red points more than blue points?",
+          "reasoning_q_source": 3,
+          "reasoning_a_type": 2
+        },
+        {
+          "category": "cs",
+          "year": "20",
+          "original_figure_path": "arXiv_src_2008_066/2008/2008.12141/confusion_matrixepoch19pruninglevel1.jpg",
+          "original_id": "2008.12141",
+          "figure_path": "images/6.jpg",
+          "num_subplots": 1,
+          "subplot_row": 0,
+          "subplot_col": 0,
+          "descriptive_q1": 6,
+          "descriptive_q2": 5,
+          "descriptive_q3": 7,
+          "descriptive_q4": 10,
+          "reasoning_q": "Which predicted category has the highest value for the actual category \u201cMelanoma\u201d other than itself?",
+          "reasoning_q_source": 2,
+          "reasoning_a_type": 1
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "derek-thomas/ScienceQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~85%",
+    "notes": "K-12 science",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 4241,
+      "columns": [
+        "image",
+        "question",
+        "choices",
+        "answer",
+        "hint",
+        "task",
+        "grade",
+        "subject",
+        "topic",
+        "category",
+        "skill",
+        "lecture",
+        "solution"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "choices",
+        "answer"
+      ],
+      "num_classes": 862,
+      "class_balance": "862 unique values (sampled 1000)",
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "question": "Which figure of speech is used in this text?\nSing, O goddess, the anger of Achilles son of Peleus, that brought countless ills upon the Achaeans.\n\u2014Homer, The Iliad",
+          "choices": [
+            "chiasmus",
+            "apostrophe"
+          ],
+          "answer": 1,
+          "hint": "",
+          "task": "closed choice",
+          "grade": "grade11",
+          "subject": "language science",
+          "topic": "figurative-language",
+          "category": "Literary devices",
+          "skill": "Classify the figure of speech: anaphora, antithesis, apostrophe, assonance, chiasmus, understatement",
+          "lecture": "Figures of speech are words or phrases that use language in a nonliteral or unusual way. They can make writing more expressive.\nAnaphora is the repetition of the same word or words at the beginning of...",
+          "solution": "The text uses apostrophe, a direct address to an absent person or a nonhuman entity.\nO goddess is a direct address to a goddess, a nonhuman entity."
+        },
+        {
+          "question": "Which of the following could Gordon's test show?",
+          "choices": [
+            "if the spacecraft was damaged when using a parachute with a 1 m vent going 200 km per hour",
+            "how steady a parachute with a 1 m vent was at 200 km per hour",
+            "whether a parachute with a 1 m vent would swing too much at 400 km per hour"
+          ],
+          "answer": 1,
+          "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirements of the design.\nThe passage below descr...",
+          "task": "closed choice",
+          "grade": "grade8",
+          "subject": "natural science",
+          "topic": "science-and-engineering-practices",
+          "category": "Engineering practices",
+          "skill": "Evaluate tests of engineering-design solutions",
+          "lecture": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirements of the design. How can you determine w...",
+          "solution": ""
+        },
+        {
+          "question": "What is the name of the colony shown?",
+          "choices": [
+            "Maryland",
+            "New Hampshire",
+            "Rhode Island",
+            "Vermont"
+          ],
+          "answer": 1,
+          "hint": "",
+          "task": "closed choice",
+          "grade": "grade5",
+          "subject": "social science",
+          "topic": "us-history",
+          "category": "English colonies in North America",
+          "skill": "Identify the Thirteen Colonies",
+          "lecture": "",
+          "solution": "The colony is New Hampshire.\nDuring the colonial era, New Hampshire and New York both claimed the territory that would later become the state of Vermont. Vermont was never its own colony."
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "facebook/textvqa",
+    "config": null,
+    "expected_gpt5_accuracy": "~75%",
+    "notes": "Text in images",
+    "status": "error",
+    "error": "Loading this dataset requires you to execute custom code contained in the dataset repository on your local machine. Please set the option `trust_remote_code=True` to permit loading of this dataset.",
+    "metadata": {
+      "available_configs": [
+        "default"
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/VizWiz-VQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~60%",
+    "notes": "Blind user photos",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test",
+        "val"
+      ],
+      "main_split": "test",
+      "size": 8000,
+      "columns": [
+        "question_id",
+        "image",
+        "question",
+        "answers",
+        "category"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answers"
+      ],
+      "class_balance": {
+        "[]": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question_id",
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "question_id": "VizWiz_test_00000000",
+          "question": "What is this? And what color is it?",
+          "answers": [],
+          "category": ""
+        },
+        {
+          "question_id": "VizWiz_test_00000001",
+          "question": "What is this?",
+          "answers": [],
+          "category": ""
+        },
+        {
+          "question_id": "VizWiz_test_00000002",
+          "question": "Has this oven gotten up to four hundred fifty degrees Fahrenheit yet?",
+          "answers": [],
+          "category": ""
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "echo840/OCRBench",
+    "config": null,
+    "expected_gpt5_accuracy": "~70%",
+    "notes": "OCR tasks",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 1000,
+      "columns": [
+        "dataset",
+        "question",
+        "question_type",
+        "answer",
+        "image"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "num_classes": 967,
+      "class_balance": "967 unique values (sampled 1000)",
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "dataset": "IIIT5K",
+          "question": "what is written in the image?",
+          "question_type": "Regular Text Recognition",
+          "answer": [
+            "CENTRE"
+          ]
+        },
+        {
+          "dataset": "IIIT5K",
+          "question": "what is written in the image?",
+          "question_type": "Regular Text Recognition",
+          "answer": [
+            "FRIEND"
+          ]
+        },
+        {
+          "dataset": "IIIT5K",
+          "question": "what is written in the image?",
+          "question_type": "Regular Text Recognition",
+          "answer": [
+            "CHAIN"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "cambridgeltl/vsr_random",
+    "config": null,
+    "expected_gpt5_accuracy": "~70%",
+    "notes": "Spatial reasoning, true/false, binary",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 2195,
+      "columns": [
+        "image",
+        "image_link",
+        "caption",
+        "label",
+        "relation",
+        "annotator_id",
+        "vote_true_validator_id",
+        "vote_false_validator_id",
+        "reference_frame"
+      ],
+      "image_columns": [
+        "image",
+        "image_link"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": false,
+      "answer_columns": [
+        "label"
+      ],
+      "class_balance": {
+        "1": 0.529,
+        "0": 0.471
+      },
+      "num_classes": 2,
+      "question_columns": [],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "caption": "The person is inside the refrigerator.",
+          "label": 1,
+          "relation": "inside",
+          "annotator_id": 29,
+          "vote_true_validator_id": "[2, 9]",
+          "vote_false_validator_id": "[3]"
+        },
+        {
+          "caption": "The cake consists of the dog.",
+          "label": 1,
+          "relation": "consists of",
+          "annotator_id": 4,
+          "vote_true_validator_id": "[3, 54, 2]",
+          "vote_false_validator_id": "[]"
+        },
+        {
+          "caption": "The bird is above the cat.",
+          "label": 0,
+          "relation": "above",
+          "annotator_id": 27,
+          "vote_true_validator_id": "[]",
+          "vote_false_validator_id": "[2, 17, 52]"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "AI4Math/MathVerse",
+    "config": "testmini",
+    "expected_gpt5_accuracy": "~25%",
+    "notes": "Visual math, 6 versions per problem",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "testmini",
+        "testmini_text_only"
+      ],
+      "splits": [
+        "testmini"
+      ],
+      "main_split": "testmini",
+      "size": 3940,
+      "columns": [
+        "sample_index",
+        "problem_index",
+        "problem_version",
+        "question",
+        "image",
+        "answer",
+        "question_type",
+        "metadata",
+        "query_wo",
+        "query_cot",
+        "question_for_eval"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "B": 0.3,
+        "C": 0.285,
+        "A": 0.245,
+        "D": 0.17
+      },
+      "num_classes": 4,
+      "question_columns": [
+        "question",
+        "question_type",
+        "query_wo",
+        "query_cot",
+        "question_for_eval"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "sample_index": "1",
+          "problem_index": "1",
+          "problem_version": "Text Dominant",
+          "question": "As shown in the figure, in triangle ABC, it is known that angle A = 80.0, angle B = 60.0, point D is on AB and point E is on AC, DE parallel BC, then the size of angle CED is ()\nChoices:\nA:40\u00b0\nB:60\u00b0\nC...",
+          "answer": "D",
+          "question_type": "multi-choice",
+          "query_wo": "Please directly answer the question and provide the correct option letter, e.g., A, B, C, D.\nQuestion: As shown in the figure, in triangle ABC, it is known that angle A = 80.0, angle B = 60.0, point D...",
+          "query_cot": "Please first conduct reasoning, and then answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\nQuestion: As shown in the figure, in triangle ABC, it is known that an...",
+          "question_for_eval": "As shown in the figure, in triangle ABC, it is known that angle A = 80.0, angle B = 60.0, point D is on AB and point E is on AC, DE parallel BC, then the size of angle CED is ()\nChoices:\nA:40\u00b0\nB:60\u00b0\nC..."
+        },
+        {
+          "sample_index": "2",
+          "problem_index": "1",
+          "problem_version": "Text Lite",
+          "question": "As shown in the figure, it is known that angle A = 80.0, angle B = 60.0, DE parallel BC, then the size of angle CED is ()\nChoices:\nA:40\u00b0\nB:60\u00b0\nC:120\u00b0\nD:140\u00b0",
+          "answer": "D",
+          "question_type": "multi-choice",
+          "query_wo": "Please directly answer the question and provide the correct option letter, e.g., A, B, C, D.\nQuestion: As shown in the figure, it is known that angle A = 80.0, angle B = 60.0, DE parallel BC, then the...",
+          "query_cot": "Please first conduct reasoning, and then answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\nQuestion: As shown in the figure, it is known that angle A = 80.0, ang...",
+          "question_for_eval": "As shown in the figure, it is known that angle A = 80.0, angle B = 60.0, DE parallel BC, then the size of angle CED is ()\nChoices:\nA:40\u00b0\nB:60\u00b0\nC:120\u00b0\nD:140\u00b0"
+        },
+        {
+          "sample_index": "3",
+          "problem_index": "1",
+          "problem_version": "Vision Intensive",
+          "question": "As shown in the figure, it is known that angle A = 80.0, angle B = 60.0, then the size of angle CED is ()\nChoices:\nA:40\u00b0\nB:60\u00b0\nC:120\u00b0\nD:140\u00b0",
+          "answer": "D",
+          "question_type": "multi-choice",
+          "query_wo": "Please directly answer the question and provide the correct option letter, e.g., A, B, C, D.\nQuestion: As shown in the figure, it is known that angle A = 80.0, angle B = 60.0, then the size of angle C...",
+          "query_cot": "Please first conduct reasoning, and then answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\nQuestion: As shown in the figure, it is known that angle A = 80.0, ang...",
+          "question_for_eval": "As shown in the figure, it is known that angle A = 80.0, angle B = 60.0, then the size of angle CED is ()\nChoices:\nA:40\u00b0\nB:60\u00b0\nC:120\u00b0\nD:140\u00b0"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MathLLMs/MathVision",
+    "config": null,
+    "expected_gpt5_accuracy": "~24%",
+    "notes": "Competition math with images",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test",
+        "testmini"
+      ],
+      "main_split": "test",
+      "size": 3040,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "image",
+        "decoded_image",
+        "answer",
+        "solution",
+        "level",
+        "subject"
+      ],
+      "image_columns": [
+        "image",
+        "decoded_image"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "num_classes": 92,
+      "class_balance": "92 unique values (sampled 1000)",
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "1",
+          "question": "Which number should be written in place of the question mark?\n<image1>",
+          "options": [],
+          "answer": "60",
+          "level": 2,
+          "subject": "arithmetic"
+        },
+        {
+          "id": "2",
+          "question": "Which bike is most expensive?\n<image1>",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "answer": "A",
+          "level": 2,
+          "subject": "arithmetic"
+        },
+        {
+          "id": "3",
+          "question": "Which kite has the longest string?\n<image1>",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "answer": "C",
+          "level": 1,
+          "subject": "metric geometry - length"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "AI4Math/MathVista",
+    "config": null,
+    "expected_gpt5_accuracy": "~50%",
+    "notes": "IQ tests, plots, figures",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "testmini",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 5141,
+      "columns": [
+        "pid",
+        "question",
+        "image",
+        "decoded_image",
+        "choices",
+        "unit",
+        "precision",
+        "answer",
+        "question_type",
+        "answer_type",
+        "metadata",
+        "query"
+      ],
+      "image_columns": [
+        "image",
+        "decoded_image"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer",
+        "answer_type"
+      ],
+      "class_balance": {
+        "": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type",
+        "query"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "pid": "1001",
+          "question": "In how many years, is the percentage of labor tax greater than 3 %?",
+          "answer": "",
+          "question_type": "free_form",
+          "answer_type": "integer",
+          "query": "Hint: Please answer the question requiring an integer answer and provide the final value, e.g., 1, 2, 3, at the end.\nQuestion: In how many years, is the percentage of labor tax greater than 3 %?"
+        },
+        {
+          "pid": "1002",
+          "question": "Are there fewer small rubber objects that are in front of the large red metallic chopper than tiny cyan matte objects left of the tiny red thing?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "answer": "",
+          "question_type": "multi_choice",
+          "answer_type": "text",
+          "query": "Hint: Please answer the question and provide the correct option letter, e.g., A, B, C, D, at the end.\nQuestion: Are there fewer small rubber objects that are in front of the large red metallic chopper..."
+        },
+        {
+          "pid": "1003",
+          "question": "The players on a quiz show received the following scores. What is the mean of the numbers?'",
+          "answer": "",
+          "question_type": "free_form",
+          "answer_type": "integer",
+          "query": "Hint: Please answer the question requiring an integer answer and provide the final value, e.g., 1, 2, 3, at the end.\nQuestion: The players on a quiz show received the following scores. What is the mea..."
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/HallusionBench",
+    "config": null,
+    "expected_gpt5_accuracy": "~31%",
+    "notes": "Hallucination detection",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "image",
+        "non_image"
+      ],
+      "main_split": "image",
+      "size": 951,
+      "columns": [
+        "category",
+        "subcategory",
+        "visual_input",
+        "set_id",
+        "figure_id",
+        "sample_note",
+        "question_id",
+        "question",
+        "gt_answer_details",
+        "gt_answer",
+        "filename",
+        "image"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "gt_answer_details",
+        "gt_answer"
+      ],
+      "num_classes": 558,
+      "class_balance": "558 unique values (sampled 951)",
+      "question_columns": [
+        "question_id",
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "category": "VS",
+          "subcategory": "chart",
+          "visual_input": "1",
+          "set_id": "0",
+          "figure_id": "1",
+          "sample_note": "import",
+          "question_id": "0",
+          "question": "Is China, Hongkong SAR, the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer_details": "Switzerland is the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer": "0",
+          "filename": "./VS/chart/0_1.png"
+        },
+        {
+          "category": "VS",
+          "subcategory": "chart",
+          "visual_input": "1",
+          "set_id": "0",
+          "figure_id": "1",
+          "sample_note": "import",
+          "question_id": "1",
+          "question": "Is Switzerland, the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer_details": "Switzerland is the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer": "1",
+          "filename": "./VS/chart/0_1.png"
+        },
+        {
+          "category": "VS",
+          "subcategory": "chart",
+          "visual_input": "1",
+          "set_id": "0",
+          "figure_id": "1",
+          "sample_note": "import",
+          "question_id": "2",
+          "question": "Is France, the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer_details": "Switzerland is the leading importing country of gold, silverware, and jewelry with the highest import value in 2018?",
+          "gt_answer": "0",
+          "filename": "./VS/chart/0_1.png"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "jonathan-roberts1/zerobench",
+    "config": null,
+    "expected_gpt5_accuracy": "0%",
+    "notes": "Designed to be unsolvable",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "zerobench",
+        "zerobench_subquestions"
+      ],
+      "main_split": "zerobench",
+      "size": 100,
+      "columns": [
+        "question_id",
+        "question_text",
+        "question_images_decoded",
+        "question_answer",
+        "question_images",
+        "image_attribution"
+      ],
+      "image_columns": [
+        "question_images_decoded",
+        "question_images",
+        "image_attribution"
+      ],
+      "num_image_columns": 3,
+      "is_multi_image": true,
+      "answer_columns": [
+        "question_answer"
+      ],
+      "num_classes": 98,
+      "class_balance": "98 unique values (sampled 100)",
+      "question_columns": [
+        "question_id",
+        "question_text",
+        "question_images_decoded",
+        "question_answer",
+        "question_images"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "question_id": "1",
+          "question_text": "I want to purchase all the Montellier bottles from the top three shelves. How much do I save by purchasing the bottles with a loyalty card? Give your final answer in dollars.",
+          "question_answer": "11.90"
+        },
+        {
+          "question_id": "2",
+          "question_text": "Image 1 shows the three sample types of screws for reference. Based on this reference, we assign scores to the screws as follows: largest=1, middle=2, small=3. Now take a look at image 2. \n\n(1) Find t...",
+          "question_answer": "2704"
+        },
+        {
+          "question_id": "3",
+          "question_text": "Based on the following rules:\n\u2022\tYou control the smiley face character\n\u2022\tYou can move up, down, left, and right, and only a single square at a time\n\u2022\tWalls are dark grey and cannot be moved into\n\u2022\tThe ...",
+          "question_answer": "down, right, right, right, up, right, down, down, down, down, down, left, down, right, right, right, down, right, right, right, right, right, right, right, up, up, up, up, up, up, up, left, left, left..."
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "Lin-Chen/MMStar",
+    "config": null,
+    "expected_gpt5_accuracy": "~55%",
+    "notes": "Vision-indispensable, 1.5K",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "val"
+      ],
+      "splits": [
+        "val"
+      ],
+      "main_split": "val",
+      "size": 1500,
+      "columns": [
+        "index",
+        "question",
+        "image",
+        "answer",
+        "category",
+        "l2_category",
+        "meta_info"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "B": 0.318,
+        "A": 0.282,
+        "D": 0.206,
+        "C": 0.194
+      },
+      "num_classes": 4,
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "index": 0,
+          "question": "Which option describe the object relationship in the image correctly?\nOptions: A: The suitcase is on the book., B: The suitcase is beneath the cat., C: The suitcase is beneath the bed., D: The suitcas...",
+          "answer": "A",
+          "category": "coarse perception",
+          "l2_category": "image scene and topic"
+        },
+        {
+          "index": 1,
+          "question": "What is the main feature in the background of the image?\nOptions: A: A park bench near the water., B: A couple sitting on a bench., C: A body of water and the Golden Gate Bridge., D: A mountain in the...",
+          "answer": "B",
+          "category": "coarse perception",
+          "l2_category": "image scene and topic"
+        },
+        {
+          "index": 2,
+          "question": "What seems to be the theme of the image?\nOptions: A: Hanging Posters, B: Music, C: Home decoration, D: Playing guitar",
+          "answer": "D",
+          "category": "coarse perception",
+          "l2_category": "image scene and topic"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/RealWorldQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~70%",
+    "notes": "Real-world spatial, 765",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 765,
+      "columns": [
+        "image",
+        "image_path",
+        "question",
+        "answer"
+      ],
+      "image_columns": [
+        "image",
+        "image_path"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "num_classes": 29,
+      "class_balance": "29 unique values (sampled 765)",
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "question": "In which direction is the front wheel of the car on the right side facing?\n\nA. Left\nB. Straight\nC. Right\nPlease answer directly with only the letter of the correct option and nothing else.",
+          "answer": "C"
+        },
+        {
+          "question": "How many bars are here?\nA. There are two parallel bars in this photo.\nB. There are three bars in the photo. two are the same height and one is higher.\nC. There are two bars in this photo. one is high ...",
+          "answer": "B"
+        },
+        {
+          "question": "how many pedestrians are there?\nPlease answer directly with a single word or number.",
+          "answer": "0"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/ai2d",
+    "config": null,
+    "expected_gpt5_accuracy": "~85%",
+    "notes": "Science diagrams, 3K",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 3088,
+      "columns": [
+        "question",
+        "options",
+        "answer",
+        "image"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "2": 0.281,
+        "1": 0.262,
+        "0": 0.241,
+        "3": 0.216
+      },
+      "num_classes": 4,
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "question": "which of these define dairy item",
+          "options": [
+            "c",
+            "D",
+            "b",
+            "a"
+          ],
+          "answer": "1"
+        },
+        {
+          "question": "which of these define oil",
+          "options": [
+            "b",
+            "a",
+            "d",
+            "k"
+          ],
+          "answer": "3"
+        },
+        {
+          "question": "According to the given food chain what would happen if phytoplankton decreases?",
+          "options": [
+            "Seal population will become extinct",
+            "Fish population would decrease.",
+            "Whale population would decrease.",
+            "Penguin population would increase."
+          ],
+          "answer": "1"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "HuggingFaceM4/ChartQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~75%",
+    "notes": "Chart understanding, 2.5K test",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "train",
+        "val",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 2500,
+      "columns": [
+        "image",
+        "query",
+        "label",
+        "human_or_machine"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "label"
+      ],
+      "num_classes": 574,
+      "class_balance": "574 unique values (sampled 1000)",
+      "question_columns": [
+        "query"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "query": "How many food item is shown in the bar graph?",
+          "label": [
+            "14"
+          ],
+          "human_or_machine": 0
+        },
+        {
+          "query": "What is the difference in value between Lamb and Corn?",
+          "label": [
+            "0.57"
+          ],
+          "human_or_machine": 0
+        },
+        {
+          "query": "How many bars are shown in the chart?",
+          "label": [
+            "3"
+          ],
+          "human_or_machine": 0
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "princeton-nlp/CharXiv",
+    "config": null,
+    "expected_gpt5_accuracy": "~60%",
+    "notes": "arXiv figure reasoning, 1.3K",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 1323,
+      "columns": [
+        "image",
+        "category",
+        "year",
+        "original_figure_path",
+        "original_id",
+        "figure_path",
+        "num_subplots",
+        "subplot_row",
+        "subplot_col",
+        "subplot_loc",
+        "descriptive_q1",
+        "descriptive_q2",
+        "descriptive_q3",
+        "descriptive_q4",
+        "descriptive_a1",
+        "descriptive_a2",
+        "descriptive_a3",
+        "descriptive_a4",
+        "reasoning_q",
+        "reasoning_q_source",
+        "reasoning_a",
+        "reasoning_a_type"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [],
+      "question_columns": [],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "category": "cs",
+          "year": "20",
+          "original_figure_path": "arXiv_src_2002_041/2002/2002.12459/experiments/ssjoptimizations.jpg",
+          "original_id": "2002.12459",
+          "figure_path": "images/1.jpg",
+          "num_subplots": 1,
+          "subplot_row": 0,
+          "subplot_col": 0,
+          "descriptive_q1": 13,
+          "descriptive_q2": 7,
+          "descriptive_q3": 18,
+          "descriptive_q4": 14,
+          "reasoning_q": "Among all bars, what is the least time percentage difference between any two neighboring bars?",
+          "reasoning_q_source": 2,
+          "reasoning_a_type": 4
+        },
+        {
+          "category": "cs",
+          "year": "20",
+          "original_figure_path": "arXiv_src_2006_021/2006/2006.05993/figs/boundary_hueristic_plot.jpg",
+          "original_id": "2006.05993",
+          "figure_path": "images/4.jpg",
+          "num_subplots": 1,
+          "subplot_row": 0,
+          "subplot_col": 0,
+          "descriptive_q1": 3,
+          "descriptive_q2": 2,
+          "descriptive_q3": 13,
+          "descriptive_q4": 15,
+          "reasoning_q": "Is the number of red points more than blue points?",
+          "reasoning_q_source": 3,
+          "reasoning_a_type": 2
+        },
+        {
+          "category": "cs",
+          "year": "20",
+          "original_figure_path": "arXiv_src_2008_066/2008/2008.12141/confusion_matrixepoch19pruninglevel1.jpg",
+          "original_id": "2008.12141",
+          "figure_path": "images/6.jpg",
+          "num_subplots": 1,
+          "subplot_row": 0,
+          "subplot_col": 0,
+          "descriptive_q1": 6,
+          "descriptive_q2": 5,
+          "descriptive_q3": 7,
+          "descriptive_q4": 10,
+          "reasoning_q": "Which predicted category has the highest value for the actual category \u201cMelanoma\u201d other than itself?",
+          "reasoning_q_source": 2,
+          "reasoning_a_type": 1
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/MMVet",
+    "config": null,
+    "expected_gpt5_accuracy": "~55%",
+    "notes": "Integrated VL capabilities, 218 Q",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 218,
+      "columns": [
+        "question_id",
+        "image",
+        "question",
+        "answer",
+        "image_source",
+        "capability"
+      ],
+      "image_columns": [
+        "image",
+        "image_source"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "num_classes": 196,
+      "class_balance": "196 unique values (sampled 218)",
+      "question_columns": [
+        "question_id",
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "question_id": "v1_0",
+          "question": "What is x in the equation?",
+          "answer": "-1<AND>-5",
+          "capability": "ocr,math"
+        },
+        {
+          "question_id": "v1_1",
+          "question": "What is d in the last equation?",
+          "answer": "1.25<OR>=1.25<OR>5/4",
+          "capability": "ocr,math"
+        },
+        {
+          "question_id": "v1_2",
+          "question": "What is x in the equation?",
+          "answer": "0.75<OR>=0.75<OR>3/4",
+          "capability": "ocr,math"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "facebook/winoground",
+    "config": null,
+    "expected_gpt5_accuracy": "~50%",
+    "notes": "Compositional reasoning, 800",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 400,
+      "columns": [
+        "id",
+        "image_0",
+        "image_1",
+        "caption_0",
+        "caption_1",
+        "tag",
+        "secondary_tag",
+        "num_main_preds",
+        "collapsed_tag"
+      ],
+      "image_columns": [
+        "image_0",
+        "image_1"
+      ],
+      "num_image_columns": 2,
+      "is_multi_image": true,
+      "answer_columns": [],
+      "question_columns": [],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "id": 0,
+          "caption_0": "an old person kisses a young person",
+          "caption_1": "a young person kisses an old person",
+          "tag": "Adjective-Age",
+          "secondary_tag": "",
+          "num_main_preds": 1,
+          "collapsed_tag": "Relation"
+        },
+        {
+          "id": 1,
+          "caption_0": "the taller person hugs the shorter person",
+          "caption_1": "the shorter person hugs the taller person",
+          "tag": "Adjective-Size",
+          "secondary_tag": "",
+          "num_main_preds": 1,
+          "collapsed_tag": "Relation"
+        },
+        {
+          "id": 2,
+          "caption_0": "the masked wrestler hits the unmasked wrestler",
+          "caption_1": "the unmasked wrestler hits the masked wrestler",
+          "tag": "Adjective-Manner",
+          "secondary_tag": "Series",
+          "num_main_preds": 1,
+          "collapsed_tag": "Relation"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "TIGER-Lab/NLVR2",
+    "config": null,
+    "expected_gpt5_accuracy": "~80%",
+    "notes": "Visual reasoning, 2-image",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "nlvr2"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 6967,
+      "columns": [
+        "id",
+        "question_type",
+        "question",
+        "images",
+        "options",
+        "answer",
+        "data_source",
+        "category"
+      ],
+      "image_columns": [
+        "images"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "B": 0.518,
+        "A": 0.482
+      },
+      "num_classes": 2,
+      "question_columns": [
+        "question_type",
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test1-0-1-0",
+          "question_type": "multi-choice",
+          "question": "<image><image> Here is a statement about the images. Is it true or false?\nThere is an empty glass.",
+          "options": [
+            "(A) False",
+            "(B) True"
+          ],
+          "answer": "A",
+          "data_source": "nlvr2_test",
+          "category": "logical reasoning"
+        },
+        {
+          "id": "test1-0-0-0",
+          "question_type": "multi-choice",
+          "question": "<image><image> Here is a statement about the images. Is it true or false?\nThere is an empty glass.",
+          "options": [
+            "(A) False",
+            "(B) True"
+          ],
+          "answer": "A",
+          "data_source": "nlvr2_test",
+          "category": "logical reasoning"
+        },
+        {
+          "id": "test1-0-3-0",
+          "question_type": "multi-choice",
+          "question": "<image><image> Here is a statement about the images. Is it true or false?\nThere is an empty glass.",
+          "options": [
+            "(A) True",
+            "(B) False"
+          ],
+          "answer": "A",
+          "data_source": "nlvr2_test",
+          "category": "logical reasoning"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "BLINK-Benchmark/BLINK",
+    "config": null,
+    "expected_gpt5_accuracy": "~50%",
+    "notes": "Multimodal benchmark",
+    "status": "error",
+    "error": "Config name is missing.\nPlease pick one among the available configs: ['Art_Style', 'Counting', 'Forensic_Detection', 'Functional_Correspondence', 'IQ_Test', 'Jigsaw', 'Multi-view_Reasoning', 'Object_Localization', 'Relative_Depth', 'Relative_Reflectance', 'Semantic_Correspondence', 'Spatial_Relation', 'Visual_Correspondence', 'Visual_Similarity']\nExample of usage:\n\t`load_dataset('BLINK-Benchmark/BLINK', 'Art_Style')`",
+    "metadata": {
+      "available_configs": [
+        "Art_Style",
+        "Counting",
+        "Forensic_Detection",
+        "Functional_Correspondence",
+        "IQ_Test",
+        "Jigsaw",
+        "Multi-view_Reasoning",
+        "Object_Localization",
+        "Relative_Depth",
+        "Relative_Reflectance"
+      ]
+    }
+  },
+  {
+    "hf_id": "HuggingFaceM4/A-OKVQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~60%",
+    "notes": "Outside knowledge VQA",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 6702,
+      "columns": [
+        "image",
+        "question_id",
+        "question",
+        "choices",
+        "correct_choice_idx",
+        "direct_answers",
+        "difficult_direct_answer",
+        "rationales"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "correct_choice_idx",
+        "direct_answers",
+        "difficult_direct_answer"
+      ],
+      "class_balance": {
+        "None": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question_id",
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "question_id": "22dfoxvWKwTS6myafdKHfc",
+          "question": "Who married a woman that has a similar with the sign next to the chocolate avec sign?",
+          "choices": [
+            "dom perignon",
+            "cesare borgia",
+            "mick jagger",
+            "ice-t"
+          ],
+          "difficult_direct_answer": false
+        },
+        {
+          "question_id": "234yKjUiFq5MijJ4QXLFZm",
+          "question": "Why is he bent over?",
+          "choices": [
+            "slipping",
+            "controlling board",
+            "falling",
+            "tired"
+          ],
+          "difficult_direct_answer": false
+        },
+        {
+          "question_id": "23A3Z2fPHC3urCjdYZ6rqP",
+          "question": "Whose first name is the same as the name on the skis?",
+          "choices": [
+            "jerry rice",
+            "norm macdonald",
+            "jim carrey",
+            "scott glenn"
+          ],
+          "difficult_direct_answer": false
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/SEED-Bench",
+    "config": null,
+    "expected_gpt5_accuracy": "~70%",
+    "notes": "Comprehensive VLM eval",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 17990,
+      "columns": [
+        "answer",
+        "choice_a",
+        "choice_b",
+        "choice_c",
+        "choice_d",
+        "data_id",
+        "data_type",
+        "question",
+        "question_id",
+        "question_type_id",
+        "image",
+        "segment"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "A": 0.275,
+        "B": 0.265,
+        "C": 0.249,
+        "D": 0.211
+      },
+      "num_classes": 4,
+      "question_columns": [
+        "question",
+        "question_id",
+        "question_type_id"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "answer": "A",
+          "choice_a": "One",
+          "choice_b": "Two",
+          "choice_c": "Three",
+          "choice_d": "Four",
+          "data_id": "1454426_2591111986",
+          "data_type": "image",
+          "question": "How many towels are in the image?",
+          "question_id": "101669",
+          "question_type_id": 5,
+          "segment": []
+        },
+        {
+          "answer": "C",
+          "choice_a": "A hotel",
+          "choice_b": "A house",
+          "choice_c": "A cabin",
+          "choice_d": "A shed",
+          "data_id": "1307737_3736205576",
+          "data_type": "image",
+          "question": "What type of building is in the image?",
+          "question_id": "104933",
+          "question_type_id": 3,
+          "segment": []
+        },
+        {
+          "answer": "C",
+          "choice_a": "Standing with his arms crossed",
+          "choice_b": "Holding a cell phone",
+          "choice_c": "Taking a picture",
+          "choice_d": "Talking to someone",
+          "data_id": "2809357_337019870",
+          "data_type": "image",
+          "question": "What is the man in the suit doing in the image?",
+          "question_id": "89257",
+          "question_type_id": 1,
+          "segment": []
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "echo840/OCRBench",
+    "config": null,
+    "expected_gpt5_accuracy": "~70%",
+    "notes": "OCR tasks",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test"
+      ],
+      "main_split": "test",
+      "size": 1000,
+      "columns": [
+        "dataset",
+        "question",
+        "question_type",
+        "answer",
+        "image"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "num_classes": 967,
+      "class_balance": "967 unique values (sampled 1000)",
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "dataset": "IIIT5K",
+          "question": "what is written in the image?",
+          "question_type": "Regular Text Recognition",
+          "answer": [
+            "CENTRE"
+          ]
+        },
+        {
+          "dataset": "IIIT5K",
+          "question": "what is written in the image?",
+          "question_type": "Regular Text Recognition",
+          "answer": [
+            "FRIEND"
+          ]
+        },
+        {
+          "dataset": "IIIT5K",
+          "question": "what is written in the image?",
+          "question_type": "Regular Text Recognition",
+          "answer": [
+            "CHAIN"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "lmms-lab/VizWiz-VQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~60%",
+    "notes": "Blind user photos",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "test",
+        "val"
+      ],
+      "main_split": "test",
+      "size": 8000,
+      "columns": [
+        "question_id",
+        "image",
+        "question",
+        "answers",
+        "category"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answers"
+      ],
+      "class_balance": {
+        "[]": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question_id",
+        "question"
+      ],
+      "is_mcq": false,
+      "sample_items": [
+        {
+          "question_id": "VizWiz_test_00000000",
+          "question": "What is this? And what color is it?",
+          "answers": [],
+          "category": ""
+        },
+        {
+          "question_id": "VizWiz_test_00000001",
+          "question": "What is this?",
+          "answers": [],
+          "category": ""
+        },
+        {
+          "question_id": "VizWiz_test_00000002",
+          "question": "Has this oven gotten up to four hundred fifty degrees Fahrenheit yet?",
+          "answers": [],
+          "category": ""
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "m-a-p/CMMMU",
+    "config": null,
+    "expected_gpt5_accuracy": "~55%",
+    "notes": "Chinese MMMU",
+    "status": "error",
+    "error": "Config name is missing.\nPlease pick one among the available configs: ['art_and_design', 'business', 'health_and_medicine', 'humanities_and_social_sciences', 'science', 'technology_and_engineering']\nExample of usage:\n\t`load_dataset('m-a-p/CMMMU', 'art_and_design')`",
+    "metadata": {
+      "available_configs": [
+        "art_and_design",
+        "business",
+        "health_and_medicine",
+        "humanities_and_social_sciences",
+        "science",
+        "technology_and_engineering"
+      ]
+    }
+  },
+  {
+    "hf_id": "Hothan/OlympiadBench",
+    "config": null,
+    "expected_gpt5_accuracy": "~40%",
+    "notes": "Olympiad math+physics",
+    "status": "error",
+    "error": "Config name is missing.\nPlease pick one among the available configs: ['OE_MM_maths_en_COMP', 'OE_MM_maths_zh_CEE', 'OE_MM_maths_zh_COMP', 'OE_MM_physics_en_COMP', 'OE_MM_physics_zh_CEE', 'OE_TO_maths_en_COMP', 'OE_TO_maths_zh_CEE', 'OE_TO_maths_zh_COMP', 'OE_TO_physics_en_COMP', 'OE_TO_physics_zh_CEE', 'TP_MM_maths_en_COMP', 'TP_MM_maths_zh_CEE', 'TP_MM_maths_zh_COMP', 'TP_MM_physics_en_COMP', 'TP_TO_maths_en_COMP', 'TP_TO_maths_zh_CEE', 'TP_TO_maths_zh_COMP', 'TP_TO_physics_en_COMP']\nExample of usage:\n\t`load_dataset('Hothan/OlympiadBench', 'OE_MM_maths_en_COMP')`",
+    "metadata": {
+      "available_configs": [
+        "OE_MM_maths_en_COMP",
+        "OE_MM_maths_zh_CEE",
+        "OE_MM_maths_zh_COMP",
+        "OE_MM_physics_en_COMP",
+        "OE_MM_physics_zh_CEE",
+        "OE_TO_maths_en_COMP",
+        "OE_TO_maths_zh_CEE",
+        "OE_TO_maths_zh_COMP",
+        "OE_TO_physics_en_COMP",
+        "OE_TO_physics_zh_CEE"
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "Accounting",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal - Accounting",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ],
+      "splits": [
+        "dev",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 380,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "explanation",
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type",
+        "answer",
+        "topic_difficulty",
+        "question_type",
+        "subfield"
+      ],
+      "image_columns": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type"
+      ],
+      "num_image_columns": 8,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "?": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test_Accounting_1",
+          "question": "Brahma Industries sells vinyl replacement windows to home improvement retailers nationwide. The national sales manager believes that if they invest an additional $25,000 in advertising, they would inc...",
+          "options": "['$759,000', '$1,138,500', '$714,500', '$44,500']",
+          "explanation": "?",
+          "img_type": "['Tables']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Managerial Accounting"
+        },
+        {
+          "id": "test_Accounting_2",
+          "question": "Let us compute for the missing amounts under work in process inventory, what is the cost of goods manufactured? <image 1>",
+          "options": "['$20,506', '$21,506', '$22,506', '$23,506']",
+          "explanation": "?",
+          "img_type": "['Tables']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Managerial Accounting"
+        },
+        {
+          "id": "test_Accounting_3",
+          "question": "Tsuji is reviewing the price of a 3-month Japanese yen/U.S. dollar currency futures contract, using the currency and interest rate data shown below. Because the 3-month Japanese interest rate has just...",
+          "options": "['\u00a5118,763.90', '\u00a5121,337.29', '\u00a5129,928.61']",
+          "explanation": "?",
+          "img_type": "['Tables']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Investment"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "Art",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal - Art",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ],
+      "splits": [
+        "dev",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 231,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "explanation",
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type",
+        "answer",
+        "topic_difficulty",
+        "question_type",
+        "subfield"
+      ],
+      "image_columns": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type"
+      ],
+      "num_image_columns": 8,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "?": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test_Art_1",
+          "question": "<image 1> by Chris Gollon was inspired by the lyrics, 'Einstein, disguised as Robin Hood with his memories in a trunk, passed this way an hour ago with his friend, a jealous monk.' Which famous songwr...",
+          "options": "['Neil Young', 'Van Morrison', 'Bob Dylan', 'Bruce Springsteen']",
+          "explanation": "?",
+          "img_type": "['Portraits']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Drawing and Painting"
+        },
+        {
+          "id": "test_Art_2",
+          "question": "What is the name of <image 1>?",
+          "options": "['Landscape with Cows and Camel', 'Birth of Venus', 'Bildnis Fritza Riedler, 1906 - \u00d6sterreichische Galerie, Vienna', 'Christ Among the Doctors']",
+          "explanation": "?",
+          "img_type": "['Paintings']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Drawing and Painting"
+        },
+        {
+          "id": "test_Art_3",
+          "question": "The name of <image 1> seen here is?",
+          "options": "['Self-Portrait with Monkeys', 'The Street, the Yellow House', 'Girl with a Pearl Earring', 'Floral Still LIfe']",
+          "explanation": "?",
+          "img_type": "['Paintings']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Drawing and Painting"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "Biology",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal - Biology",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ],
+      "splits": [
+        "dev",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 345,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "explanation",
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type",
+        "answer",
+        "topic_difficulty",
+        "question_type",
+        "subfield"
+      ],
+      "image_columns": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type"
+      ],
+      "num_image_columns": 8,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "?": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test_Biology_1",
+          "question": "The schematic in <image 1> represents a replicating circular DNA in a human somatic cell. Which of the following organelles would show the sub-cellular localization of the replicating DNA?",
+          "options": "['Lysosomes', 'Mitochondria', 'Nucleus', 'Endoplasmic reticulum (ER)', 'Chloroplasts']",
+          "explanation": "?",
+          "img_type": "['Medical Images']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Microbiology"
+        },
+        {
+          "id": "test_Biology_2",
+          "question": "In the Gluteal region and thigh, identify the 149 structure. <image 1>",
+          "options": "['Superior gluteal nerve', 'Gluteus minimus', 'Semitendinosus', 'Piriformis']",
+          "explanation": "?",
+          "img_type": "['Medical Images']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Physiology"
+        },
+        {
+          "id": "test_Biology_3",
+          "question": "<image 1> What kind of sugar is this, aldose or ketose?",
+          "options": "['aldose', 'ketose']",
+          "explanation": "?",
+          "img_type": "['Chemical Structures']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Biochemistry"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "Chemistry",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal - Chemistry",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ],
+      "splits": [
+        "dev",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 603,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "explanation",
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type",
+        "answer",
+        "topic_difficulty",
+        "question_type",
+        "subfield"
+      ],
+      "image_columns": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type"
+      ],
+      "num_image_columns": 8,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "?": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test_Chemistry_1",
+          "question": "<image 1> Major products of the reaction is (are):",
+          "options": "['<image 2>', '<image 3>', '<image 4>', 'both (b)& (c)']",
+          "explanation": "?",
+          "img_type": "['Chemical Structures']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Organic Chemistry"
+        },
+        {
+          "id": "test_Chemistry_2",
+          "question": "Rank the following substituent groups in order of decreasing priority according to the Cahn-Ingold-Prelog system : <image 1>",
+          "options": "['2 > 3 > 1', '1 > 3 > 2', '3 > 1 > 2', '2 > 1 > 3']",
+          "explanation": "?",
+          "img_type": "['Chemical Structures']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Organic Chemistry"
+        },
+        {
+          "id": "test_Chemistry_3",
+          "question": "<image 1> The most stable canonical structure of given molecule is:",
+          "options": "['<image 2>', '<image 3>', '<image 4>', '<image 5>']",
+          "explanation": "?",
+          "img_type": "['Chemical Structures']",
+          "answer": "?",
+          "topic_difficulty": "Hard",
+          "question_type": "multiple-choice",
+          "subfield": "Organic Chemistry"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "Computer_Science",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal - CS",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ],
+      "splits": [
+        "dev",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 371,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "explanation",
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type",
+        "answer",
+        "topic_difficulty",
+        "question_type",
+        "subfield"
+      ],
+      "image_columns": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type"
+      ],
+      "num_image_columns": 8,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "?": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test_Computer_Science_1",
+          "question": "A finite automaton (FA) is an abstract machine that can be used to represent certain forms of computation. <image 1> The above FA identifies which of the following regular expressions?",
+          "options": "['for', '[a-z][a-z0-9]*', '([1-9][0-9]*)|0', 'none of the above']",
+          "explanation": "?",
+          "img_type": "['Diagrams']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Compiler Principle"
+        },
+        {
+          "id": "test_Computer_Science_2",
+          "question": "Assume that a user is trying to visit gaia.cs.umass.edu, but his browser doesn't know the IP address of the website. In this example, examine the difference between an iterative and recursive DNS quer...",
+          "options": "['User', 'DNS Local', 'DNS Root', 'DNS TLD', 'DNS Authoritative']",
+          "explanation": "?",
+          "img_type": "['Diagrams']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Computer Network"
+        },
+        {
+          "id": "test_Computer_Science_3",
+          "question": "Many substances that can burn (such as gasoline and alcohol) have a chemical structure based on carbon atoms; for this reason they are called hydrocarbons. A chemist wants to understand how the number...",
+          "options": "['$\\\\theta_0 = -569.6, \\\\theta_1 = 530.9$', '$\\\\theta_0 = -1780.0, \\\\theta_1 = -530.9$', '$\\\\theta_0 = -569.6, \\\\theta_1 = -530.9$', '$\\\\theta_0 = -1780.0, \\\\theta_1 = 530.9$']",
+          "explanation": "?",
+          "img_type": "['Tables']",
+          "answer": "?",
+          "topic_difficulty": "Hard",
+          "question_type": "multiple-choice",
+          "subfield": "Artificial Intelligence"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "Physics",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal - Physics",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ],
+      "splits": [
+        "dev",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 408,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "explanation",
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type",
+        "answer",
+        "topic_difficulty",
+        "question_type",
+        "subfield"
+      ],
+      "image_columns": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type"
+      ],
+      "num_image_columns": 8,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "?": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test_Physics_1",
+          "question": "<image 1>A rectangular piece of metal 3 cm high by 6 cm wide has a hole cut in its center 1cm high by 4 cm wide as shown in the diagram at right. As the metal is warmed from 0oC to 1000C, what will ha...",
+          "options": "['both height and width will increase', 'both height and width will decrease', 'height will increase while width will decrease', 'height will decrease while width will increase']",
+          "explanation": "?",
+          "img_type": "['Diagrams', 'Geometric Shapes']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Thermodynamics and Statistical Mechanics"
+        },
+        {
+          "id": "test_Physics_2",
+          "question": "<image 1>The figure shows a rough semicircular track whose ends are at a vertical height h. A block placed at point P at one end of the track is released from rest and slides past the bottom of the tr...",
+          "options": "['It is equal to h/4 ', 'It is equal to h/2', 'It is equal to h', 'It is between zero and h; the exact height depends on how much energy is lost to friction.']",
+          "explanation": "?",
+          "img_type": "['Diagrams']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Classical Mechanics"
+        },
+        {
+          "id": "test_Physics_3",
+          "question": "<image 1>A particle of mass m moves with a constant speed v along the dashed line y = a. When the x-coordinate of the particle is x, the magnitude of the angular momentum of the particle with respect ...",
+          "options": "['zero', 'mva', 'mvx']",
+          "explanation": "?",
+          "img_type": "['Mathematical Notations']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Classical Mechanics"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "MMMU/MMMU",
+    "config": "Math",
+    "expected_gpt5_accuracy": "~62%",
+    "notes": "College-level multimodal - Math",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science"
+      ],
+      "splits": [
+        "dev",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 505,
+      "columns": [
+        "id",
+        "question",
+        "options",
+        "explanation",
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type",
+        "answer",
+        "topic_difficulty",
+        "question_type",
+        "subfield"
+      ],
+      "image_columns": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "img_type"
+      ],
+      "num_image_columns": 8,
+      "is_multi_image": true,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "?": 1.0
+      },
+      "num_classes": 1,
+      "question_columns": [
+        "question",
+        "question_type"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "id": "test_Math_1",
+          "question": "Convex quadrilateral $ABCD$ has $AB=3$, $BC=4$, $CD=13$, $AD=12$, and $\\angle ABC=90^{\\circ}$, as shown. What is the area of the quadrilateral?<image 1>",
+          "options": "['30', '36', '40', '48', '58.5']",
+          "explanation": "?",
+          "img_type": "['Diagrams']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Geometry"
+        },
+        {
+          "id": "test_Math_2",
+          "question": "Consider triangles with one side on a diameter of a circle of radius r and with the third vertex V on the circle (Fig. 16-27) What location of V maximizes the perimeter of the triangle? <image 1>",
+          "options": "['x = 0, y = r', 'x = -r, y = 0', 'x = 0, y = -r', 'x = r, y = 0']",
+          "explanation": "?",
+          "img_type": "['Diagrams', 'Mathematical Notations']",
+          "answer": "?",
+          "topic_difficulty": "Easy",
+          "question_type": "multiple-choice",
+          "subfield": "Calculus"
+        },
+        {
+          "id": "test_Math_3",
+          "question": "<image 1>The graph of y= f(x) is shown in the figure above. If A and B are positive numbers that represent theareas of the shaded regions, what is the value of $\\int_{-3}^{3}\\;f(x)\\;d x\\!-\\!2\\int_{-1}...",
+          "options": "['-A-B', 'A+B', 'A-2B', 'A-B']",
+          "explanation": "?",
+          "img_type": "['Plots and Charts']",
+          "answer": "?",
+          "topic_difficulty": "Medium",
+          "question_type": "multiple-choice",
+          "subfield": "Calculus"
+        }
+      ]
+    }
+  },
+  {
+    "hf_id": "derek-thomas/ScienceQA",
+    "config": null,
+    "expected_gpt5_accuracy": "~85%",
+    "notes": "K-12 science with images",
+    "status": "success",
+    "error": null,
+    "metadata": {
+      "available_configs": [
+        "default"
+      ],
+      "splits": [
+        "train",
+        "validation",
+        "test"
+      ],
+      "main_split": "test",
+      "size": 4241,
+      "columns": [
+        "image",
+        "question",
+        "choices",
+        "answer",
+        "hint",
+        "task",
+        "grade",
+        "subject",
+        "topic",
+        "category",
+        "skill",
+        "lecture",
+        "solution"
+      ],
+      "image_columns": [
+        "image"
+      ],
+      "num_image_columns": 1,
+      "is_multi_image": false,
+      "answer_columns": [
+        "answer"
+      ],
+      "class_balance": {
+        "1": 0.405,
+        "0": 0.399,
+        "2": 0.132,
+        "3": 0.063,
+        "4": 0.001
+      },
+      "num_classes": 5,
+      "question_columns": [
+        "question"
+      ],
+      "is_mcq": true,
+      "sample_items": [
+        {
+          "question": "Which figure of speech is used in this text?\nSing, O goddess, the anger of Achilles son of Peleus, that brought countless ills upon the Achaeans.\n\u2014Homer, The Iliad",
+          "choices": [
+            "chiasmus",
+            "apostrophe"
+          ],
+          "answer": 1,
+          "hint": "",
+          "task": "closed choice",
+          "grade": "grade11",
+          "subject": "language science",
+          "topic": "figurative-language",
+          "category": "Literary devices",
+          "skill": "Classify the figure of speech: anaphora, antithesis, apostrophe, assonance, chiasmus, understatement",
+          "lecture": "Figures of speech are words or phrases that use language in a nonliteral or unusual way. They can make writing more expressive.\nAnaphora is the repetition of the same word or words at the beginning of...",
+          "solution": "The text uses apostrophe, a direct address to an absent person or a nonhuman entity.\nO goddess is a direct address to a goddess, a nonhuman entity."
+        },
+        {
+          "question": "Which of the following could Gordon's test show?",
+          "choices": [
+            "if the spacecraft was damaged when using a parachute with a 1 m vent going 200 km per hour",
+            "how steady a parachute with a 1 m vent was at 200 km per hour",
+            "whether a parachute with a 1 m vent would swing too much at 400 km per hour"
+          ],
+          "answer": 1,
+          "hint": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirements of the design.\nThe passage below descr...",
+          "task": "closed choice",
+          "grade": "grade8",
+          "subject": "natural science",
+          "topic": "science-and-engineering-practices",
+          "category": "Engineering practices",
+          "skill": "Evaluate tests of engineering-design solutions",
+          "lecture": "People can use the engineering-design process to develop solutions to problems. One step in the process is testing if a potential solution meets the requirements of the design. How can you determine w...",
+          "solution": ""
+        },
+        {
+          "question": "What is the name of the colony shown?",
+          "choices": [
+            "Maryland",
+            "New Hampshire",
+            "Rhode Island",
+            "Vermont"
+          ],
+          "answer": 1,
+          "hint": "",
+          "task": "closed choice",
+          "grade": "grade5",
+          "subject": "social science",
+          "topic": "us-history",
+          "category": "English colonies in North America",
+          "skill": "Identify the Thirteen Colonies",
+          "lecture": "",
+          "solution": "The colony is New Hampshire.\nDuring the colonial era, New Hampshire and New York both claimed the territory that would later become the state of Vermont. Vermont was never its own colony."
+        }
+      ]
+    }
+  }
+]

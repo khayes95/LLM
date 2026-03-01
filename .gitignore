@@ -1,25 +1,71 @@
-# Large files and directories
+# ============================================
+# Large directories (model weights → HuggingFace)
+# ============================================
 uq_models/
 runs/
+data/ablations/
+data/training_images/
+data/vsr_images/
+data/vlm_judge_combined/
+data/vlm_judge_vsr_fixed/
+data/erqa_repo/
 data/bbeh/
-data/finetune/*.jsonl
-logs/*.out
-logs/*.err
+archive/
+src/
+
+# SLURM and runtime logs
+logs/
+
+# ============================================
+# Model weight files (go to HuggingFace)
+# ============================================
 *.safetensors
 *.bin
 *.pt
 *.pth
+*.npy
 
+# ============================================
+# Secrets — NEVER commit
+# ============================================
+.env
+.env.local
+configs/env.local.sh
+submit_gpt_image15_pipeline.sh
+
+# ============================================
 # Python
+# ============================================
 __pycache__/
 *.pyc
+*.pyo
 .venv/
 *.egg-info/
+dist/
+build/
+*.egg
 
+# ============================================
 # IDE
+# ============================================
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# Keep these
-!data/finetune/.gitkeep
+# ============================================
+# OS
+# ============================================
+.DS_Store
+Thumbs.db
+
+# ============================================
+# HuggingFace cache
+# ============================================
+.cache/
+
+# ============================================
+# Keep placeholders
+# ============================================
 !logs/.gitkeep

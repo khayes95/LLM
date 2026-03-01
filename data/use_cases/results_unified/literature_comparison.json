@@ -1,0 +1,208 @@
+{
+  "methods": [
+    {
+      "name": "Verbalized Confidence",
+      "citation": "Kadavath et al. (2022); Tian et al. (2023)",
+      "paper_title": "Language Models (Mostly) Know What They Know; Just Ask for Calibration: Strategies for Eliciting Calibrated Confidence Scores from Language Models Fine-Tuned with Human Feedback",
+      "requires_logits": false,
+      "requires_multiple_samples": false,
+      "works_on_closed_source": true,
+      "works_on_vlm": false,
+      "compute_overhead": "low",
+      "reported_metrics": "Verbalized probability compared to actual accuracy. Kadavath et al. report AUROC for P(True) on TriviaQA, Lambada, arithmetic, and code tasks using a 52B model. Tian et al. study calibration of RLHF-tuned models.",
+      "typical_auroc_range": "0.60-0.70 (our experiments across 30+ benchmarks; individual tasks may be higher)",
+      "limitations": "Models are poorly calibrated in verbalized confidence, especially after RLHF. Sensitive to prompt phrasing. No learning from data -- performance cannot improve with more examples.",
+      "our_advantage": "Our trained calibrator achieves 0.915 AUROC vs. ~0.650 for verbalized confidence on the same test set. Our method learns discriminative features from data rather than relying on the model's self-reported confidence."
+    },
+    {
+      "name": "MC Dropout",
+      "citation": "Gal & Ghahramani (2016)",
+      "paper_title": "Dropout as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning",
+      "requires_logits": true,
+      "requires_multiple_samples": true,
+      "works_on_closed_source": false,
+      "works_on_vlm": true,
+      "compute_overhead": "high",
+      "reported_metrics": "Predictive variance across K stochastic forward passes with dropout enabled. Originally evaluated on MNIST, CIFAR-10 regression/classification tasks. Not directly evaluated on LLM QA in the original paper.",
+      "typical_auroc_range": "N/A - originally developed for vision/regression; modern LLMs typically do not use dropout layers, making this method inapplicable",
+      "limitations": "Requires model internals with dropout layers. Most modern LLMs (GPT, LLaMA, Qwen) do not use dropout, making this method inapplicable. K forward passes multiply inference cost by K. Approximation quality degrades with model size.",
+      "our_advantage": "Our method works as a black-box external evaluator -- no model internals needed. Single forward pass vs. K passes. Applicable to any model regardless of architecture."
+    },
+    {
+      "name": "Deep Ensembles",
+      "citation": "Lakshminarayanan et al. (2017)",
+      "paper_title": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles",
+      "requires_logits": true,
+      "requires_multiple_samples": true,
+      "works_on_closed_source": false,
+      "works_on_vlm": true,
+      "compute_overhead": "high",
+      "reported_metrics": "Predictive entropy and mutual information from M independently trained models. Originally evaluated on MNIST, SVHN, CIFAR-10 for calibration (ECE) and OOD detection. Strong calibration but prohibitively expensive for LLMs.",
+      "typical_auroc_range": "0.70-0.85 (for OOD detection in vision; not feasible for LLM-scale models)",
+      "limitations": "Requires training M independent models. For 7B+ parameter LLMs, training even 2 copies is prohibitively expensive (hundreds of GPU-hours each). Not applicable to closed-source models. Inference cost scales linearly with ensemble size.",
+      "our_advantage": "Our method uses a single 8B model to evaluate any target model. One training run (~2 hours on 4 GPUs) vs. M full LLM training runs. Can evaluate closed-source models where ensemble methods are impossible."
+    },
+    {
+      "name": "Temperature Scaling",
+      "citation": "Guo et al. (2017)",
+      "paper_title": "On Calibration of Modern Neural Networks",
+      "requires_logits": true,
+      "requires_multiple_samples": false,
+      "works_on_closed_source": false,
+      "works_on_vlm": true,
+      "compute_overhead": "low",
+      "reported_metrics": "Expected Calibration Error (ECE) before and after temperature scaling. Evaluated on CIFAR-10/100, ImageNet, SVHN, and 20 Newsgroups. Shown to reduce ECE significantly with a single learned parameter T.",
+      "typical_auroc_range": "N/A - temperature scaling improves calibration (ECE) but does not change discrimination (AUROC), as it is a monotonic transformation of logits",
+      "limitations": "Requires logit access, which is unavailable for closed-source LLMs. Improves calibration (ECE) but does not improve discrimination (AUROC). Single scalar parameter has limited expressiveness. Must be re-fit for each model.",
+      "our_advantage": "Our method both discriminates and calibrates. Works without logits. Learns rich features from question-answer text rather than a single scalar."
+    },
+    {
+      "name": "Conformal Prediction",
+      "citation": "Angelopoulos & Bates (2023); Kumar et al. (2023)",
+      "paper_title": "Conformal Prediction: A Gentle Introduction; Conformal Prediction with Large Language Models for Multi-Choice Question Answering",
+      "requires_logits": false,
+      "requires_multiple_samples": false,
+      "works_on_closed_source": true,
+      "works_on_vlm": false,
+      "compute_overhead": "low",
+      "reported_metrics": "Coverage guarantees (e.g., 90% coverage) and prediction set sizes. Kumar et al. evaluate on MMLU-style MCQ tasks, showing that conformal prediction sets are tightly correlated with accuracy. Provides statistical coverage guarantees under exchangeability.",
+      "typical_auroc_range": "N/A - provides prediction sets with coverage guarantees, not point-estimate discrimination scores. Complementary to AUROC-based methods.",
+      "limitations": "Produces prediction sets, not a single correctness probability. Requires exchangeability assumption that may not hold across diverse benchmarks. Primarily developed for MCQ settings. Does not discriminate between correct and incorrect answers -- only controls set size.",
+      "our_advantage": "Our method provides a single P(correct) score usable for ranking, routing, and selective prediction. Conformal prediction is complementary and could be combined with our calibrator's scores. Our method generalizes across tasks and models without exchangeability assumptions."
+    },
+    {
+      "name": "Semantic Entropy",
+      "citation": "Kuhn et al. (2023)",
+      "paper_title": "Semantic Uncertainty: Linguistic Invariances for Uncertainty Estimation in Natural Language Generation",
+      "requires_logits": false,
+      "requires_multiple_samples": true,
+      "works_on_closed_source": true,
+      "works_on_vlm": false,
+      "compute_overhead": "high",
+      "reported_metrics": "AUROC for detecting incorrect answers on TriviaQA and CoQA using OPT models (2.7B-30B). Semantic entropy significantly outperforms token-level entropy and length-normalized sequence probability. Uses 5-10 sampled generations per question with NLI-based semantic clustering.",
+      "typical_auroc_range": "0.75-0.85 (on free-form QA benchmarks like TriviaQA/CoQA with 30B models; varies by task and model)",
+      "limitations": "Requires 5-10 generations per question, multiplying inference cost 5-10x. Needs an NLI model for semantic clustering. Designed for free-form QA -- less applicable to MCQ, math, or coding tasks. Each model must be evaluated separately (no cross-model transfer). Text-only -- no vision support.",
+      "our_advantage": "Our method achieves 0.915 AUROC with a single forward pass vs. 5-10 generations. Works across 30+ benchmarks (QA, math, MCQ, code, long-context) vs. free-form QA only. Handles both text and vision. Transfers across models."
+    },
+    {
+      "name": "P(True)",
+      "citation": "Kadavath et al. (2022)",
+      "paper_title": "Language Models (Mostly) Know What They Know",
+      "requires_logits": true,
+      "requires_multiple_samples": false,
+      "works_on_closed_source": false,
+      "works_on_vlm": false,
+      "compute_overhead": "low",
+      "reported_metrics": "AUROC for discriminating correct vs. incorrect answers using the logit probability of the 'True' token when the model is asked 'Is the above answer correct? True or False'. Evaluated on TriviaQA, Lambada, arithmetic, Codex HumanEval, and GSM8K with a 52B Anthropic model. Performance scales with model size.",
+      "typical_auroc_range": "0.65-0.80 (highly model-dependent; larger models perform better; weaker on open-ended generation tasks)",
+      "limitations": "Requires logit access to extract P(True) token probability -- inapplicable to closed-source APIs that do not expose logits. The model evaluates its own answer, so it inherits the same biases and knowledge gaps. Cannot evaluate a different model's answer. Performance varies greatly across model sizes and task types.",
+      "our_advantage": "Our method is an external evaluator that can assess any model's answer, including closed-source models. We learn from diverse training data rather than relying on the target model's self-knowledge. Cross-model transfer is a core capability."
+    },
+    {
+      "name": "SelfCheckGPT",
+      "citation": "Manakul et al. (2023)",
+      "paper_title": "SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection for Generative Large Language Models",
+      "requires_logits": false,
+      "requires_multiple_samples": true,
+      "works_on_closed_source": true,
+      "works_on_vlm": false,
+      "compute_overhead": "high",
+      "reported_metrics": "AUC-PR for sentence-level hallucination detection on WikiBio passages generated by GPT-3. Best variant (SelfCheckGPT-NLI) achieves AUC-PR of ~83% for non-factual sentence detection. Also reports passage-level factuality correlation scores. Multiple variants tested: BERTScore, QA, n-gram, NLI, LLM-Prompt.",
+      "typical_auroc_range": "N/A - evaluated with AUC-PR on sentence-level hallucination detection (different protocol from answer-level correctness prediction); not directly comparable to answer-level AUROC",
+      "limitations": "Requires 5-20 sampled generations per passage, multiplying cost significantly. Designed for factual consistency in biographical passages -- not general QA correctness. Detects hallucination at the sentence level rather than predicting answer correctness. Each check requires running an NLI model or secondary LLM.",
+      "our_advantage": "Our method predicts answer-level correctness with a single forward pass. Works across 30+ diverse benchmarks vs. biographical text only. Handles math, code, MCQ, long-context, and vision tasks. No need for multiple generations."
+    },
+    {
+      "name": "LLM-as-Judge",
+      "citation": "Zheng et al. (2023)",
+      "paper_title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "requires_logits": false,
+      "requires_multiple_samples": false,
+      "works_on_closed_source": true,
+      "works_on_vlm": false,
+      "compute_overhead": "medium",
+      "reported_metrics": "Agreement rate with human judges on MT-Bench pairwise comparisons. GPT-4 as judge achieves >80% agreement with human preferences. Evaluates response quality on a Likert scale rather than binary correctness. Primarily measures quality/preference rather than factual correctness.",
+      "typical_auroc_range": "N/A - evaluated with agreement rate on preference judgments, not AUROC on correctness prediction. Different task (quality ranking vs. correctness detection).",
+      "limitations": "Uses a general-purpose LLM (GPT-4) without task-specific training -- relies on prompt engineering. Evaluates response quality/preference rather than factual correctness. Expensive if using a large model (GPT-4-scale) as the judge. Not trained to discriminate correct from incorrect. No cross-model uncertainty transfer.",
+      "our_advantage": "Our method is a trained version of LLM-as-Judge, specifically fine-tuned on correct/incorrect labels across 30+ benchmarks. Training dramatically improves discrimination (AUROC 0.915 vs. prompt-based approaches). Our 8B model is far cheaper to run than GPT-4. Handles vision tasks natively."
+    },
+    {
+      "name": "Logit-Based Methods (MaxProb / Entropy)",
+      "citation": "Hendrycks & Gimpel (2017); Kadavath et al. (2022)",
+      "paper_title": "A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks; Language Models (Mostly) Know What They Know",
+      "requires_logits": true,
+      "requires_multiple_samples": false,
+      "works_on_closed_source": false,
+      "works_on_vlm": true,
+      "compute_overhead": "low",
+      "reported_metrics": "Max softmax probability (MSP) and predictive entropy as baseline uncertainty measures. Hendrycks & Gimpel show MSP is a strong baseline for OOD detection. For LLMs, MSP achieves AUROC of ~0.69 averaged across 6 LLMs on MCQ, with GPT-4 Turbo reaching 0.86 (Groot et al. 2024).",
+      "typical_auroc_range": "0.65-0.86 (highly variable; best results on MCQ with strong models; weaker on open-ended generation where token-level probability does not reflect answer-level correctness)",
+      "limitations": "Requires full logit access, which is unavailable for closed-source LLMs (GPT-5, Claude, Gemini). Token-level max probability does not directly measure answer-level correctness for multi-token responses. Poorly calibrated without post-hoc corrections. Performance degrades on open-ended tasks.",
+      "our_advantage": "Our method works without any logit access. Evaluates answer correctness at the response level rather than token level. Achieves 0.915 AUROC across diverse tasks, competitive with or exceeding the best logit-based results, while being applicable to closed-source models."
+    },
+    {
+      "name": "Calibration Tuning (LoRA Fine-Tuning for UQ)",
+      "citation": "Kapoor et al. (2024)",
+      "paper_title": "Large Language Models Must Be Taught to Know What They Know",
+      "requires_logits": true,
+      "requires_multiple_samples": false,
+      "works_on_closed_source": false,
+      "works_on_vlm": false,
+      "compute_overhead": "low",
+      "reported_metrics": "ECE and AUROC on MMLU (MCQ and open-ended) after LoRA fine-tuning on correct/incorrect labels. LoRA+Prompt tuning consistently outperforms black-box baselines. Improves ECE on 39/57 MMLU tasks. Shows that fine-tuning through model features is necessary for good performance vs. frozen feature probes.",
+      "typical_auroc_range": "0.75-0.90 (on MMLU and TriviaQA; self-evaluation only, not cross-model)",
+      "limitations": "Requires fine-tuning the target model itself -- only works on open-source models. Self-evaluates (model judges its own outputs), so it cannot evaluate a different model's answers. Evaluated primarily on MMLU -- unclear how it generalizes to harder benchmarks (HLE, GPQA, BBEH). Text-only, no vision support.",
+      "our_advantage": "Our method is the closest related work but differs in three critical ways: (1) we train an external judge model, enabling cross-model transfer to closed-source models; (2) we train on 30+ benchmarks across multiple source models for broad generalization; (3) we support vision tasks with real images. Our AUROC of 0.915 is competitive with or exceeds self-evaluation approaches while being applicable to any target model."
+    }
+  ],
+  "our_method": {
+    "name": "Trained UQ Calibrator (Ours)",
+    "auroc": 0.915,
+    "auroc_note": "0.915 is test-set AUROC; 0.831 is overall AUROC including in-distribution evaluation",
+    "requires_logits": false,
+    "requires_multiple_samples": false,
+    "works_on_closed_source": true,
+    "works_on_vlm": true,
+    "compute_overhead": "low (single forward pass of 8B model)",
+    "key_advantages": [
+      "Works on closed-source models (GPT-5, Claude) where logit access is unavailable",
+      "Handles both text and vision tasks in a single unified model",
+      "Cross-model transfer: trained on models A, B, C and evaluated on unseen model D",
+      "Single forward pass at inference time (no multiple generations needed)",
+      "Open-weight 8B model, deployable on consumer hardware",
+      "Scales down to 2B parameters retaining 98% of performance for edge deployment",
+      "Evaluated across 30+ benchmarks spanning QA, math, MCQ, code, long-context, and vision"
+    ]
+  },
+  "comparison_narrative": "Existing uncertainty quantification methods for LLMs fall into three broad categories: (1) methods requiring model internals (logit-based, MC Dropout, Deep Ensembles, Temperature Scaling, P(True)), (2) methods requiring multiple samples (Semantic Entropy, SelfCheckGPT), and (3) prompting-based methods (Verbalized Confidence, LLM-as-Judge). Category (1) methods are inapplicable to closed-source models like GPT-5 and Claude, which are increasingly dominant in production. Category (2) methods multiply inference cost by 5-20x. Category (3) methods work on closed-source models but lack the discriminative power that comes from supervised training on correct/incorrect labels.\n\nOur trained UQ calibrator bridges these gaps. By fine-tuning an open-weight 8B vision-language model (Qwen3-VL-8B + LoRA) on labeled correct/incorrect pairs from 30+ benchmarks across three source models, we achieve 0.915 test AUROC with a single forward pass -- competitive with or exceeding the best logit-based methods while being applicable to any model, including closed-source ones. The most closely related work is Kapoor et al. (2024), which also fine-tunes a model for uncertainty estimation; however, their approach is self-evaluative (the model judges its own answers) and text-only, while ours is an external cross-model judge that handles both text and vision.\n\nThree capabilities distinguish our approach from all prior work: (1) cross-model transfer -- training on a set of source models and evaluating on unseen target models, which no existing method supports; (2) multimodal support -- handling both text LLM benchmarks and VLM benchmarks with real images in a single model; and (3) practical applicability to closed-source models, where the most capable frontier models reside but logit-based methods cannot operate. Our model is open-weight, enabling reproducibility and community deployment, and scales down to 2B parameters with only 2% performance loss for edge applications.",
+  "taxonomy": {
+    "description": "Categorization of methods by access requirements and computational cost",
+    "categories": {
+      "white_box_single_pass": {
+        "methods": ["Logit-Based Methods", "P(True)", "Temperature Scaling"],
+        "requires": "Model internals (logits, weights)",
+        "cost": "Low (single forward pass)",
+        "closed_source_compatible": false
+      },
+      "white_box_multi_pass": {
+        "methods": ["MC Dropout", "Deep Ensembles"],
+        "requires": "Model internals + multiple passes or models",
+        "cost": "High (K forward passes or M trained models)",
+        "closed_source_compatible": false
+      },
+      "black_box_multi_sample": {
+        "methods": ["Semantic Entropy", "SelfCheckGPT"],
+        "requires": "API access only, but multiple generations",
+        "cost": "High (5-20 API calls per question)",
+        "closed_source_compatible": true
+      },
+      "black_box_single_pass": {
+        "methods": ["Verbalized Confidence", "LLM-as-Judge", "Trained UQ Calibrator (Ours)"],
+        "requires": "Question + answer text only",
+        "cost": "Low (single generation or forward pass)",
+        "closed_source_compatible": true
+      }
+    },
+    "our_position": "We are in the most practical category (black-box, single-pass) but achieve discrimination performance competitive with white-box methods through supervised training."
+  }
+}

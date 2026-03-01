@@ -1,0 +1,470 @@
+{
+  "bbeh": {
+    "name": "BBEH",
+    "status": "success",
+    "total_samples": 4520,
+    "samples_with_questions": 4520,
+    "samples_with_answers": 46,
+    "grading_type": "mixed",
+    "answer_format": "Task-dependent (MCQ/open-ended)",
+    "categories": {
+      "bbeh_boolean_expressions": 200,
+      "bbeh_sportqa": 200,
+      "bbeh_time_arithmetic": 200,
+      "bbeh_word_sorting": 200,
+      "bbeh_boardgame_qa": 200,
+      "bbeh_hyperbaton": 200,
+      "bbeh_shuffled_objects": 200,
+      "bbeh_dyck_languages": 200,
+      "bbeh_geometric_shapes": 200,
+      "bbeh_movie_recommendation": 200,
+      "bbeh_causal_understanding": 200,
+      "bbeh_object_counting": 200,
+      "bbeh_buggy_tables": 200,
+      "bbeh_multistep_arithmetic": 200,
+      "bbeh_linguini": 200,
+      "bbeh_zebra_puzzles": 200,
+      "bbeh_disambiguation_qa": 120,
+      "bbeh_web_of_lies": 200,
+      "bbeh_nycc": 200,
+      "bbeh_spatial_reasoning": 200,
+      "bbeh_sarc_triples": 200,
+      "bbeh_temporal_sequence": 200,
+      "bbeh_object_properties": 200
+    },
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~50%"
+  },
+  "simpleqa": {
+    "name": "SimpleQA",
+    "status": "success",
+    "total_samples": 4326,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "open_ended",
+    "answer_format": "Short factual answer",
+    "categories": {
+      "unknown": 50
+    },
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "19-54%"
+  },
+  "tutorbench": {
+    "name": "TutorBench",
+    "status": "success",
+    "total_samples": 1473,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "rubric",
+    "answer_format": "Open-ended (needs LLM grader)",
+    "categories": {
+      "Chemistry": 10,
+      "Calculus": 8,
+      "Biology": 8,
+      "Physics": 7,
+      "Computer Science": 5,
+      "Statistics": 12
+    },
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~55%"
+  },
+  "multichallenge": {
+    "name": "MultiChallenge",
+    "status": "error",
+    "total_samples": 0,
+    "samples_with_questions": 0,
+    "samples_with_answers": 0,
+    "grading_type": "mcq",
+    "answer_format": "A/B/C/D letter",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "Dataset 'HendrixLab/MultiChallenge' doesn't exist on the Hub or cannot be accessed.",
+    "gpt5_accuracy": "58-64%"
+  },
+  "healthbench": {
+    "name": "HealthBench Hard",
+    "status": "success",
+    "total_samples": 1000,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "rubric",
+    "answer_format": "Open-ended (needs LLM grader)",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [
+      "Uses rubric-based grading: 50 samples have rubrics"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "~60%"
+  },
+  "bigcodebench": {
+    "name": "BigCodeBench",
+    "status": "success",
+    "total_samples": 1140,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "execution",
+    "answer_format": "Python code (needs execution)",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [
+      "Needs code execution for grading"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "~56%"
+  },
+  "prbench": {
+    "name": "PRBench",
+    "status": "success",
+    "total_samples": 600,
+    "samples_with_questions": 0,
+    "samples_with_answers": 50,
+    "grading_type": "rubric",
+    "answer_format": "Open-ended (needs LLM grader)",
+    "categories": {
+      "finance": 50
+    },
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~50-51%"
+  },
+  "hle": {
+    "name": "HLE (Text Only)",
+    "status": "success",
+    "total_samples": 2500,
+    "samples_with_questions": 48,
+    "samples_with_answers": 48,
+    "grading_type": "mixed",
+    "answer_format": "MCQ or exact match",
+    "categories": {
+      "exactMatch": 34,
+      "multipleChoice": 14
+    },
+    "class_balance": {},
+    "warnings": [
+      "Text-only: 48/50 samples (filtered out image questions)"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "25-30%"
+  },
+  "arc_agi": {
+    "name": "ARC-AGI",
+    "status": "success",
+    "total_samples": 400,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "grid",
+    "answer_format": "2D grid output",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [
+      "Very hard benchmark - models typically <10% accuracy"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "~10%"
+  },
+  "chembench": {
+    "name": "ChemBench",
+    "status": "success",
+    "total_samples": 149,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "mcq",
+    "answer_format": "Letter answer",
+    "categories": {
+      "periodic_table_properties": 9,
+      "Gen_Chem_MCA": 3,
+      "pum_tum": 1,
+      "oup": 6,
+      "icho": 10,
+      "electron_counts": 8,
+      "oxidation_states": 5,
+      "reactive_groups": 8
+    },
+    "class_balance": {},
+    "warnings": [
+      "Multiple configs available: general_chemistry, organic_chemistry, etc."
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "8-70%"
+  },
+  "gpqa": {
+    "name": "GPQA Diamond",
+    "status": "success",
+    "total_samples": 198,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "mcq",
+    "answer_format": "A/B/C/D letter",
+    "categories": {},
+    "class_balance": {
+      "has_answer": 50
+    },
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "77-90%"
+  },
+  "omnimath": {
+    "name": "OmniMath",
+    "status": "success",
+    "total_samples": 4428,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "open_ended",
+    "answer_format": "Math proof/solution",
+    "categories": {
+      "8": 20,
+      "7": 19,
+      "9": 4,
+      "6": 7
+    },
+    "class_balance": {},
+    "warnings": [
+      "Top-level domains: {'Mathematics': 50}"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "~72%"
+  },
+  "livebench": {
+    "name": "LiveBench",
+    "status": "success",
+    "total_samples": 368,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "mixed",
+    "answer_format": "Category-dependent",
+    "categories": {
+      "math": 50
+    },
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~79%"
+  },
+  "livecodebench": {
+    "name": "LiveCodeBench",
+    "status": "success",
+    "total_samples": 1055,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "execution",
+    "answer_format": "Code (needs execution)",
+    "categories": {
+      "easy": 18,
+      "medium": 23,
+      "hard": 9
+    },
+    "class_balance": {},
+    "warnings": [
+      "Needs code execution for grading"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "4-90%"
+  },
+  "swebench": {
+    "name": "SWE-Bench Lite",
+    "status": "success",
+    "total_samples": 300,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "execution",
+    "answer_format": "Git patch (needs execution)",
+    "categories": {
+      "astropy/astropy": 6,
+      "django/django": 44
+    },
+    "class_balance": {},
+    "warnings": [
+      "Needs code execution and git for grading"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "52-75%"
+  },
+  "oolong": {
+    "name": "Oolong",
+    "status": "success",
+    "total_samples": 6072,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "mixed",
+    "answer_format": "Task-dependent",
+    "categories": {
+      "0k-10k": 50
+    },
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "47-70%"
+  },
+  "babilong": {
+    "name": "BABILong",
+    "status": "success",
+    "total_samples": 100,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "open_ended",
+    "answer_format": "Short answer",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [
+      "Multiple context lengths available: 0k, 1k, 2k, 4k, 8k, 16k, 32k, 64k, 128k"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "varies by length"
+  },
+  "math": {
+    "name": "MATH",
+    "status": "success",
+    "total_samples": 1187,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "numeric",
+    "answer_format": "Boxed numeric/algebraic answer",
+    "categories": {
+      "Level 3": 11,
+      "Level 1": 5,
+      "Level 4": 14,
+      "Level 5": 13,
+      "Level 2": 7
+    },
+    "class_balance": {},
+    "warnings": [
+      "Using algebra subset (7 subjects available)"
+    ],
+    "error_message": "",
+    "gpt5_accuracy": "~96%"
+  },
+  "mmlu_pro": {
+    "name": "MMLU-Pro",
+    "status": "success",
+    "total_samples": 12032,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "mcq",
+    "answer_format": "A-J letter (10 options)",
+    "categories": {
+      "business": 50
+    },
+    "class_balance": {
+      "I": 6,
+      "F": 6,
+      "J": 11,
+      "C": 2,
+      "G": 5,
+      "A": 5,
+      "D": 3,
+      "E": 4,
+      "B": 2,
+      "H": 6
+    },
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~87%"
+  },
+  "gsm8k": {
+    "name": "GSM8K",
+    "status": "success",
+    "total_samples": 1319,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "numeric",
+    "answer_format": "Numeric answer (extracted from solution)",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~95%"
+  },
+  "arc": {
+    "name": "ARC-Challenge",
+    "status": "success",
+    "total_samples": 1172,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "mcq",
+    "answer_format": "A/B/C/D letter",
+    "categories": {},
+    "class_balance": {
+      "C": 19,
+      "B": 15,
+      "D": 5,
+      "A": 10,
+      "2": 1
+    },
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~95%"
+  },
+  "drop": {
+    "name": "DROP",
+    "status": "success",
+    "total_samples": 9535,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "open_ended",
+    "answer_format": "Short answer (number, span, or date)",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~90%"
+  },
+  "triviaqa": {
+    "name": "TriviaQA",
+    "status": "success",
+    "total_samples": 17944,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "open_ended",
+    "answer_format": "Short factual answer",
+    "categories": {},
+    "class_balance": {},
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~90%"
+  },
+  "hellaswag": {
+    "name": "HellaSwag",
+    "status": "success",
+    "total_samples": 10042,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "mcq",
+    "answer_format": "0/1/2/3 index",
+    "categories": {},
+    "class_balance": {
+      "3": 13,
+      "2": 13,
+      "1": 11,
+      "0": 13
+    },
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~95%"
+  },
+  "winogrande": {
+    "name": "WinoGrande",
+    "status": "success",
+    "total_samples": 1267,
+    "samples_with_questions": 50,
+    "samples_with_answers": 50,
+    "grading_type": "binary",
+    "answer_format": "1 or 2 (option index)",
+    "categories": {},
+    "class_balance": {
+      "2": 24,
+      "1": 26
+    },
+    "warnings": [],
+    "error_message": "",
+    "gpt5_accuracy": "~95%"
+  }
+}

@@ -1,0 +1,387 @@
+{
+  "summary": {
+    "total_examples": 24588,
+    "estimated_correct": 11972,
+    "estimated_incorrect": 12616,
+    "balance_ratio": 1.053792181757434,
+    "estimated_cost_usd": 715.9519399999999,
+    "cost_without_long_context_usd": 289.7339
+  },
+  "by_scoring_type": {
+    "auto": {
+      "examples": 17970,
+      "benchmarks": [
+        "bbeh",
+        "simpleqa",
+        "multichallenge",
+        "multinrc",
+        "hle",
+        "ether0",
+        "arc_agi",
+        "chembench",
+        "gpqa",
+        "omnimath",
+        "livebench",
+        "oolong",
+        "babilong",
+        "longbench_v2"
+      ]
+    },
+    "execution": {
+      "examples": 2495,
+      "benchmarks": [
+        "bigcodebench",
+        "livecodebench",
+        "swebench"
+      ]
+    },
+    "rubric": {
+      "examples": 4123,
+      "benchmarks": [
+        "tutorbench",
+        "healthbench",
+        "prbench"
+      ]
+    }
+  },
+  "by_category": {
+    "reasoning": {
+      "examples": 5848,
+      "correct": 3108,
+      "incorrect": 2740,
+      "benchmarks": [
+        "bbeh",
+        "multichallenge",
+        "multinrc",
+        "omnimath"
+      ]
+    },
+    "knowledge": {
+      "examples": 6554,
+      "correct": 2464,
+      "incorrect": 4090,
+      "benchmarks": [
+        "simpleqa",
+        "hle",
+        "gpqa"
+      ]
+    },
+    "instruction": {
+      "examples": 2909,
+      "correct": 1944,
+      "incorrect": 965,
+      "benchmarks": [
+        "tutorbench",
+        "livebench"
+      ]
+    },
+    "science": {
+      "examples": 4110,
+      "correct": 1844,
+      "incorrect": 2266,
+      "benchmarks": [
+        "healthbench",
+        "ether0",
+        "chembench"
+      ]
+    },
+    "coding": {
+      "examples": 2495,
+      "correct": 1360,
+      "incorrect": 1135,
+      "benchmarks": [
+        "bigcodebench",
+        "livecodebench",
+        "swebench"
+      ]
+    },
+    "professional": {
+      "examples": 1650,
+      "correct": 825,
+      "incorrect": 825,
+      "benchmarks": [
+        "prbench"
+      ]
+    },
+    "abstract": {
+      "examples": 419,
+      "correct": 41,
+      "incorrect": 378,
+      "benchmarks": [
+        "arc_agi"
+      ]
+    },
+    "long_context": {
+      "examples": 603,
+      "correct": 386,
+      "incorrect": 217,
+      "benchmarks": [
+        "oolong",
+        "babilong",
+        "longbench_v2"
+      ]
+    }
+  },
+  "benchmarks": [
+    {
+      "name": "bbeh",
+      "examples": 4520,
+      "gpt5_accuracy": 0.5,
+      "estimated_correct": 2260,
+      "estimated_incorrect": 2260,
+      "avg_input_tokens": 1436,
+      "max_input_tokens": 3092,
+      "scoring_type": "auto",
+      "category": "reasoning",
+      "issues": []
+    },
+    {
+      "name": "simpleqa",
+      "examples": 4326,
+      "gpt5_accuracy": 0.4,
+      "estimated_correct": 1730,
+      "estimated_incorrect": 2596,
+      "avg_input_tokens": 25,
+      "max_input_tokens": 72,
+      "scoring_type": "auto",
+      "category": "knowledge",
+      "issues": []
+    },
+    {
+      "name": "tutorbench",
+      "examples": 1473,
+      "gpt5_accuracy": 0.55,
+      "estimated_correct": 810,
+      "estimated_incorrect": 663,
+      "avg_input_tokens": 0,
+      "max_input_tokens": 0,
+      "scoring_type": "rubric",
+      "category": "instruction",
+      "issues": [
+        "Requires LLM judge for scoring"
+      ]
+    },
+    {
+      "name": "multichallenge",
+      "examples": 273,
+      "gpt5_accuracy": 0.6,
+      "estimated_correct": 163,
+      "estimated_incorrect": 110,
+      "avg_input_tokens": 1670,
+      "max_input_tokens": 5425,
+      "scoring_type": "auto",
+      "category": "reasoning",
+      "issues": []
+    },
+    {
+      "name": "healthbench",
+      "examples": 1000,
+      "gpt5_accuracy": 0.6,
+      "estimated_correct": 600,
+      "estimated_incorrect": 400,
+      "avg_input_tokens": 268,
+      "max_input_tokens": 1274,
+      "scoring_type": "rubric",
+      "category": "science",
+      "issues": [
+        "Requires LLM judge for scoring"
+      ]
+    },
+    {
+      "name": "bigcodebench",
+      "examples": 1140,
+      "gpt5_accuracy": 0.56,
+      "estimated_correct": 638,
+      "estimated_incorrect": 502,
+      "avg_input_tokens": 173,
+      "max_input_tokens": 404,
+      "scoring_type": "execution",
+      "category": "coding",
+      "issues": [
+        "Requires code execution for scoring"
+      ]
+    },
+    {
+      "name": "multinrc",
+      "examples": 1055,
+      "gpt5_accuracy": 0.65,
+      "estimated_correct": 685,
+      "estimated_incorrect": 370,
+      "avg_input_tokens": 70,
+      "max_input_tokens": 329,
+      "scoring_type": "auto",
+      "category": "reasoning",
+      "issues": []
+    },
+    {
+      "name": "prbench",
+      "examples": 1650,
+      "gpt5_accuracy": 0.5,
+      "estimated_correct": 825,
+      "estimated_incorrect": 825,
+      "avg_input_tokens": 99,
+      "max_input_tokens": 431,
+      "scoring_type": "rubric",
+      "category": "professional",
+      "issues": [
+        "Requires LLM judge for scoring"
+      ]
+    },
+    {
+      "name": "hle",
+      "examples": 2030,
+      "gpt5_accuracy": 0.28,
+      "estimated_correct": 568,
+      "estimated_incorrect": 1462,
+      "avg_input_tokens": 151,
+      "max_input_tokens": 1435,
+      "scoring_type": "auto",
+      "category": "knowledge",
+      "issues": []
+    },
+    {
+      "name": "ether0",
+      "examples": 325,
+      "gpt5_accuracy": 0.4,
+      "estimated_correct": 130,
+      "estimated_incorrect": 195,
+      "avg_input_tokens": 58,
+      "max_input_tokens": 250,
+      "scoring_type": "auto",
+      "category": "science",
+      "issues": []
+    },
+    {
+      "name": "arc_agi",
+      "examples": 419,
+      "gpt5_accuracy": 0.1,
+      "estimated_correct": 41,
+      "estimated_incorrect": 378,
+      "avg_input_tokens": 1326,
+      "max_input_tokens": 6249,
+      "scoring_type": "auto",
+      "category": "abstract",
+      "issues": [
+        "Very hard: only 10% accuracy"
+      ]
+    },
+    {
+      "name": "chembench",
+      "examples": 2785,
+      "gpt5_accuracy": 0.4,
+      "estimated_correct": 1114,
+      "estimated_incorrect": 1671,
+      "avg_input_tokens": 74,
+      "max_input_tokens": 685,
+      "scoring_type": "auto",
+      "category": "science",
+      "issues": []
+    },
+    {
+      "name": "gpqa",
+      "examples": 198,
+      "gpt5_accuracy": 0.84,
+      "estimated_correct": 166,
+      "estimated_incorrect": 32,
+      "avg_input_tokens": 154,
+      "max_input_tokens": 483,
+      "scoring_type": "auto",
+      "category": "knowledge",
+      "issues": []
+    },
+    {
+      "name": "omnimath",
+      "examples": 0,
+      "gpt5_accuracy": 0.72,
+      "estimated_correct": 0,
+      "estimated_incorrect": 0,
+      "avg_input_tokens": 0,
+      "max_input_tokens": 0,
+      "scoring_type": "auto",
+      "category": "reasoning",
+      "issues": [
+        "Failed to load: Feature type 'List' not found. Available feature types: ['Value', 'ClassLabel', 'Translation', 'Tran"
+      ]
+    },
+    {
+      "name": "livebench",
+      "examples": 1436,
+      "gpt5_accuracy": 0.79,
+      "estimated_correct": 1134,
+      "estimated_incorrect": 302,
+      "avg_input_tokens": 459,
+      "max_input_tokens": 2022,
+      "scoring_type": "auto",
+      "category": "instruction",
+      "issues": []
+    },
+    {
+      "name": "livecodebench",
+      "examples": 1055,
+      "gpt5_accuracy": 0.5,
+      "estimated_correct": 527,
+      "estimated_incorrect": 528,
+      "avg_input_tokens": 320,
+      "max_input_tokens": 616,
+      "scoring_type": "execution",
+      "category": "coding",
+      "issues": [
+        "Requires code execution for scoring"
+      ]
+    },
+    {
+      "name": "swebench",
+      "examples": 300,
+      "gpt5_accuracy": 0.65,
+      "estimated_correct": 195,
+      "estimated_incorrect": 105,
+      "avg_input_tokens": 351,
+      "max_input_tokens": 1690,
+      "scoring_type": "execution",
+      "category": "coding",
+      "issues": [
+        "Requires code execution for scoring"
+      ]
+    },
+    {
+      "name": "oolong",
+      "examples": 0,
+      "gpt5_accuracy": 0.58,
+      "estimated_correct": 0,
+      "estimated_incorrect": 0,
+      "avg_input_tokens": 0,
+      "max_input_tokens": 0,
+      "scoring_type": "auto",
+      "category": "long_context",
+      "issues": [
+        "Small dataset: only 0 examples"
+      ]
+    },
+    {
+      "name": "babilong",
+      "examples": 100,
+      "gpt5_accuracy": 0.7,
+      "estimated_correct": 70,
+      "estimated_incorrect": 30,
+      "avg_input_tokens": 3706,
+      "max_input_tokens": 4297,
+      "scoring_type": "auto",
+      "category": "long_context",
+      "issues": []
+    },
+    {
+      "name": "longbench_v2",
+      "examples": 503,
+      "gpt5_accuracy": 0.63,
+      "estimated_correct": 316,
+      "estimated_incorrect": 187,
+      "avg_input_tokens": 166336,
+      "max_input_tokens": 1312629,
+      "scoring_type": "auto",
+      "category": "long_context",
+      "issues": [
+        "Long context: max 1312629 tokens"
+      ]
+    }
+  ]
+}

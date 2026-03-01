@@ -1,0 +1,1222 @@
+{
+  "total_benchmarks": 45,
+  "successful": 38,
+  "failed": 7,
+  "single_image_benchmarks": [
+    {
+      "hf_id": "lmms-lab/HallusionBench",
+      "config": null,
+      "size": 951,
+      "expected_gpt5_acc": "~31%",
+      "notes": "Hallucination detection",
+      "is_mcq": false,
+      "num_classes": 558,
+      "class_balance": "558 unique values (sampled 951)"
+    },
+    {
+      "hf_id": "Lin-Chen/MMStar",
+      "config": null,
+      "size": 1500,
+      "expected_gpt5_acc": "~55%",
+      "notes": "Vision-indispensable",
+      "is_mcq": false,
+      "num_classes": 4,
+      "class_balance": {
+        "B": 0.318,
+        "A": 0.282,
+        "D": 0.206,
+        "C": 0.194
+      }
+    },
+    {
+      "hf_id": "lmms-lab/ai2d",
+      "config": null,
+      "size": 3088,
+      "expected_gpt5_acc": "~85%",
+      "notes": "Science diagrams",
+      "is_mcq": true,
+      "num_classes": 4,
+      "class_balance": {
+        "2": 0.281,
+        "1": 0.262,
+        "0": 0.241,
+        "3": 0.216
+      }
+    },
+    {
+      "hf_id": "HuggingFaceM4/ChartQA",
+      "config": null,
+      "size": 2500,
+      "expected_gpt5_acc": "~75%",
+      "notes": "Chart understanding",
+      "is_mcq": false,
+      "num_classes": 574,
+      "class_balance": "574 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "princeton-nlp/CharXiv",
+      "config": null,
+      "size": 1323,
+      "expected_gpt5_acc": "~60%",
+      "notes": "arXiv figure reasoning",
+      "is_mcq": false,
+      "num_classes": "?",
+      "class_balance": "?"
+    },
+    {
+      "hf_id": "derek-thomas/ScienceQA",
+      "config": null,
+      "size": 4241,
+      "expected_gpt5_acc": "~85%",
+      "notes": "K-12 science",
+      "is_mcq": true,
+      "num_classes": 862,
+      "class_balance": "862 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "lmms-lab/VizWiz-VQA",
+      "config": null,
+      "size": 8000,
+      "expected_gpt5_acc": "~60%",
+      "notes": "Blind user photos",
+      "is_mcq": false,
+      "num_classes": 1,
+      "class_balance": {
+        "[]": 1.0
+      }
+    },
+    {
+      "hf_id": "echo840/OCRBench",
+      "config": null,
+      "size": 1000,
+      "expected_gpt5_acc": "~70%",
+      "notes": "OCR tasks",
+      "is_mcq": false,
+      "num_classes": 967,
+      "class_balance": "967 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "cambridgeltl/vsr_random",
+      "config": null,
+      "size": 2195,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Spatial reasoning, true/false, binary",
+      "is_mcq": false,
+      "num_classes": 2,
+      "class_balance": {
+        "1": 0.529,
+        "0": 0.471
+      }
+    },
+    {
+      "hf_id": "AI4Math/MathVerse",
+      "config": "testmini",
+      "size": 3940,
+      "expected_gpt5_acc": "~25%",
+      "notes": "Visual math, 6 versions per problem",
+      "is_mcq": false,
+      "num_classes": 4,
+      "class_balance": {
+        "B": 0.3,
+        "C": 0.285,
+        "A": 0.245,
+        "D": 0.17
+      }
+    },
+    {
+      "hf_id": "MathLLMs/MathVision",
+      "config": null,
+      "size": 3040,
+      "expected_gpt5_acc": "~24%",
+      "notes": "Competition math with images",
+      "is_mcq": true,
+      "num_classes": 92,
+      "class_balance": "92 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "AI4Math/MathVista",
+      "config": null,
+      "size": 5141,
+      "expected_gpt5_acc": "~50%",
+      "notes": "IQ tests, plots, figures",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "": 1.0
+      }
+    },
+    {
+      "hf_id": "lmms-lab/HallusionBench",
+      "config": null,
+      "size": 951,
+      "expected_gpt5_acc": "~31%",
+      "notes": "Hallucination detection",
+      "is_mcq": false,
+      "num_classes": 558,
+      "class_balance": "558 unique values (sampled 951)"
+    },
+    {
+      "hf_id": "Lin-Chen/MMStar",
+      "config": null,
+      "size": 1500,
+      "expected_gpt5_acc": "~55%",
+      "notes": "Vision-indispensable, 1.5K",
+      "is_mcq": false,
+      "num_classes": 4,
+      "class_balance": {
+        "B": 0.318,
+        "A": 0.282,
+        "D": 0.206,
+        "C": 0.194
+      }
+    },
+    {
+      "hf_id": "lmms-lab/ai2d",
+      "config": null,
+      "size": 3088,
+      "expected_gpt5_acc": "~85%",
+      "notes": "Science diagrams, 3K",
+      "is_mcq": true,
+      "num_classes": 4,
+      "class_balance": {
+        "2": 0.281,
+        "1": 0.262,
+        "0": 0.241,
+        "3": 0.216
+      }
+    },
+    {
+      "hf_id": "HuggingFaceM4/ChartQA",
+      "config": null,
+      "size": 2500,
+      "expected_gpt5_acc": "~75%",
+      "notes": "Chart understanding, 2.5K test",
+      "is_mcq": false,
+      "num_classes": 574,
+      "class_balance": "574 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "princeton-nlp/CharXiv",
+      "config": null,
+      "size": 1323,
+      "expected_gpt5_acc": "~60%",
+      "notes": "arXiv figure reasoning, 1.3K",
+      "is_mcq": false,
+      "num_classes": "?",
+      "class_balance": "?"
+    },
+    {
+      "hf_id": "TIGER-Lab/NLVR2",
+      "config": null,
+      "size": 6967,
+      "expected_gpt5_acc": "~80%",
+      "notes": "Visual reasoning, 2-image",
+      "is_mcq": true,
+      "num_classes": 2,
+      "class_balance": {
+        "B": 0.518,
+        "A": 0.482
+      }
+    },
+    {
+      "hf_id": "HuggingFaceM4/A-OKVQA",
+      "config": null,
+      "size": 6702,
+      "expected_gpt5_acc": "~60%",
+      "notes": "Outside knowledge VQA",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "None": 1.0
+      }
+    },
+    {
+      "hf_id": "lmms-lab/SEED-Bench",
+      "config": null,
+      "size": 17990,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Comprehensive VLM eval",
+      "is_mcq": true,
+      "num_classes": 4,
+      "class_balance": {
+        "A": 0.275,
+        "B": 0.265,
+        "C": 0.249,
+        "D": 0.211
+      }
+    },
+    {
+      "hf_id": "echo840/OCRBench",
+      "config": null,
+      "size": 1000,
+      "expected_gpt5_acc": "~70%",
+      "notes": "OCR tasks",
+      "is_mcq": false,
+      "num_classes": 967,
+      "class_balance": "967 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "lmms-lab/VizWiz-VQA",
+      "config": null,
+      "size": 8000,
+      "expected_gpt5_acc": "~60%",
+      "notes": "Blind user photos",
+      "is_mcq": false,
+      "num_classes": 1,
+      "class_balance": {
+        "[]": 1.0
+      }
+    },
+    {
+      "hf_id": "derek-thomas/ScienceQA",
+      "config": null,
+      "size": 4241,
+      "expected_gpt5_acc": "~85%",
+      "notes": "K-12 science with images",
+      "is_mcq": true,
+      "num_classes": 5,
+      "class_balance": {
+        "1": 0.405,
+        "0": 0.399,
+        "2": 0.132,
+        "3": 0.063,
+        "4": 0.001
+      }
+    }
+  ],
+  "multi_image_benchmarks": [
+    {
+      "hf_id": "cambridgeltl/vsr_random",
+      "config": null,
+      "size": 2195,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Spatial reasoning, true/false",
+      "is_mcq": false,
+      "num_classes": 2,
+      "class_balance": {
+        "1": 0.529,
+        "0": 0.471
+      }
+    },
+    {
+      "hf_id": "MathLLMs/MathVision",
+      "config": null,
+      "size": 3040,
+      "expected_gpt5_acc": "~24%",
+      "notes": "Competition math with images",
+      "is_mcq": true,
+      "num_classes": 92,
+      "class_balance": "92 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "jonathan-roberts1/zerobench",
+      "config": null,
+      "size": 100,
+      "expected_gpt5_acc": "0%",
+      "notes": "Designed to be unsolvable",
+      "is_mcq": false,
+      "num_classes": 98,
+      "class_balance": "98 unique values (sampled 100)"
+    },
+    {
+      "hf_id": "lmms-lab/RealWorldQA",
+      "config": null,
+      "size": 765,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Real-world spatial",
+      "is_mcq": false,
+      "num_classes": 29,
+      "class_balance": "29 unique values (sampled 765)"
+    },
+    {
+      "hf_id": "jonathan-roberts1/zerobench",
+      "config": null,
+      "size": 100,
+      "expected_gpt5_acc": "0%",
+      "notes": "Designed to be unsolvable",
+      "is_mcq": false,
+      "num_classes": 98,
+      "class_balance": "98 unique values (sampled 100)"
+    },
+    {
+      "hf_id": "lmms-lab/RealWorldQA",
+      "config": null,
+      "size": 765,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Real-world spatial, 765",
+      "is_mcq": false,
+      "num_classes": 29,
+      "class_balance": "29 unique values (sampled 765)"
+    },
+    {
+      "hf_id": "lmms-lab/MMVet",
+      "config": null,
+      "size": 218,
+      "expected_gpt5_acc": "~55%",
+      "notes": "Integrated VL capabilities, 218 Q",
+      "is_mcq": false,
+      "num_classes": 196,
+      "class_balance": "196 unique values (sampled 218)"
+    },
+    {
+      "hf_id": "facebook/winoground",
+      "config": null,
+      "size": 400,
+      "expected_gpt5_acc": "~50%",
+      "notes": "Compositional reasoning, 800",
+      "is_mcq": false,
+      "num_classes": "?",
+      "class_balance": "?"
+    },
+    {
+      "hf_id": "MMMU/MMMU",
+      "config": "Accounting",
+      "size": 380,
+      "expected_gpt5_acc": "~62%",
+      "notes": "College-level multimodal - Accounting",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "?": 1.0
+      }
+    },
+    {
+      "hf_id": "MMMU/MMMU",
+      "config": "Art",
+      "size": 231,
+      "expected_gpt5_acc": "~62%",
+      "notes": "College-level multimodal - Art",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "?": 1.0
+      }
+    },
+    {
+      "hf_id": "MMMU/MMMU",
+      "config": "Biology",
+      "size": 345,
+      "expected_gpt5_acc": "~62%",
+      "notes": "College-level multimodal - Biology",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "?": 1.0
+      }
+    },
+    {
+      "hf_id": "MMMU/MMMU",
+      "config": "Chemistry",
+      "size": 603,
+      "expected_gpt5_acc": "~62%",
+      "notes": "College-level multimodal - Chemistry",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "?": 1.0
+      }
+    },
+    {
+      "hf_id": "MMMU/MMMU",
+      "config": "Computer_Science",
+      "size": 371,
+      "expected_gpt5_acc": "~62%",
+      "notes": "College-level multimodal - CS",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "?": 1.0
+      }
+    },
+    {
+      "hf_id": "MMMU/MMMU",
+      "config": "Physics",
+      "size": 408,
+      "expected_gpt5_acc": "~62%",
+      "notes": "College-level multimodal - Physics",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "?": 1.0
+      }
+    },
+    {
+      "hf_id": "MMMU/MMMU",
+      "config": "Math",
+      "size": 505,
+      "expected_gpt5_acc": "~62%",
+      "notes": "College-level multimodal - Math",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "?": 1.0
+      }
+    }
+  ],
+  "binary_classification": [
+    {
+      "hf_id": "cambridgeltl/vsr_random",
+      "config": null,
+      "size": 2195,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Spatial reasoning, true/false",
+      "is_mcq": false,
+      "num_classes": 2,
+      "class_balance": {
+        "1": 0.529,
+        "0": 0.471
+      }
+    },
+    {
+      "hf_id": "cambridgeltl/vsr_random",
+      "config": null,
+      "size": 2195,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Spatial reasoning, true/false, binary",
+      "is_mcq": false,
+      "num_classes": 2,
+      "class_balance": {
+        "1": 0.529,
+        "0": 0.471
+      }
+    },
+    {
+      "hf_id": "TIGER-Lab/NLVR2",
+      "config": null,
+      "size": 6967,
+      "expected_gpt5_acc": "~80%",
+      "notes": "Visual reasoning, 2-image",
+      "is_mcq": true,
+      "num_classes": 2,
+      "class_balance": {
+        "B": 0.518,
+        "A": 0.482
+      }
+    }
+  ],
+  "mcq_benchmarks": [
+    "MathLLMs/MathVision",
+    "lmms-lab/ai2d",
+    "derek-thomas/ScienceQA",
+    "MathLLMs/MathVision",
+    "AI4Math/MathVista",
+    "lmms-lab/ai2d",
+    "TIGER-Lab/NLVR2",
+    "HuggingFaceM4/A-OKVQA",
+    "lmms-lab/SEED-Bench",
+    "MMMU/MMMU",
+    "MMMU/MMMU",
+    "MMMU/MMMU",
+    "MMMU/MMMU",
+    "MMMU/MMMU",
+    "MMMU/MMMU",
+    "MMMU/MMMU",
+    "derek-thomas/ScienceQA"
+  ],
+  "open_ended_benchmarks": [
+    "cambridgeltl/vsr_random",
+    "lmms-lab/HallusionBench",
+    "jonathan-roberts1/zerobench",
+    "Lin-Chen/MMStar",
+    "lmms-lab/RealWorldQA",
+    "HuggingFaceM4/ChartQA",
+    "princeton-nlp/CharXiv",
+    "lmms-lab/VizWiz-VQA",
+    "echo840/OCRBench",
+    "cambridgeltl/vsr_random",
+    "AI4Math/MathVerse",
+    "lmms-lab/HallusionBench",
+    "jonathan-roberts1/zerobench",
+    "Lin-Chen/MMStar",
+    "lmms-lab/RealWorldQA",
+    "HuggingFaceM4/ChartQA",
+    "princeton-nlp/CharXiv",
+    "lmms-lab/MMVet",
+    "facebook/winoground",
+    "echo840/OCRBench",
+    "lmms-lab/VizWiz-VQA"
+  ],
+  "recommended_for_uq": [
+    {
+      "hf_id": "lmms-lab/HallusionBench",
+      "config": null,
+      "size": 951,
+      "expected_gpt5_acc": "~31%",
+      "notes": "Hallucination detection",
+      "is_mcq": false,
+      "num_classes": 558,
+      "class_balance": "558 unique values (sampled 951)"
+    },
+    {
+      "hf_id": "Lin-Chen/MMStar",
+      "config": null,
+      "size": 1500,
+      "expected_gpt5_acc": "~55%",
+      "notes": "Vision-indispensable",
+      "is_mcq": false,
+      "num_classes": 4,
+      "class_balance": {
+        "B": 0.318,
+        "A": 0.282,
+        "D": 0.206,
+        "C": 0.194
+      }
+    },
+    {
+      "hf_id": "HuggingFaceM4/ChartQA",
+      "config": null,
+      "size": 2500,
+      "expected_gpt5_acc": "~75%",
+      "notes": "Chart understanding",
+      "is_mcq": false,
+      "num_classes": 574,
+      "class_balance": "574 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "princeton-nlp/CharXiv",
+      "config": null,
+      "size": 1323,
+      "expected_gpt5_acc": "~60%",
+      "notes": "arXiv figure reasoning",
+      "is_mcq": false,
+      "num_classes": "?",
+      "class_balance": "?"
+    },
+    {
+      "hf_id": "lmms-lab/VizWiz-VQA",
+      "config": null,
+      "size": 8000,
+      "expected_gpt5_acc": "~60%",
+      "notes": "Blind user photos",
+      "is_mcq": false,
+      "num_classes": 1,
+      "class_balance": {
+        "[]": 1.0
+      }
+    },
+    {
+      "hf_id": "echo840/OCRBench",
+      "config": null,
+      "size": 1000,
+      "expected_gpt5_acc": "~70%",
+      "notes": "OCR tasks",
+      "is_mcq": false,
+      "num_classes": 967,
+      "class_balance": "967 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "cambridgeltl/vsr_random",
+      "config": null,
+      "size": 2195,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Spatial reasoning, true/false, binary",
+      "is_mcq": false,
+      "num_classes": 2,
+      "class_balance": {
+        "1": 0.529,
+        "0": 0.471
+      }
+    },
+    {
+      "hf_id": "AI4Math/MathVerse",
+      "config": "testmini",
+      "size": 3940,
+      "expected_gpt5_acc": "~25%",
+      "notes": "Visual math, 6 versions per problem",
+      "is_mcq": false,
+      "num_classes": 4,
+      "class_balance": {
+        "B": 0.3,
+        "C": 0.285,
+        "A": 0.245,
+        "D": 0.17
+      }
+    },
+    {
+      "hf_id": "MathLLMs/MathVision",
+      "config": null,
+      "size": 3040,
+      "expected_gpt5_acc": "~24%",
+      "notes": "Competition math with images",
+      "is_mcq": true,
+      "num_classes": 92,
+      "class_balance": "92 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "AI4Math/MathVista",
+      "config": null,
+      "size": 5141,
+      "expected_gpt5_acc": "~50%",
+      "notes": "IQ tests, plots, figures",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "": 1.0
+      }
+    },
+    {
+      "hf_id": "lmms-lab/HallusionBench",
+      "config": null,
+      "size": 951,
+      "expected_gpt5_acc": "~31%",
+      "notes": "Hallucination detection",
+      "is_mcq": false,
+      "num_classes": 558,
+      "class_balance": "558 unique values (sampled 951)"
+    },
+    {
+      "hf_id": "Lin-Chen/MMStar",
+      "config": null,
+      "size": 1500,
+      "expected_gpt5_acc": "~55%",
+      "notes": "Vision-indispensable, 1.5K",
+      "is_mcq": false,
+      "num_classes": 4,
+      "class_balance": {
+        "B": 0.318,
+        "A": 0.282,
+        "D": 0.206,
+        "C": 0.194
+      }
+    },
+    {
+      "hf_id": "HuggingFaceM4/ChartQA",
+      "config": null,
+      "size": 2500,
+      "expected_gpt5_acc": "~75%",
+      "notes": "Chart understanding, 2.5K test",
+      "is_mcq": false,
+      "num_classes": 574,
+      "class_balance": "574 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "princeton-nlp/CharXiv",
+      "config": null,
+      "size": 1323,
+      "expected_gpt5_acc": "~60%",
+      "notes": "arXiv figure reasoning, 1.3K",
+      "is_mcq": false,
+      "num_classes": "?",
+      "class_balance": "?"
+    },
+    {
+      "hf_id": "TIGER-Lab/NLVR2",
+      "config": null,
+      "size": 6967,
+      "expected_gpt5_acc": "~80%",
+      "notes": "Visual reasoning, 2-image",
+      "is_mcq": true,
+      "num_classes": 2,
+      "class_balance": {
+        "B": 0.518,
+        "A": 0.482
+      }
+    },
+    {
+      "hf_id": "HuggingFaceM4/A-OKVQA",
+      "config": null,
+      "size": 6702,
+      "expected_gpt5_acc": "~60%",
+      "notes": "Outside knowledge VQA",
+      "is_mcq": true,
+      "num_classes": 1,
+      "class_balance": {
+        "None": 1.0
+      }
+    },
+    {
+      "hf_id": "lmms-lab/SEED-Bench",
+      "config": null,
+      "size": 17990,
+      "expected_gpt5_acc": "~70%",
+      "notes": "Comprehensive VLM eval",
+      "is_mcq": true,
+      "num_classes": 4,
+      "class_balance": {
+        "A": 0.275,
+        "B": 0.265,
+        "C": 0.249,
+        "D": 0.211
+      }
+    },
+    {
+      "hf_id": "echo840/OCRBench",
+      "config": null,
+      "size": 1000,
+      "expected_gpt5_acc": "~70%",
+      "notes": "OCR tasks",
+      "is_mcq": false,
+      "num_classes": 967,
+      "class_balance": "967 unique values (sampled 1000)"
+    },
+    {
+      "hf_id": "lmms-lab/VizWiz-VQA",
+      "config": null,
+      "size": 8000,
+      "expected_gpt5_acc": "~60%",
+      "notes": "Blind user photos",
+      "is_mcq": false,
+      "num_classes": 1,
+      "class_balance": {
+        "[]": 1.0
+      }
+    }
+  ],
+  "by_accuracy_tier": {
+    "very_hard_0_30": [
+      {
+        "hf_id": "MathLLMs/MathVision",
+        "config": null,
+        "size": 3040,
+        "expected_gpt5_acc": "~24%",
+        "notes": "Competition math with images",
+        "is_mcq": true,
+        "num_classes": 92,
+        "class_balance": "92 unique values (sampled 1000)"
+      },
+      {
+        "hf_id": "jonathan-roberts1/zerobench",
+        "config": null,
+        "size": 100,
+        "expected_gpt5_acc": "0%",
+        "notes": "Designed to be unsolvable",
+        "is_mcq": false,
+        "num_classes": 98,
+        "class_balance": "98 unique values (sampled 100)"
+      },
+      {
+        "hf_id": "AI4Math/MathVerse",
+        "config": "testmini",
+        "size": 3940,
+        "expected_gpt5_acc": "~25%",
+        "notes": "Visual math, 6 versions per problem",
+        "is_mcq": false,
+        "num_classes": 4,
+        "class_balance": {
+          "B": 0.3,
+          "C": 0.285,
+          "A": 0.245,
+          "D": 0.17
+        }
+      },
+      {
+        "hf_id": "MathLLMs/MathVision",
+        "config": null,
+        "size": 3040,
+        "expected_gpt5_acc": "~24%",
+        "notes": "Competition math with images",
+        "is_mcq": true,
+        "num_classes": 92,
+        "class_balance": "92 unique values (sampled 1000)"
+      },
+      {
+        "hf_id": "jonathan-roberts1/zerobench",
+        "config": null,
+        "size": 100,
+        "expected_gpt5_acc": "0%",
+        "notes": "Designed to be unsolvable",
+        "is_mcq": false,
+        "num_classes": 98,
+        "class_balance": "98 unique values (sampled 100)"
+      }
+    ],
+    "hard_30_50": [
+      {
+        "hf_id": "lmms-lab/HallusionBench",
+        "config": null,
+        "size": 951,
+        "expected_gpt5_acc": "~31%",
+        "notes": "Hallucination detection",
+        "is_mcq": false,
+        "num_classes": 558,
+        "class_balance": "558 unique values (sampled 951)"
+      },
+      {
+        "hf_id": "lmms-lab/HallusionBench",
+        "config": null,
+        "size": 951,
+        "expected_gpt5_acc": "~31%",
+        "notes": "Hallucination detection",
+        "is_mcq": false,
+        "num_classes": 558,
+        "class_balance": "558 unique values (sampled 951)"
+      }
+    ],
+    "medium_50_70": [
+      {
+        "hf_id": "Lin-Chen/MMStar",
+        "config": null,
+        "size": 1500,
+        "expected_gpt5_acc": "~55%",
+        "notes": "Vision-indispensable",
+        "is_mcq": false,
+        "num_classes": 4,
+        "class_balance": {
+          "B": 0.318,
+          "A": 0.282,
+          "D": 0.206,
+          "C": 0.194
+        }
+      },
+      {
+        "hf_id": "princeton-nlp/CharXiv",
+        "config": null,
+        "size": 1323,
+        "expected_gpt5_acc": "~60%",
+        "notes": "arXiv figure reasoning",
+        "is_mcq": false,
+        "num_classes": "?",
+        "class_balance": "?"
+      },
+      {
+        "hf_id": "lmms-lab/VizWiz-VQA",
+        "config": null,
+        "size": 8000,
+        "expected_gpt5_acc": "~60%",
+        "notes": "Blind user photos",
+        "is_mcq": false,
+        "num_classes": 1,
+        "class_balance": {
+          "[]": 1.0
+        }
+      },
+      {
+        "hf_id": "AI4Math/MathVista",
+        "config": null,
+        "size": 5141,
+        "expected_gpt5_acc": "~50%",
+        "notes": "IQ tests, plots, figures",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "": 1.0
+        }
+      },
+      {
+        "hf_id": "Lin-Chen/MMStar",
+        "config": null,
+        "size": 1500,
+        "expected_gpt5_acc": "~55%",
+        "notes": "Vision-indispensable, 1.5K",
+        "is_mcq": false,
+        "num_classes": 4,
+        "class_balance": {
+          "B": 0.318,
+          "A": 0.282,
+          "D": 0.206,
+          "C": 0.194
+        }
+      },
+      {
+        "hf_id": "princeton-nlp/CharXiv",
+        "config": null,
+        "size": 1323,
+        "expected_gpt5_acc": "~60%",
+        "notes": "arXiv figure reasoning, 1.3K",
+        "is_mcq": false,
+        "num_classes": "?",
+        "class_balance": "?"
+      },
+      {
+        "hf_id": "lmms-lab/MMVet",
+        "config": null,
+        "size": 218,
+        "expected_gpt5_acc": "~55%",
+        "notes": "Integrated VL capabilities, 218 Q",
+        "is_mcq": false,
+        "num_classes": 196,
+        "class_balance": "196 unique values (sampled 218)"
+      },
+      {
+        "hf_id": "facebook/winoground",
+        "config": null,
+        "size": 400,
+        "expected_gpt5_acc": "~50%",
+        "notes": "Compositional reasoning, 800",
+        "is_mcq": false,
+        "num_classes": "?",
+        "class_balance": "?"
+      },
+      {
+        "hf_id": "HuggingFaceM4/A-OKVQA",
+        "config": null,
+        "size": 6702,
+        "expected_gpt5_acc": "~60%",
+        "notes": "Outside knowledge VQA",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "None": 1.0
+        }
+      },
+      {
+        "hf_id": "lmms-lab/VizWiz-VQA",
+        "config": null,
+        "size": 8000,
+        "expected_gpt5_acc": "~60%",
+        "notes": "Blind user photos",
+        "is_mcq": false,
+        "num_classes": 1,
+        "class_balance": {
+          "[]": 1.0
+        }
+      },
+      {
+        "hf_id": "MMMU/MMMU",
+        "config": "Accounting",
+        "size": 380,
+        "expected_gpt5_acc": "~62%",
+        "notes": "College-level multimodal - Accounting",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "?": 1.0
+        }
+      },
+      {
+        "hf_id": "MMMU/MMMU",
+        "config": "Art",
+        "size": 231,
+        "expected_gpt5_acc": "~62%",
+        "notes": "College-level multimodal - Art",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "?": 1.0
+        }
+      },
+      {
+        "hf_id": "MMMU/MMMU",
+        "config": "Biology",
+        "size": 345,
+        "expected_gpt5_acc": "~62%",
+        "notes": "College-level multimodal - Biology",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "?": 1.0
+        }
+      },
+      {
+        "hf_id": "MMMU/MMMU",
+        "config": "Chemistry",
+        "size": 603,
+        "expected_gpt5_acc": "~62%",
+        "notes": "College-level multimodal - Chemistry",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "?": 1.0
+        }
+      },
+      {
+        "hf_id": "MMMU/MMMU",
+        "config": "Computer_Science",
+        "size": 371,
+        "expected_gpt5_acc": "~62%",
+        "notes": "College-level multimodal - CS",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "?": 1.0
+        }
+      },
+      {
+        "hf_id": "MMMU/MMMU",
+        "config": "Physics",
+        "size": 408,
+        "expected_gpt5_acc": "~62%",
+        "notes": "College-level multimodal - Physics",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "?": 1.0
+        }
+      },
+      {
+        "hf_id": "MMMU/MMMU",
+        "config": "Math",
+        "size": 505,
+        "expected_gpt5_acc": "~62%",
+        "notes": "College-level multimodal - Math",
+        "is_mcq": true,
+        "num_classes": 1,
+        "class_balance": {
+          "?": 1.0
+        }
+      }
+    ],
+    "easy_70_plus": [
+      {
+        "hf_id": "cambridgeltl/vsr_random",
+        "config": null,
+        "size": 2195,
+        "expected_gpt5_acc": "~70%",
+        "notes": "Spatial reasoning, true/false",
+        "is_mcq": false,
+        "num_classes": 2,
+        "class_balance": {
+          "1": 0.529,
+          "0": 0.471
+        }
+      },
+      {
+        "hf_id": "lmms-lab/RealWorldQA",
+        "config": null,
+        "size": 765,
+        "expected_gpt5_acc": "~70%",
+        "notes": "Real-world spatial",
+        "is_mcq": false,
+        "num_classes": 29,
+        "class_balance": "29 unique values (sampled 765)"
+      },
+      {
+        "hf_id": "lmms-lab/ai2d",
+        "config": null,
+        "size": 3088,
+        "expected_gpt5_acc": "~85%",
+        "notes": "Science diagrams",
+        "is_mcq": true,
+        "num_classes": 4,
+        "class_balance": {
+          "2": 0.281,
+          "1": 0.262,
+          "0": 0.241,
+          "3": 0.216
+        }
+      },
+      {
+        "hf_id": "HuggingFaceM4/ChartQA",
+        "config": null,
+        "size": 2500,
+        "expected_gpt5_acc": "~75%",
+        "notes": "Chart understanding",
+        "is_mcq": false,
+        "num_classes": 574,
+        "class_balance": "574 unique values (sampled 1000)"
+      },
+      {
+        "hf_id": "derek-thomas/ScienceQA",
+        "config": null,
+        "size": 4241,
+        "expected_gpt5_acc": "~85%",
+        "notes": "K-12 science",
+        "is_mcq": true,
+        "num_classes": 862,
+        "class_balance": "862 unique values (sampled 1000)"
+      },
+      {
+        "hf_id": "echo840/OCRBench",
+        "config": null,
+        "size": 1000,
+        "expected_gpt5_acc": "~70%",
+        "notes": "OCR tasks",
+        "is_mcq": false,
+        "num_classes": 967,
+        "class_balance": "967 unique values (sampled 1000)"
+      },
+      {
+        "hf_id": "cambridgeltl/vsr_random",
+        "config": null,
+        "size": 2195,
+        "expected_gpt5_acc": "~70%",
+        "notes": "Spatial reasoning, true/false, binary",
+        "is_mcq": false,
+        "num_classes": 2,
+        "class_balance": {
+          "1": 0.529,
+          "0": 0.471
+        }
+      },
+      {
+        "hf_id": "lmms-lab/RealWorldQA",
+        "config": null,
+        "size": 765,
+        "expected_gpt5_acc": "~70%",
+        "notes": "Real-world spatial, 765",
+        "is_mcq": false,
+        "num_classes": 29,
+        "class_balance": "29 unique values (sampled 765)"
+      },
+      {
+        "hf_id": "lmms-lab/ai2d",
+        "config": null,
+        "size": 3088,
+        "expected_gpt5_acc": "~85%",
+        "notes": "Science diagrams, 3K",
+        "is_mcq": true,
+        "num_classes": 4,
+        "class_balance": {
+          "2": 0.281,
+          "1": 0.262,
+          "0": 0.241,
+          "3": 0.216
+        }
+      },
+      {
+        "hf_id": "HuggingFaceM4/ChartQA",
+        "config": null,
+        "size": 2500,
+        "expected_gpt5_acc": "~75%",
+        "notes": "Chart understanding, 2.5K test",
+        "is_mcq": false,
+        "num_classes": 574,
+        "class_balance": "574 unique values (sampled 1000)"
+      },
+      {
+        "hf_id": "TIGER-Lab/NLVR2",
+        "config": null,
+        "size": 6967,
+        "expected_gpt5_acc": "~80%",
+        "notes": "Visual reasoning, 2-image",
+        "is_mcq": true,
+        "num_classes": 2,
+        "class_balance": {
+          "B": 0.518,
+          "A": 0.482
+        }
+      },
+      {
+        "hf_id": "lmms-lab/SEED-Bench",
+        "config": null,
+        "size": 17990,
+        "expected_gpt5_acc": "~70%",
+        "notes": "Comprehensive VLM eval",
+        "is_mcq": true,
+        "num_classes": 4,
+        "class_balance": {
+          "A": 0.275,
+          "B": 0.265,
+          "C": 0.249,
+          "D": 0.211
+        }
+      },
+      {
+        "hf_id": "echo840/OCRBench",
+        "config": null,
+        "size": 1000,
+        "expected_gpt5_acc": "~70%",
+        "notes": "OCR tasks",
+        "is_mcq": false,
+        "num_classes": 967,
+        "class_balance": "967 unique values (sampled 1000)"
+      },
+      {
+        "hf_id": "derek-thomas/ScienceQA",
+        "config": null,
+        "size": 4241,
+        "expected_gpt5_acc": "~85%",
+        "notes": "K-12 science with images",
+        "is_mcq": true,
+        "num_classes": 5,
+        "class_balance": {
+          "1": 0.405,
+          "0": 0.399,
+          "2": 0.132,
+          "3": 0.063,
+          "4": 0.001
+        }
+      }
+    ]
+  }
+}

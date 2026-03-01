@@ -21,6 +21,9 @@ class ModelRequest:
     tools: Optional[list[JsonDict]] = None
     tool_choice: Optional[Any] = None
 
+    # Reasoning effort for reasoning models (e.g., "low", "medium", "high")
+    reasoning_effort: Optional[str] = None
+
     # Uncertainty hooks
     logprobs: bool = False
     top_logprobs: int = 0
@@ -35,6 +38,7 @@ class ModelResponse:
     usage: JsonDict | None = None
     logprobs: Any | None = None
     tool_calls: list[JsonDict] | None = None
+    thinking: str | None = None  # Raw <think>...</think> content, if any
 
 
 @dataclass(frozen=True, slots=True)

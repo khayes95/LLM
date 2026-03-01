@@ -1,0 +1,117 @@
+{
+  "target_model": "gpt5mini",
+  "target_name": "GPT-5-mini",
+  "calibrator": "uq_models/text_calibrator_v3",
+  "n_samples": 4157,
+  "n_correct": 1987,
+  "auroc": 0.8147364551613135,
+  "mean_p_correct": 0.48707334267453617,
+  "elapsed_seconds": 165.001891374588,
+  "data_stats": {
+    "arc": {
+      "used": 6,
+      "correct": 1,
+      "excluded_training": 0
+    },
+    "bbeh": {
+      "used": 191,
+      "correct": 102,
+      "excluded_training": 70
+    },
+    "charxiv": {
+      "used": 250,
+      "correct": 159,
+      "excluded_training": 0
+    },
+    "chembench": {
+      "used": 250,
+      "correct": 179,
+      "excluded_training": 0
+    },
+    "gpqa": {
+      "used": 52,
+      "correct": 42,
+      "excluded_training": 146
+    },
+    "hallusionbench": {
+      "used": 95,
+      "correct": 75,
+      "excluded_training": 0
+    },
+    "hle": {
+      "used": 231,
+      "correct": 37,
+      "excluded_training": 0
+    },
+    "hle_multimodal": {
+      "used": 159,
+      "correct": 22,
+      "excluded_training": 0
+    },
+    "livebench": {
+      "used": 248,
+      "correct": 170,
+      "excluded_training": 0
+    },
+    "mathverse": {
+      "used": 249,
+      "correct": 112,
+      "excluded_training": 0
+    },
+    "mathvision": {
+      "used": 248,
+      "correct": 84,
+      "excluded_training": 0
+    },
+    "mathvista": {
+      "used": 250,
+      "correct": 86,
+      "excluded_training": 0
+    },
+    "mmmu": {
+      "used": 150,
+      "correct": 108,
+      "excluded_training": 0
+    },
+    "mmstar": {
+      "used": 250,
+      "correct": 196,
+      "excluded_training": 0
+    },
+    "mmvet": {
+      "used": 100,
+      "correct": 30,
+      "excluded_training": 0
+    },
+    "omnimath": {
+      "used": 222,
+      "correct": 80,
+      "excluded_training": 14
+    },
+    "oolong": {
+      "used": 242,
+      "correct": 4,
+      "excluded_training": 0
+    },
+    "prbench": {
+      "used": 250,
+      "correct": 198,
+      "excluded_training": 0
+    },
+    "realworldqa": {
+      "used": 250,
+      "correct": 129,
+      "excluded_training": 0
+    },
+    "simpleqa": {
+      "used": 249,
+      "correct": 35,
+      "excluded_training": 1
+    },
+    "vizwiz": {
+      "used": 215,
+      "correct": 138,
+      "excluded_training": 0
+    }
+  }
+}

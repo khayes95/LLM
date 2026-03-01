@@ -1,0 +1,86 @@
+{
+  "gpt5mini": {
+    "Calibrator P(correct)": {
+      "aurc": 0.1650377083189974,
+      "coverage_at_90": 0.5007313505607021,
+      "coverage_at_95": 0.4058995611896636,
+      "accuracy_at_50": 0.9011684518013632
+    },
+    "Verbalized Confidence": {
+      "aurc": 0.36487312449113646,
+      "coverage_at_90": 0.0,
+      "coverage_at_95": 0.0,
+      "accuracy_at_50": null
+    },
+    "Random": {
+      "aurc": 0.45878839590443676,
+      "coverage_at_90": 0.0,
+      "coverage_at_95": 0.0,
+      "accuracy_at_50": 0.5170648464163823
+    },
+    "Oracle": {
+      "aurc": 0.1418249046003933,
+      "coverage_at_90": 0.5721608040201005,
+      "coverage_at_95": 0.5423115577889448,
+      "accuracy_at_50": 1.0
+    },
+    "n_samples": 4102,
+    "base_accuracy": 0.5170648464163823
+  },
+  "gpt52": {
+    "Calibrator P(correct)": {
+      "aurc": 0.12489953881918531,
+      "coverage_at_90": 0.5621033544877606,
+      "coverage_at_95": 0.4242973708068903,
+      "accuracy_at_50": 0.9246880570409982
+    },
+    "Verbalized Confidence": {
+      "aurc": 0.3268298144375667,
+      "coverage_at_90": 0.0,
+      "coverage_at_95": 0.0,
+      "accuracy_at_50": 0.6885844748858447
+    },
+    "Random": {
+      "aurc": 0.38155031731640976,
+      "coverage_at_90": 0.0,
+      "coverage_at_95": 0.0,
+      "accuracy_at_50": 0.5983680870353582
+    },
+    "Oracle": {
+      "aurc": 0.09429758665716308,
+      "coverage_at_90": 0.6617085427135678,
+      "coverage_at_95": 0.6268844221105528,
+      "accuracy_at_50": 1.0
+    },
+    "n_samples": 4412,
+    "base_accuracy": 0.5983680870353582
+  },
+  "qwen35": {
+    "Calibrator P(correct)": {
+      "aurc": 0.18886708413901102,
+      "coverage_at_90": 0.39689922480620154,
+      "coverage_at_95": 0.23627906976744187,
+      "accuracy_at_50": 0.8657760814249363
+    },
+    "Verbalized Confidence": {
+      "aurc": 0.21771062958681217,
+      "coverage_at_90": 0.0,
+      "coverage_at_95": 0.0,
+      "accuracy_at_50": 0.656084656084656
+    },
+    "Random": {
+      "aurc": 0.4589457364341085,
+      "coverage_at_90": 0.0,
+      "coverage_at_95": 0.0,
+      "accuracy_at_50": 0.5168992248062015
+    },
+    "Oracle": {
+      "aurc": 0.1419154514960515,
+      "coverage_at_90": 0.5721608040201005,
+      "coverage_at_95": 0.5423115577889448,
+      "accuracy_at_50": 1.0
+    },
+    "n_samples": 3225,
+    "base_accuracy": 0.5168992248062015
+  }
+}

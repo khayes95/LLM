@@ -1,0 +1,661 @@
+{
+  "gpt5mini": {
+    "benchmarks": {
+      "bbeh": {
+        "n": 224,
+        "accuracy": 0.5491071428571429,
+        "mean_p_correct": 0.5550900669642856,
+        "overconfidence": 0.00598292410714274,
+        "overconfident_errors": 9,
+        "overconfident_error_rate": 0.0891089108910891,
+        "n_wrong": 101,
+        "mean_verbalized": 0.8305882352941176,
+        "verb_overconfidence": 0.2814810924369747
+      },
+      "charxiv": {
+        "n": 250,
+        "accuracy": 0.636,
+        "mean_p_correct": 0.694918476,
+        "overconfidence": 0.058918476,
+        "overconfident_errors": 20,
+        "overconfident_error_rate": 0.21978021978021978,
+        "n_wrong": 91,
+        "mean_verbalized": 0.8510400000000001,
+        "verb_overconfidence": 0.21504000000000012
+      },
+      "chembench": {
+        "n": 250,
+        "accuracy": 0.716,
+        "mean_p_correct": 0.753673476,
+        "overconfidence": 0.03767347600000004,
+        "overconfident_errors": 29,
+        "overconfident_error_rate": 0.4084507042253521,
+        "n_wrong": 71,
+        "mean_verbalized": 0.9000799999999999,
+        "verb_overconfidence": 0.1840799999999999
+      },
+      "gpqa": {
+        "n": 198,
+        "accuracy": 0.7727272727272727,
+        "mean_p_correct": 0.8552566717171718,
+        "overconfidence": 0.08252939898989908,
+        "overconfident_errors": 20,
+        "overconfident_error_rate": 0.4444444444444444,
+        "n_wrong": 45,
+        "mean_verbalized": 0.8913636363636364,
+        "verb_overconfidence": 0.11863636363636365
+      },
+      "hallusionbench": {
+        "n": 95,
+        "accuracy": 0.7894736842105263,
+        "mean_p_correct": 0.8057452105263158,
+        "overconfidence": 0.01627152631578943,
+        "overconfident_errors": 4,
+        "overconfident_error_rate": 0.2,
+        "n_wrong": 20,
+        "mean_verbalized": 0.9259999999999999,
+        "verb_overconfidence": 0.1365263157894736
+      },
+      "hle": {
+        "n": 231,
+        "accuracy": 0.16017316017316016,
+        "mean_p_correct": 0.1591599783549784,
+        "overconfidence": -0.0010131818181817742,
+        "overconfident_errors": 1,
+        "overconfident_error_rate": 0.005154639175257732,
+        "n_wrong": 194,
+        "mean_verbalized": 0.7698684210526318,
+        "verb_overconfidence": 0.6096952608794716
+      },
+      "hle_multimodal": {
+        "n": 159,
+        "accuracy": 0.13836477987421383,
+        "mean_p_correct": 0.1622824025157233,
+        "overconfidence": 0.023917622641509456,
+        "overconfident_errors": 2,
+        "overconfident_error_rate": 0.014598540145985401,
+        "n_wrong": 137,
+        "mean_verbalized": 0.7658333333333334,
+        "verb_overconfidence": 0.6274685534591196
+      },
+      "livebench": {
+        "n": 248,
+        "accuracy": 0.6854838709677419,
+        "mean_p_correct": 0.6859304112903226,
+        "overconfidence": 0.00044654032258073517,
+        "overconfident_errors": 1,
+        "overconfident_error_rate": 0.01282051282051282,
+        "n_wrong": 78,
+        "mean_verbalized": 0.8872427983539095,
+        "verb_overconfidence": 0.20175892738616763
+      },
+      "mathverse": {
+        "n": 249,
+        "accuracy": 0.4497991967871486,
+        "mean_p_correct": 0.4266140642570281,
+        "overconfidence": -0.0231851325301205,
+        "overconfident_errors": 6,
+        "overconfident_error_rate": 0.043795620437956206,
+        "n_wrong": 137,
+        "mean_verbalized": 0.9057489878542512,
+        "verb_overconfidence": 0.4559497910671026
+      },
+      "mathvision": {
+        "n": 248,
+        "accuracy": 0.3387096774193548,
+        "mean_p_correct": 0.3732320322580645,
+        "overconfidence": 0.03452235483870969,
+        "overconfident_errors": 10,
+        "overconfident_error_rate": 0.06097560975609756,
+        "n_wrong": 164,
+        "mean_verbalized": 0.844758064516129,
+        "verb_overconfidence": 0.5060483870967742
+      },
+      "mathvista": {
+        "n": 250,
+        "accuracy": 0.344,
+        "mean_p_correct": 0.345475944,
+        "overconfidence": 0.0014759440000000068,
+        "overconfident_errors": 4,
+        "overconfident_error_rate": 0.024390243902439025,
+        "n_wrong": 164,
+        "mean_verbalized": 0.8700800000000001,
+        "verb_overconfidence": 0.5260800000000001
+      },
+      "mmmu": {
+        "n": 150,
+        "accuracy": 0.72,
+        "mean_p_correct": 0.7656577466666666,
+        "overconfidence": 0.045657746666666665,
+        "overconfident_errors": 10,
+        "overconfident_error_rate": 0.23809523809523808,
+        "n_wrong": 42,
+        "mean_verbalized": 0.8788000000000001,
+        "verb_overconfidence": 0.15880000000000016
+      },
+      "mmstar": {
+        "n": 250,
+        "accuracy": 0.784,
+        "mean_p_correct": 0.84004336,
+        "overconfidence": 0.056043359999999987,
+        "overconfident_errors": 17,
+        "overconfident_error_rate": 0.3148148148148148,
+        "n_wrong": 54,
+        "mean_verbalized": 0.8879199999999999,
+        "verb_overconfidence": 0.1039199999999999
+      },
+      "mmvet": {
+        "n": 100,
+        "accuracy": 0.3,
+        "mean_p_correct": 0.32627081,
+        "overconfidence": 0.026270810000000033,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.07142857142857142,
+        "n_wrong": 70,
+        "mean_verbalized": 0.8974747474747478,
+        "verb_overconfidence": 0.5974747474747477
+      },
+      "omnimath": {
+        "n": 235,
+        "accuracy": 0.3702127659574468,
+        "mean_p_correct": 0.4070068510638297,
+        "overconfidence": 0.036794085106382934,
+        "overconfident_errors": 8,
+        "overconfident_error_rate": 0.05405405405405406,
+        "n_wrong": 148,
+        "mean_verbalized": 0.8929333333333335,
+        "verb_overconfidence": 0.5227205673758867
+      },
+      "prbench": {
+        "n": 250,
+        "accuracy": 0.792,
+        "mean_p_correct": 0.83194334,
+        "overconfidence": 0.039943339999999994,
+        "overconfident_errors": 19,
+        "overconfident_error_rate": 0.36538461538461536,
+        "n_wrong": 52,
+        "mean_verbalized": 0.8254771784232365,
+        "verb_overconfidence": 0.0334771784232365
+      },
+      "realworldqa": {
+        "n": 250,
+        "accuracy": 0.516,
+        "mean_p_correct": 0.514391148,
+        "overconfidence": -0.0016088520000000495,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.04132231404958678,
+        "n_wrong": 121,
+        "mean_verbalized": 0.8551599999999999,
+        "verb_overconfidence": 0.3391599999999999
+      },
+      "simpleqa": {
+        "n": 250,
+        "accuracy": 0.14,
+        "mean_p_correct": 0.128929344,
+        "overconfidence": -0.011070656000000012,
+        "overconfident_errors": 4,
+        "overconfident_error_rate": 0.018604651162790697,
+        "n_wrong": 215,
+        "mean_verbalized": 0.37328000000000006,
+        "verb_overconfidence": 0.23328000000000004
+      },
+      "vizwiz": {
+        "n": 215,
+        "accuracy": 0.641860465116279,
+        "mean_p_correct": 0.6479547255813953,
+        "overconfidence": 0.006094260465116297,
+        "overconfident_errors": 6,
+        "overconfident_error_rate": 0.07792207792207792,
+        "n_wrong": 77,
+        "mean_verbalized": 0.8544131455399061,
+        "verb_overconfidence": 0.21255268042362707
+      }
+    },
+    "rank_correlation": 0.9719298245614034
+  },
+  "gpt52": {
+    "benchmarks": {
+      "arc_agi": {
+        "n": 250,
+        "accuracy": 0.824,
+        "mean_p_correct": 0.822007468,
+        "overconfidence": -0.001992531999999936,
+        "overconfident_errors": 12,
+        "overconfident_error_rate": 0.2727272727272727,
+        "n_wrong": 44,
+        "mean_verbalized": 0.809090909090909,
+        "verb_overconfidence": -0.014909090909090983
+      },
+      "bbeh": {
+        "n": 250,
+        "accuracy": 0.692,
+        "mean_p_correct": 0.753510612,
+        "overconfidence": 0.061510612000000076,
+        "overconfident_errors": 18,
+        "overconfident_error_rate": 0.23376623376623376,
+        "n_wrong": 77,
+        "mean_verbalized": 0.8216000000000001,
+        "verb_overconfidence": 0.12960000000000016
+      },
+      "charxiv": {
+        "n": 250,
+        "accuracy": 0.736,
+        "mean_p_correct": 0.7227523160000001,
+        "overconfidence": -0.01324768399999987,
+        "overconfident_errors": 15,
+        "overconfident_error_rate": 0.22727272727272727,
+        "n_wrong": 66,
+        "mean_verbalized": 0.7980799999999999,
+        "verb_overconfidence": 0.06207999999999991
+      },
+      "chembench": {
+        "n": 250,
+        "accuracy": 0.644,
+        "mean_p_correct": 0.638209264,
+        "overconfidence": -0.0057907360000000185,
+        "overconfident_errors": 12,
+        "overconfident_error_rate": 0.1348314606741573,
+        "n_wrong": 89,
+        "mean_verbalized": 0.7670799999999999,
+        "verb_overconfidence": 0.12307999999999986
+      },
+      "gpqa": {
+        "n": 198,
+        "accuracy": 0.8787878787878788,
+        "mean_p_correct": 0.8222804191919193,
+        "overconfidence": -0.056507459595959486,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.20833333333333334,
+        "n_wrong": 24,
+        "mean_verbalized": 0.8285353535353536,
+        "verb_overconfidence": -0.050252525252525215
+      },
+      "hallusionbench": {
+        "n": 250,
+        "accuracy": 0.812,
+        "mean_p_correct": 0.818570248,
+        "overconfidence": 0.006570247999999945,
+        "overconfident_errors": 16,
+        "overconfident_error_rate": 0.3404255319148936,
+        "n_wrong": 47,
+        "mean_verbalized": 0.86328,
+        "verb_overconfidence": 0.05127999999999999
+      },
+      "hle": {
+        "n": 217,
+        "accuracy": 0.3317972350230415,
+        "mean_p_correct": 0.2752551198156682,
+        "overconfidence": -0.05654211520737329,
+        "overconfident_errors": 1,
+        "overconfident_error_rate": 0.006896551724137931,
+        "n_wrong": 145,
+        "mean_verbalized": 0.7359907834101382,
+        "verb_overconfidence": 0.40419354838709676
+      },
+      "livebench": {
+        "n": 249,
+        "accuracy": 0.7429718875502008,
+        "mean_p_correct": 0.7325723052208836,
+        "overconfidence": -0.010399582329317258,
+        "overconfident_errors": 2,
+        "overconfident_error_rate": 0.03125,
+        "n_wrong": 64,
+        "mean_verbalized": 0.8933333333333334,
+        "verb_overconfidence": 0.1503614457831326
+      },
+      "mathverse": {
+        "n": 250,
+        "accuracy": 0.46,
+        "mean_p_correct": 0.4379706,
+        "overconfidence": -0.022029400000000032,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.037037037037037035,
+        "n_wrong": 135,
+        "mean_verbalized": 0.8850800000000001,
+        "verb_overconfidence": 0.42508000000000007
+      },
+      "mathvision": {
+        "n": 250,
+        "accuracy": 0.468,
+        "mean_p_correct": 0.392537612,
+        "overconfidence": -0.07546238800000005,
+        "overconfident_errors": 2,
+        "overconfident_error_rate": 0.015037593984962405,
+        "n_wrong": 133,
+        "mean_verbalized": 0.83408,
+        "verb_overconfidence": 0.36608
+      },
+      "mathvista": {
+        "n": 250,
+        "accuracy": 0.356,
+        "mean_p_correct": 0.365094696,
+        "overconfidence": 0.009094696000000013,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.031055900621118012,
+        "n_wrong": 161,
+        "mean_verbalized": 0.83984,
+        "verb_overconfidence": 0.48384000000000005
+      },
+      "mmmu": {
+        "n": 150,
+        "accuracy": 0.8,
+        "mean_p_correct": 0.80884364,
+        "overconfidence": 0.00884363999999993,
+        "overconfident_errors": 6,
+        "overconfident_error_rate": 0.2,
+        "n_wrong": 30,
+        "mean_verbalized": 0.8474,
+        "verb_overconfidence": 0.0474
+      },
+      "mmstar": {
+        "n": 250,
+        "accuracy": 0.84,
+        "mean_p_correct": 0.843612304,
+        "overconfidence": 0.0036123040000000106,
+        "overconfident_errors": 10,
+        "overconfident_error_rate": 0.25,
+        "n_wrong": 40,
+        "mean_verbalized": 0.84672,
+        "verb_overconfidence": 0.006720000000000059
+      },
+      "mmvet": {
+        "n": 218,
+        "accuracy": 0.3669724770642202,
+        "mean_p_correct": 0.3015059266055046,
+        "overconfidence": -0.06546655045871558,
+        "overconfident_errors": 22,
+        "overconfident_error_rate": 0.15942028985507245,
+        "n_wrong": 138,
+        "mean_verbalized": 0.8574770642201835,
+        "verb_overconfidence": 0.49050458715596335
+      },
+      "omnimath": {
+        "n": 172,
+        "accuracy": 0.37790697674418605,
+        "mean_p_correct": 0.4270271162790698,
+        "overconfidence": 0.049120139534883756,
+        "overconfident_errors": 7,
+        "overconfident_error_rate": 0.06542056074766354,
+        "n_wrong": 107,
+        "mean_verbalized": 0.9253333333333333,
+        "verb_overconfidence": 0.5474263565891473
+      },
+      "prbench": {
+        "n": 250,
+        "accuracy": 0.64,
+        "mean_p_correct": 0.75414456,
+        "overconfidence": 0.11414455999999995,
+        "overconfident_errors": 34,
+        "overconfident_error_rate": 0.37777777777777777,
+        "n_wrong": 90,
+        "mean_verbalized": 0.7427016129032258,
+        "verb_overconfidence": 0.10270161290322577
+      },
+      "realworldqa": {
+        "n": 250,
+        "accuracy": 0.472,
+        "mean_p_correct": 0.456449336,
+        "overconfidence": -0.015550663999999992,
+        "overconfident_errors": 2,
+        "overconfident_error_rate": 0.015151515151515152,
+        "n_wrong": 132,
+        "mean_verbalized": 0.7802173913043479,
+        "verb_overconfidence": 0.3082173913043479
+      },
+      "simpleqa": {
+        "n": 250,
+        "accuracy": 0.288,
+        "mean_p_correct": 0.24324933199999998,
+        "overconfidence": -0.04475066799999999,
+        "overconfident_errors": 2,
+        "overconfident_error_rate": 0.011235955056179775,
+        "n_wrong": 178,
+        "mean_verbalized": 0.6039200000000001,
+        "verb_overconfidence": 0.31592000000000015
+      },
+      "vizwiz": {
+        "n": 208,
+        "accuracy": 0.6538461538461539,
+        "mean_p_correct": 0.6745777740384616,
+        "overconfidence": 0.020731620192307787,
+        "overconfident_errors": 4,
+        "overconfident_error_rate": 0.05555555555555555,
+        "n_wrong": 72,
+        "mean_verbalized": 0.7684134615384615,
+        "verb_overconfidence": 0.11456730769230761
+      }
+    },
+    "rank_correlation": 0.9596491228070174
+  },
+  "qwen35": {
+    "benchmarks": {
+      "arc_agi": {
+        "n": 180,
+        "accuracy": 0.17777777777777778,
+        "mean_p_correct": 0.13102699444444443,
+        "overconfidence": -0.04675078333333335,
+        "overconfident_errors": 0,
+        "overconfident_error_rate": 0.0,
+        "n_wrong": 148,
+        "mean_verbalized": 0.970294117647059,
+        "verb_overconfidence": 0.7925163398692812
+      },
+      "bbeh": {
+        "n": 75,
+        "accuracy": 0.18666666666666668,
+        "mean_p_correct": 0.20438650666666666,
+        "overconfidence": 0.017719839999999987,
+        "overconfident_errors": 2,
+        "overconfident_error_rate": 0.03278688524590164,
+        "n_wrong": 61,
+        "mean_verbalized": 0.9519999999999998,
+        "verb_overconfidence": 0.7653333333333332
+      },
+      "charxiv": {
+        "n": 250,
+        "accuracy": 0.64,
+        "mean_p_correct": 0.631566776,
+        "overconfidence": -0.008433224000000017,
+        "overconfident_errors": 11,
+        "overconfident_error_rate": 0.12222222222222222,
+        "n_wrong": 90,
+        "mean_verbalized": 0.9647413793103448,
+        "verb_overconfidence": 0.32474137931034475
+      },
+      "chembench": {
+        "n": 250,
+        "accuracy": 0.648,
+        "mean_p_correct": 0.68720298,
+        "overconfidence": 0.03920298,
+        "overconfident_errors": 20,
+        "overconfident_error_rate": 0.22727272727272727,
+        "n_wrong": 88,
+        "mean_verbalized": 0.9338399999999999,
+        "verb_overconfidence": 0.28583999999999987
+      },
+      "gpqa": {
+        "n": 198,
+        "accuracy": 0.5404040404040404,
+        "mean_p_correct": 0.5278830303030303,
+        "overconfidence": -0.012521010101010144,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.054945054945054944,
+        "n_wrong": 91,
+        "mean_verbalized": 0.946010101010101,
+        "verb_overconfidence": 0.4056060606060605
+      },
+      "hallusionbench": {
+        "n": 250,
+        "accuracy": 0.792,
+        "mean_p_correct": 0.8570523720000001,
+        "overconfidence": 0.06505237200000002,
+        "overconfident_errors": 17,
+        "overconfident_error_rate": 0.3269230769230769,
+        "n_wrong": 52,
+        "mean_verbalized": 0.9873493975903614,
+        "verb_overconfidence": 0.1953493975903614
+      },
+      "hle": {
+        "n": 83,
+        "accuracy": 0.1927710843373494,
+        "mean_p_correct": 0.17514978313253013,
+        "overconfidence": -0.01762130120481928,
+        "overconfident_errors": 1,
+        "overconfident_error_rate": 0.014925373134328358,
+        "n_wrong": 67,
+        "mean_verbalized": 0.9522222222222223,
+        "verb_overconfidence": 0.759451137884873
+      },
+      "livebench": {
+        "n": 75,
+        "accuracy": 0.5733333333333334,
+        "mean_p_correct": 0.52412952,
+        "overconfidence": -0.049203813333333346,
+        "overconfident_errors": 0,
+        "overconfident_error_rate": 0.0,
+        "n_wrong": 32,
+        "mean_verbalized": 1.0,
+        "verb_overconfidence": 0.42666666666666664
+      },
+      "mathverse": {
+        "n": 126,
+        "accuracy": 0.6031746031746031,
+        "mean_p_correct": 0.6120363174603175,
+        "overconfidence": 0.008861714285714362,
+        "overconfident_errors": 13,
+        "overconfident_error_rate": 0.26,
+        "n_wrong": 50,
+        "mean_verbalized": 0.9901315789473685,
+        "verb_overconfidence": 0.38695697577276533
+      },
+      "mathvision": {
+        "n": 63,
+        "accuracy": 0.15873015873015872,
+        "mean_p_correct": 0.1978842380952381,
+        "overconfidence": 0.03915407936507939,
+        "overconfident_errors": 1,
+        "overconfident_error_rate": 0.018867924528301886,
+        "n_wrong": 53,
+        "mean_verbalized": 0.9777777777777777,
+        "verb_overconfidence": 0.819047619047619
+      },
+      "mathvista": {
+        "n": 207,
+        "accuracy": 0.33816425120772947,
+        "mean_p_correct": 0.3645814541062802,
+        "overconfidence": 0.026417202898550707,
+        "overconfident_errors": 6,
+        "overconfident_error_rate": 0.043795620437956206,
+        "n_wrong": 137,
+        "mean_verbalized": 0.9894890510948905,
+        "verb_overconfidence": 0.651324799887161
+      },
+      "mmmu": {
+        "n": 150,
+        "accuracy": 0.7066666666666667,
+        "mean_p_correct": 0.6820092400000001,
+        "overconfidence": -0.024657426666666593,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.11363636363636363,
+        "n_wrong": 44,
+        "mean_verbalized": 0.9716666666666668,
+        "verb_overconfidence": 0.2650000000000001
+      },
+      "mmstar": {
+        "n": 250,
+        "accuracy": 0.832,
+        "mean_p_correct": 0.891860848,
+        "overconfidence": 0.05986084800000002,
+        "overconfident_errors": 20,
+        "overconfident_error_rate": 0.47619047619047616,
+        "n_wrong": 42,
+        "mean_verbalized": 0.967117903930131,
+        "verb_overconfidence": 0.135117903930131
+      },
+      "mmvet": {
+        "n": 212,
+        "accuracy": 0.23113207547169812,
+        "mean_p_correct": 0.39210211320754723,
+        "overconfidence": 0.16097003773584911,
+        "overconfident_errors": 40,
+        "overconfident_error_rate": 0.24539877300613497,
+        "n_wrong": 163,
+        "mean_verbalized": 0.9803846153846153,
+        "verb_overconfidence": 0.7492525399129172
+      },
+      "omnimath": {
+        "n": 63,
+        "accuracy": 0.1746031746031746,
+        "mean_p_correct": 0.19063115873015876,
+        "overconfidence": 0.01602798412698417,
+        "overconfident_errors": 0,
+        "overconfident_error_rate": 0.0,
+        "n_wrong": 52,
+        "mean_verbalized": 1.0,
+        "verb_overconfidence": 0.8253968253968254
+      },
+      "prbench": {
+        "n": 85,
+        "accuracy": 0.6235294117647059,
+        "mean_p_correct": 0.7367000823529412,
+        "overconfidence": 0.11317067058823527,
+        "overconfident_errors": 15,
+        "overconfident_error_rate": 0.46875,
+        "n_wrong": 32,
+        "mean_verbalized": 0.9412962962962965,
+        "verb_overconfidence": 0.31776688453159063
+      },
+      "realworldqa": {
+        "n": 250,
+        "accuracy": 0.428,
+        "mean_p_correct": 0.445016332,
+        "overconfidence": 0.017016332000000023,
+        "overconfident_errors": 4,
+        "overconfident_error_rate": 0.027972027972027972,
+        "n_wrong": 143,
+        "mean_verbalized": 0.953090909090909,
+        "verb_overconfidence": 0.525090909090909
+      },
+      "simpleqa": {
+        "n": 250,
+        "accuracy": 0.412,
+        "mean_p_correct": 0.369459828,
+        "overconfidence": -0.04254017199999999,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.034013605442176874,
+        "n_wrong": 147,
+        "mean_verbalized": 0.9528,
+        "verb_overconfidence": 0.5408
+      },
+      "vizwiz": {
+        "n": 208,
+        "accuracy": 0.6826923076923077,
+        "mean_p_correct": 0.7071686201923076,
+        "overconfidence": 0.02447631249999993,
+        "overconfident_errors": 5,
+        "overconfident_error_rate": 0.07575757575757576,
+        "n_wrong": 66,
+        "mean_verbalized": 0.9416585365853658,
+        "verb_overconfidence": 0.2589662288930581
+      }
+    },
+    "rank_correlation": 0.9491228070175438
+  },
+  "cross_model_correlation": {
+    "gpt5mini_vs_gpt52": {
+      "spearman_r": 0.8374407791620002,
+      "p_value": 0.0,
+      "n_paired": 2172
+    },
+    "gpt5mini_vs_qwen35": {
+      "spearman_r": 0.6515549873292262,
+      "p_value": 1.4026905378139948e-194,
+      "n_paired": 1605
+    },
+    "gpt52_vs_qwen35": {
+      "spearman_r": 0.6056197548621871,
+      "p_value": 8.80109e-318,
+      "n_paired": 3181
+    }
+  }
+}

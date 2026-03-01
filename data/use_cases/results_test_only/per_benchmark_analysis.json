@@ -1,0 +1,852 @@
+{
+  "per_benchmark_model": [
+    {
+      "benchmark": "arc_agi",
+      "target_model": "qwen35",
+      "n_samples": 51,
+      "accuracy": 0.1373,
+      "auroc_calibrator": 0.7549,
+      "auroc_verbalized": 0.7352,
+      "auroc_length": null,
+      "n_verbalized": 48,
+      "n_length": 0
+    },
+    {
+      "benchmark": "simpleqa",
+      "target_model": "gpt5mini",
+      "n_samples": 65,
+      "accuracy": 0.1385,
+      "auroc_calibrator": 0.874,
+      "auroc_verbalized": 0.8919,
+      "auroc_length": 0.6141,
+      "n_verbalized": 65,
+      "n_length": 65
+    },
+    {
+      "benchmark": "hle_multimodal",
+      "target_model": "gpt5mini",
+      "n_samples": 35,
+      "accuracy": 0.1429,
+      "auroc_calibrator": 0.7367,
+      "auroc_verbalized": 0.6,
+      "auroc_length": 0.6333,
+      "n_verbalized": 33,
+      "n_length": 35
+    },
+    {
+      "benchmark": "mathvision",
+      "target_model": "qwen35",
+      "n_samples": 42,
+      "accuracy": 0.1667,
+      "auroc_calibrator": 0.9347,
+      "auroc_verbalized": null,
+      "auroc_length": null,
+      "n_verbalized": 19,
+      "n_length": 0
+    },
+    {
+      "benchmark": "hle",
+      "target_model": "gpt5mini",
+      "n_samples": 63,
+      "accuracy": 0.2063,
+      "auroc_calibrator": 0.8077,
+      "auroc_verbalized": 0.7268,
+      "auroc_length": 0.5277,
+      "n_verbalized": 62,
+      "n_length": 63
+    },
+    {
+      "benchmark": "hle",
+      "target_model": "qwen35",
+      "n_samples": 32,
+      "accuracy": 0.25,
+      "auroc_calibrator": 0.8203,
+      "auroc_verbalized": null,
+      "auroc_length": null,
+      "n_verbalized": 15,
+      "n_length": 0
+    },
+    {
+      "benchmark": "simpleqa",
+      "target_model": "gpt52",
+      "n_samples": 81,
+      "accuracy": 0.2593,
+      "auroc_calibrator": 0.8694,
+      "auroc_verbalized": 0.823,
+      "auroc_length": 0.7948,
+      "n_verbalized": 81,
+      "n_length": 81
+    },
+    {
+      "benchmark": "bbeh",
+      "target_model": "qwen35",
+      "n_samples": 26,
+      "accuracy": 0.2692,
+      "auroc_calibrator": 1.0,
+      "auroc_verbalized": null,
+      "auroc_length": null,
+      "n_verbalized": 10,
+      "n_length": 0
+    },
+    {
+      "benchmark": "mathvista",
+      "target_model": "qwen35",
+      "n_samples": 121,
+      "accuracy": 0.3223,
+      "auroc_calibrator": 0.8974,
+      "auroc_verbalized": 0.5375,
+      "auroc_length": null,
+      "n_verbalized": 80,
+      "n_length": 0
+    },
+    {
+      "benchmark": "mathvista",
+      "target_model": "gpt52",
+      "n_samples": 137,
+      "accuracy": 0.3285,
+      "auroc_calibrator": 0.9636,
+      "auroc_verbalized": 0.5017,
+      "auroc_length": 0.5008,
+      "n_verbalized": 137,
+      "n_length": 137
+    },
+    {
+      "benchmark": "mathvista",
+      "target_model": "gpt5mini",
+      "n_samples": 121,
+      "accuracy": 0.3388,
+      "auroc_calibrator": 0.9636,
+      "auroc_verbalized": 0.5473,
+      "auroc_length": 0.6396,
+      "n_verbalized": 121,
+      "n_length": 121
+    },
+    {
+      "benchmark": "hle",
+      "target_model": "gpt52",
+      "n_samples": 60,
+      "accuracy": 0.3667,
+      "auroc_calibrator": 0.7446,
+      "auroc_verbalized": 0.6591,
+      "auroc_length": 0.3983,
+      "n_verbalized": 60,
+      "n_length": 60
+    },
+    {
+      "benchmark": "simpleqa",
+      "target_model": "qwen35",
+      "n_samples": 81,
+      "accuracy": 0.3827,
+      "auroc_calibrator": 0.8303,
+      "auroc_verbalized": 0.4768,
+      "auroc_length": null,
+      "n_verbalized": 81,
+      "n_length": 0
+    },
+    {
+      "benchmark": "mathvision",
+      "target_model": "gpt5mini",
+      "n_samples": 117,
+      "accuracy": 0.3846,
+      "auroc_calibrator": 0.8881,
+      "auroc_verbalized": 0.6131,
+      "auroc_length": 0.5798,
+      "n_verbalized": 117,
+      "n_length": 117
+    },
+    {
+      "benchmark": "omnimath",
+      "target_model": "gpt52",
+      "n_samples": 39,
+      "accuracy": 0.3846,
+      "auroc_calibrator": 0.8861,
+      "auroc_verbalized": 0.6739,
+      "auroc_length": 0.6778,
+      "n_verbalized": 38,
+      "n_length": 39
+    },
+    {
+      "benchmark": "mathverse",
+      "target_model": "gpt5mini",
+      "n_samples": 87,
+      "accuracy": 0.3908,
+      "auroc_calibrator": 0.71,
+      "auroc_verbalized": 0.5775,
+      "auroc_length": 0.5988,
+      "n_verbalized": 86,
+      "n_length": 87
+    },
+    {
+      "benchmark": "omnimath",
+      "target_model": "gpt5mini",
+      "n_samples": 51,
+      "accuracy": 0.4118,
+      "auroc_calibrator": 0.8865,
+      "auroc_verbalized": 0.7356,
+      "auroc_length": 0.6952,
+      "n_verbalized": 50,
+      "n_length": 51
+    },
+    {
+      "benchmark": "mathverse",
+      "target_model": "gpt52",
+      "n_samples": 87,
+      "accuracy": 0.4483,
+      "auroc_calibrator": 0.7877,
+      "auroc_verbalized": 0.5526,
+      "auroc_length": 0.5409,
+      "n_verbalized": 87,
+      "n_length": 87
+    },
+    {
+      "benchmark": "realworldqa",
+      "target_model": "qwen35",
+      "n_samples": 155,
+      "accuracy": 0.4581,
+      "auroc_calibrator": 0.9808,
+      "auroc_verbalized": 0.7389,
+      "auroc_length": null,
+      "n_verbalized": 100,
+      "n_length": 0
+    },
+    {
+      "benchmark": "bbeh",
+      "target_model": "gpt5mini",
+      "n_samples": 47,
+      "accuracy": 0.4681,
+      "auroc_calibrator": 0.8364,
+      "auroc_verbalized": 0.7312,
+      "auroc_length": 0.4673,
+      "n_verbalized": 45,
+      "n_length": 47
+    },
+    {
+      "benchmark": "mathvision",
+      "target_model": "gpt52",
+      "n_samples": 124,
+      "accuracy": 0.4839,
+      "auroc_calibrator": 0.8893,
+      "auroc_verbalized": 0.6615,
+      "auroc_length": 0.6997,
+      "n_verbalized": 124,
+      "n_length": 124
+    },
+    {
+      "benchmark": "realworldqa",
+      "target_model": "gpt52",
+      "n_samples": 155,
+      "accuracy": 0.5097,
+      "auroc_calibrator": 0.9884,
+      "auroc_verbalized": 0.7314,
+      "auroc_length": 0.7548,
+      "n_verbalized": 112,
+      "n_length": 155
+    },
+    {
+      "benchmark": "charxiv",
+      "target_model": "gpt5mini",
+      "n_samples": 67,
+      "accuracy": 0.5373,
+      "auroc_calibrator": 0.8011,
+      "auroc_verbalized": 0.6707,
+      "auroc_length": 0.6268,
+      "n_verbalized": 67,
+      "n_length": 67
+    },
+    {
+      "benchmark": "gpqa",
+      "target_model": "qwen35",
+      "n_samples": 78,
+      "accuracy": 0.5385,
+      "auroc_calibrator": 0.8419,
+      "auroc_verbalized": 0.5774,
+      "auroc_length": null,
+      "n_verbalized": 78,
+      "n_length": 0
+    },
+    {
+      "benchmark": "realworldqa",
+      "target_model": "gpt5mini",
+      "n_samples": 122,
+      "accuracy": 0.5656,
+      "auroc_calibrator": 0.9774,
+      "auroc_verbalized": 0.7326,
+      "auroc_length": 0.8369,
+      "n_verbalized": 122,
+      "n_length": 122
+    },
+    {
+      "benchmark": "livebench",
+      "target_model": "qwen35",
+      "n_samples": 23,
+      "accuracy": 0.6087,
+      "auroc_calibrator": 0.9643,
+      "auroc_verbalized": null,
+      "auroc_length": null,
+      "n_verbalized": 13,
+      "n_length": 0
+    },
+    {
+      "benchmark": "chembench",
+      "target_model": "qwen35",
+      "n_samples": 78,
+      "accuracy": 0.6154,
+      "auroc_calibrator": 0.7819,
+      "auroc_verbalized": 0.6993,
+      "auroc_length": null,
+      "n_verbalized": 78,
+      "n_length": 0
+    },
+    {
+      "benchmark": "charxiv",
+      "target_model": "qwen35",
+      "n_samples": 86,
+      "accuracy": 0.6163,
+      "auroc_calibrator": 0.8365,
+      "auroc_verbalized": 0.6459,
+      "auroc_length": null,
+      "n_verbalized": 80,
+      "n_length": 0
+    },
+    {
+      "benchmark": "livebench",
+      "target_model": "gpt5mini",
+      "n_samples": 57,
+      "accuracy": 0.6316,
+      "auroc_calibrator": 0.9762,
+      "auroc_verbalized": 0.6336,
+      "auroc_length": 0.6918,
+      "n_verbalized": 57,
+      "n_length": 57
+    },
+    {
+      "benchmark": "mmmu",
+      "target_model": "qwen35",
+      "n_samples": 55,
+      "accuracy": 0.6364,
+      "auroc_calibrator": 0.8779,
+      "auroc_verbalized": 0.6839,
+      "auroc_length": null,
+      "n_verbalized": 35,
+      "n_length": 0
+    },
+    {
+      "benchmark": "prbench",
+      "target_model": "gpt52",
+      "n_samples": 33,
+      "accuracy": 0.6364,
+      "auroc_calibrator": 0.5496,
+      "auroc_verbalized": 0.7798,
+      "auroc_length": 0.6488,
+      "n_verbalized": 33,
+      "n_length": 33
+    },
+    {
+      "benchmark": "mathverse",
+      "target_model": "qwen35",
+      "n_samples": 56,
+      "accuracy": 0.6429,
+      "auroc_calibrator": 0.6986,
+      "auroc_verbalized": 1.0,
+      "auroc_length": null,
+      "n_verbalized": 36,
+      "n_length": 0
+    },
+    {
+      "benchmark": "bbeh",
+      "target_model": "gpt52",
+      "n_samples": 59,
+      "accuracy": 0.6441,
+      "auroc_calibrator": 0.8026,
+      "auroc_verbalized": 0.8252,
+      "auroc_length": 0.5952,
+      "n_verbalized": 59,
+      "n_length": 59
+    },
+    {
+      "benchmark": "chembench",
+      "target_model": "gpt52",
+      "n_samples": 78,
+      "accuracy": 0.6538,
+      "auroc_calibrator": 0.7658,
+      "auroc_verbalized": 0.7898,
+      "auroc_length": 0.667,
+      "n_verbalized": 78,
+      "n_length": 78
+    },
+    {
+      "benchmark": "mmmu",
+      "target_model": "gpt5mini",
+      "n_samples": 55,
+      "accuracy": 0.6545,
+      "auroc_calibrator": 0.8355,
+      "auroc_verbalized": 0.8516,
+      "auroc_length": 0.7887,
+      "n_verbalized": 55,
+      "n_length": 55
+    },
+    {
+      "benchmark": "vizwiz",
+      "target_model": "gpt5mini",
+      "n_samples": 73,
+      "accuracy": 0.6712,
+      "auroc_calibrator": 0.9315,
+      "auroc_verbalized": 0.8075,
+      "auroc_length": 0.6433,
+      "n_verbalized": 71,
+      "n_length": 73
+    },
+    {
+      "benchmark": "vizwiz",
+      "target_model": "gpt52",
+      "n_samples": 78,
+      "accuracy": 0.7051,
+      "auroc_calibrator": 0.9806,
+      "auroc_verbalized": 0.7332,
+      "auroc_length": 0.7043,
+      "n_verbalized": 78,
+      "n_length": 78
+    },
+    {
+      "benchmark": "charxiv",
+      "target_model": "gpt52",
+      "n_samples": 86,
+      "accuracy": 0.7093,
+      "auroc_calibrator": 0.8272,
+      "auroc_verbalized": 0.6643,
+      "auroc_length": 0.5593,
+      "n_verbalized": 86,
+      "n_length": 86
+    },
+    {
+      "benchmark": "chembench",
+      "target_model": "gpt5mini",
+      "n_samples": 67,
+      "accuracy": 0.7164,
+      "auroc_calibrator": 0.7226,
+      "auroc_verbalized": 0.7478,
+      "auroc_length": 0.6711,
+      "n_verbalized": 67,
+      "n_length": 67
+    },
+    {
+      "benchmark": "vizwiz",
+      "target_model": "qwen35",
+      "n_samples": 76,
+      "accuracy": 0.7237,
+      "auroc_calibrator": 0.9632,
+      "auroc_verbalized": 0.7195,
+      "auroc_length": null,
+      "n_verbalized": 76,
+      "n_length": 0
+    },
+    {
+      "benchmark": "livebench",
+      "target_model": "gpt52",
+      "n_samples": 56,
+      "accuracy": 0.7321,
+      "auroc_calibrator": 0.9951,
+      "auroc_verbalized": 0.6077,
+      "auroc_length": 0.6699,
+      "n_verbalized": 54,
+      "n_length": 56
+    },
+    {
+      "benchmark": "mmmu",
+      "target_model": "gpt52",
+      "n_samples": 55,
+      "accuracy": 0.7636,
+      "auroc_calibrator": 0.8306,
+      "auroc_verbalized": 0.9258,
+      "auroc_length": 0.7454,
+      "n_verbalized": 55,
+      "n_length": 55
+    },
+    {
+      "benchmark": "prbench",
+      "target_model": "gpt5mini",
+      "n_samples": 48,
+      "accuracy": 0.7917,
+      "auroc_calibrator": 0.7711,
+      "auroc_verbalized": 0.5541,
+      "auroc_length": 0.7368,
+      "n_verbalized": 47,
+      "n_length": 48
+    },
+    {
+      "benchmark": "mmstar",
+      "target_model": "gpt5mini",
+      "n_samples": 104,
+      "accuracy": 0.7981,
+      "auroc_calibrator": 0.8769,
+      "auroc_verbalized": 0.8035,
+      "auroc_length": 0.7011,
+      "n_verbalized": 104,
+      "n_length": 104
+    },
+    {
+      "benchmark": "mmstar",
+      "target_model": "qwen35",
+      "n_samples": 123,
+      "accuracy": 0.8049,
+      "auroc_calibrator": 0.8598,
+      "auroc_verbalized": 0.6886,
+      "auroc_length": null,
+      "n_verbalized": 114,
+      "n_length": 0
+    },
+    {
+      "benchmark": "hallusionbench",
+      "target_model": "qwen35",
+      "n_samples": 147,
+      "accuracy": 0.8163,
+      "auroc_calibrator": 0.8514,
+      "auroc_verbalized": 0.5488,
+      "auroc_length": null,
+      "n_verbalized": 147,
+      "n_length": 0
+    },
+    {
+      "benchmark": "mmstar",
+      "target_model": "gpt52",
+      "n_samples": 123,
+      "accuracy": 0.8293,
+      "auroc_calibrator": 0.894,
+      "auroc_verbalized": 0.6937,
+      "auroc_length": 0.4977,
+      "n_verbalized": 123,
+      "n_length": 123
+    },
+    {
+      "benchmark": "hallusionbench",
+      "target_model": "gpt52",
+      "n_samples": 147,
+      "accuracy": 0.8299,
+      "auroc_calibrator": 0.912,
+      "auroc_verbalized": 0.7372,
+      "auroc_length": 0.639,
+      "n_verbalized": 147,
+      "n_length": 147
+    },
+    {
+      "benchmark": "gpqa",
+      "target_model": "gpt5mini",
+      "n_samples": 78,
+      "accuracy": 0.8333,
+      "auroc_calibrator": 0.9166,
+      "auroc_verbalized": 0.8811,
+      "auroc_length": 0.7953,
+      "n_verbalized": 78,
+      "n_length": 78
+    },
+    {
+      "benchmark": "arc_agi",
+      "target_model": "gpt52",
+      "n_samples": 59,
+      "accuracy": 0.8475,
+      "auroc_calibrator": 0.7911,
+      "auroc_verbalized": 0.7556,
+      "auroc_length": 0.8,
+      "n_verbalized": 59,
+      "n_length": 59
+    },
+    {
+      "benchmark": "hallusionbench",
+      "target_model": "gpt5mini",
+      "n_samples": 59,
+      "accuracy": 0.8475,
+      "auroc_calibrator": 0.9822,
+      "auroc_verbalized": 0.7944,
+      "auroc_length": 0.5622,
+      "n_verbalized": 59,
+      "n_length": 59
+    },
+    {
+      "benchmark": "gpqa",
+      "target_model": "gpt52",
+      "n_samples": 78,
+      "accuracy": 0.9231,
+      "auroc_calibrator": 0.9387,
+      "auroc_verbalized": 0.8484,
+      "auroc_length": 0.8125,
+      "n_verbalized": 78,
+      "n_length": 78
+    }
+  ],
+  "per_benchmark_summary": [
+    {
+      "benchmark": "hle_multimodal",
+      "mean_accuracy": 0.1429,
+      "total_n": 35,
+      "mean_auroc_calibrator": 0.7367,
+      "mean_auroc_verbalized": 0.6,
+      "mean_auroc_length": 0.6333,
+      "n_models": 1
+    },
+    {
+      "benchmark": "simpleqa",
+      "mean_accuracy": 0.2602,
+      "total_n": 227,
+      "mean_auroc_calibrator": 0.8579,
+      "mean_auroc_verbalized": 0.7306,
+      "mean_auroc_length": 0.7044,
+      "n_models": 3
+    },
+    {
+      "benchmark": "hle",
+      "mean_accuracy": 0.2743,
+      "total_n": 155,
+      "mean_auroc_calibrator": 0.7909,
+      "mean_auroc_verbalized": 0.693,
+      "mean_auroc_length": 0.463,
+      "n_models": 3
+    },
+    {
+      "benchmark": "mathvista",
+      "mean_accuracy": 0.3299,
+      "total_n": 379,
+      "mean_auroc_calibrator": 0.9415,
+      "mean_auroc_verbalized": 0.5288,
+      "mean_auroc_length": 0.5702,
+      "n_models": 3
+    },
+    {
+      "benchmark": "mathvision",
+      "mean_accuracy": 0.3451,
+      "total_n": 283,
+      "mean_auroc_calibrator": 0.904,
+      "mean_auroc_verbalized": 0.6373,
+      "mean_auroc_length": 0.6398,
+      "n_models": 3
+    },
+    {
+      "benchmark": "omnimath",
+      "mean_accuracy": 0.3982,
+      "total_n": 90,
+      "mean_auroc_calibrator": 0.8863,
+      "mean_auroc_verbalized": 0.7048,
+      "mean_auroc_length": 0.6865,
+      "n_models": 2
+    },
+    {
+      "benchmark": "bbeh",
+      "mean_accuracy": 0.4605,
+      "total_n": 132,
+      "mean_auroc_calibrator": 0.8797,
+      "mean_auroc_verbalized": 0.7782,
+      "mean_auroc_length": 0.5312,
+      "n_models": 3
+    },
+    {
+      "benchmark": "arc_agi",
+      "mean_accuracy": 0.4924,
+      "total_n": 110,
+      "mean_auroc_calibrator": 0.773,
+      "mean_auroc_verbalized": 0.7454,
+      "mean_auroc_length": 0.8,
+      "n_models": 2
+    },
+    {
+      "benchmark": "mathverse",
+      "mean_accuracy": 0.494,
+      "total_n": 230,
+      "mean_auroc_calibrator": 0.7321,
+      "mean_auroc_verbalized": 0.71,
+      "mean_auroc_length": 0.5698,
+      "n_models": 3
+    },
+    {
+      "benchmark": "realworldqa",
+      "mean_accuracy": 0.5111,
+      "total_n": 432,
+      "mean_auroc_calibrator": 0.9822,
+      "mean_auroc_verbalized": 0.7343,
+      "mean_auroc_length": 0.7958,
+      "n_models": 3
+    },
+    {
+      "benchmark": "charxiv",
+      "mean_accuracy": 0.621,
+      "total_n": 239,
+      "mean_auroc_calibrator": 0.8216,
+      "mean_auroc_verbalized": 0.6603,
+      "mean_auroc_length": 0.5931,
+      "n_models": 3
+    },
+    {
+      "benchmark": "livebench",
+      "mean_accuracy": 0.6575,
+      "total_n": 136,
+      "mean_auroc_calibrator": 0.9785,
+      "mean_auroc_verbalized": 0.6206,
+      "mean_auroc_length": 0.6808,
+      "n_models": 3
+    },
+    {
+      "benchmark": "chembench",
+      "mean_accuracy": 0.6619,
+      "total_n": 223,
+      "mean_auroc_calibrator": 0.7568,
+      "mean_auroc_verbalized": 0.7456,
+      "mean_auroc_length": 0.669,
+      "n_models": 3
+    },
+    {
+      "benchmark": "mmmu",
+      "mean_accuracy": 0.6848,
+      "total_n": 165,
+      "mean_auroc_calibrator": 0.848,
+      "mean_auroc_verbalized": 0.8204,
+      "mean_auroc_length": 0.767,
+      "n_models": 3
+    },
+    {
+      "benchmark": "vizwiz",
+      "mean_accuracy": 0.7,
+      "total_n": 227,
+      "mean_auroc_calibrator": 0.9584,
+      "mean_auroc_verbalized": 0.7534,
+      "mean_auroc_length": 0.6738,
+      "n_models": 3
+    },
+    {
+      "benchmark": "prbench",
+      "mean_accuracy": 0.714,
+      "total_n": 81,
+      "mean_auroc_calibrator": 0.6604,
+      "mean_auroc_verbalized": 0.667,
+      "mean_auroc_length": 0.6928,
+      "n_models": 2
+    },
+    {
+      "benchmark": "gpqa",
+      "mean_accuracy": 0.765,
+      "total_n": 234,
+      "mean_auroc_calibrator": 0.8991,
+      "mean_auroc_verbalized": 0.769,
+      "mean_auroc_length": 0.8039,
+      "n_models": 3
+    },
+    {
+      "benchmark": "mmstar",
+      "mean_accuracy": 0.8108,
+      "total_n": 350,
+      "mean_auroc_calibrator": 0.8769,
+      "mean_auroc_verbalized": 0.7286,
+      "mean_auroc_length": 0.5994,
+      "n_models": 3
+    },
+    {
+      "benchmark": "hallusionbench",
+      "mean_accuracy": 0.8312,
+      "total_n": 353,
+      "mean_auroc_calibrator": 0.9152,
+      "mean_auroc_verbalized": 0.6935,
+      "mean_auroc_length": 0.6006,
+      "n_models": 3
+    }
+  ],
+  "significance_tests": {
+    "calibrator_vs_verbalized": {
+      "n_samples": 3860,
+      "auroc_calibrator": 0.912,
+      "auroc_baseline": 0.6344,
+      "delong": {
+        "z": 28.8307,
+        "p": 0.0,
+        "sig_005": true
+      },
+      "mcnemar": {
+        "chi2": 588.9547,
+        "p": 0.0,
+        "sig_005": true
+      },
+      "permutation": {
+        "diff": 0.2776,
+        "p": 0.0001,
+        "sig_005": true
+      }
+    },
+    "calibrator_vs_length": {
+      "n_samples": 2881,
+      "auroc_calibrator": 0.9165,
+      "auroc_baseline": 0.6309,
+      "delong": {
+        "z": 26.2343,
+        "p": 0.0,
+        "sig_005": true
+      },
+      "mcnemar": {
+        "chi2": 826.7374,
+        "p": 0.0,
+        "sig_005": true
+      },
+      "permutation": {
+        "diff": 0.2856,
+        "p": 0.0001,
+        "sig_005": true
+      }
+    },
+    "calibrator_vs_random": {
+      "n_samples": 4152,
+      "auroc_calibrator": 0.9147,
+      "auroc_baseline": 0.494,
+      "delong": {
+        "z": 42.0113,
+        "p": 0.0,
+        "sig_005": true
+      },
+      "mcnemar": {
+        "chi2": 964.1364,
+        "p": 0.0,
+        "sig_005": true
+      },
+      "permutation": {
+        "diff": 0.4207,
+        "p": 0.0001,
+        "sig_005": true
+      }
+    }
+  },
+  "summary_statistics": {
+    "overall_auroc": 0.9147,
+    "bootstrap_ci_95": [
+      0.9058,
+      0.9231
+    ],
+    "bootstrap_mean": 0.9147,
+    "per_benchmark_auroc_mean": 0.8526,
+    "per_benchmark_auroc_std": 0.0883,
+    "calibrator_wins_vs_verbalized": "18/19",
+    "benchmarks_above_07": "18/19",
+    "best_3": [
+      {
+        "benchmark": "realworldqa",
+        "auroc": 0.9822
+      },
+      {
+        "benchmark": "livebench",
+        "auroc": 0.9785
+      },
+      {
+        "benchmark": "vizwiz",
+        "auroc": 0.9584
+      }
+    ],
+    "worst_3": [
+      {
+        "benchmark": "hle_multimodal",
+        "auroc": 0.7367
+      },
+      {
+        "benchmark": "mathverse",
+        "auroc": 0.7321
+      },
+      {
+        "benchmark": "prbench",
+        "auroc": 0.6604
+      }
+    ],
+    "total_test_samples": 4152
+  }
+}
