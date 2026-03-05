@@ -8,7 +8,7 @@
 #SBATCH --output=/scratch/khayes/LLM/logs/uc_pipeline_v2_%j.log
 #SBATCH --error=/scratch/khayes/LLM/logs/uc_pipeline_v2_%j.log
 
-# Run all use case analyses on scored_v2 (model-specific calibrators)
+# Run all use case analyses on scored_test_only_v2 (test-only data)
 # All CPU-only, no GPU needed
 
 set -e
@@ -23,7 +23,7 @@ echo "Job ID: $SLURM_JOB_ID"
 echo "Start: $(date)"
 echo "=========================================="
 
-SCORED_DIR="data/use_cases/scored_v2"
+SCORED_DIR="data/use_cases/scored_test_only_v2"
 OUTPUT_DIR="data/use_cases/results"
 FIG_DIR="figures/use_cases"
 

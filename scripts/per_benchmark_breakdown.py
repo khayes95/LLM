@@ -41,7 +41,7 @@ def compute_metrics(labels, preds):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only")
-    parser.add_argument("--output", default="data/use_cases/results_unified/per_benchmark_breakdown.json")
+    parser.add_argument("--output", default="data/use_cases/results_test_only_v2/per_benchmark_breakdown.json")
     args = parser.parse_args()
 
     os.makedirs(os.path.dirname(args.output), exist_ok=True)

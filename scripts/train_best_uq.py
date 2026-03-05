@@ -463,16 +463,48 @@ def prepare_all_images(samples: list):
 # TRAINING DATASET
 # ============================================================
 
+PROMPT_TEMPLATES = {
+    "baseline": PROMPT_TEMPLATE,
+    "combined": """Benchmark: {benchmark}
+Source model: {source_model}
+
+Question: {question}
+
+Answer: {response}
+
+Analyze whether the answer above is correct. Consider:
+- Does the answer address the question?
+- Are there factual errors or logical flaws?
+- Is the answer complete?
+
+Based on your analysis, is the answer correct? (i) No (ii) Yes""",
+}
+
+TRUNCATION_LENGTHS = {
+    "baseline": (500, 300),
+    "combined": (1500, 800),
+}
+
+
 class UnifiedUQDataset(torch.utils.data.Dataset):
     """Unified dataset for text + VLM UQ training."""
 
-    def __init__(self, samples: list[Sample], processor, max_length=2048):
+    def __init__(self, samples: list[Sample], processor, max_length=2048,
+                 prompt_variant="baseline"):
         self.samples = samples
         self.processor = processor
         self.max_length = max_length
+        self.prompt_variant = prompt_variant
+        self.prompt_template = PROMPT_TEMPLATES[prompt_variant]
+        q_len, r_len = TRUNCATION_LENGTHS[prompt_variant]
+        self.q_truncation = q_len
+        self.r_truncation = r_len
         self.fallback_image = Image.new('RGB', (336, 336), color='gray')
         self.min_pixels = 256 * 28 * 28
         self.max_pixels = 512 * 28 * 28
+        # Dynamic assistant token lookup (varies across model families)
+        assistant_ids = self.processor.tokenizer.encode("assistant", add_special_tokens=False)
+        self.assistant_token = assistant_ids[-1] if assistant_ids else 77091
 
     def __len__(self):
         return len(self.samples)
@@ -500,10 +532,14 @@ class UnifiedUQDataset(torch.utils.data.Dataset):
         # Target
         target = "ii" if sample.is_correct else "i"
 
-        prompt = PROMPT_TEMPLATE.format(
-            question=sample.question[:500],
-            response=sample.response[:300]
-        )
+        fmt_kwargs = {
+            "question": sample.question[:self.q_truncation],
+            "response": sample.response[:self.r_truncation],
+        }
+        if self.prompt_variant == "combined":
+            fmt_kwargs["benchmark"] = sample.benchmark
+            fmt_kwargs["source_model"] = sample.source_model
+        prompt = self.prompt_template.format(**fmt_kwargs)
 
         messages = [
             {"role": "user", "content": [
@@ -528,13 +564,27 @@ class UnifiedUQDataset(torch.utils.data.Dataset):
         input_ids = inputs["input_ids"][0]
         labels = input_ids.clone()
 
-        assistant_token = 77091
-        assistant_positions = (input_ids == assistant_token).nonzero(as_tuple=True)[0]
+        # Find the target answer token after the last assistant marker
+        # Works for both Qwen3-VL (assistant\nii) and Qwen3.5 (assistant\n<think>\n\n</think>\n\nii)
+        target_token_id = self.processor.tokenizer.encode(target, add_special_tokens=False)[-1]
+        assistant_positions = (input_ids == self.assistant_token).nonzero(as_tuple=True)[0]
         if len(assistant_positions) > 0:
-            answer_pos = assistant_positions[-1].item() + 2
-            labels[:] = -100
-            if answer_pos < len(labels):
+            search_start = assistant_positions[-1].item()
+            # Find target token after the assistant marker
+            answer_pos = None
+            for pos in range(search_start, len(input_ids)):
+                if input_ids[pos].item() == target_token_id:
+                    answer_pos = pos
+                    break
+            if answer_pos is not None:
+                labels[:] = -100
                 labels[answer_pos] = input_ids[answer_pos]
+            else:
+                # Fallback: use original offset logic
+                answer_pos = search_start + 2
+                labels[:] = -100
+                if answer_pos < len(labels):
+                    labels[answer_pos] = input_ids[answer_pos]
         else:
             labels[:-3] = -100
 
@@ -561,8 +611,11 @@ class UnifiedUQDataset(torch.utils.data.Dataset):
 # EVALUATION
 # ============================================================
 
-def evaluate_model(model, processor, test_samples: list[Sample], device):
+def evaluate_model(model, processor, test_samples: list[Sample], device,
+                   prompt_variant="baseline"):
     """Evaluate trained model on test set."""
+    template = PROMPT_TEMPLATES[prompt_variant]
+    q_len, r_len = TRUNCATION_LENGTHS[prompt_variant]
     model.eval()
     fallback = Image.new('RGB', (224, 224), color='gray')
 
@@ -586,10 +639,14 @@ def evaluate_model(model, processor, test_samples: list[Sample], device):
         else:
             image = fallback
 
-        prompt = PROMPT_TEMPLATE.format(
-            question=sample.question[:500],
-            response=sample.response[:300]
-        )
+        fmt_kwargs = {
+            "question": sample.question[:q_len],
+            "response": sample.response[:r_len],
+        }
+        if prompt_variant == "combined":
+            fmt_kwargs["benchmark"] = sample.benchmark
+            fmt_kwargs["source_model"] = sample.source_model
+        prompt = template.format(**fmt_kwargs)
         messages = [{"role": "user", "content": [
             {"type": "image", "image": image},
             {"type": "text", "text": prompt},
@@ -681,16 +738,32 @@ def main():
     parser.add_argument("--grad_accum", type=int, default=16)
     parser.add_argument("--learning_rate", type=float, default=1e-4)
     parser.add_argument("--lora_r", type=int, default=16)
+    parser.add_argument("--lora_alpha", type=int, default=None,
+                        help="LoRA alpha (default: 2*lora_r)")
     parser.add_argument("--test_fraction", type=float, default=0.15)
+    parser.add_argument("--max_train_samples", type=int, default=None,
+                        help="Max training samples (for size ablation)")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--prompt_variant", choices=["baseline", "combined"],
+                        default="baseline",
+                        help="Prompt template: baseline (v1) or combined (v2)")
     parser.add_argument("--resume_from_checkpoint", type=str, default=None)
+    parser.add_argument("--base_model", type=str, default=None,
+                        help="Override base model (e.g., Qwen/Qwen3.5-9B)")
+    parser.add_argument("--split_info", type=str, default=None,
+                        help="Path to split_info.json to reuse exact train/test split")
     args = parser.parse_args()
+    if args.lora_alpha is None:
+        args.lora_alpha = 2 * args.lora_r
 
     max_per_bench = 5 if args.smoke_test else None
+
+    base_model = args.base_model or MODEL_NAME
 
     print("=" * 70)
     print("TRAINING BEST UNIFIED UQ MODEL")
     print("=" * 70)
-    print(f"Model: {MODEL_NAME}")
+    print(f"Model: {base_model}")
     print(f"Output: {args.output_dir}")
     print(f"Epochs: {args.epochs}, LR: {args.learning_rate}, LoRA r: {args.lora_r}")
     print()
@@ -721,32 +794,66 @@ def main():
     prepare_all_images(all_samples)
 
     # --- Step 3: Train/test split ---
-    print(f"\nSTEP 3: Creating train/test split ({1-args.test_fraction:.0%}/{args.test_fraction:.0%})...")
-    # Stratify by benchmark for balanced split
-    strat_key = [s.benchmark for s in all_samples]
-    strat_counts = defaultdict(int)
-    for k in strat_key:
-        strat_counts[k] += 1
-    # Replace rare strata (< 3 samples) with "other" to avoid split errors
-    min_test = max(2, int(len(all_samples) * args.test_fraction * 0.5))
-    strat_key_safe = [k if strat_counts[k] >= 3 else "other" for k in strat_key]
-    # If still too many classes for test size, fall back to no stratification
-    n_classes = len(set(strat_key_safe))
-    n_test = max(1, int(len(all_samples) * args.test_fraction))
+    if args.split_info:
+        print(f"\nSTEP 3: Loading existing split from {args.split_info}...")
+        with open(args.split_info) as f:
+            existing_split = json.load(f)
 
-    indices = list(range(len(all_samples)))
-    try:
-        train_idx, test_idx = train_test_split(
-            indices, test_size=args.test_fraction, random_state=42, stratify=strat_key_safe
-        )
-    except ValueError:
-        # Fallback: no stratification
-        train_idx, test_idx = train_test_split(
-            indices, test_size=args.test_fraction, random_state=42
-        )
+        test_id_set = set(existing_split["test_ids"])
+        train_id_set = set(existing_split["train_ids"])
 
-    train_samples = [all_samples[i] for i in train_idx]
-    test_samples = [all_samples[i] for i in test_idx]
+        train_samples, test_samples = [], []
+        unmatched = 0
+        for s in all_samples:
+            if s.id in test_id_set:
+                test_samples.append(s)
+            elif s.id in train_id_set:
+                train_samples.append(s)
+            else:
+                train_samples.append(s)
+                unmatched += 1
+
+        print(f"  Loaded split: {len(train_samples)} train, {len(test_samples)} test")
+        if unmatched:
+            print(f"  ({unmatched} new samples added to training set)")
+        # Verify no leakage
+        test_ids_in_train = set(s.id for s in test_samples) & set(s.id for s in train_samples)
+        if test_ids_in_train:
+            print(f"  WARNING: {len(test_ids_in_train)} IDs appear in both train and test!")
+    else:
+        print(f"\nSTEP 3: Creating train/test split ({1-args.test_fraction:.0%}/{args.test_fraction:.0%})...")
+        # Stratify by benchmark for balanced split
+        strat_key = [s.benchmark for s in all_samples]
+        strat_counts = defaultdict(int)
+        for k in strat_key:
+            strat_counts[k] += 1
+        # Replace rare strata (< 3 samples) with "other" to avoid split errors
+        min_test = max(2, int(len(all_samples) * args.test_fraction * 0.5))
+        strat_key_safe = [k if strat_counts[k] >= 3 else "other" for k in strat_key]
+        # If still too many classes for test size, fall back to no stratification
+        n_classes = len(set(strat_key_safe))
+        n_test = max(1, int(len(all_samples) * args.test_fraction))
+
+        indices = list(range(len(all_samples)))
+        try:
+            train_idx, test_idx = train_test_split(
+                indices, test_size=args.test_fraction, random_state=42, stratify=strat_key_safe
+            )
+        except ValueError:
+            # Fallback: no stratification
+            train_idx, test_idx = train_test_split(
+                indices, test_size=args.test_fraction, random_state=42
+            )
+
+        train_samples = [all_samples[i] for i in train_idx]
+        test_samples = [all_samples[i] for i in test_idx]
+
+    # Subsample training data for size ablation
+    if args.max_train_samples and args.max_train_samples < len(train_samples):
+        rng = np.random.RandomState(args.seed)
+        idx = rng.choice(len(train_samples), args.max_train_samples, replace=False)
+        train_samples = [train_samples[i] for i in sorted(idx)]
+        print(f"Subsampled to {len(train_samples)} training samples (seed={args.seed})")
 
     n_train_vlm = sum(1 for s in train_samples if s.has_image)
     n_test_vlm = sum(1 for s in test_samples if s.has_image)
@@ -773,21 +880,31 @@ def main():
         return
 
     # --- Step 4: Load model ---
-    print(f"\nSTEP 4: Loading {MODEL_NAME}...")
+    print(f"\nSTEP 4: Loading {base_model}...")
     from transformers import (
-        Qwen3VLForConditionalGeneration, AutoProcessor,
+        AutoModelForImageTextToText, AutoProcessor, AutoConfig,
         TrainingArguments, Trainer, TrainerCallback,
     )
     from peft import LoraConfig, get_peft_model
 
-    processor = AutoProcessor.from_pretrained(MODEL_NAME, trust_remote_code=True)
+    processor = AutoProcessor.from_pretrained(base_model, trust_remote_code=True)
 
     num_gpus = torch.cuda.device_count()
     max_memory = {i: "78GiB" for i in range(num_gpus)}
     print(f"Using {num_gpus} GPUs")
 
-    model = Qwen3VLForConditionalGeneration.from_pretrained(
-        MODEL_NAME,
+    # Determine model class: AutoModel doesn't always dispatch new model types
+    model_cls = AutoModelForImageTextToText
+    if "qwen3.5" in base_model.lower() or "qwen3_5" in base_model.lower():
+        try:
+            from transformers import Qwen3_5ForConditionalGeneration
+            model_cls = Qwen3_5ForConditionalGeneration
+            print(f"  Using Qwen3_5ForConditionalGeneration")
+        except ImportError:
+            print(f"  WARNING: Qwen3_5ForConditionalGeneration not available, using AutoModel")
+
+    model = model_cls.from_pretrained(
+        base_model,
         torch_dtype=torch.bfloat16,
         device_map="auto",
         max_memory=max_memory,
@@ -796,18 +913,20 @@ def main():
 
     lora_config = LoraConfig(
         r=args.lora_r,
-        lora_alpha=32,
+        lora_alpha=args.lora_alpha,
         lora_dropout=0.1,
         bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+        target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                        "gate_proj", "up_proj", "down_proj"],
     )
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
 
     # --- Step 5: Create datasets ---
     print("\nSTEP 5: Creating datasets...")
-    train_dataset = UnifiedUQDataset(train_samples, processor)
+    train_dataset = UnifiedUQDataset(train_samples, processor,
+                                     prompt_variant=args.prompt_variant)
 
     # Collator
     def collate_fn(batch):
@@ -898,7 +1017,8 @@ def main():
     print("=" * 50)
 
     device = next(model.parameters()).device
-    results = evaluate_model(model, processor, test_samples, device)
+    results = evaluate_model(model, processor, test_samples, device,
+                             prompt_variant=args.prompt_variant)
 
     print(f"\nOverall AUROC: {results['auroc']:.4f}")
     print(f"VLM AUROC:     {results.get('vlm_auroc', 'N/A')}")

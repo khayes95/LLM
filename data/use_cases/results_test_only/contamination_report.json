@@ -1,0 +1,1419 @@
+{
+  "exact_duplicates": {
+    "train_internal_exact_qr": 228,
+    "test_internal_exact_qr": 9,
+    "train_test_overlap_exact_qr": 87,
+    "train_test_overlap_exact_question": 117,
+    "details_train_internal": [
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_17",
+          "gpqa_gpqa_diamond_17"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "boolq_dev_3",
+          "boolq_dev_3"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "triviaqa_rc_dev_14",
+          "triviaqa_rc_dev_14"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "drop_dev_13",
+          "drop_dev_13"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "hellaswag_dev_22",
+          "hellaswag_dev_22"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_160",
+          "gpqa_gpqa_diamond_160"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "triviaqa_rc_dev_30",
+          "triviaqa_rc_dev_30"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_83",
+          "gpqa_gpqa_diamond_83",
+          "gpqa_gpqa_diamond_83"
+        ],
+        "count": 3,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "arc_ARC-Challenge_dev_46",
+          "arc_ARC-Challenge_dev_46"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_76",
+          "gpqa_gpqa_diamond_76"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "boolq_dev_29",
+          "boolq_dev_29"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "mmlu_college_mathematics_dev_2",
+          "mmlu_college_mathematics_dev_2"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_46",
+          "gpqa_gpqa_diamond_46",
+          "gpqa_gpqa_diamond_46"
+        ],
+        "count": 3,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_72",
+          "gpqa_gpqa_diamond_72",
+          "gpqa_gpqa_diamond_72"
+        ],
+        "count": 3,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_42",
+          "gpqa_gpqa_diamond_42"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "mmlu_astronomy_dev_1",
+          "mmlu_astronomy_dev_1"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "simpleqa_2",
+          "simpleqa_2"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "winogrande_xl_dev_20",
+          "winogrande_xl_dev_20"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gsm8k_dev_30",
+          "gsm8k_dev_30"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "boolq_dev_43",
+          "boolq_dev_43"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      }
+    ],
+    "details_test_internal": [
+      {
+        "ids": [
+          "mmlu_clinical_knowledge_dev_4",
+          "mmlu_clinical_knowledge_dev_4"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gsm8k_dev_18",
+          "gsm8k_dev_18"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gsm8k_dev_49",
+          "gsm8k_dev_49"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "hellaswag_dev_6",
+          "hellaswag_dev_6"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_151",
+          "gpqa_gpqa_diamond_151"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "gpqa_gpqa_diamond_65",
+          "gpqa_gpqa_diamond_65"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "drop_dev_8",
+          "drop_dev_8"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "hellaswag_dev_38",
+          "hellaswag_dev_38"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      },
+      {
+        "ids": [
+          "mmlu_college_chemistry_dev_3",
+          "mmlu_college_chemistry_dev_3"
+        ],
+        "count": 2,
+        "type": "exact_question_response"
+      }
+    ],
+    "details_train_test_qr": [
+      {
+        "train_ids": [
+          "hellaswag_dev_42"
+        ],
+        "test_ids": [
+          "hellaswag_dev_42"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "boolq_dev_19"
+        ],
+        "test_ids": [
+          "boolq_dev_19"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "arc_ARC-Challenge_dev_20"
+        ],
+        "test_ids": [
+          "arc_ARC-Challenge_dev_20"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_181"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_181"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "drop_dev_19"
+        ],
+        "test_ids": [
+          "drop_dev_19"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_191"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_191"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_7"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_7"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_47"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_47"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gsm8k_dev_29"
+        ],
+        "test_ids": [
+          "gsm8k_dev_29"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_174"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_174"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "winogrande_xl_dev_2"
+        ],
+        "test_ids": [
+          "winogrande_xl_dev_2"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gsm8k_dev_27"
+        ],
+        "test_ids": [
+          "gsm8k_dev_27"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_1",
+          "gpqa_gpqa_diamond_1"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_1"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "arc_ARC-Challenge_dev_0"
+        ],
+        "test_ids": [
+          "arc_ARC-Challenge_dev_0"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_42",
+          "gpqa_gpqa_diamond_42"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_42"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_80"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_80"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "hellaswag_dev_37"
+        ],
+        "test_ids": [
+          "hellaswag_dev_37"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gsm8k_dev_0",
+          "gsm8k_dev_0"
+        ],
+        "test_ids": [
+          "gsm8k_dev_0"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "arc_ARC-Challenge_dev_1"
+        ],
+        "test_ids": [
+          "arc_ARC-Challenge_dev_1"
+        ],
+        "type": "exact_question_response"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_125"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_125"
+        ],
+        "type": "exact_question_response"
+      }
+    ],
+    "details_train_test_question": [
+      {
+        "train_ids": [
+          "gsm8k_dev_96"
+        ],
+        "test_ids": [
+          "mgsm_en_96"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "gsm8k_dev_61"
+        ],
+        "test_ids": [
+          "mgsm_en_61"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_39",
+          "gpqa_gpqa_diamond_39",
+          "gpqa_gpqa_diamond_39"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_39"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "boolq_dev_9"
+        ],
+        "test_ids": [
+          "boolq_dev_9"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "boolq_dev_23"
+        ],
+        "test_ids": [
+          "boolq_dev_23"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "winogrande_xl_dev_43"
+        ],
+        "test_ids": [
+          "winogrande_xl_dev_43"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_107"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_107"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "drop_dev_19"
+        ],
+        "test_ids": [
+          "drop_dev_19"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "boolq_dev_5"
+        ],
+        "test_ids": [
+          "boolq_dev_5"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "triviaqa_rc_dev_8"
+        ],
+        "test_ids": [
+          "triviaqa_rc_dev_8"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "drop_dev_44"
+        ],
+        "test_ids": [
+          "drop_dev_44"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_49",
+          "gpqa_gpqa_diamond_49"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_49"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "boolq_dev_10"
+        ],
+        "test_ids": [
+          "boolq_dev_10"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "winogrande_xl_dev_18"
+        ],
+        "test_ids": [
+          "winogrande_xl_dev_18"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "bbeh_boardgame_qa_3"
+        ],
+        "test_ids": [
+          "bbeh_boardgame_qa_3"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "gpqa_gpqa_diamond_47"
+        ],
+        "test_ids": [
+          "gpqa_gpqa_diamond_47"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "triviaqa_rc_dev_22"
+        ],
+        "test_ids": [
+          "triviaqa_rc_dev_22"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "arc_ARC-Challenge_dev_30"
+        ],
+        "test_ids": [
+          "arc_ARC-Challenge_dev_30"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "drop_dev_28"
+        ],
+        "test_ids": [
+          "drop_dev_28"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "drop_dev_14"
+        ],
+        "test_ids": [
+          "drop_dev_14"
+        ],
+        "type": "exact_question_only"
+      }
+    ]
+  },
+  "near_duplicates": {
+    "threshold": 0.8,
+    "ngram_n": 5,
+    "train_internal": 1583,
+    "test_internal": 51,
+    "cross_split": 603,
+    "examples_train_internal": [
+      {
+        "id_a": "gpqa_gpqa_diamond_17",
+        "id_b": "gpqa_gpqa_diamond_17",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "boolq_dev_3",
+        "id_b": "boolq_dev_3",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "triviaqa_rc_dev_14",
+        "id_b": "triviaqa_rc_dev_14",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "mgsm_en_80",
+        "id_b": "gsm8k_dev_80",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "bbeh_boardgame_qa_49",
+        "id_b": "bbeh_boardgame_qa_49",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "gsm8k_dev_45",
+        "id_b": "mgsm_en_45",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "bbeh_linguini_182",
+        "id_b": "bbeh_linguini_1",
+        "jaccard": 0.8947
+      },
+      {
+        "id_a": "gsm8k_dev_90",
+        "id_b": "mgsm_en_90",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "bbeh_causal_understanding_13",
+        "id_b": "bbeh_causal_understanding_12",
+        "jaccard": 0.9857
+      },
+      {
+        "id_a": "mgsm_en_30",
+        "id_b": "gsm8k_dev_30",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "mgsm_en_30",
+        "id_b": "gsm8k_dev_30",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_15",
+        "jaccard": 0.9334
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_11",
+        "jaccard": 0.9334
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_13",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_0",
+        "jaccard": 0.9162
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_9",
+        "jaccard": 0.909
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_0",
+        "jaccard": 0.9162
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_1",
+        "jaccard": 0.9385
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_3",
+        "jaccard": 0.9184
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_12",
+        "jaccard": 0.9415
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_16",
+        "jaccard": 0.9765
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_10",
+        "jaccard": 0.9408
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_10",
+        "jaccard": 0.9408
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_14",
+        "jaccard": 0.9635
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_7",
+        "jaccard": 0.916
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_1",
+        "jaccard": 0.9385
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_9",
+        "jaccard": 0.909
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_12",
+        "jaccard": 0.9415
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_7",
+        "jaccard": 0.916
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_17",
+        "jaccard": 0.9563
+      }
+    ],
+    "examples_test_internal": [
+      {
+        "id_a": "bbeh_dyck_languages_123",
+        "id_b": "bbeh_dyck_languages_33",
+        "jaccard": 0.8158
+      },
+      {
+        "id_a": "mgsm_en_14",
+        "id_b": "gsm8k_dev_14",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "mgsm_en_0",
+        "id_b": "gsm8k_dev_0",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_78",
+        "id_b": "drop_dev_79",
+        "jaccard": 0.9449
+      },
+      {
+        "id_a": "mmlu_clinical_knowledge_dev_4",
+        "id_b": "mmlu_clinical_knowledge_dev_4",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "gsm8k_dev_18",
+        "id_b": "gsm8k_dev_18",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "gsm8k_dev_49",
+        "id_b": "gsm8k_dev_49",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_61",
+        "id_b": "drop_dev_72",
+        "jaccard": 0.9385
+      },
+      {
+        "id_a": "drop_dev_61",
+        "id_b": "drop_dev_65",
+        "jaccard": 0.8878
+      },
+      {
+        "id_a": "drop_dev_61",
+        "id_b": "drop_dev_67",
+        "jaccard": 0.8946
+      },
+      {
+        "id_a": "drop_dev_61",
+        "id_b": "drop_dev_60",
+        "jaccard": 0.9357
+      },
+      {
+        "id_a": "mgsm_en_1",
+        "id_b": "gsm8k_dev_1",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_14",
+        "id_b": "drop_dev_4",
+        "jaccard": 0.8939
+      },
+      {
+        "id_a": "drop_dev_14",
+        "id_b": "drop_dev_6",
+        "jaccard": 0.9412
+      },
+      {
+        "id_a": "drop_dev_14",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8969
+      },
+      {
+        "id_a": "drop_dev_14",
+        "id_b": "drop_dev_15",
+        "jaccard": 0.9099
+      },
+      {
+        "id_a": "drop_dev_14",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8969
+      },
+      {
+        "id_a": "drop_dev_4",
+        "id_b": "drop_dev_6",
+        "jaccard": 0.9229
+      },
+      {
+        "id_a": "drop_dev_4",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8797
+      },
+      {
+        "id_a": "drop_dev_4",
+        "id_b": "drop_dev_15",
+        "jaccard": 0.9172
+      },
+      {
+        "id_a": "drop_dev_4",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8797
+      },
+      {
+        "id_a": "gsm8k_dev_27",
+        "id_b": "mgsm_en_27",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_21",
+        "id_b": "drop_dev_22",
+        "jaccard": 0.9099
+      },
+      {
+        "id_a": "drop_dev_21",
+        "id_b": "drop_dev_19",
+        "jaccard": 0.9064
+      },
+      {
+        "id_a": "drop_dev_21",
+        "id_b": "drop_dev_33",
+        "jaccard": 0.9159
+      },
+      {
+        "id_a": "drop_dev_21",
+        "id_b": "drop_dev_28",
+        "jaccard": 0.9465
+      },
+      {
+        "id_a": "drop_dev_72",
+        "id_b": "drop_dev_65",
+        "jaccard": 0.9124
+      },
+      {
+        "id_a": "drop_dev_72",
+        "id_b": "drop_dev_67",
+        "jaccard": 0.9173
+      },
+      {
+        "id_a": "drop_dev_72",
+        "id_b": "drop_dev_60",
+        "jaccard": 0.9938
+      },
+      {
+        "id_a": "drop_dev_44",
+        "id_b": "drop_dev_58",
+        "jaccard": 0.973
+      }
+    ],
+    "examples_cross_split": [
+      {
+        "id_a": "bbeh_causal_understanding_55",
+        "id_b": "bbeh_causal_understanding_61",
+        "jaccard": 0.9925
+      },
+      {
+        "id_a": "gsm8k_dev_11",
+        "id_b": "gsm8k_dev_11",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "winogrande_xl_dev_86",
+        "id_b": "winogrande_xl_dev_87",
+        "jaccard": 0.908
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_14",
+        "jaccard": 0.9635
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_4",
+        "jaccard": 0.9241
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_6",
+        "jaccard": 0.9738
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.9043
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_15",
+        "jaccard": 0.9334
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.9043
+      },
+      {
+        "id_a": "drop_dev_15",
+        "id_b": "drop_dev_14",
+        "jaccard": 0.9099
+      },
+      {
+        "id_a": "drop_dev_15",
+        "id_b": "drop_dev_4",
+        "jaccard": 0.9172
+      },
+      {
+        "id_a": "drop_dev_15",
+        "id_b": "drop_dev_6",
+        "jaccard": 0.9348
+      },
+      {
+        "id_a": "drop_dev_15",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8853
+      },
+      {
+        "id_a": "drop_dev_15",
+        "id_b": "drop_dev_15",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_15",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8853
+      },
+      {
+        "id_a": "drop_dev_91",
+        "id_b": "drop_dev_85",
+        "jaccard": 0.9679
+      },
+      {
+        "id_a": "gpqa_gpqa_diamond_7",
+        "id_b": "gpqa_gpqa_diamond_7",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_11",
+        "id_b": "drop_dev_14",
+        "jaccard": 0.9099
+      },
+      {
+        "id_a": "drop_dev_11",
+        "id_b": "drop_dev_4",
+        "jaccard": 0.9172
+      },
+      {
+        "id_a": "drop_dev_11",
+        "id_b": "drop_dev_6",
+        "jaccard": 0.9348
+      },
+      {
+        "id_a": "drop_dev_11",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8853
+      },
+      {
+        "id_a": "drop_dev_11",
+        "id_b": "drop_dev_15",
+        "jaccard": 0.9804
+      },
+      {
+        "id_a": "drop_dev_11",
+        "id_b": "drop_dev_8",
+        "jaccard": 0.8853
+      },
+      {
+        "id_a": "gpqa_gpqa_diamond_76",
+        "id_b": "gpqa_gpqa_diamond_76",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "gpqa_gpqa_diamond_42",
+        "id_b": "gpqa_gpqa_diamond_42",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "simpleqa_2",
+        "id_b": "simpleqa_2",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "winogrande_xl_dev_43",
+        "id_b": "winogrande_xl_dev_43",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "hellaswag_dev_42",
+        "id_b": "hellaswag_dev_42",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_14",
+        "jaccard": 0.9635
+      },
+      {
+        "id_a": "drop_dev_13",
+        "id_b": "drop_dev_4",
+        "jaccard": 0.9241
+      }
+    ]
+  },
+  "cross_benchmark_contamination": {
+    "threshold": 0.8,
+    "total_cross_benchmark_pairs": 97,
+    "benchmark_pairs_with_overlap": 1,
+    "details": [
+      {
+        "benchmark_a": "gsm8k",
+        "benchmark_b": "mgsm",
+        "count": 97,
+        "examples": [
+          {
+            "benchmark_a": "gsm8k",
+            "benchmark_b": "mgsm",
+            "id_a": "gsm8k_dev_45",
+            "id_b": "mgsm_en_45",
+            "jaccard": 1.0
+          },
+          {
+            "benchmark_a": "gsm8k",
+            "benchmark_b": "mgsm",
+            "id_a": "gsm8k_dev_90",
+            "id_b": "mgsm_en_90",
+            "jaccard": 1.0
+          },
+          {
+            "benchmark_a": "gsm8k",
+            "benchmark_b": "mgsm",
+            "id_a": "gsm8k_dev_78",
+            "id_b": "mgsm_en_78",
+            "jaccard": 1.0
+          },
+          {
+            "benchmark_a": "gsm8k",
+            "benchmark_b": "mgsm",
+            "id_a": "gsm8k_dev_58",
+            "id_b": "mgsm_en_58",
+            "jaccard": 1.0
+          },
+          {
+            "benchmark_a": "gsm8k",
+            "benchmark_b": "mgsm",
+            "id_a": "gsm8k_dev_30",
+            "id_b": "mgsm_en_30",
+            "jaccard": 1.0
+          }
+        ]
+      }
+    ]
+  },
+  "ngram_overlap": {
+    "ngram_n": 5,
+    "train_unique_ngrams": 249345,
+    "test_token_ngram_overlap_with_train_union": {
+      "mean": 0.4709,
+      "median": 0.382,
+      "std": 0.4145,
+      "min": 0.0,
+      "max": 1.0,
+      "pct_above_50": 41.78,
+      "pct_above_80": 34.22
+    },
+    "test_max_jaccard_vs_any_train_sample": {
+      "mean": 0.4014,
+      "median": 0.1739,
+      "std": 0.4276,
+      "min": 0.0,
+      "max": 1.0,
+      "pct_above_50": 35.11,
+      "pct_above_80": 32.67
+    }
+  },
+  "benchmark_distribution": {
+    "train": {
+      "aime": 26,
+      "arc": 102,
+      "bbeh": 673,
+      "boolq": 89,
+      "drop": 108,
+      "ether0": 116,
+      "gpqa": 231,
+      "gsm8k": 113,
+      "hellaswag": 76,
+      "lc1": 1,
+      "lc2": 1,
+      "math": 3,
+      "mcq4": 1,
+      "mcq5": 1,
+      "mgsm": 57,
+      "mmlu": 74,
+      "omnimath": 211,
+      "q2": 1,
+      "q3": 1,
+      "simpleqa": 45,
+      "triviaqa": 93,
+      "ua2": 1,
+      "ua3": 1,
+      "ua4": 1,
+      "ua5": 1,
+      "winogrande": 71
+    },
+    "test": {
+      "aime": 6,
+      "arc": 20,
+      "bbeh": 156,
+      "boolq": 21,
+      "drop": 21,
+      "ether0": 18,
+      "gpqa": 38,
+      "gsm8k": 18,
+      "hellaswag": 23,
+      "math": 1,
+      "mcq2": 1,
+      "mgsm": 18,
+      "mmlu": 16,
+      "omnimath": 42,
+      "simpleqa": 10,
+      "triviaqa": 17,
+      "ua1": 1,
+      "winogrande": 23
+    },
+    "total_train": 2098,
+    "total_test": 450,
+    "num_benchmarks_total": 28,
+    "benchmarks_train_only": [
+      "lc1",
+      "lc2",
+      "mcq4",
+      "mcq5",
+      "q2",
+      "q3",
+      "ua2",
+      "ua3",
+      "ua4",
+      "ua5"
+    ],
+    "benchmarks_test_only": [
+      "mcq2",
+      "ua1"
+    ],
+    "distribution_comparison": {
+      "aime": {
+        "train_count": 26,
+        "test_count": 6,
+        "train_pct": 1.24,
+        "test_pct": 1.33,
+        "pct_diff": 0.09
+      },
+      "arc": {
+        "train_count": 102,
+        "test_count": 20,
+        "train_pct": 4.86,
+        "test_pct": 4.44,
+        "pct_diff": 0.42
+      },
+      "bbeh": {
+        "train_count": 673,
+        "test_count": 156,
+        "train_pct": 32.08,
+        "test_pct": 34.67,
+        "pct_diff": 2.59
+      },
+      "boolq": {
+        "train_count": 89,
+        "test_count": 21,
+        "train_pct": 4.24,
+        "test_pct": 4.67,
+        "pct_diff": 0.42
+      },
+      "drop": {
+        "train_count": 108,
+        "test_count": 21,
+        "train_pct": 5.15,
+        "test_pct": 4.67,
+        "pct_diff": 0.48
+      },
+      "ether0": {
+        "train_count": 116,
+        "test_count": 18,
+        "train_pct": 5.53,
+        "test_pct": 4.0,
+        "pct_diff": 1.53
+      },
+      "gpqa": {
+        "train_count": 231,
+        "test_count": 38,
+        "train_pct": 11.01,
+        "test_pct": 8.44,
+        "pct_diff": 2.57
+      },
+      "gsm8k": {
+        "train_count": 113,
+        "test_count": 18,
+        "train_pct": 5.39,
+        "test_pct": 4.0,
+        "pct_diff": 1.39
+      },
+      "hellaswag": {
+        "train_count": 76,
+        "test_count": 23,
+        "train_pct": 3.62,
+        "test_pct": 5.11,
+        "pct_diff": 1.49
+      },
+      "lc1": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "lc2": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "math": {
+        "train_count": 3,
+        "test_count": 1,
+        "train_pct": 0.14,
+        "test_pct": 0.22,
+        "pct_diff": 0.08
+      },
+      "mcq2": {
+        "train_count": 0,
+        "test_count": 1,
+        "train_pct": 0.0,
+        "test_pct": 0.22,
+        "pct_diff": 0.22
+      },
+      "mcq4": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "mcq5": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "mgsm": {
+        "train_count": 57,
+        "test_count": 18,
+        "train_pct": 2.72,
+        "test_pct": 4.0,
+        "pct_diff": 1.28
+      },
+      "mmlu": {
+        "train_count": 74,
+        "test_count": 16,
+        "train_pct": 3.53,
+        "test_pct": 3.56,
+        "pct_diff": 0.03
+      },
+      "omnimath": {
+        "train_count": 211,
+        "test_count": 42,
+        "train_pct": 10.06,
+        "test_pct": 9.33,
+        "pct_diff": 0.72
+      },
+      "q2": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "q3": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "simpleqa": {
+        "train_count": 45,
+        "test_count": 10,
+        "train_pct": 2.14,
+        "test_pct": 2.22,
+        "pct_diff": 0.08
+      },
+      "triviaqa": {
+        "train_count": 93,
+        "test_count": 17,
+        "train_pct": 4.43,
+        "test_pct": 3.78,
+        "pct_diff": 0.66
+      },
+      "ua1": {
+        "train_count": 0,
+        "test_count": 1,
+        "train_pct": 0.0,
+        "test_pct": 0.22,
+        "pct_diff": 0.22
+      },
+      "ua2": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "ua3": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "ua4": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "ua5": {
+        "train_count": 1,
+        "test_count": 0,
+        "train_pct": 0.05,
+        "test_pct": 0.0,
+        "pct_diff": 0.05
+      },
+      "winogrande": {
+        "train_count": 71,
+        "test_count": 23,
+        "train_pct": 3.38,
+        "test_pct": 5.11,
+        "pct_diff": 1.73
+      }
+    }
+  },
+  "summary": "======================================================================\nDATA CONTAMINATION CHECK SUMMARY\n======================================================================\n\nEXACT DUPLICATES:\n  Train internal (question+response): 228 duplicate groups\n  Test internal (question+response):  9 duplicate groups\n  Train-test overlap (question+response): 87\n  Train-test overlap (question only):     117\n  ** WARNING: Exact train/test overlap detected! This is data leakage. **\n  Note: 117 questions appear in both splits\n  (same question, possibly different model responses -- expected for multi-model data)\n\nNEAR-DUPLICATES (char 5-gram Jaccard >= 0.8):\n  Train internal: 1583 pairs\n  Test internal:  51 pairs\n  Cross-split:    603 pairs\n  ** WARNING: Near-duplicate questions found across train/test split. **\n    bbeh_causal_understanding_55 <-> bbeh_causal_understanding_61 (Jaccard=0.9925)\n    gsm8k_dev_11 <-> gsm8k_dev_11 (Jaccard=1.0)\n    winogrande_xl_dev_86 <-> winogrande_xl_dev_87 (Jaccard=0.908)\n    drop_dev_13 <-> drop_dev_14 (Jaccard=0.9635)\n    drop_dev_13 <-> drop_dev_4 (Jaccard=0.9241)\n\nCROSS-BENCHMARK CONTAMINATION (Jaccard >= 0.8):\n  Total cross-benchmark near-duplicate pairs: 97\n  Benchmark pairs with overlap: 1\n    gsm8k <-> mgsm: 97 pairs\n\nTOKEN 5-GRAM OVERLAP (test vs train):\n  Overlap with train union: mean=0.4709, median=0.3820, std=0.4145\n  % test samples >50% overlap: 41.8%\n  % test samples >80% overlap: 34.2%\n  Max Jaccard vs any train sample: mean=0.4014, median=0.1739, max=1.0000\n  % test with max Jaccard >0.5: 35.1%\n  % test with max Jaccard >0.8: 32.7%\n  ** WARNING: >5% of test samples have >0.8 Jaccard with a train sample. **\n\nBENCHMARK DISTRIBUTION:\n  Train: 2098 samples across 26 benchmarks\n  Test:  450 samples across 18 benchmarks\n  Benchmarks in train only: ['lc1', 'lc2', 'mcq4', 'mcq5', 'q2', 'q3', 'ua2', 'ua3', 'ua4', 'ua5']\n  Benchmarks in test only: ['mcq2', 'ua1']\n\n----------------------------------------------------------------------\nVERDICT: POTENTIAL CONTAMINATION DETECTED\n  - 87 exact train/test duplicates (leakage)\n  - 603 near-duplicate cross-split pairs\n  - 32.7% test samples with >0.8 token Jaccard to train\n======================================================================"
+}

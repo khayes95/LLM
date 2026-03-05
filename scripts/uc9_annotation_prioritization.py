@@ -7,7 +7,7 @@ for calibrator vs baselines (random, verbalized, response length, oracle).
 
 Usage:
     python scripts/uc9_annotation_prioritization.py
-    python scripts/uc9_annotation_prioritization.py --scored_dir data/use_cases/scored_unified
+    python scripts/uc9_annotation_prioritization.py --scored_dir data/use_cases/scored_test_only_v2
     python scripts/uc9_annotation_prioritization.py --smoke_test
 """
 import argparse
@@ -246,8 +246,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="UC9: Annotation Prioritization / Labeling Efficiency"
     )
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified")
-    parser.add_argument("--output_dir", default="data/use_cases/results_unified")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
     parser.add_argument("--fig_dir", default="figures/use_cases_unified")
     parser.add_argument("--smoke_test", action="store_true",
                         help="Run on a tiny subset (first 50 samples per target) for quick validation")

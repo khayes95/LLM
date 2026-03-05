@@ -24,7 +24,7 @@ Outputs:
 
 Usage:
     python scripts/uc_a_dpo_reward.py
-    python scripts/uc_a_dpo_reward.py --scored_dir data/use_cases/scored_unified
+    python scripts/uc_a_dpo_reward.py --scored_dir data/use_cases/scored_test_only_v2
     python scripts/uc_a_dpo_reward.py --smoke_test
 """
 import argparse
@@ -341,6 +341,94 @@ def compute_dataset_stats(pairs):
 
 
 # ---------------------------------------------------------------------------
+# Bootstrap CIs
+# ---------------------------------------------------------------------------
+
+def bootstrap_pair_accuracy(pairs, n_bootstrap=1000, rng_seed=42):
+    """Bootstrap 95% CIs on calibrator pairwise and informative accuracy."""
+    rng = np.random.RandomState(rng_seed)
+    n = len(pairs)
+    if n == 0:
+        return {}
+
+    pw_accs = []
+    info_accs = []
+
+    for _ in range(n_bootstrap):
+        idx = rng.choice(n, size=n, replace=True)
+        boot_pairs = [pairs[i] for i in idx]
+
+        n_pw = sum(1 for p in boot_pairs
+                   if p["chosen_correct"] >= p["rejected_correct"])
+        pw_accs.append(n_pw / len(boot_pairs))
+
+        info = [p for p in boot_pairs
+                if p["chosen_correct"] != p["rejected_correct"]]
+        if info:
+            n_info_correct = sum(1 for p in info
+                                 if p["chosen_correct"] > p["rejected_correct"])
+            info_accs.append(n_info_correct / len(info))
+
+    pw_accs = np.array(pw_accs)
+    result = {
+        "pairwise_accuracy": {
+            "mean": float(pw_accs.mean()),
+            "ci_lo": float(np.percentile(pw_accs, 2.5)),
+            "ci_hi": float(np.percentile(pw_accs, 97.5)),
+        },
+    }
+    if info_accs:
+        info_accs = np.array(info_accs)
+        result["informative_accuracy"] = {
+            "mean": float(info_accs.mean()),
+            "ci_lo": float(np.percentile(info_accs, 2.5)),
+            "ci_hi": float(np.percentile(info_accs, 97.5)),
+        }
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Reward quality analysis
+# ---------------------------------------------------------------------------
+
+def reward_quality_analysis(all_scored):
+    """Analyze correlation between calibrator P(correct) and actual correctness.
+
+    Measures how well the calibrator score serves as a reward signal compared
+    to verbalized confidence.
+    """
+    from scipy.stats import pointbiserialr
+
+    results = {}
+    for target, samples in all_scored.items():
+        labels = np.array([s["is_correct"] for s in samples])
+        p_correct = np.array([s["p_correct"] for s in samples])
+
+        # Point-biserial correlation (binary label vs continuous score)
+        r_cal, p_cal = pointbiserialr(labels, p_correct)
+
+        result = {
+            "calibrator_r": float(r_cal),
+            "calibrator_p": float(p_cal),
+            "n_samples": len(samples),
+        }
+
+        # Verbalized baseline
+        verb_samples = [s for s in samples if s.get("verbalized_confidence") is not None]
+        if verb_samples:
+            v_labels = np.array([s["is_correct"] for s in verb_samples])
+            v_scores = np.array([s["verbalized_confidence"] for s in verb_samples])
+            r_verb, p_verb = pointbiserialr(v_labels, v_scores)
+            result["verbalized_r"] = float(r_verb)
+            result["verbalized_p"] = float(p_verb)
+            result["n_verbalized"] = len(verb_samples)
+
+        results[target] = result
+
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Plotting
 # ---------------------------------------------------------------------------
 
@@ -488,11 +576,11 @@ def plot_margin_analysis(margin_data, output_path):
 def main():
     parser = argparse.ArgumentParser(
         description="UC-A: UQ as Reward Signal for DPO (Stage 1 — Dataset Construction + Oracle Analysis)")
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified",
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2",
                         help="Directory with scored JSONL files")
-    parser.add_argument("--output_dir", default="data/use_cases/results_unified",
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2",
                         help="Directory for results JSON and DPO pairs")
-    parser.add_argument("--fig_dir", default="figures/use_cases_unified",
+    parser.add_argument("--fig_dir", default="figures/use_cases_v2",
                         help="Directory for output figures")
     parser.add_argument("--smoke_test", action="store_true",
                         help="Only use first 50 samples per model")
@@ -626,7 +714,34 @@ def main():
               f"{bq['strong_accuracy']:>10.3f} {bq['n_informative']:>8} {ia_str:>10}")
 
     # -----------------------------------------------------------------------
-    # 6. Summary table
+    # 6. Bootstrap CIs
+    # -----------------------------------------------------------------------
+    n_boot = 50 if args.smoke_test else 1000
+    boot_ci = bootstrap_pair_accuracy(pairs, n_bootstrap=n_boot)
+
+    print(f"\n--- Bootstrap 95% CIs (n_bootstrap={n_boot}) ---")
+    if "pairwise_accuracy" in boot_ci:
+        pw = boot_ci["pairwise_accuracy"]
+        print(f"  Pairwise accuracy: {pw['mean']:.3f} [{pw['ci_lo']:.3f}, {pw['ci_hi']:.3f}]")
+    if "informative_accuracy" in boot_ci:
+        ia = boot_ci["informative_accuracy"]
+        print(f"  Informative accuracy: {ia['mean']:.3f} [{ia['ci_lo']:.3f}, {ia['ci_hi']:.3f}]")
+
+    # -----------------------------------------------------------------------
+    # 7. Reward quality analysis
+    # -----------------------------------------------------------------------
+    rq = reward_quality_analysis(all_scored)
+
+    print(f"\n--- Reward Quality (point-biserial r: correctness vs score) ---")
+    for target, rq_data in rq.items():
+        verb_str = ""
+        if "verbalized_r" in rq_data:
+            verb_str = f"  Verbalized r={rq_data['verbalized_r']:.3f}"
+        print(f"  {target}: Calibrator r={rq_data['calibrator_r']:.3f}{verb_str} "
+              f"(N={rq_data['n_samples']})")
+
+    # -----------------------------------------------------------------------
+    # 8. Summary table
     # -----------------------------------------------------------------------
     print(f"\n{'='*70}")
     print("UC-A Summary: Calibrator as DPO Reward Signal")
@@ -677,6 +792,8 @@ def main():
         "method_comparison": {k: v for k, v in method_results.items()},
         "margin_analysis": margin_data,
         "per_benchmark": bench_quality,
+        "bootstrap_ci": boot_ci,
+        "reward_quality": rq,
         "n_multi_model_questions": n_multi,
         "n_triple_model_questions": n_triple,
         "summary": {

@@ -42,7 +42,7 @@ echo "=========================================="
 export CUDA_VISIBLE_DEVICES=2
 python scripts/uc_d_step_truncation.py \
     --checkpoint uq_models/best_unified \
-    --output_dir data/use_cases/results_unified \
+    --output_dir data/use_cases/results_test_only_v2 \
     --fig_dir figures/use_cases_unified
 
 echo "UC-D S2 done: $(date)"
@@ -65,7 +65,7 @@ python scripts/uc_c_train_students.py \
     --epochs 2 \
     --batch_size 4 \
     --learning_rate 2e-4 \
-    --output_dir data/use_cases/results_unified \
+    --output_dir data/use_cases/results_test_only_v2 \
     --fig_dir figures/use_cases_unified \
     --model_dir uq_models/uc_c_students
 

@@ -18,6 +18,25 @@ conda activate uq_eval
 
 ---
 
+## ⚠️ DATA LEAKAGE — CONTAMINATED DIRECTORIES (DO NOT USE)
+
+The following directories contain **60-67% training data** mixed with test data. All metrics from these are inflated and **INVALID for the paper**:
+
+| Directory | Status | Use Instead |
+|-----------|--------|-------------|
+| `data/use_cases/CONTAMINATED_scored_unified/` | QUARANTINED | `data/use_cases/scored_test_only/` |
+| `data/use_cases/CONTAMINATED_scored_v2/` | QUARANTINED | `data/use_cases/scored_test_only_v2/` |
+| `data/use_cases/CONTAMINATED_results_unified/` | QUARANTINED | `data/use_cases/results_test_only_v2/` |
+
+**Rules:**
+- **NEVER read from `CONTAMINATED_*` directories** for any metric, figure, or table that will appear in the paper
+- **ALWAYS use `scored_test_only_v2/`** (4,447 samples) for scoring and evaluation
+- **ALWAYS use `results_test_only_v2/`** for use case results, baselines, and figures
+- The CONTAMINATED directories exist only for the `filter_test_only.py` pipeline — nowhere else should reference them
+- If you see any script defaulting to a non-test-only scored/results directory, fix it immediately
+
+---
+
 ## Multi-Agent Warning
 
 **Multiple Claude Code agents may be working on this project simultaneously.** Before making changes:
@@ -342,9 +361,8 @@ gt_yes = ground_truth_lower in ["yes", "1", "true"]
 ## Agent & Development Rules
 
 ### GPU Discipline
-- **Daytime (ETS business hours, ~8am-6pm ET):** Default to **GPUs 0-4** (`CUDA_VISIBLE_DEVICES=0,1,2,3,4`). Others use this system during the day, so be considerate. If a job genuinely needs more, you may use **up to 6 GPUs** (0-5), but prefer 5.
-- **Nighttime / weekends (outside ETS hours):** You may use **all 8 GPUs** (`CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7`).
-- **Late night window (11pm-6am ET):** If no major jobs from other users are running on the GPU nodes (check `squeue` and `nvidia-smi`), all 8 GPUs may be used for large models or jobs that require them (e.g., large model inference with high tensor parallelism). Always verify the nodes are free first.
+- **Daytime (~6am-11pm ET, including weekends):** Default to **GPUs 0-4** (`CUDA_VISIBLE_DEVICES=0,1,2,3,4`). Others use this system during the day, so be considerate. If a job genuinely needs more, you may use **up to 6 GPUs** (0-5), but prefer 5.
+- **Nighttime only (11pm-6am ET):** You may use **all 8 GPUs** (`CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7`). Verify no major jobs from other users are running first (check `squeue` and `nvidia-smi`). Jobs that use 8 GPUs must be timed to finish before 6am, or accept that they may overlap into daytime.
 - When in doubt about the time, check with `date` and default to the conservative daytime policy.
 - Do not spread work across arbitrary GPU indices. Always start from GPU 0 upward.
 
@@ -374,6 +392,8 @@ gt_yes = ground_truth_lower in ["yes", "1", "true"]
 - **Before submitting any SLURM job**, run `squeue -u $USER` and `squeue` (all users) to see what is already running. Do not submit jobs that would conflict with or starve other users' jobs.
 - **Before killing any process**, verify it belongs to `khayes` and is one you launched. Never kill another user's process. Use `ps aux | grep <pattern>` or `squeue` to confirm ownership.
 - **Before cancelling any SLURM job** (`scancel`), double-check the job ID belongs to `khayes` with `squeue -u $USER`. Never cancel another user's job.
+- **Only cancel exactly what the user asks.** If the user says "cancel job X", cancel ONLY job X — do NOT cancel dependent jobs, related jobs, or anything else. Dependent jobs will remain pending with unsatisfied dependencies, which is fine. Never expand a cancel request to a chain of cancellations without explicit approval.
+- **Never cancel jobs submitted by other agents** unless the user explicitly asks. Other agents' queued jobs represent planned work — destroying them wastes their effort.
 - **Check GPU utilization** with `nvidia-smi` before submitting GPU jobs. If GPUs are already heavily loaded by other users, wait or use fewer GPUs.
 - **Never run `kill -9` or `scancel` on a PID/job ID without first confirming it is yours.** When in doubt, ask the user.
 

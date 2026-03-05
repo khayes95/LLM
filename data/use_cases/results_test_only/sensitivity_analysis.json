@@ -1,0 +1,1005 @@
+{
+  "description": "Contamination sensitivity analysis: AUROC stability across Jaccard similarity thresholds",
+  "method": "Character 5-gram Jaccard similarity between test question_preview and training question text (truncated to 200 chars)",
+  "n_test_total": 4152,
+  "n_train_total": 4645,
+  "jaccard_distribution": {
+    "min": 0.0,
+    "median": 1.0,
+    "mean": 0.7466,
+    "max": 1.0,
+    "p90": 1.0,
+    "p95": 1.0,
+    "p99": 1.0
+  },
+  "threshold_results": [
+    {
+      "threshold": 0.0,
+      "n_removed": 0,
+      "n_remaining": 4152,
+      "calibrator_auroc": 0.9146999435302566,
+      "calibrator_ci": [
+        0.906864290448313,
+        0.9232557296223609
+      ],
+      "verbalized_auroc": 0.6344384448768392,
+      "verbalized_ci": [
+        0.6159351663766482,
+        0.6515584916270902
+      ],
+      "combined_auroc": 0.6714675136903563,
+      "combined_ci": [
+        0.6557151073103682,
+        0.6885281041078444
+      ]
+    },
+    {
+      "threshold": 0.3,
+      "n_removed": 3164,
+      "n_remaining": 988,
+      "calibrator_auroc": 0.9090651581502479,
+      "calibrator_ci": [
+        0.8896896475198515,
+        0.9269860771850728
+      ],
+      "verbalized_auroc": 0.5927733834835998,
+      "verbalized_ci": [
+        0.5557756015725885,
+        0.6260147565517263
+      ],
+      "combined_auroc": 0.6454472961262606,
+      "combined_ci": [
+        0.6095837387623192,
+        0.6799855062125824
+      ]
+    },
+    {
+      "threshold": 0.4,
+      "n_removed": 3038,
+      "n_remaining": 1114,
+      "calibrator_auroc": 0.9073070463245059,
+      "calibrator_ci": [
+        0.889194053821555,
+        0.9243010394969721
+      ],
+      "verbalized_auroc": 0.5896878560697879,
+      "verbalized_ci": [
+        0.5517062040756388,
+        0.6250985806990699
+      ],
+      "combined_auroc": 0.6448156238886994,
+      "combined_ci": [
+        0.6111996790338374,
+        0.6779702548750132
+      ]
+    },
+    {
+      "threshold": 0.5,
+      "n_removed": 2936,
+      "n_remaining": 1216,
+      "calibrator_auroc": 0.9073241330114136,
+      "calibrator_ci": [
+        0.8895924289706094,
+        0.9242714395184172
+      ],
+      "verbalized_auroc": 0.5949785281161878,
+      "verbalized_ci": [
+        0.5630216646162458,
+        0.626719215026611
+      ],
+      "combined_auroc": 0.6413534966302351,
+      "combined_ci": [
+        0.6095760939938466,
+        0.6724588102832615
+      ]
+    },
+    {
+      "threshold": 0.6,
+      "n_removed": 2863,
+      "n_remaining": 1289,
+      "calibrator_auroc": 0.9064807118760084,
+      "calibrator_ci": [
+        0.8901353519668738,
+        0.9226734012125288
+      ],
+      "verbalized_auroc": 0.6015112378304721,
+      "verbalized_ci": [
+        0.5699692681054467,
+        0.6317748023158878
+      ],
+      "combined_auroc": 0.6487131357022071,
+      "combined_ci": [
+        0.6166030075171113,
+        0.6780133561362255
+      ]
+    },
+    {
+      "threshold": 0.7,
+      "n_removed": 2833,
+      "n_remaining": 1319,
+      "calibrator_auroc": 0.9045074012580969,
+      "calibrator_ci": [
+        0.8879304136906928,
+        0.9195662454328489
+      ],
+      "verbalized_auroc": 0.599478398258886,
+      "verbalized_ci": [
+        0.5694568448924021,
+        0.6267867180896252
+      ],
+      "combined_auroc": 0.648311203189252,
+      "combined_ci": [
+        0.6189222688844301,
+        0.6773594136790108
+      ]
+    },
+    {
+      "threshold": 0.8,
+      "n_removed": 2792,
+      "n_remaining": 1360,
+      "calibrator_auroc": 0.9036578147725197,
+      "calibrator_ci": [
+        0.8872167505340064,
+        0.9201034370780049
+      ],
+      "verbalized_auroc": 0.5987815395229646,
+      "verbalized_ci": [
+        0.5672486903780709,
+        0.6312684170323389
+      ],
+      "combined_auroc": 0.6468127833629017,
+      "combined_ci": [
+        0.6161688375672665,
+        0.6774508188707284
+      ]
+    },
+    {
+      "threshold": 0.9,
+      "n_removed": 2776,
+      "n_remaining": 1376,
+      "calibrator_auroc": 0.9036018041237114,
+      "calibrator_ci": [
+        0.8863899705338347,
+        0.9192592892575647
+      ],
+      "verbalized_auroc": 0.5992295401581407,
+      "verbalized_ci": [
+        0.568407586160903,
+        0.6316365565038817
+      ],
+      "combined_auroc": 0.6477104304887131,
+      "combined_ci": [
+        0.6176054884570636,
+        0.676610906117788
+      ]
+    },
+    {
+      "threshold": 1.0,
+      "n_removed": 2766,
+      "n_remaining": 1386,
+      "calibrator_auroc": 0.9032250893446927,
+      "calibrator_ci": [
+        0.8874550407088266,
+        0.9184666156086395
+      ],
+      "verbalized_auroc": 0.6000320863240955,
+      "verbalized_ci": [
+        0.5694095428839469,
+        0.6303010305661829
+      ],
+      "combined_auroc": 0.6489054998336266,
+      "combined_ci": [
+        0.6182948741729449,
+        0.6799290172021148
+      ]
+    }
+  ],
+  "benchmark_analysis": {
+    "arc_agi": {
+      "n_total": 110,
+      "jaccard_mean": 0.039,
+      "jaccard_median": 0.04,
+      "jaccard_max": 0.0471,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        },
+        "0.4": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        },
+        "0.5": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        },
+        "0.6": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        },
+        "0.7": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        },
+        "0.8": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        },
+        "0.9": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        },
+        "1.0": {
+          "n_removed": 0,
+          "pct_removed": 0.0
+        }
+      }
+    },
+    "bbeh": {
+      "n_total": 132,
+      "jaccard_mean": 0.8828,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 126,
+          "pct_removed": 95.5
+        },
+        "0.4": {
+          "n_removed": 122,
+          "pct_removed": 92.4
+        },
+        "0.5": {
+          "n_removed": 115,
+          "pct_removed": 87.1
+        },
+        "0.6": {
+          "n_removed": 113,
+          "pct_removed": 85.6
+        },
+        "0.7": {
+          "n_removed": 110,
+          "pct_removed": 83.3
+        },
+        "0.8": {
+          "n_removed": 105,
+          "pct_removed": 79.5
+        },
+        "0.9": {
+          "n_removed": 103,
+          "pct_removed": 78.0
+        },
+        "1.0": {
+          "n_removed": 97,
+          "pct_removed": 73.5
+        }
+      }
+    },
+    "charxiv": {
+      "n_total": 239,
+      "jaccard_mean": 0.9132,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 215,
+          "pct_removed": 90.0
+        },
+        "0.4": {
+          "n_removed": 214,
+          "pct_removed": 89.5
+        },
+        "0.5": {
+          "n_removed": 214,
+          "pct_removed": 89.5
+        },
+        "0.6": {
+          "n_removed": 214,
+          "pct_removed": 89.5
+        },
+        "0.7": {
+          "n_removed": 214,
+          "pct_removed": 89.5
+        },
+        "0.8": {
+          "n_removed": 214,
+          "pct_removed": 89.5
+        },
+        "0.9": {
+          "n_removed": 214,
+          "pct_removed": 89.5
+        },
+        "1.0": {
+          "n_removed": 214,
+          "pct_removed": 89.5
+        }
+      }
+    },
+    "chembench": {
+      "n_total": 223,
+      "jaccard_mean": 0.9505,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 212,
+          "pct_removed": 95.1
+        },
+        "0.4": {
+          "n_removed": 212,
+          "pct_removed": 95.1
+        },
+        "0.5": {
+          "n_removed": 212,
+          "pct_removed": 95.1
+        },
+        "0.6": {
+          "n_removed": 211,
+          "pct_removed": 94.6
+        },
+        "0.7": {
+          "n_removed": 211,
+          "pct_removed": 94.6
+        },
+        "0.8": {
+          "n_removed": 207,
+          "pct_removed": 92.8
+        },
+        "0.9": {
+          "n_removed": 207,
+          "pct_removed": 92.8
+        },
+        "1.0": {
+          "n_removed": 207,
+          "pct_removed": 92.8
+        }
+      }
+    },
+    "gpqa": {
+      "n_total": 234,
+      "jaccard_mean": 1.0,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        },
+        "0.4": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        },
+        "0.5": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        },
+        "0.6": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        },
+        "0.7": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        },
+        "0.8": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        },
+        "0.9": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        },
+        "1.0": {
+          "n_removed": 234,
+          "pct_removed": 100.0
+        }
+      }
+    },
+    "hallusionbench": {
+      "n_total": 353,
+      "jaccard_mean": 0.3127,
+      "jaccard_median": 0.1554,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 97,
+          "pct_removed": 27.5
+        },
+        "0.4": {
+          "n_removed": 89,
+          "pct_removed": 25.2
+        },
+        "0.5": {
+          "n_removed": 71,
+          "pct_removed": 20.1
+        },
+        "0.6": {
+          "n_removed": 59,
+          "pct_removed": 16.7
+        },
+        "0.7": {
+          "n_removed": 51,
+          "pct_removed": 14.4
+        },
+        "0.8": {
+          "n_removed": 46,
+          "pct_removed": 13.0
+        },
+        "0.9": {
+          "n_removed": 46,
+          "pct_removed": 13.0
+        },
+        "1.0": {
+          "n_removed": 46,
+          "pct_removed": 13.0
+        }
+      }
+    },
+    "hle": {
+      "n_total": 155,
+      "jaccard_mean": 0.8776,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        },
+        "0.4": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        },
+        "0.5": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        },
+        "0.6": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        },
+        "0.7": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        },
+        "0.8": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        },
+        "0.9": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        },
+        "1.0": {
+          "n_removed": 134,
+          "pct_removed": 86.5
+        }
+      }
+    },
+    "hle_multimodal": {
+      "n_total": 35,
+      "jaccard_mean": 0.7178,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        },
+        "0.4": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        },
+        "0.5": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        },
+        "0.6": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        },
+        "0.7": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        },
+        "0.8": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        },
+        "0.9": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        },
+        "1.0": {
+          "n_removed": 24,
+          "pct_removed": 68.6
+        }
+      }
+    },
+    "livebench": {
+      "n_total": 136,
+      "jaccard_mean": 0.8659,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 129,
+          "pct_removed": 94.9
+        },
+        "0.4": {
+          "n_removed": 117,
+          "pct_removed": 86.0
+        },
+        "0.5": {
+          "n_removed": 115,
+          "pct_removed": 84.6
+        },
+        "0.6": {
+          "n_removed": 112,
+          "pct_removed": 82.4
+        },
+        "0.7": {
+          "n_removed": 111,
+          "pct_removed": 81.6
+        },
+        "0.8": {
+          "n_removed": 107,
+          "pct_removed": 78.7
+        },
+        "0.9": {
+          "n_removed": 106,
+          "pct_removed": 77.9
+        },
+        "1.0": {
+          "n_removed": 104,
+          "pct_removed": 76.5
+        }
+      }
+    },
+    "mathverse": {
+      "n_total": 230,
+      "jaccard_mean": 0.7182,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 196,
+          "pct_removed": 85.2
+        },
+        "0.4": {
+          "n_removed": 169,
+          "pct_removed": 73.5
+        },
+        "0.5": {
+          "n_removed": 144,
+          "pct_removed": 62.6
+        },
+        "0.6": {
+          "n_removed": 134,
+          "pct_removed": 58.3
+        },
+        "0.7": {
+          "n_removed": 133,
+          "pct_removed": 57.8
+        },
+        "0.8": {
+          "n_removed": 130,
+          "pct_removed": 56.5
+        },
+        "0.9": {
+          "n_removed": 126,
+          "pct_removed": 54.8
+        },
+        "1.0": {
+          "n_removed": 126,
+          "pct_removed": 54.8
+        }
+      }
+    },
+    "mathvision": {
+      "n_total": 283,
+      "jaccard_mean": 0.3503,
+      "jaccard_median": 0.1412,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 73,
+          "pct_removed": 25.8
+        },
+        "0.4": {
+          "n_removed": 71,
+          "pct_removed": 25.1
+        },
+        "0.5": {
+          "n_removed": 71,
+          "pct_removed": 25.1
+        },
+        "0.6": {
+          "n_removed": 71,
+          "pct_removed": 25.1
+        },
+        "0.7": {
+          "n_removed": 71,
+          "pct_removed": 25.1
+        },
+        "0.8": {
+          "n_removed": 71,
+          "pct_removed": 25.1
+        },
+        "0.9": {
+          "n_removed": 71,
+          "pct_removed": 25.1
+        },
+        "1.0": {
+          "n_removed": 71,
+          "pct_removed": 25.1
+        }
+      }
+    },
+    "mathvista": {
+      "n_total": 379,
+      "jaccard_mean": 0.6164,
+      "jaccard_median": 0.5469,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 268,
+          "pct_removed": 70.7
+        },
+        "0.4": {
+          "n_removed": 219,
+          "pct_removed": 57.8
+        },
+        "0.5": {
+          "n_removed": 198,
+          "pct_removed": 52.2
+        },
+        "0.6": {
+          "n_removed": 187,
+          "pct_removed": 49.3
+        },
+        "0.7": {
+          "n_removed": 184,
+          "pct_removed": 48.5
+        },
+        "0.8": {
+          "n_removed": 181,
+          "pct_removed": 47.8
+        },
+        "0.9": {
+          "n_removed": 178,
+          "pct_removed": 47.0
+        },
+        "1.0": {
+          "n_removed": 178,
+          "pct_removed": 47.0
+        }
+      }
+    },
+    "mmmu": {
+      "n_total": 165,
+      "jaccard_mean": 1.0,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        },
+        "0.4": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        },
+        "0.5": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        },
+        "0.6": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        },
+        "0.7": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        },
+        "0.8": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        },
+        "0.9": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        },
+        "1.0": {
+          "n_removed": 165,
+          "pct_removed": 100.0
+        }
+      }
+    },
+    "mmstar": {
+      "n_total": 350,
+      "jaccard_mean": 0.8054,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 303,
+          "pct_removed": 86.6
+        },
+        "0.4": {
+          "n_removed": 292,
+          "pct_removed": 83.4
+        },
+        "0.5": {
+          "n_removed": 273,
+          "pct_removed": 78.0
+        },
+        "0.6": {
+          "n_removed": 254,
+          "pct_removed": 72.6
+        },
+        "0.7": {
+          "n_removed": 248,
+          "pct_removed": 70.9
+        },
+        "0.8": {
+          "n_removed": 242,
+          "pct_removed": 69.1
+        },
+        "0.9": {
+          "n_removed": 242,
+          "pct_removed": 69.1
+        },
+        "1.0": {
+          "n_removed": 240,
+          "pct_removed": 68.6
+        }
+      }
+    },
+    "mmvet": {
+      "n_total": 44,
+      "jaccard_mean": 0.5191,
+      "jaccard_median": 0.2817,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 20,
+          "pct_removed": 45.5
+        },
+        "0.4": {
+          "n_removed": 18,
+          "pct_removed": 40.9
+        },
+        "0.5": {
+          "n_removed": 18,
+          "pct_removed": 40.9
+        },
+        "0.6": {
+          "n_removed": 18,
+          "pct_removed": 40.9
+        },
+        "0.7": {
+          "n_removed": 18,
+          "pct_removed": 40.9
+        },
+        "0.8": {
+          "n_removed": 15,
+          "pct_removed": 34.1
+        },
+        "0.9": {
+          "n_removed": 15,
+          "pct_removed": 34.1
+        },
+        "1.0": {
+          "n_removed": 15,
+          "pct_removed": 34.1
+        }
+      }
+    },
+    "omnimath": {
+      "n_total": 108,
+      "jaccard_mean": 0.7065,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 72,
+          "pct_removed": 66.7
+        },
+        "0.4": {
+          "n_removed": 72,
+          "pct_removed": 66.7
+        },
+        "0.5": {
+          "n_removed": 71,
+          "pct_removed": 65.7
+        },
+        "0.6": {
+          "n_removed": 71,
+          "pct_removed": 65.7
+        },
+        "0.7": {
+          "n_removed": 71,
+          "pct_removed": 65.7
+        },
+        "0.8": {
+          "n_removed": 71,
+          "pct_removed": 65.7
+        },
+        "0.9": {
+          "n_removed": 71,
+          "pct_removed": 65.7
+        },
+        "1.0": {
+          "n_removed": 71,
+          "pct_removed": 65.7
+        }
+      }
+    },
+    "prbench": {
+      "n_total": 90,
+      "jaccard_mean": 0.6277,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        },
+        "0.4": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        },
+        "0.5": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        },
+        "0.6": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        },
+        "0.7": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        },
+        "0.8": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        },
+        "0.9": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        },
+        "1.0": {
+          "n_removed": 54,
+          "pct_removed": 60.0
+        }
+      }
+    },
+    "realworldqa": {
+      "n_total": 432,
+      "jaccard_mean": 0.9556,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 426,
+          "pct_removed": 98.6
+        },
+        "0.4": {
+          "n_removed": 423,
+          "pct_removed": 97.9
+        },
+        "0.5": {
+          "n_removed": 417,
+          "pct_removed": 96.5
+        },
+        "0.6": {
+          "n_removed": 408,
+          "pct_removed": 94.4
+        },
+        "0.7": {
+          "n_removed": 400,
+          "pct_removed": 92.6
+        },
+        "0.8": {
+          "n_removed": 393,
+          "pct_removed": 91.0
+        },
+        "0.9": {
+          "n_removed": 387,
+          "pct_removed": 89.6
+        },
+        "1.0": {
+          "n_removed": 387,
+          "pct_removed": 89.6
+        }
+      }
+    },
+    "simpleqa": {
+      "n_total": 227,
+      "jaccard_mean": 0.9051,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 203,
+          "pct_removed": 89.4
+        },
+        "0.4": {
+          "n_removed": 202,
+          "pct_removed": 89.0
+        },
+        "0.5": {
+          "n_removed": 202,
+          "pct_removed": 89.0
+        },
+        "0.6": {
+          "n_removed": 202,
+          "pct_removed": 89.0
+        },
+        "0.7": {
+          "n_removed": 202,
+          "pct_removed": 89.0
+        },
+        "0.8": {
+          "n_removed": 202,
+          "pct_removed": 89.0
+        },
+        "0.9": {
+          "n_removed": 202,
+          "pct_removed": 89.0
+        },
+        "1.0": {
+          "n_removed": 202,
+          "pct_removed": 89.0
+        }
+      }
+    },
+    "vizwiz": {
+      "n_total": 227,
+      "jaccard_mean": 0.9115,
+      "jaccard_median": 1.0,
+      "jaccard_max": 1.0,
+      "removals_by_threshold": {
+        "0.3": {
+          "n_removed": 213,
+          "pct_removed": 93.8
+        },
+        "0.4": {
+          "n_removed": 207,
+          "pct_removed": 91.2
+        },
+        "0.5": {
+          "n_removed": 204,
+          "pct_removed": 89.9
+        },
+        "0.6": {
+          "n_removed": 198,
+          "pct_removed": 87.2
+        },
+        "0.7": {
+          "n_removed": 198,
+          "pct_removed": 87.2
+        },
+        "0.8": {
+          "n_removed": 197,
+          "pct_removed": 86.8
+        },
+        "0.9": {
+          "n_removed": 197,
+          "pct_removed": 86.8
+        },
+        "1.0": {
+          "n_removed": 197,
+          "pct_removed": 86.8
+        }
+      }
+    }
+  },
+  "stability": {
+    "calibrator_auroc_range": 0.0115,
+    "calibrator_auroc_std": 0.0034
+  },
+  "smoke_test": false,
+  "n_bootstrap": 1000
+}

@@ -16,11 +16,11 @@ Extracts P(Yes) from the model's logits.
 Usage:
     # Smoke test
     CUDA_VISIBLE_DEVICES=0 python scripts/zero_shot_baseline.py \
-        --scored_dir data/use_cases/scored_unified --smoke_test
+        --scored_dir data/use_cases/scored_test_only_v2 --smoke_test
 
     # Full run
     CUDA_VISIBLE_DEVICES=0,2 python scripts/zero_shot_baseline.py \
-        --scored_dir data/use_cases/scored_unified
+        --scored_dir data/use_cases/scored_test_only_v2
 """
 
 import argparse
@@ -138,7 +138,7 @@ def run_zero_shot(model, processor, data, batch_size=4, device="cuda"):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
     parser.add_argument("--output_dir", default=None,
                         help="Output dir (default: same as scored_dir)")
     parser.add_argument("--model_name", default="Qwen/Qwen3-VL-8B-Instruct",

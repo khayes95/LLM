@@ -110,6 +110,7 @@ def plot_routing(results_by_method, cost_ratio, mini_acc, gpt52_acc, output_path
         "Calibrator": {"color": "C0", "linewidth": 2.5},
         "Verbalized": {"color": "C1", "linewidth": 2, "linestyle": "--"},
         "Random": {"color": "gray", "linewidth": 1, "linestyle": ":"},
+        "Oracle": {"color": "C4", "linewidth": 1.5, "linestyle": "-."},
     }
     for method, (curve, _) in results_by_method.items():
         costs = [p["cost_normalized"] for p in curve]
@@ -145,9 +146,9 @@ def plot_routing(results_by_method, cost_ratio, mini_acc, gpt52_acc, output_path
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_v2")
-    parser.add_argument("--output_dir", default="data/use_cases/results")
-    parser.add_argument("--fig_dir", default="figures/use_cases")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
+    parser.add_argument("--fig_dir", default="figures/use_cases_v2")
     args = parser.parse_args()
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
@@ -248,18 +249,61 @@ def main():
             "cost_at_iso_accuracy": cost_iso,
         }
 
-    # Oracle analysis
+    # Oracle routing: route to the model that's actually correct
+    oracle_paired = [{**p, "oracle_score": float(p["mini_correct"])} for p in paired]
+    oracle_curve, _ = routing_analysis(oracle_paired, "oracle_score")
+    results_by_method["Oracle"] = (oracle_curve, cost_ratio)
+
     oracle_correct = sum(
         max(p["mini_correct"], p["gpt52_correct"]) for p in paired
     )
     oracle_acc = oracle_correct / len(paired)
+    both_correct = sum(p['mini_correct'] and p['gpt52_correct'] for p in paired)
+    both_wrong = sum(not p['mini_correct'] and not p['gpt52_correct'] for p in paired)
+    only_mini = sum(p['mini_correct'] and not p['gpt52_correct'] for p in paired)
+    only_52 = sum(not p['mini_correct'] and p['gpt52_correct'] for p in paired)
+
     print(f"\n  Oracle (always pick better): {oracle_acc:.3f}")
-    print(f"  Both correct: {sum(p['mini_correct'] and p['gpt52_correct'] for p in paired)}")
-    print(f"  Both wrong: {sum(not p['mini_correct'] and not p['gpt52_correct'] for p in paired)}")
-    print(f"  Only mini correct: {sum(p['mini_correct'] and not p['gpt52_correct'] for p in paired)}")
-    print(f"  Only 5.2 correct: {sum(not p['mini_correct'] and p['gpt52_correct'] for p in paired)}")
+    print(f"  Both correct: {both_correct} ({both_correct/len(paired):.1%})")
+    print(f"  Both wrong: {both_wrong} ({both_wrong/len(paired):.1%})")
+    print(f"  Only mini correct: {only_mini} ({only_mini/len(paired):.1%})")
+    print(f"  Only 5.2 correct: {only_52} ({only_52/len(paired):.1%})")
 
     output_summary["oracle_accuracy"] = float(oracle_acc)
+    output_summary["agreement_stats"] = {
+        "both_correct": both_correct,
+        "both_wrong": both_wrong,
+        "only_mini_correct": only_mini,
+        "only_52_correct": only_52,
+    }
+
+    # Break-even analysis: find threshold where routing achieves GPT-5.2 accuracy
+    # at minimum cost
+    cal_curve_data = results_by_method["Calibrator"][0]
+    break_even = None
+    for p in cal_curve_data:
+        if p["accuracy"] >= gpt52_acc - 0.005:
+            break_even = p
+            break
+
+    print(f"\n--- Break-Even Analysis ---")
+    if break_even:
+        savings_pct = (1 - break_even["cost_normalized"] / cost_ratio) * 100
+        cheap_pct = break_even["n_cheap"] / len(paired) * 100
+        print(f"  To match GPT-5.2 accuracy ({gpt52_acc:.1%}):")
+        print(f"    Routes {cheap_pct:.0f}% of queries to GPT-5-mini (cheap)")
+        print(f"    Normalized cost: {break_even['cost_normalized']:.2f}x "
+              f"(vs {cost_ratio:.2f}x for all GPT-5.2)")
+        print(f"    Cost savings: {savings_pct:.0f}%")
+        output_summary["break_even"] = {
+            "threshold": break_even["threshold"],
+            "accuracy": break_even["accuracy"],
+            "cost_normalized": break_even["cost_normalized"],
+            "pct_cheap": float(cheap_pct),
+            "pct_savings": float(savings_pct),
+        }
+    else:
+        print(f"  Calibrator routing never reaches GPT-5.2 accuracy ({gpt52_acc:.1%})")
 
     # Plot
     plot_routing(results_by_method, cost_ratio, mini_acc, gpt52_acc,

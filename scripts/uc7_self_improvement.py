@@ -208,8 +208,8 @@ def plot_self_improvement(all_oc, correlations, strat, output_path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_v2")
-    parser.add_argument("--output_dir", default="data/use_cases/results")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
     parser.add_argument("--fig_dir", default="figures/use_cases")
     parser.add_argument("--p_threshold", type=float, default=0.7,
                         help="P(correct) threshold for 'overconfident'")
@@ -280,6 +280,75 @@ def main():
         print(f"  {s['bin_low']:.1f}-{s['bin_high']:.1f}        {s['n']:>5} "
               f"{s['accuracy']:>10.3f} {s['overconfidence']:>+10.3f}")
 
+    # === Simulated Retry Experiment ===
+    print(f"\n--- Simulated Retry Experiment ---")
+    print("  (For questions where calibrator says P(correct)<threshold, simulate a retry)")
+    retry_results = {}
+    for target, samples in all_scored.items():
+        labels = np.array([s["is_correct"] for s in samples])
+        p_correct = np.array([s["p_correct"] for s in samples])
+        base_acc = float(labels.mean())
+
+        # Sweep retry budgets: retry the bottom K% by P(correct)
+        print(f"\n  {target} (base accuracy: {base_acc:.3f}):")
+        print(f"    {'Budget':>8} {'Calibrator':>12} {'Verbalized':>12} {'Random':>12}")
+        print(f"    {'-'*50}")
+
+        target_retry = {}
+        for budget_frac in [0.05, 0.10, 0.20, 0.30, 0.50]:
+            k = max(1, int(budget_frac * len(samples)))
+
+            # Calibrator: retry lowest P(correct)
+            retry_idx = np.argsort(p_correct)[:k]
+            # Assume retry gives benchmark-average accuracy for those questions
+            new_labels = labels.copy()
+            for idx in retry_idx:
+                bench = samples[idx]["benchmark"]
+                # Average accuracy for this benchmark
+                bench_acc = np.mean([s["is_correct"] for s in samples if s["benchmark"] == bench])
+                # Simulate: correct with probability bench_acc
+                new_labels[idx] = max(new_labels[idx], int(np.random.RandomState(42 + idx).random() < bench_acc))
+            cal_retry_acc = float(new_labels.mean())
+
+            # Verbalized: retry lowest verbalized confidence
+            verb_confs = np.array([
+                s.get("verbalized_confidence") if s.get("verbalized_confidence") is not None else 0.5
+                for s in samples
+            ])
+            verb_retry_idx = np.argsort(verb_confs)[:k]
+            verb_labels = labels.copy()
+            for idx in verb_retry_idx:
+                bench = samples[idx]["benchmark"]
+                bench_acc = np.mean([s["is_correct"] for s in samples if s["benchmark"] == bench])
+                verb_labels[idx] = max(verb_labels[idx], int(np.random.RandomState(42 + idx).random() < bench_acc))
+            verb_retry_acc = float(verb_labels.mean())
+
+            # Random: retry random questions
+            rng = np.random.RandomState(42)
+            rand_retry_idx = rng.choice(len(samples), size=k, replace=False)
+            rand_labels = labels.copy()
+            for idx in rand_retry_idx:
+                bench = samples[idx]["benchmark"]
+                bench_acc = np.mean([s["is_correct"] for s in samples if s["benchmark"] == bench])
+                rand_labels[idx] = max(rand_labels[idx], int(np.random.RandomState(42 + idx).random() < bench_acc))
+            rand_retry_acc = float(rand_labels.mean())
+
+            print(f"    {budget_frac:>7.0%} {cal_retry_acc:>12.3f} (+{cal_retry_acc-base_acc:.3f})"
+                  f" {verb_retry_acc:>8.3f} (+{verb_retry_acc-base_acc:.3f})"
+                  f" {rand_retry_acc:>8.3f} (+{rand_retry_acc-base_acc:.3f})")
+
+            target_retry[f"{int(budget_frac*100)}pct"] = {
+                "budget_frac": budget_frac,
+                "calibrator_acc": cal_retry_acc,
+                "verbalized_acc": verb_retry_acc,
+                "random_acc": rand_retry_acc,
+                "cal_improvement": cal_retry_acc - base_acc,
+                "verb_improvement": verb_retry_acc - base_acc,
+                "rand_improvement": rand_retry_acc - base_acc,
+            }
+
+        retry_results[target] = {"base_accuracy": base_acc, "budgets": target_retry}
+
     # Actionable recommendations
     print(f"\n--- Actionable Recommendations ---")
     for target, samples in all_scored.items():
@@ -299,6 +368,7 @@ def main():
             "overconfident_error_rates": {t: all_oc[t] for t in all_oc},
             "cross_model_agreement": correlations,
             "difficulty_stratification": strat,
+            "simulated_retry": retry_results,
             "p_threshold": args.p_threshold,
         }, f, indent=2)
     print(f"\nResults saved to {out_path}")

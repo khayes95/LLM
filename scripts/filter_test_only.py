@@ -494,8 +494,8 @@ def main():
                         default="uq_models/best_unified/split_info.json",
                         help="Path to split_info.json with train_ids/test_ids")
     parser.add_argument("--scored_dir",
-                        default="data/use_cases/scored_unified",
-                        help="Directory with original scored JSONL files")
+                        default="data/use_cases/CONTAMINATED_scored_unified",
+                        help="Directory with original scored JSONL files (contaminated, for filtering)")
     parser.add_argument("--output_scored",
                         default="data/use_cases/scored_test_only",
                         help="Directory for filtered scored JSONL files")
@@ -506,7 +506,7 @@ def main():
                         default="figures/use_cases_test_only",
                         help="Directory for test-only figures")
     parser.add_argument("--old_results_dir",
-                        default="data/use_cases/results_unified",
+                        default="data/use_cases/CONTAMINATED_results_unified",
                         help="Directory with original (all-data) results for comparison")
     parser.add_argument("--skip_filter", action="store_true",
                         help="Skip filtering step, use already-filtered data")

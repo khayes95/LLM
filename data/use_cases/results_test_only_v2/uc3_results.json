@@ -1,0 +1,594 @@
+{
+  "gpt5mini": {
+    "calibrator_detection": {
+      "auroc": 0.9508899599366601,
+      "auprc": 0.9503227262288635,
+      "best_f1": 0.8822205551387847,
+      "best_threshold": 0.33,
+      "precision_at_50recall": 0.9853372434017595,
+      "precision_at_80recall": 0.9303571428571429,
+      "precision_at_90recall": 0.8634361233480177,
+      "n_samples": 1361,
+      "n_errors": 652,
+      "error_rate": 0.47905951506245403,
+      "auroc_ci": [
+        0.9392943209115964,
+        0.9619274044461006
+      ],
+      "f1_ci": [
+        0.8679488880479578,
+        0.9011362907999019
+      ]
+    },
+    "verbalized_detection": {
+      "auroc": 0.6615893850888487,
+      "auprc": 0.6611444595613613,
+      "best_f1": 0.5641461342395921,
+      "best_threshold": 0.1,
+      "precision_at_50recall": 0.6349206349206349,
+      "precision_at_80recall": 0.5320910973084886,
+      "precision_at_90recall": 0.5039370078740157,
+      "n_samples": 1352,
+      "n_errors": 643,
+      "error_rate": 0.4755917159763313,
+      "auroc_ci": [
+        0.6328855977437378,
+        0.6900142350495557
+      ],
+      "f1_ci": [
+        0.39421809970933597,
+        0.47561402242117146
+      ]
+    },
+    "edr_methods": {
+      "Calibrator": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.7306365030674846,
+        "total_errors": 652,
+        "n_samples": 1361
+      },
+      "Random": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.49148773006134966,
+        "total_errors": 652,
+        "n_samples": 1361
+      },
+      "Verbalized": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.5764570552147239,
+        "total_errors": 652,
+        "n_samples": 1361
+      },
+      "Response Length": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.4261119631901841,
+        "total_errors": 652,
+        "n_samples": 1361
+      },
+      "Oracle": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.7559815950920246,
+        "total_errors": 652,
+        "n_samples": 1361
+      }
+    },
+    "auedr_ci": [
+      0.7177612923171308,
+      0.7434170152654391
+    ],
+    "per_domain": {
+      "coding": {
+        "n": 58,
+        "n_errors": 13,
+        "error_rate": 0.22413793103448276,
+        "calibrator_auroc": 0.8384615384615385,
+        "verbalized_auroc": 0.5916666666666667,
+        "calibrator_auedr": 0.7461538461538462
+      },
+      "factual": {
+        "n": 268,
+        "n_errors": 92,
+        "error_rate": 0.34328358208955223,
+        "calibrator_auroc": 0.9271862648221344,
+        "verbalized_auroc": 0.8644392292490117,
+        "calibrator_auedr": 0.7733695652173913
+      },
+      "knowledge": {
+        "n": 118,
+        "n_errors": 69,
+        "error_rate": 0.5847457627118644,
+        "calibrator_auroc": 0.9281277728482699,
+        "verbalized_auroc": 0.7878151260504203,
+        "calibrator_auedr": 0.6695652173913044
+      },
+      "long_context": {
+        "n": 57,
+        "n_errors": 21,
+        "error_rate": 0.368421052631579,
+        "calibrator_auroc": 0.9933862433862434,
+        "verbalized_auroc": 0.6335978835978836,
+        "calibrator_auedr": 0.8035714285714286
+      },
+      "math": {
+        "n": 370,
+        "n_errors": 235,
+        "error_rate": 0.6351351351351351,
+        "calibrator_auroc": 0.9577620173364852,
+        "verbalized_auroc": 0.5895724050230489,
+        "calibrator_auedr": 0.6636170212765958
+      },
+      "multimodal": {
+        "n": 408,
+        "n_errors": 167,
+        "error_rate": 0.40931372549019607,
+        "calibrator_auroc": 0.9597733992595722,
+        "verbalized_auroc": 0.6755861620756887,
+        "calibrator_auedr": 0.7664670658682635
+      },
+      "other": {
+        "n": 35,
+        "n_errors": 30,
+        "error_rate": 0.8571428571428572,
+        "calibrator_auroc": 0.8099999999999999,
+        "verbalized_auroc": 0.6,
+        "calibrator_auedr": 0.535
+      },
+      "reasoning": {
+        "n": 47,
+        "n_errors": 25,
+        "error_rate": 0.5319148936170213,
+        "calibrator_auroc": 0.8709090909090909,
+        "verbalized_auroc": 0.7312252964426877,
+        "calibrator_auedr": 0.661
+      }
+    }
+  },
+  "gpt52": {
+    "calibrator_detection": {
+      "auroc": 0.9590275301552953,
+      "auprc": 0.9454575334653921,
+      "best_f1": 0.871039056742815,
+      "best_threshold": 0.38,
+      "precision_at_50recall": 0.9825072886297376,
+      "precision_at_80recall": 0.9205526770293609,
+      "precision_at_90recall": 0.8224043715846995,
+      "n_samples": 1642,
+      "n_errors": 668,
+      "error_rate": 0.40682095006090135,
+      "auroc_ci": [
+        0.949643528168203,
+        0.9673504441451969
+      ],
+      "f1_ci": [
+        0.8532654047131236,
+        0.8905279679285958
+      ]
+    },
+    "verbalized_detection": {
+      "auroc": 0.6373944633077052,
+      "auprc": 0.5715528588972502,
+      "best_f1": 0.5537084398976982,
+      "best_threshold": 0.1,
+      "precision_at_50recall": 0.5711711711711712,
+      "precision_at_80recall": 0.4297658862876254,
+      "precision_at_90recall": 0.41872278664731494,
+      "n_samples": 1597,
+      "n_errors": 648,
+      "error_rate": 0.4057608015028178,
+      "auroc_ci": [
+        0.6093699263843471,
+        0.6666689658015875
+      ],
+      "f1_ci": [
+        0.5135946974047191,
+        0.5772924457741211
+      ]
+    },
+    "edr_methods": {
+      "Calibrator": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.7670658682634731,
+        "total_errors": 668,
+        "n_samples": 1642
+      },
+      "Random": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.486751497005988,
+        "total_errors": 668,
+        "n_samples": 1642
+      },
+      "Verbalized": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.5692365269461077,
+        "total_errors": 668,
+        "n_samples": 1642
+      },
+      "Response Length": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.448502994011976,
+        "total_errors": 668,
+        "n_samples": 1642
+      },
+      "Oracle": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.792440119760479,
+        "total_errors": 668,
+        "n_samples": 1642
+      }
+    },
+    "auedr_ci": [
+      0.755223614092221,
+      0.7784288526434195
+    ],
+    "per_domain": {
+      "coding": {
+        "n": 58,
+        "n_errors": 19,
+        "error_rate": 0.3275862068965517,
+        "calibrator_auroc": 0.674089068825911,
+        "verbalized_auroc": 0.564404432132964,
+        "calibrator_auedr": 0.6
+      },
+      "factual": {
+        "n": 392,
+        "n_errors": 117,
+        "error_rate": 0.298469387755102,
+        "calibrator_auroc": 0.9416938616938616,
+        "verbalized_auroc": 0.8177156177156177,
+        "calibrator_auedr": 0.8021367521367522
+      },
+      "knowledge": {
+        "n": 115,
+        "n_errors": 51,
+        "error_rate": 0.4434782608695652,
+        "calibrator_auroc": 0.9175857843137255,
+        "verbalized_auroc": 0.7981004901960783,
+        "calibrator_auedr": 0.7235294117647058
+      },
+      "long_context": {
+        "n": 56,
+        "n_errors": 15,
+        "error_rate": 0.2678571428571429,
+        "calibrator_auroc": 1.0,
+        "verbalized_auroc": 0.6076923076923076,
+        "calibrator_auedr": 0.8516666666666667
+      },
+      "math": {
+        "n": 378,
+        "n_errors": 224,
+        "error_rate": 0.5925925925925926,
+        "calibrator_auroc": 0.9731418135435993,
+        "verbalized_auroc": 0.5834879406307978,
+        "calibrator_auedr": 0.6880580357142857
+      },
+      "multimodal": {
+        "n": 525,
+        "n_errors": 212,
+        "error_rate": 0.40380952380952384,
+        "calibrator_auroc": 0.9809361625173307,
+        "verbalized_auroc": 0.6125161082474228,
+        "calibrator_auedr": 0.7803066037735849
+      },
+      "reasoning": {
+        "n": 118,
+        "n_errors": 30,
+        "error_rate": 0.2542372881355932,
+        "calibrator_auroc": 0.8443181818181817,
+        "verbalized_auroc": 0.7804924242424242,
+        "calibrator_auedr": 0.75
+      }
+    }
+  },
+  "qwen35": {
+    "calibrator_detection": {
+      "auroc": 0.9461961121485283,
+      "auprc": 0.9402442256508777,
+      "best_f1": 0.8863172226004085,
+      "best_threshold": 0.38,
+      "precision_at_50recall": 0.9708222811671088,
+      "precision_at_80recall": 0.9102564102564102,
+      "precision_at_90recall": 0.8666666666666667,
+      "n_samples": 1444,
+      "n_errors": 707,
+      "error_rate": 0.489612188365651,
+      "auroc_ci": [
+        0.9356558082895405,
+        0.9566931743174798
+      ],
+      "f1_ci": [
+        0.8708252118644068,
+        0.9026669858891825
+      ]
+    },
+    "verbalized_detection": {
+      "auroc": 0.6131538508820455,
+      "auprc": 0.5090800310990625,
+      "best_f1": 0.13043478260869565,
+      "best_threshold": 0.14,
+      "precision_at_50recall": 0.5425330812854442,
+      "precision_at_80recall": 0.5204081632653061,
+      "precision_at_90recall": 0.42758022549869906,
+      "n_samples": 1153,
+      "n_errors": 493,
+      "error_rate": 0.427580225498699,
+      "auroc_ci": [
+        0.5817507961900859,
+        0.6434734329900349
+      ],
+      "f1_ci": [
+        0.007919235931451692,
+        0.04435483870967742
+      ]
+    },
+    "edr_methods": {
+      "Calibrator": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.7233026874115983,
+        "total_errors": 707,
+        "n_samples": 1444
+      },
+      "Random": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.4885785007072136,
+        "total_errors": 707,
+        "n_samples": 1444
+      },
+      "Verbalized": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.4852545968882603,
+        "total_errors": 707,
+        "n_samples": 1444
+      },
+      "Oracle": {
+        "budgets": [
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "auedr": 0.7514144271570014,
+        "total_errors": 707,
+        "n_samples": 1444
+      }
+    },
+    "auedr_ci": [
+      0.7096496599350025,
+      0.7361073165004558
+    ],
+    "per_domain": {
+      "coding": {
+        "n": 26,
+        "n_errors": 8,
+        "error_rate": 0.3076923076923077,
+        "calibrator_auroc": 0.8819444444444444,
+        "verbalized_auroc": 0.5923076923076922,
+        "calibrator_auedr": 0.75625
+      },
+      "factual": {
+        "n": 392,
+        "n_errors": 148,
+        "error_rate": 0.37755102040816324,
+        "calibrator_auroc": 0.9092683872396987,
+        "verbalized_auroc": 0.6371843154630039,
+        "calibrator_auedr": 0.7493243243243244
+      },
+      "knowledge": {
+        "n": 99,
+        "n_errors": 53,
+        "error_rate": 0.5353535353535354,
+        "calibrator_auroc": 0.8728465955701394,
+        "verbalized_auroc": 0.5738095238095238,
+        "calibrator_auedr": 0.6622641509433962
+      },
+      "long_context": {
+        "n": 34,
+        "n_errors": 15,
+        "error_rate": 0.4411764705882353,
+        "calibrator_auroc": 0.9964912280701755,
+        "verbalized_auroc": 0.6666666666666666,
+        "calibrator_auedr": 0.7616666666666666
+      },
+      "math": {
+        "n": 273,
+        "n_errors": 176,
+        "error_rate": 0.6446886446886446,
+        "calibrator_auroc": 0.9473992502343018,
+        "verbalized_auroc": 0.6052195526097762,
+        "calibrator_auedr": 0.6553977272727273
+      },
+      "multimodal": {
+        "n": 523,
+        "n_errors": 229,
+        "error_rate": 0.4378585086042065,
+        "calibrator_auroc": 0.9669964055491193,
+        "verbalized_auroc": 0.6121179815209666,
+        "calibrator_auedr": 0.7576419213973798
+      },
+      "reasoning": {
+        "n": 97,
+        "n_errors": 78,
+        "error_rate": 0.8041237113402062,
+        "calibrator_auroc": 0.8633603238866397,
+        "verbalized_auroc": 0.6618141097424413,
+        "calibrator_auedr": 0.5637820512820513
+      }
+    }
+  }
+}

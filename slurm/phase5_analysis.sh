@@ -23,8 +23,8 @@ echo "Start: $(date)"
 echo "============================================"
 
 python scripts/phase5_analysis.py \
-    --scored_dir data/use_cases/scored_unified \
-    --output_dir data/use_cases/results_unified \
+    --scored_dir data/use_cases/scored_test_only_v2 \
+    --output_dir data/use_cases/results_test_only_v2 \
     --fig_dir figures/paper \
     --n_bootstrap 2000
 

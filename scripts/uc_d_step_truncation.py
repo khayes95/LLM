@@ -844,7 +844,7 @@ def main():
         description="UC-D Stage 2: Step-Truncation Confidence Scoring")
     parser.add_argument("--checkpoint", default=DEFAULT_CHECKPOINT,
                         help="Path to unified model checkpoint")
-    parser.add_argument("--output_dir", default="data/use_cases/results_unified",
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2",
                         help="Output directory for results")
     parser.add_argument("--fig_dir", default="figures/use_cases_unified",
                         help="Output directory for figures")

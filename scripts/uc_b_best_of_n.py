@@ -36,7 +36,7 @@ Outputs:
 
 Usage:
     python scripts/uc_b_best_of_n.py
-    python scripts/uc_b_best_of_n.py --scored_dir data/use_cases/scored_unified
+    python scripts/uc_b_best_of_n.py --scored_dir data/use_cases/scored_test_only_v2
     python scripts/uc_b_best_of_n.py --smoke_test
 """
 import argparse
@@ -584,9 +584,9 @@ def main():
     parser = argparse.ArgumentParser(
         description="UC-B: Best-of-N Verification via Calibrator "
                     "(Stage 1 — Cross-Model Selection, CPU-only)")
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified",
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2",
                         help="Directory with scored JSONL files")
-    parser.add_argument("--output_dir", default="data/use_cases/results_unified",
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2",
                         help="Directory for results JSON")
     parser.add_argument("--fig_dir", default="figures/use_cases_unified",
                         help="Directory for output figures")

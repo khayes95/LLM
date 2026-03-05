@@ -1,0 +1,568 @@
+{
+  "per_benchmark": {
+    "arc_agi": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.9059,
+        "brier": 0.1206,
+        "acc_rate": 0.5085,
+        "n": 118
+      },
+      "per_target": {
+        "gpt52": {
+          "auroc": 0.7544,
+          "brier": 0.1115,
+          "acc_rate": 0.8475,
+          "n": 59
+        },
+        "qwen35": {
+          "auroc": 0.7388,
+          "brier": 0.1298,
+          "acc_rate": 0.1695,
+          "n": 59
+        }
+      }
+    },
+    "bbeh": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.8987,
+        "brier": 0.1343,
+        "acc_rate": 0.4792,
+        "n": 144
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.8709,
+          "brier": 0.1579,
+          "acc_rate": 0.4681,
+          "n": 47
+        },
+        "gpt52": {
+          "auroc": 0.844,
+          "brier": 0.1647,
+          "acc_rate": 0.6441,
+          "n": 59
+        },
+        "qwen35": {
+          "auroc": 0.977,
+          "brier": 0.0578,
+          "acc_rate": 0.2368,
+          "n": 38
+        }
+      }
+    },
+    "charxiv": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.8985,
+        "brier": 0.1194,
+        "acc_rate": 0.6276,
+        "n": 239
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.8719,
+          "brier": 0.1638,
+          "acc_rate": 0.5373,
+          "n": 67
+        },
+        "gpt52": {
+          "auroc": 0.9485,
+          "brier": 0.0833,
+          "acc_rate": 0.7093,
+          "n": 86
+        },
+        "qwen35": {
+          "auroc": 0.8845,
+          "brier": 0.1209,
+          "acc_rate": 0.6163,
+          "n": 86
+        }
+      }
+    },
+    "chembench": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.787,
+        "brier": 0.1794,
+        "acc_rate": 0.6592,
+        "n": 223
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.7336,
+          "brier": 0.1894,
+          "acc_rate": 0.7164,
+          "n": 67
+        },
+        "gpt52": {
+          "auroc": 0.7988,
+          "brier": 0.1746,
+          "acc_rate": 0.6538,
+          "n": 78
+        },
+        "qwen35": {
+          "auroc": 0.816,
+          "brier": 0.1757,
+          "acc_rate": 0.6154,
+          "n": 78
+        }
+      }
+    },
+    "gpqa": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.8928,
+        "brier": 0.115,
+        "acc_rate": 0.765,
+        "n": 234
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.8533,
+          "brier": 0.1086,
+          "acc_rate": 0.8333,
+          "n": 78
+        },
+        "gpt52": {
+          "auroc": 0.9352,
+          "brier": 0.0526,
+          "acc_rate": 0.9231,
+          "n": 78
+        },
+        "qwen35": {
+          "auroc": 0.8132,
+          "brier": 0.1838,
+          "acc_rate": 0.5385,
+          "n": 78
+        }
+      }
+    },
+    "hallusionbench": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.9618,
+        "brier": 0.0489,
+        "acc_rate": 0.7989,
+        "n": 378
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 1.0,
+          "brier": 0.0177,
+          "acc_rate": 0.8125,
+          "n": 64
+        },
+        "gpt52": {
+          "auroc": 0.9629,
+          "brier": 0.0577,
+          "acc_rate": 0.8025,
+          "n": 157
+        },
+        "qwen35": {
+          "auroc": 0.9417,
+          "brier": 0.0529,
+          "acc_rate": 0.7898,
+          "n": 157
+        }
+      }
+    },
+    "hle": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.8617,
+        "brier": 0.1304,
+        "acc_rate": 0.2754,
+        "n": 167
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.88,
+          "brier": 0.115,
+          "acc_rate": 0.2063,
+          "n": 63
+        },
+        "gpt52": {
+          "auroc": 0.8624,
+          "brier": 0.1453,
+          "acc_rate": 0.3667,
+          "n": 60
+        },
+        "qwen35": {
+          "auroc": 0.8664,
+          "brier": 0.1323,
+          "acc_rate": 0.25,
+          "n": 44
+        }
+      }
+    },
+    "hle_multimodal": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.81,
+        "brier": 0.0983,
+        "acc_rate": 0.1429,
+        "n": 35
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.81,
+          "brier": 0.0983,
+          "acc_rate": 0.1429,
+          "n": 35
+        }
+      }
+    },
+    "livebench": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.9978,
+        "brier": 0.0189,
+        "acc_rate": 0.6531,
+        "n": 147
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9934,
+          "brier": 0.029,
+          "acc_rate": 0.6316,
+          "n": 57
+        },
+        "gpt52": {
+          "auroc": 1.0,
+          "brier": 0.0025,
+          "acc_rate": 0.7321,
+          "n": 56
+        },
+        "qwen35": {
+          "auroc": 0.9965,
+          "brier": 0.029,
+          "acc_rate": 0.5588,
+          "n": 34
+        }
+      }
+    },
+    "mathverse": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.961,
+        "brier": 0.0819,
+        "acc_rate": 0.4893,
+        "n": 233
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9595,
+          "brier": 0.0911,
+          "acc_rate": 0.4167,
+          "n": 84
+        },
+        "gpt52": {
+          "auroc": 0.9853,
+          "brier": 0.0472,
+          "acc_rate": 0.4535,
+          "n": 86
+        },
+        "qwen35": {
+          "auroc": 0.9234,
+          "brier": 0.1171,
+          "acc_rate": 0.6349,
+          "n": 63
+        }
+      }
+    },
+    "mathvision": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.9351,
+        "brier": 0.0969,
+        "acc_rate": 0.3746,
+        "n": 283
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.946,
+          "brier": 0.0884,
+          "acc_rate": 0.3694,
+          "n": 111
+        },
+        "gpt52": {
+          "auroc": 0.9286,
+          "brier": 0.1091,
+          "acc_rate": 0.4553,
+          "n": 123
+        },
+        "qwen35": {
+          "auroc": 0.9097,
+          "brier": 0.0857,
+          "acc_rate": 0.1837,
+          "n": 49
+        }
+      }
+    },
+    "mathvista": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.9847,
+        "brier": 0.0427,
+        "acc_rate": 0.3307,
+        "n": 378
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9805,
+          "brier": 0.0495,
+          "acc_rate": 0.3443,
+          "n": 122
+        },
+        "gpt52": {
+          "auroc": 0.9963,
+          "brier": 0.0281,
+          "acc_rate": 0.3359,
+          "n": 128
+        },
+        "qwen35": {
+          "auroc": 0.9733,
+          "brier": 0.0508,
+          "acc_rate": 0.3125,
+          "n": 128
+        }
+      }
+    },
+    "mmmu": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.9118,
+        "brier": 0.1212,
+        "acc_rate": 0.6848,
+        "n": 165
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9196,
+          "brier": 0.1115,
+          "acc_rate": 0.6545,
+          "n": 55
+        },
+        "gpt52": {
+          "auroc": 0.9579,
+          "brier": 0.0863,
+          "acc_rate": 0.7636,
+          "n": 55
+        },
+        "qwen35": {
+          "auroc": 0.8593,
+          "brier": 0.1659,
+          "acc_rate": 0.6364,
+          "n": 55
+        }
+      }
+    },
+    "mmstar": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.9283,
+        "brier": 0.0569,
+        "acc_rate": 0.8122,
+        "n": 362
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9184,
+          "brier": 0.0723,
+          "acc_rate": 0.7818,
+          "n": 110
+        },
+        "gpt52": {
+          "auroc": 0.9306,
+          "brier": 0.0492,
+          "acc_rate": 0.8333,
+          "n": 126
+        },
+        "qwen35": {
+          "auroc": 0.9481,
+          "brier": 0.0511,
+          "acc_rate": 0.8175,
+          "n": 126
+        }
+      }
+    },
+    "mmvet": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.975,
+        "brier": 0.0703,
+        "acc_rate": 0.3081,
+        "n": 172
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9855,
+          "brier": 0.0582,
+          "acc_rate": 0.3429,
+          "n": 35
+        },
+        "gpt52": {
+          "auroc": 0.9768,
+          "brier": 0.0848,
+          "acc_rate": 0.3333,
+          "n": 69
+        },
+        "qwen35": {
+          "auroc": 0.9644,
+          "brier": 0.0619,
+          "acc_rate": 0.2647,
+          "n": 68
+        }
+      }
+    },
+    "omnimath": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.9119,
+        "brier": 0.0962,
+        "acc_rate": 0.3228,
+        "n": 127
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9265,
+          "brier": 0.0746,
+          "acc_rate": 0.3208,
+          "n": 53
+        },
+        "gpt52": {
+          "auroc": 0.9412,
+          "brier": 0.0925,
+          "acc_rate": 0.3902,
+          "n": 41
+        },
+        "qwen35": {
+          "auroc": 0.835,
+          "brier": 0.1354,
+          "acc_rate": 0.2424,
+          "n": 33
+        }
+      }
+    },
+    "prbench": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.7724,
+        "brier": 0.164,
+        "acc_rate": 0.7183,
+        "n": 142
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.8385,
+          "brier": 0.1269,
+          "acc_rate": 0.7759,
+          "n": 58
+        },
+        "gpt52": {
+          "auroc": 0.6741,
+          "brier": 0.2201,
+          "acc_rate": 0.6724,
+          "n": 58
+        },
+        "qwen35": {
+          "auroc": 0.8819,
+          "brier": 0.1217,
+          "acc_rate": 0.6923,
+          "n": 26
+        }
+      }
+    },
+    "realworldqa": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.9926,
+        "brier": 0.0298,
+        "acc_rate": 0.465,
+        "n": 443
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9967,
+          "brier": 0.0252,
+          "acc_rate": 0.5118,
+          "n": 127
+        },
+        "gpt52": {
+          "auroc": 0.9965,
+          "brier": 0.0211,
+          "acc_rate": 0.4684,
+          "n": 158
+        },
+        "qwen35": {
+          "auroc": 0.985,
+          "brier": 0.0421,
+          "acc_rate": 0.4241,
+          "n": 158
+        }
+      }
+    },
+    "simpleqa": {
+      "modality": "TXT",
+      "combined": {
+        "auroc": 0.9285,
+        "brier": 0.0987,
+        "acc_rate": 0.3088,
+        "n": 217
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9602,
+          "brier": 0.0822,
+          "acc_rate": 0.1864,
+          "n": 59
+        },
+        "gpt52": {
+          "auroc": 0.9231,
+          "brier": 0.0887,
+          "acc_rate": 0.3291,
+          "n": 79
+        },
+        "qwen35": {
+          "auroc": 0.8966,
+          "brier": 0.121,
+          "acc_rate": 0.3797,
+          "n": 79
+        }
+      }
+    },
+    "vizwiz": {
+      "modality": "VLM",
+      "combined": {
+        "auroc": 0.9764,
+        "brier": 0.0477,
+        "acc_rate": 0.6042,
+        "n": 240
+      },
+      "per_target": {
+        "gpt5mini": {
+          "auroc": 0.9449,
+          "brier": 0.0694,
+          "acc_rate": 0.6087,
+          "n": 69
+        },
+        "gpt52": {
+          "auroc": 0.995,
+          "brier": 0.0427,
+          "acc_rate": 0.5814,
+          "n": 86
+        },
+        "qwen35": {
+          "auroc": 0.987,
+          "brier": 0.0353,
+          "acc_rate": 0.6235,
+          "n": 85
+        }
+      }
+    }
+  },
+  "n_total": 4447,
+  "n_benchmarks": 20
+}

@@ -18,7 +18,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, kendalltau, pearsonr
 
 
 def load_scored(path):
@@ -148,9 +148,9 @@ def plot_difficulty(bench_results, target_name, output_path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_v2")
-    parser.add_argument("--output_dir", default="data/use_cases/results")
-    parser.add_argument("--fig_dir", default="figures/use_cases")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
+    parser.add_argument("--fig_dir", default="figures/use_cases_v2")
     args = parser.parse_args()
 
     Path(args.output_dir).mkdir(parents=True, exist_ok=True)
@@ -177,21 +177,43 @@ def main():
 
         bench_results = benchmark_difficulty(samples)
 
-        # Rank correlation
+        # Rank correlations (multiple measures)
         benches = [b for b in bench_results if bench_results[b]["n"] >= 10]
         if len(benches) >= 5:
             accs = [bench_results[b]["accuracy"] for b in benches]
             mean_ps = [bench_results[b]["mean_p_correct"] for b in benches]
-            corr, pval = spearmanr(accs, mean_ps)
-            print(f"Rank correlation (accuracy vs mean P): r={corr:.3f}, p={pval:.4f}")
 
-            # Verbalized correlation
+            spearman_r, spearman_p = spearmanr(accs, mean_ps)
+            kendall_r, kendall_p = kendalltau(accs, mean_ps)
+            pearson_r, pearson_p = pearsonr(accs, mean_ps)
+
+            print(f"Calibrator rank correlations (accuracy vs mean P):")
+            print(f"  Spearman r={spearman_r:.3f} (p={spearman_p:.4f})")
+            print(f"  Kendall tau={kendall_r:.3f} (p={kendall_p:.4f})")
+            print(f"  Pearson r={pearson_r:.3f} (p={pearson_p:.4f})")
+
+            corr = spearman_r
+            pval = spearman_p
+
+            # Verbalized baseline
             verb_benches = [b for b in benches if "mean_verbalized" in bench_results[b]]
             if verb_benches:
                 v_accs = [bench_results[b]["accuracy"] for b in verb_benches]
                 v_verbs = [bench_results[b]["mean_verbalized"] for b in verb_benches]
-                v_corr, v_pval = spearmanr(v_accs, v_verbs)
-                print(f"Rank correlation (accuracy vs verbalized): r={v_corr:.3f}, p={v_pval:.4f}")
+                v_spearman, v_sp = spearmanr(v_accs, v_verbs)
+                v_kendall, v_kp = kendalltau(v_accs, v_verbs)
+                print(f"\nVerbalized rank correlations (accuracy vs verbalized):")
+                print(f"  Spearman r={v_spearman:.3f} (p={v_sp:.4f})")
+                print(f"  Kendall tau={v_kendall:.3f} (p={v_kp:.4f})")
+
+                # Significance of difference (Fisher z-transform)
+                n_b = len(verb_benches)
+                z_cal = np.arctanh(spearman_r)
+                z_verb = np.arctanh(v_spearman)
+                se_diff = np.sqrt(2 / (n_b - 3))
+                z_test = (z_cal - z_verb) / se_diff
+                print(f"\n  Cal vs Verb difference: z={z_test:.2f} "
+                      f"({'significant' if abs(z_test) > 1.96 else 'not significant'} at p<0.05)")
 
         # Print benchmark table
         print(f"\n  {'Benchmark':<20} {'Acc':>6} {'MeanP':>6} {'Overconf':>9} "
@@ -205,6 +227,9 @@ def main():
 
         all_results[target] = {
             "benchmarks": bench_results,
+            "spearman_r": float(spearman_r) if len(benches) >= 5 else None,
+            "kendall_tau": float(kendall_r) if len(benches) >= 5 else None,
+            "pearson_r": float(pearson_r) if len(benches) >= 5 else None,
             "rank_correlation": float(corr) if len(benches) >= 5 else None,
         }
 

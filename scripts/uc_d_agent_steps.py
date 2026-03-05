@@ -33,7 +33,7 @@ Outputs:
 
 Usage:
     python scripts/uc_d_agent_steps.py
-    python scripts/uc_d_agent_steps.py --scored_dir data/use_cases/scored_unified
+    python scripts/uc_d_agent_steps.py --scored_dir data/use_cases/scored_test_only_v2
     python scripts/uc_d_agent_steps.py --smoke_test
 """
 import argparse
@@ -645,11 +645,11 @@ def plot_overthinking(all_model_results, fig_path):
 def main():
     parser = argparse.ArgumentParser(
         description="UC-D: Agent Step Verification — Stage 1 (Step-Truncation Confidence Analysis)")
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified",
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2",
                         help="Directory with scored JSONL files")
-    parser.add_argument("--output_dir", default="data/use_cases/results_unified",
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2",
                         help="Directory for results JSON")
-    parser.add_argument("--fig_dir", default="figures/use_cases_unified",
+    parser.add_argument("--fig_dir", default="figures/use_cases_v2",
                         help="Directory for output figures")
     parser.add_argument("--smoke_test", action="store_true",
                         help="Only use first 50 samples per model")
@@ -917,8 +917,15 @@ def main():
 
     # --- Final Summary ---
     print(f"\n{'='*70}")
-    print("UC-D Summary: Agent Step Verification — Stage 1 Findings")
+    print("UC-D Summary: Agent Step Verification — HONEST NEGATIVE")
     print(f"{'='*70}")
+    print()
+    print("  NOTE: This use case is reported as an HONEST NEGATIVE / LIMITATION.")
+    print("  The calibrator was trained on full Q+A pairs, not intermediate")
+    print("  reasoning steps. Step-level AUROC is near random (~0.53).")
+    print("  The analysis below characterizes WHERE the calibrator has signal")
+    print("  (overthinking detection) and where it does not (step-level).")
+    print()
 
     for target in all_results:
         tname = target_names.get(target, target)

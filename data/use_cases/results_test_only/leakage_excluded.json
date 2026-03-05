@@ -1,0 +1,202 @@
+{
+  "description": "Leakage exclusion analysis: removes all test samples whose ID appears in the contamination report (exact Q+R and exact question overlaps with training data), then recomputes AUROC for the calibrator and all baselines.",
+  "contamination_source": "data/use_cases/results_test_only/contamination_report.json",
+  "n_contaminated_ids_in_report": 38,
+  "contaminated_ids": [
+    "arc_ARC-Challenge_dev_0",
+    "arc_ARC-Challenge_dev_1",
+    "arc_ARC-Challenge_dev_20",
+    "arc_ARC-Challenge_dev_30",
+    "bbeh_boardgame_qa_3",
+    "boolq_dev_10",
+    "boolq_dev_19",
+    "boolq_dev_23",
+    "boolq_dev_5",
+    "boolq_dev_9",
+    "drop_dev_14",
+    "drop_dev_19",
+    "drop_dev_28",
+    "drop_dev_44",
+    "gpqa_gpqa_diamond_1",
+    "gpqa_gpqa_diamond_107",
+    "gpqa_gpqa_diamond_125",
+    "gpqa_gpqa_diamond_174",
+    "gpqa_gpqa_diamond_181",
+    "gpqa_gpqa_diamond_191",
+    "gpqa_gpqa_diamond_39",
+    "gpqa_gpqa_diamond_42",
+    "gpqa_gpqa_diamond_47",
+    "gpqa_gpqa_diamond_49",
+    "gpqa_gpqa_diamond_7",
+    "gpqa_gpqa_diamond_80",
+    "gsm8k_dev_0",
+    "gsm8k_dev_27",
+    "gsm8k_dev_29",
+    "hellaswag_dev_37",
+    "hellaswag_dev_42",
+    "mgsm_en_61",
+    "mgsm_en_96",
+    "triviaqa_rc_dev_22",
+    "triviaqa_rc_dev_8",
+    "winogrande_xl_dev_18",
+    "winogrande_xl_dev_2",
+    "winogrande_xl_dev_43"
+  ],
+  "n_total": 4152,
+  "n_removed": 9,
+  "n_remaining": 4143,
+  "pct_removed": 0.22,
+  "full_aurocs": {
+    "calibrator": 0.9146999435302566,
+    "platt_verbalized": 0.6729955420235486,
+    "isotonic_verbalized": 0.6811096811096812,
+    "length_baseline": 0.6209735270690789,
+    "combined_baseline": 0.6766925786695144,
+    "zeroshot": 0.5396292974546681
+  },
+  "clean_aurocs": {
+    "calibrator": 0.9144221805039399,
+    "platt_verbalized": 0.6726757311696586,
+    "isotonic_verbalized": 0.6808673193070982,
+    "length_baseline": 0.61998050308843,
+    "combined_baseline": 0.676092657156601,
+    "zeroshot": 0.5395032402618318
+  },
+  "deltas": {
+    "calibrator": -0.000278,
+    "platt_verbalized": -0.00032,
+    "isotonic_verbalized": -0.000242,
+    "length_baseline": -0.000993,
+    "combined_baseline": -0.0006,
+    "zeroshot": -0.000126
+  },
+  "clean_bootstrap_ci": {
+    "calibrator": {
+      "mean": 0.9145248324327381,
+      "lower": 0.905750566784574,
+      "upper": 0.9228066266760879,
+      "std": 0.004452446832083981
+    },
+    "platt_verbalized": {
+      "mean": 0.6727961266930583,
+      "lower": 0.6568640567484447,
+      "upper": 0.6895201115647897,
+      "std": 0.008408992544341347
+    },
+    "isotonic_verbalized": {
+      "mean": 0.6811822728406739,
+      "lower": 0.6648805292392587,
+      "upper": 0.6975344338980269,
+      "std": 0.008301571811187935
+    },
+    "length_baseline": {
+      "mean": 0.6198860869458784,
+      "lower": 0.6030053984513345,
+      "upper": 0.6369914015869048,
+      "std": 0.008716111489275579
+    },
+    "combined_baseline": {
+      "mean": 0.6762191642172865,
+      "lower": 0.6600985580527854,
+      "upper": 0.6932799267759924,
+      "std": 0.008352317231111439
+    },
+    "zeroshot": {
+      "mean": 0.5392468026086301,
+      "lower": 0.5223543098790352,
+      "upper": 0.556626676571889,
+      "std": 0.008972779116807016
+    }
+  },
+  "per_target_model": {
+    "gpt5mini": {
+      "n_total": 1331,
+      "n_removed": 3,
+      "n_remaining": 1328,
+      "full_aurocs": {
+        "calibrator": 0.9172807196428976,
+        "platt_verbalized": 0.6894387419844561,
+        "isotonic_verbalized": 0.6889946298688057,
+        "length_baseline": 0.6532254775338182,
+        "combined_baseline": 0.7195273378197721,
+        "zeroshot": 0.5816939704982667
+      },
+      "clean_aurocs": {
+        "calibrator": 0.9169590763041242,
+        "platt_verbalized": 0.6888886613327507,
+        "isotonic_verbalized": 0.6885382248800779,
+        "length_baseline": 0.6518982733040242,
+        "combined_baseline": 0.7184925771187751,
+        "zeroshot": 0.5815083331057772
+      },
+      "deltas": {
+        "calibrator": -0.0003216433387733808,
+        "platt_verbalized": -0.0005500806517053647,
+        "isotonic_verbalized": -0.0004564049887277877,
+        "length_baseline": -0.0013272042297940434,
+        "combined_baseline": -0.0010347607009969506,
+        "zeroshot": -0.0001856373924894461
+      }
+    },
+    "gpt52": {
+      "n_total": 1550,
+      "n_removed": 3,
+      "n_remaining": 1547,
+      "full_aurocs": {
+        "calibrator": 0.9157692200245838,
+        "platt_verbalized": 0.6593692381830373,
+        "isotonic_verbalized": 0.6630515630238015,
+        "length_baseline": 0.6117661540395576,
+        "combined_baseline": 0.6678539501620293,
+        "zeroshot": 0.5203060397809811
+      },
+      "clean_aurocs": {
+        "calibrator": 0.9155500322291351,
+        "platt_verbalized": 0.6592504624180259,
+        "isotonic_verbalized": 0.6629174023317078,
+        "length_baseline": 0.6106939423238607,
+        "combined_baseline": 0.6672919819516844,
+        "zeroshot": 0.5201256936270389
+      },
+      "deltas": {
+        "calibrator": -0.00021918779544871647,
+        "platt_verbalized": -0.00011877576501140297,
+        "isotonic_verbalized": -0.00013416069209370995,
+        "length_baseline": -0.0010722117156969357,
+        "combined_baseline": -0.0005619682103449319,
+        "zeroshot": -0.00018034615394224573
+      }
+    },
+    "qwen35": {
+      "n_total": 1271,
+      "n_removed": 3,
+      "n_remaining": 1268,
+      "full_aurocs": {
+        "calibrator": 0.9110304153341902,
+        "platt_verbalized": 0.6829627305059924,
+        "isotonic_verbalized": 0.6327071938790759,
+        "length_baseline": 0.6079990934178149,
+        "combined_baseline": 0.674759905157556,
+        "zeroshot": 0.5226097612002749
+      },
+      "clean_aurocs": {
+        "calibrator": 0.910732288172269,
+        "platt_verbalized": 0.6829369576256984,
+        "isotonic_verbalized": 0.63253007527261,
+        "length_baseline": 0.606987669701086,
+        "combined_baseline": 0.6749706689481096,
+        "zeroshot": 0.52274813819741
+      },
+      "deltas": {
+        "calibrator": -0.00029812716192112454,
+        "platt_verbalized": -2.5772880294039346e-05,
+        "isotonic_verbalized": -0.00017711860646596467,
+        "length_baseline": -0.0010114237167289097,
+        "combined_baseline": 0.00021076379055362526,
+        "zeroshot": 0.00013837699713503682
+      }
+    }
+  },
+  "n_bootstrap": 2000,
+  "smoke_test": false
+}

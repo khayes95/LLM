@@ -31,7 +31,7 @@ if [ "${SMOKE:-0}" = "1" ]; then
     SMOKE_FLAG="--smoke_test"
 fi
 
-OUTPUT_DIR="data/use_cases/scored_v2"
+OUTPUT_DIR="data/use_cases/scored_test_only_v2"
 mkdir -p "$OUTPUT_DIR"
 
 nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader

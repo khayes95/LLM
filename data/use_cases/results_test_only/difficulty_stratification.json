@@ -1,0 +1,326 @@
+{
+  "description": "AUROC stratified by question difficulty. Difficulty = 1 - mean(is_correct) across target models per question.",
+  "n_total_records": 4152,
+  "n_unique_questions": 1442,
+  "difficulty_distribution": {
+    "n_questions": 1442,
+    "mean": 0.4461,
+    "median": 0.4226,
+    "std": 0.4106,
+    "min": 0.0,
+    "max": 1.0,
+    "pct_easy": 0.371,
+    "pct_hard": 0.276
+  },
+  "three_band_stratification": [
+    {
+      "band": "Easy (all correct)",
+      "n_samples": 1189,
+      "base_accuracy": 1.0,
+      "auroc_calibrator": null,
+      "auroc_verbalized": null,
+      "auroc_platt": null,
+      "auroc_combined": null,
+      "auroc_zeroshot": null
+    },
+    {
+      "band": "Medium (mixed)",
+      "n_samples": 2169,
+      "base_accuracy": 0.5265,
+      "auroc_calibrator": 0.9106,
+      "auroc_verbalized": 0.5856,
+      "auroc_platt": 0.6235,
+      "auroc_combined": 0.625,
+      "auroc_zeroshot": 0.5476
+    },
+    {
+      "band": "Hard (all wrong)",
+      "n_samples": 794,
+      "base_accuracy": 0.0,
+      "auroc_calibrator": null,
+      "auroc_verbalized": null,
+      "auroc_platt": null,
+      "auroc_combined": null,
+      "auroc_zeroshot": null
+    }
+  ],
+  "five_quantile_stratification": [
+    {
+      "band": "Q1 [0.00, 0.33)",
+      "n_samples": 1531,
+      "base_accuracy": 0.9556,
+      "auroc_calibrator": 0.9393,
+      "auroc_verbalized": 0.6241,
+      "auroc_platt": 0.6354,
+      "auroc_combined": 0.6361,
+      "auroc_zeroshot": 0.5781
+    },
+    {
+      "band": "Q2 [0.33, 0.50)",
+      "n_samples": 665,
+      "base_accuracy": 0.6391,
+      "auroc_calibrator": 0.915,
+      "auroc_verbalized": 0.5848,
+      "auroc_platt": 0.6217,
+      "auroc_combined": 0.6281,
+      "auroc_zeroshot": 0.5807
+    },
+    {
+      "band": "Q3 [0.50, 0.83)",
+      "n_samples": 1121,
+      "base_accuracy": 0.3898,
+      "auroc_calibrator": 0.8846,
+      "auroc_verbalized": 0.5435,
+      "auroc_platt": 0.5934,
+      "auroc_combined": 0.5659,
+      "auroc_zeroshot": 0.4831
+    },
+    {
+      "band": "Q4 [0.83, 1.00]",
+      "n_samples": 835,
+      "base_accuracy": 0.0072,
+      "auroc_calibrator": 0.7589,
+      "auroc_verbalized": 0.6166,
+      "auroc_platt": 0.6202,
+      "auroc_combined": 0.6466,
+      "auroc_zeroshot": 0.4398
+    }
+  ],
+  "quantile_edges": [
+    0.0,
+    0.3333,
+    0.5,
+    0.8333,
+    1.0
+  ],
+  "per_benchmark_difficulty": [
+    {
+      "band": "hle_multimodal",
+      "n_samples": 35,
+      "base_accuracy": 0.1429,
+      "auroc_calibrator": 0.7367,
+      "auroc_verbalized": 0.6,
+      "auroc_platt": 0.6,
+      "auroc_combined": 0.5714,
+      "auroc_zeroshot": 0.26,
+      "mean_difficulty": 0.8357
+    },
+    {
+      "band": "simpleqa",
+      "n_samples": 227,
+      "base_accuracy": 0.2687,
+      "auroc_calibrator": 0.8703,
+      "auroc_verbalized": 0.7267,
+      "auroc_platt": 0.7606,
+      "auroc_combined": 0.7768,
+      "auroc_zeroshot": 0.6278,
+      "mean_difficulty": 0.7313
+    },
+    {
+      "band": "hle",
+      "n_samples": 155,
+      "base_accuracy": 0.2774,
+      "auroc_calibrator": 0.7975,
+      "auroc_verbalized": 0.6117,
+      "auroc_platt": 0.7044,
+      "auroc_combined": 0.6443,
+      "auroc_zeroshot": 0.4657,
+      "mean_difficulty": 0.7274
+    },
+    {
+      "band": "mmvet",
+      "n_samples": 44,
+      "base_accuracy": 0.3409,
+      "auroc_calibrator": 0.6368,
+      "auroc_verbalized": 0.3402,
+      "auroc_platt": 0.3989,
+      "auroc_combined": 0.2644,
+      "auroc_zeroshot": 0.2713,
+      "mean_difficulty": 0.6591
+    },
+    {
+      "band": "omnimath",
+      "n_samples": 108,
+      "base_accuracy": 0.3519,
+      "auroc_calibrator": 0.9038,
+      "auroc_verbalized": 0.7039,
+      "auroc_platt": 0.6177,
+      "auroc_combined": 0.634,
+      "auroc_zeroshot": 0.5579,
+      "mean_difficulty": 0.6481
+    },
+    {
+      "band": "mathvista",
+      "n_samples": 379,
+      "base_accuracy": 0.3298,
+      "auroc_calibrator": 0.9445,
+      "auroc_verbalized": 0.5404,
+      "auroc_platt": 0.5019,
+      "auroc_combined": 0.5048,
+      "auroc_zeroshot": 0.4978,
+      "mean_difficulty": 0.5417
+    },
+    {
+      "band": "mathvision",
+      "n_samples": 283,
+      "base_accuracy": 0.3958,
+      "auroc_calibrator": 0.8935,
+      "auroc_verbalized": 0.6096,
+      "auroc_platt": 0.6672,
+      "auroc_combined": 0.6742,
+      "auroc_zeroshot": 0.5158,
+      "mean_difficulty": 0.5269
+    },
+    {
+      "band": "bbeh",
+      "n_samples": 132,
+      "base_accuracy": 0.5076,
+      "auroc_calibrator": 0.8563,
+      "auroc_verbalized": 0.7502,
+      "auroc_platt": 0.7855,
+      "auroc_combined": 0.7247,
+      "auroc_zeroshot": 0.3741,
+      "mean_difficulty": 0.4924
+    },
+    {
+      "band": "arc_agi",
+      "n_samples": 110,
+      "base_accuracy": 0.5182,
+      "auroc_calibrator": 0.925,
+      "auroc_verbalized": 0.2367,
+      "auroc_platt": 0.6551,
+      "auroc_combined": 0.3804,
+      "auroc_zeroshot": 0.4836,
+      "mean_difficulty": 0.4818
+    },
+    {
+      "band": "mathverse",
+      "n_samples": 230,
+      "base_accuracy": 0.4739,
+      "auroc_calibrator": 0.7542,
+      "auroc_verbalized": 0.6825,
+      "auroc_platt": 0.5639,
+      "auroc_combined": 0.5908,
+      "auroc_zeroshot": 0.6037,
+      "mean_difficulty": 0.4497
+    },
+    {
+      "band": "realworldqa",
+      "n_samples": 432,
+      "base_accuracy": 0.5069,
+      "auroc_calibrator": 0.9823,
+      "auroc_verbalized": 0.6294,
+      "auroc_platt": 0.6474,
+      "auroc_combined": 0.7597,
+      "auroc_zeroshot": 0.6086,
+      "mean_difficulty": 0.423
+    },
+    {
+      "band": "hallusionbench",
+      "n_samples": 353,
+      "base_accuracy": 0.8272,
+      "auroc_calibrator": 0.8924,
+      "auroc_verbalized": 0.5981,
+      "auroc_platt": 0.6782,
+      "auroc_combined": 0.6464,
+      "auroc_zeroshot": 0.5819,
+      "mean_difficulty": 0.3782
+    },
+    {
+      "band": "charxiv",
+      "n_samples": 239,
+      "base_accuracy": 0.6276,
+      "auroc_calibrator": 0.8254,
+      "auroc_verbalized": 0.6058,
+      "auroc_platt": 0.6515,
+      "auroc_combined": 0.6602,
+      "auroc_zeroshot": 0.5095,
+      "mean_difficulty": 0.3724
+    },
+    {
+      "band": "chembench",
+      "n_samples": 223,
+      "base_accuracy": 0.6592,
+      "auroc_calibrator": 0.7512,
+      "auroc_verbalized": 0.6869,
+      "auroc_platt": 0.7234,
+      "auroc_combined": 0.7058,
+      "auroc_zeroshot": 0.6225,
+      "mean_difficulty": 0.3408
+    },
+    {
+      "band": "livebench",
+      "n_samples": 136,
+      "base_accuracy": 0.6691,
+      "auroc_calibrator": 0.9816,
+      "auroc_verbalized": 0.6606,
+      "auroc_platt": 0.6507,
+      "auroc_combined": 0.6744,
+      "auroc_zeroshot": 0.3437,
+      "mean_difficulty": 0.3309
+    },
+    {
+      "band": "vizwiz",
+      "n_samples": 227,
+      "base_accuracy": 0.7004,
+      "auroc_calibrator": 0.9561,
+      "auroc_verbalized": 0.7094,
+      "auroc_platt": 0.7216,
+      "auroc_combined": 0.7242,
+      "auroc_zeroshot": 0.5785,
+      "mean_difficulty": 0.3236
+    },
+    {
+      "band": "mmmu",
+      "n_samples": 165,
+      "base_accuracy": 0.6848,
+      "auroc_calibrator": 0.8547,
+      "auroc_verbalized": 0.8233,
+      "auroc_platt": 0.8433,
+      "auroc_combined": 0.8297,
+      "auroc_zeroshot": 0.6178,
+      "mean_difficulty": 0.3152
+    },
+    {
+      "band": "mmstar",
+      "n_samples": 350,
+      "base_accuracy": 0.8114,
+      "auroc_calibrator": 0.8733,
+      "auroc_verbalized": 0.6887,
+      "auroc_platt": 0.6941,
+      "auroc_combined": 0.655,
+      "auroc_zeroshot": 0.4938,
+      "mean_difficulty": 0.304
+    },
+    {
+      "band": "prbench",
+      "n_samples": 90,
+      "base_accuracy": 0.7222,
+      "auroc_calibrator": 0.6575,
+      "auroc_verbalized": 0.6039,
+      "auroc_platt": 0.5487,
+      "auroc_combined": 0.5239,
+      "auroc_zeroshot": 0.6262,
+      "mean_difficulty": 0.2778
+    },
+    {
+      "band": "gpqa",
+      "n_samples": 234,
+      "base_accuracy": 0.765,
+      "auroc_calibrator": 0.9031,
+      "auroc_verbalized": 0.5435,
+      "auroc_platt": 0.72,
+      "auroc_combined": 0.6882,
+      "auroc_zeroshot": 0.5854,
+      "mean_difficulty": 0.235
+    }
+  ],
+  "difficulty_confidence_correlation": {
+    "spearman_rho": -0.5477,
+    "spearman_pvalue": 0.0,
+    "n_samples": 4152,
+    "per_question_spearman_rho": -0.689,
+    "per_question_spearman_pvalue": 1.5527300104372002e-203,
+    "n_questions": 1442
+  }
+}

@@ -35,20 +35,20 @@ done
 
 echo ""
 echo ">>> Step 1 complete — verifying file sizes"
-wc -l data/use_cases/scored_unified/*.jsonl
+wc -l data/use_cases/scored_test_only_v2/*.jsonl
 
 # Step 2: Compute CPU baselines (Platt, length, combined) — ~1 min
 echo ""
 echo ">>> Step 2: Computing CPU baselines"
 echo "============================================"
-python scripts/compute_baselines.py --scored_dir data/use_cases/scored_unified
+python scripts/compute_baselines.py --scored_dir data/use_cases/scored_test_only_v2
 
 # Step 3: Zero-shot base model baseline (~60 min)
 echo ""
 echo ">>> Step 3: Zero-shot base model baseline"
 echo "============================================"
 python scripts/zero_shot_baseline.py \
-    --scored_dir data/use_cases/scored_unified \
+    --scored_dir data/use_cases/scored_test_only_v2 \
     --batch_size 1
 
 # Step 4: Bootstrap confidence intervals — ~5 min
@@ -56,7 +56,7 @@ echo ""
 echo ">>> Step 4: Bootstrap confidence intervals"
 echo "============================================"
 python scripts/bootstrap_ci.py \
-    --scored_dir data/use_cases/scored_unified \
+    --scored_dir data/use_cases/scored_test_only_v2 \
     --n_bootstrap 2000
 
 # Step 5: Re-run UC5 with unified scores
@@ -64,8 +64,8 @@ echo ""
 echo ">>> Step 5: UC5 with unified calibrator"
 echo "============================================"
 python scripts/uc5_uq_reward_model.py \
-    --scored_dir data/use_cases/scored_unified \
-    --output_dir data/use_cases/results_unified \
+    --scored_dir data/use_cases/scored_test_only_v2 \
+    --output_dir data/use_cases/results_test_only_v2 \
     --fig_dir figures/use_cases_unified
 
 echo ""
@@ -73,6 +73,6 @@ echo "============================================"
 echo "PIPELINE COMPLETE — $(date)"
 echo "============================================"
 echo "Outputs:"
-echo "  Scored data: data/use_cases/scored_unified/"
-echo "  Bootstrap CIs: data/use_cases/results_unified/bootstrap_ci.json"
-echo "  UC5 results: data/use_cases/results_unified/"
+echo "  Scored data: data/use_cases/scored_test_only_v2/"
+echo "  Bootstrap CIs: data/use_cases/results_test_only_v2/bootstrap_ci.json"
+echo "  UC5 results: data/use_cases/results_test_only_v2/"

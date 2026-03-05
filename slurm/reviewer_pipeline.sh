@@ -49,7 +49,7 @@ echo "============================================"
 # Step 1: Filter scored data to test-only + re-run all use cases
 echo "--- Step 1: Filter to test-only + re-run use cases ($(date)) ---"
 python scripts/filter_test_only.py \
-    --scored_dir data/use_cases/scored_unified \
+    --scored_dir data/use_cases/CONTAMINATED_scored_unified \
     --output_scored data/use_cases/scored_test_only \
     --output_dir data/use_cases/results_test_only \
     --fig_dir figures/use_cases_test_only
@@ -186,4 +186,4 @@ echo "  Held-out benchmark: data/ablations/held_out_benchmark/"
 echo "  Multi-seed: data/ablations/multi_seed/"
 echo "  Significance tests: data/use_cases/results_test_only/significance_tests.json"
 echo "  Per-benchmark: data/use_cases/results_test_only/per_benchmark_breakdown.json"
-echo "  Literature: data/use_cases/results_unified/literature_comparison.json"
+echo "  Literature: data/use_cases/results_test_only_v2/literature_comparison.json"

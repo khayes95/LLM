@@ -4,15 +4,13 @@
 Given multiple models' responses to the same question, can P(correct)
 correctly identify the best response?
 
-Key approach: Use the UNIFIED calibrator (scored_unified) so that P(correct)
+Key approach: Use the UNIFIED calibrator (scored_test_only_v2) so that P(correct)
 comes from the same model across all targets. This is the honest cross-model
-evaluation. For legacy per-model comparison, use --scored_dir scored_v2.
+evaluation on test-only data (no data leakage).
 
 Usage:
-    # Unified calibrator (recommended)
-    python scripts/uc5_uq_reward_model.py --scored_dir data/use_cases/scored_unified
-    # Legacy per-model calibrators
-    python scripts/uc5_uq_reward_model.py --scored_dir data/use_cases/scored_v2
+    # Unified calibrator, test-only (recommended)
+    python scripts/uc5_uq_reward_model.py --scored_dir data/use_cases/scored_test_only_v2
 """
 import argparse
 import json
@@ -227,8 +225,8 @@ def plot_reward_model(all_pairwise, bon_results, output_path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_v2")
-    parser.add_argument("--output_dir", default="data/use_cases/results")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
     parser.add_argument("--fig_dir", default="figures/use_cases")
     args = parser.parse_args()
 

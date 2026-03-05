@@ -159,7 +159,7 @@ def delong_test(labels, preds_a, preds_b):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only")
-    parser.add_argument("--output", default="data/use_cases/results_unified/significance_tests.json")
+    parser.add_argument("--output", default="data/use_cases/results_test_only_v2/significance_tests.json")
     parser.add_argument("--n_permutations", type=int, default=10000)
     args = parser.parse_args()
 

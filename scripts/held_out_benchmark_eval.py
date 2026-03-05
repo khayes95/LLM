@@ -15,9 +15,9 @@ whether a full retrain with held-out benchmarks is needed.
 Usage:
     python scripts/held_out_benchmark_eval.py
     python scripts/held_out_benchmark_eval.py --smoke_test
-    python scripts/held_out_benchmark_eval.py --scored_dir data/use_cases/scored_unified \
+    python scripts/held_out_benchmark_eval.py --scored_dir data/use_cases/scored_test_only_v2 \
         --split_info uq_models/best_unified/split_info.json \
-        --output_dir data/use_cases/results_unified
+        --output_dir data/use_cases/results_test_only_v2
 """
 
 import argparse
@@ -465,8 +465,8 @@ def main():
     )
     parser.add_argument(
         "--scored_dir",
-        default="data/use_cases/scored_unified",
-        help="Directory with scored JSONL files (default: data/use_cases/scored_unified)",
+        default="data/use_cases/scored_test_only_v2",
+        help="Directory with scored JSONL files (default: data/use_cases/scored_test_only_v2)",
     )
     parser.add_argument(
         "--split_info",
@@ -476,8 +476,8 @@ def main():
     )
     parser.add_argument(
         "--output_dir",
-        default="data/use_cases/results_unified",
-        help="Directory to write results JSON (default: data/use_cases/results_unified)",
+        default="data/use_cases/results_test_only_v2",
+        help="Directory to write results JSON (default: data/use_cases/results_test_only_v2)",
     )
     parser.add_argument(
         "--k",

@@ -8,8 +8,8 @@ computes AUROC with 95% confidence intervals using bootstrap resampling.
 This produces a summary table that can be included in the report.
 
 Usage:
-    python scripts/bootstrap_ci.py --scored_dir data/use_cases/scored_unified
-    python scripts/bootstrap_ci.py --scored_dir data/use_cases/scored_unified --smoke_test
+    python scripts/bootstrap_ci.py --scored_dir data/use_cases/scored_test_only_v2
+    python scripts/bootstrap_ci.py --scored_dir data/use_cases/scored_test_only_v2 --smoke_test
 """
 
 import argparse
@@ -76,8 +76,8 @@ def compute_one_baseline(args_tuple):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified")
-    parser.add_argument("--output", default="data/use_cases/results_unified/bootstrap_ci.json")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output", default="data/use_cases/results_test_only_v2/bootstrap_ci.json")
     parser.add_argument("--n_bootstrap", type=int, default=2000)
     parser.add_argument("--smoke_test", action="store_true")
     args = parser.parse_args()

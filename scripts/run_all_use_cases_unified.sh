@@ -7,8 +7,8 @@ cd /scratch/khayes/LLM
 eval "$(conda shell.bash hook)"
 conda activate uq_eval
 
-SCORED_DIR="data/use_cases/scored_unified"
-RESULTS_DIR="data/use_cases/results_unified"
+SCORED_DIR="data/use_cases/scored_test_only_v2"
+RESULTS_DIR="data/use_cases/results_test_only_v2"
 FIGURES_DIR="figures/use_cases_unified"
 
 mkdir -p "$RESULTS_DIR" "$FIGURES_DIR"

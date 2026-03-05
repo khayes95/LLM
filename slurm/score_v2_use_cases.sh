@@ -24,11 +24,11 @@ eval "$(conda shell.bash hook)"
 conda activate uq_eval
 
 # Use whichever GPU is free
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 CHECKPOINT="uq_models/best_v2_r32_combined"
-SCORED_DIR="data/use_cases/scored_v2"
+SCORED_DIR="data/use_cases/scored_test_only_v2"
 TEST_SCORED="data/use_cases/scored_test_only_v2"
 RESULTS_DIR="data/use_cases/results_test_only_v2"
 FIGURES_DIR="figures/use_cases_v2"

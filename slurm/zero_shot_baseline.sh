@@ -19,7 +19,7 @@ echo "Starting zero-shot baseline at $(date)"
 echo "GPUs: $CUDA_VISIBLE_DEVICES"
 
 python scripts/zero_shot_baseline.py \
-    --scored_dir data/use_cases/scored_unified \
+    --scored_dir data/use_cases/scored_test_only_v2 \
     --batch_size 1
 
 echo "Finished at $(date)"

@@ -170,9 +170,9 @@ def plot_cascade(pareto_cal, pareto_verb, baselines, output_path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored")
-    parser.add_argument("--output_dir", default="data/use_cases/results")
-    parser.add_argument("--fig_dir", default="figures/use_cases")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
+    parser.add_argument("--fig_dir", default="figures/use_cases_v2")
     parser.add_argument("--human_accuracy", type=float, default=1.0)
     args = parser.parse_args()
 
@@ -241,6 +241,68 @@ def main():
               f"{p['avg_cost']:>8.1f} {p['tier1_frac']:>6.1%} {p['tier2_frac']:>6.1%} "
               f"{p['tier3_frac']:>7.1%}")
 
+    # 2-tier cascade: just cheap vs expensive (no human), for cleaner cost-accuracy curve
+    print(f"\n  --- 2-Tier Cascade (no human tier) ---")
+    two_tier_cal = []
+    two_tier_verb = []
+    for t1 in np.arange(0.05, 1.0, 0.025):
+        n_cheap = 0
+        n_exp = 0
+        correct = 0
+        for p in paired:
+            s1 = p.get("mini_p") or 0.5
+            if s1 >= t1:
+                n_cheap += 1
+                correct += p["mini_correct"]
+            else:
+                n_exp += 1
+                correct += p["gpt52_correct"]
+        n = len(paired)
+        cost = (n_cheap * 1.0 + n_exp * (1.0 + cost_ratio)) / n
+        two_tier_cal.append({
+            "threshold": float(t1),
+            "accuracy": float(correct / n),
+            "cost": float(cost),
+            "pct_cheap": float(n_cheap / n),
+        })
+
+        # Verbalized version
+        n_cheap_v = 0
+        n_exp_v = 0
+        correct_v = 0
+        for p in paired:
+            sv = p.get("mini_verb") or 0.5
+            if sv >= t1:
+                n_cheap_v += 1
+                correct_v += p["mini_correct"]
+            else:
+                n_exp_v += 1
+                correct_v += p["gpt52_correct"]
+        cost_v = (n_cheap_v * 1.0 + n_exp_v * (1.0 + cost_ratio)) / n
+        two_tier_verb.append({
+            "threshold": float(t1),
+            "accuracy": float(correct_v / n),
+            "cost": float(cost_v),
+            "pct_cheap": float(n_cheap_v / n),
+        })
+
+    # Break-even: match GPT-5.2 accuracy with minimum cost
+    break_even = None
+    for pt in two_tier_cal:
+        if pt["accuracy"] >= gpt52_acc - 0.005:
+            break_even = pt
+            break
+
+    if break_even:
+        full_cost = 1.0 + cost_ratio
+        savings = (1 - break_even["cost"] / full_cost) * 100
+        print(f"  Break-even: matches GPT-5.2 accuracy ({gpt52_acc:.1%}) at "
+              f"threshold={break_even['threshold']:.2f}")
+        print(f"    {break_even['pct_cheap']:.0%} queries handled by cheap model")
+        print(f"    Cost savings: {savings:.0f}% vs always using GPT-5.2")
+    else:
+        print(f"  2-tier cascade never reaches GPT-5.2 accuracy ({gpt52_acc:.1%})")
+
     # Sensitivity analysis for human accuracy
     print(f"\n  Sensitivity: Human accuracy impact")
     for ha in [0.90, 0.95, 1.0]:
@@ -261,17 +323,22 @@ def main():
 
     # Save
     out_path = f"{args.output_dir}/uc6_results.json"
+    save_data = {
+        "n_paired": len(paired),
+        "mini_accuracy": float(mini_acc),
+        "gpt52_accuracy": float(gpt52_acc),
+        "cost_ratio": cost_ratio,
+        "human_accuracy": args.human_accuracy,
+        "pareto_frontier_calibrator": pareto_cal[:10],
+        "pareto_frontier_verbalized": pareto_verb[:10],
+        "baselines": baselines,
+        "two_tier_calibrator": two_tier_cal,
+        "two_tier_verbalized": two_tier_verb,
+    }
+    if break_even:
+        save_data["break_even"] = break_even
     with open(out_path, "w") as f:
-        json.dump({
-            "n_paired": len(paired),
-            "mini_accuracy": float(mini_acc),
-            "gpt52_accuracy": float(gpt52_acc),
-            "cost_ratio": cost_ratio,
-            "human_accuracy": args.human_accuracy,
-            "pareto_frontier_calibrator": pareto_cal[:10],
-            "pareto_frontier_verbalized": pareto_verb[:10],
-            "baselines": baselines,
-        }, f, indent=2)
+        json.dump(save_data, f, indent=2)
     print(f"\nResults saved to {out_path}")
 
 

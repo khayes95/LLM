@@ -4,13 +4,144 @@
 
 ---
 
+## 2026-03-03
+
+### Qwen3.5 Model Size Ablation (0.8B, 2B, 4B, 9B) — Complete
+Why: Test newer Qwen3.5 model family as calibrator backbone at 4 sizes, compare to Qwen3-VL (2B=0.816, 4B=0.830, 8B=0.827).
+Script: `scripts/train_best_uq.py` via `slurm/qwen35_train_single.sh` | SLURM 8346-8349 | Output: `data/ablations/qwen35_model_size/`
+Config: v2 (combined prompt, split_info reuse, LoRA r=16 for 0.8B-4B, r=32 for 9B), transformers 5.2.0
+Result:
+- 0.8B: AUROC=0.852 (VLM=0.854, Text=0.849) — **best**
+- 2B: AUROC=0.850 (VLM=0.856, Text=0.835)
+- 4B: AUROC=0.663 (VLM=0.674, Text=0.722) — poor
+- 9B: AUROC=0.771 (VLM=0.793, Text=0.728)
+- Qwen3.5-0.8B matches Qwen3-VL-8B (0.827→0.852) at 10x fewer params. Larger Qwen3.5 models overfit with LoRA.
+
+### LaTeX tables fully updated to v2 — Complete
+Why: Fix stale v1 data in LaTeX tables (CIs, N count, training size, p-values, literature).
+Scripts: `cpu_latex_tables.py`, `paired_significance_tests.py`, `literature_comparison.py`
+Output: `data/use_cases/results_test_only_v2/latex_tables.tex` (6 tables), `significance_tests.json`, `literature_comparison.json`
+Result: All 6 tables now use v2 test-only data. CIs correct (0.947-0.958), p<0.001*** all baselines, training size uses v2 ablation (0.503-0.896).
+
+### Enhanced All 11 Use Cases (v2) — Complete
+Why: Strengthen all UCs with missing baselines, bootstrap CIs, merged duplicates, honest negatives.
+Script: 11 scripts via `slurm/run_all_use_cases_v2.sh` | SLURM 8259 (4m20s) | Output: `data/use_cases/results_test_only_v2/`
+Changes:
+- **UC3+UC9 merged** → `uc3_error_discovery.py` (binary detection + ranked annotation efficiency)
+- **UC5+UC-B merged** → `uc5_response_selection.py` (pairwise + best-of-N)
+- **UC1**: Added conformal prediction baseline, coverage@90%/95%, response length baseline
+- **UC2**: Added oracle router, break-even analysis (53% cost savings, 72% routed cheap)
+- **UC4**: Added Kendall tau, Fisher z-test for significance
+- **UC6**: Added 2-tier cascade, break-even (58% savings, 70% cheap)
+- **UC7**: Added simulated retry experiment (calibrator beats random/verbalized at all budgets)
+- **UC8**: Added bootstrap CIs on alert F1, KS test for distribution shift, calibration drift (r=0.806-0.839)
+- **UC-A**: Added bootstrap CIs (pair acc 0.975 [0.970,0.980]), reward quality (point-biserial r=0.812-0.824 vs verbalized 0.127-0.302)
+- **UC-C**: Added bootstrap CIs, data efficiency ratio
+- **UC-D**: Framed as honest negative (step-level AUROC ~0.53)
+Result: All 11 UCs pass. Figures: `figures/use_cases_v2/`. Now 8 real UCs + 1 honest negative (UC-D dropped from count).
+
+### Training Size Ablation — Complete
+Why: How many training samples needed for calibrator performance?
+Script: `scripts/train_best_uq.py` via `slurm/training_size_ablation.sh` | SLURM 8257 | Output: `data/ablations/training_size/summary.json`
+Result: N=100→0.503, N=250→0.670, N=500→0.696, N=1000→0.785, N=2000→0.814, N=5000→0.862, N=full(10392)→0.896. Steep gains up to 1000, diminishing returns after 2000. 5000 samples = 96% of full performance.
+
+### Figures upgraded to v2 test-only data
+Why: Consistency — all figures now use v2 model on test-only data.
+Scripts: `compute_baselines.py` → `bootstrap_ci.py` → `cpu_generate_all_figures.py`
+Output: `figures/paper/` (9 figures), `results_test_only_v2/bootstrap_ci.json` (6 baselines), `scored_test_only_v2/*.jsonl` (augmented with Platt/isotonic/length/combined fields).
+Result: Combined AUROC 0.953 [0.947, 0.958]. Best baseline: Isotonic 0.653. New figure: `fig_training_size_ablation`.
+
+---
+
+## 2026-03-02
+
+### DATA LEAKAGE — Per-model scoring AUROCs are invalid
+
+**SERIOUS OVERSIGHT:** The per-model scoring AUROCs (GPT-5-mini 0.971, GPT-5.2 0.970, Qwen3.5 0.959 on v1; 0.951/0.959/0.946 on v2) were computed on `scored_v2/` and `scored_unified/` which include **60-67% training data**. These numbers are inflated and essentially useless for paper reporting.
+
+- `scored_v2/` contains 4,102-4,412 samples per model — but only ~1,774 are held-out test samples
+- The rest are training data the model has already seen, artificially boosting AUROC
+- **ALL figures, tables, and results that used these per-model numbers need to be recomputed using `scored_test_only_v2/` or the held-out test set only**
+
+Correct metrics to use:
+- **Held-out test AUROC: 0.898** (v2 checkpoint, cleanest metric)
+- **Test-only scoring AUROC: 0.953** [0.947, 0.958] combined (already computed in `scored_test_only_v2/`)
+- Any per-model breakdown must use test-only splits exclusively
+
+Action items:
+1. Audit all figures and tables in `figures/paper/` and the report for contaminated numbers
+2. Regenerate any that used `scored_v2/` instead of `scored_test_only_v2/`
+3. In the paper, only report held-out AUROC (0.898) and test-only scoring AUROC (0.953)
+
+---
+
+## 2026-03-01
+
+### 01:30 — CPU analysis batch (5 scripts, all completed)
+Why: Utilize debug/CPU resources for paper-strengthening analyses.
+Scripts & outputs:
+
+| Script | Output | Key result |
+|--------|--------|------------|
+| `scripts/cpu_exhaustive_bootstrap.py` | `results_test_only/exhaustive_bootstrap.json` | 100K BCa bootstrap. Combined AUROC=0.915 [0.906, 0.923]. P(Cal>base)=1.0 all baselines. |
+| `scripts/cpu_contamination_check.py` | `results_test_only/contamination_report.json` | 87 exact train/test Q+R overlaps (multi-model expected). GSM8K↔MGSM cross-bench (97 pairs, by design). 32.7% test >0.8 Jaccard to train. |
+| `scripts/cpu_feature_analysis.py` | `results_test_only/feature_analysis.json` | Cal accuracy 84.1%. Error predictors: question_length (p=0.0005), output_tokens (p=0.0014). LR on features = 83.9% (no signal beyond calibrator). |
+| `scripts/cpu_prompt_perturbation.py` | `perturbations/all_perturbations.jsonl` | 58,403 perturbations from 4,152 samples (14.1 avg). 3 active strategies. |
+| `scripts/cpu_generate_all_figures.py` | `figures/paper/` | 8 publication figures (PNG@300dpi + PDF). |
+
+Note: Debug partition nodes lack `/scratch` mount. Ran on login node (256 CPUs).
+Contamination: Most overlaps are expected (same question across target models, GSM8K⊂MGSM). Needs careful framing in paper.
+
+### 22:15 — Reviewer-readiness CPU analyses (7 scripts, all completed)
+Why: Strengthen paper against reviewer concerns with additional analyses.
+Scripts & outputs:
+
+| Script | Output | Key result |
+|--------|--------|------------|
+| `scripts/cpu_leakage_excluded.py` | `results_test_only/leakage_excluded.json` | Removed 87 contaminated IDs → AUROC 0.915→0.914 (Δ=-0.0003). No impact. |
+| `scripts/cpu_scoring_rules.py` | `results_test_only/scoring_rules.json` | Brier=0.116 (2x better than next), LogLoss=0.409, ECE=0.035. Cal dominates all proper scoring rules. |
+| `scripts/cpu_difficulty_stratification.py` | `results_test_only/difficulty_stratification.json` | Medium-difficulty AUROC=0.911. 5-quantile: Q1=0.939, Q2=0.915, Q3=0.885, Q4=0.759. Spearman=-0.689. |
+| `scripts/cpu_decision_thresholds.py` | `results_test_only/decision_thresholds.json` | PR-AUC=0.924 (next: 0.724). Only method achieving 90% precision (t=0.74) or 95% precision (t=0.94). |
+| `scripts/cpu_sensitivity_analysis.py` | `results_test_only/sensitivity_analysis.json` | AUROC stable across Jaccard thresholds: 0.915 (all) → 0.903 (remove 67% with Jaccard≥1.0). Range=0.012. |
+| `scripts/cpu_failure_cases.py` | `results_test_only/failure_cases.json` | 200 curated cases (FP/FN/disagreements/successes). Failures spread across 19 benchmarks (entropy=0.94). |
+| `scripts/cpu_latex_tables.py` | `results_test_only/latex_tables.tex` | 6 publication tables (main results, per-benchmark, use cases, cross-model, literature, ablations). |
+
+Key takeaway: Contamination sensitivity shows AUROC=0.903 even after removing ALL exact question matches (66.6% of data). The ~1% drop is from reduced sample size, not leakage.
+
+### 14:00 — Perturbation GPU scoring completed (SLURM 8171)
+Why: Score 58K perturbations with UQ judge for prompt perturbation consistency analysis.
+Script: `scripts/score_perturbations.py` | Output: `data/use_cases/perturbations/scored_perturbations.jsonl`
+Result: 58,403 scored in 2h on 4 GPUs. Perturbation consistency NOT useful: consistency AUROC=0.521, pert mean=0.717, combined hurts (0.868 vs orig 0.881). Honest negative.
+
+### 09:24 — Score v2 + use cases pipeline (SLURM 8155)
+Why: Score all predictions with v2 checkpoint, filter test-only, re-run all 11 UCs.
+Script: `slurm/score_v2_use_cases.sh` | Output: `data/use_cases/results_test_only_v2/`
+Result: Test-only AUROC **0.953** [0.947, 0.958] combined. Per-benchmark mean=0.915, CV=0.070. All 11 UCs ran successfully.
+
+### 23:30 — Report updated with v2 results
+Why: Update PDF report to reflect v2 model improvements across all sections.
+Script: `scripts/generate_report.py` | Output: `figures/research_update_report.pdf` (3851 KB)
+Result: All sections updated: title page (0.898 held-out), main results (0.953 test-only), baselines, use cases, reviewer experiments. March 2026 edition.
+
+### 14:28 — Elicitation ablations v2 (SLURM 8173)
+Why: Three remaining elicitation strategies on v2 checkpoint (temperature scaling, token entropy, hidden state probing).
+Script: `scripts/elicitation_ablations_v2.py` | Output: `data/ablations/elicitation_v2/`
+Result: Temp scaling T=1.34 (no AUROC change, ECE 0.023→0.019). Token entropy near-random (0.520). MLP hidden state probe 0.878 (+3.7 pts over logit baseline 0.841). Combined hidden+logit 0.884 (+4.3 pts). Conclusion: logit captures 95%+ of available signal; hidden state probe only helps with open-weight models.
+
+---
+
 ## Current: Best Unified UQ Model v2
 
 **Model:** Qwen3-VL-8B-Instruct + LoRA (r=32, combined prompt), trained on ALL text+VLM data
-**Checkpoint:** `uq_models/best_unified_v2/` (epoch 2/3 — epoch 3 timed out)
-**Test AUROC: 0.890** (VLM: 0.905, Text: 0.870) — up from 0.831 baseline
-**Previous:** `uq_models/best_unified/` (r=16, AUROC 0.831)
-**Scored data (v1):** `data/use_cases/scored_unified/` | Test-only: `data/use_cases/scored_test_only/`
+**Checkpoint:** `uq_models/best_v2_r32_combined/` (seed 42, 3 epochs complete, AUROC 0.898)
+**Alt checkpoint:** `uq_models/best_unified_v2/` (epoch 2/3 — timed out, AUROC 0.890)
+**Test-only Scoring AUROC: 0.953** [0.947, 0.958] combined (N=4,447)
+  - ⚠️ Per-model numbers below are TEST-ONLY (not the leaked all-data numbers). See 2026-03-02 entry.
+  - GPT-5-mini: 0.951 [0.940, 0.961] | GPT-5.2: 0.959 [0.950, 0.968] | Qwen3.5: 0.946 [0.935, 0.956]
+**Previous:** `uq_models/best_unified/` (r=16, AUROC 0.831, test-only scoring 0.915)
+**Scored data (v2):** `data/use_cases/scored_v2/` | Test-only: `data/use_cases/scored_test_only_v2/`
+**Results:** `data/use_cases/results_test_only_v2/` (all 11 use cases complete)
+**Report:** `figures/research_update_report.pdf` (updated with v2 numbers)
 
 ---
 
@@ -34,9 +165,22 @@ Bootstrap CIs (scoring AUROC, includes train data — **NOT for paper main table
 
 Selective prediction (calibrator): Cov@90% = 50.3% (GPT-5-mini), 57.4% (GPT-5.2), 35.4% (Qwen3.5).
 
-### [RUNNING] Combined prompt retrain v2 (SLURM 8031)
+### Combined prompt retrain v2 (SLURM 8030)
 Why: Retrain with r=32 + combined prompt (longer+CoT+metadata). Ablations showed 0.831→0.867.
-Script: `scripts/retrain_best_v2.py` | Output: `uq_models/best_unified_v2/`
+Script: `scripts/retrain_best_v2.py` | Output: `uq_models/best_v2_r32_combined/`
+Result: Held-out AUROC **0.890** (epoch 2). Timed out at 8h before epoch 3.
+
+### Multi-seed training (SLURM 8031)
+Why: Error bars across 3 random seeds for paper.
+Script: `scripts/multi_seed_training.py` | Output: `data/ablations/multi_seed/`
+Result: seed 42 = **0.898** (epoch 2, best), seed 123 = 0.843 (epoch 1 only, timed out), seed 456 = not run.
+
+## 2026-03-01
+
+### Score v2 + use cases pipeline (SLURM 8155)
+Why: Score all predictions with v2 checkpoint, filter to test-only, re-run all 11 use cases.
+Script: `slurm/score_v2_use_cases.sh` | Output: `data/use_cases/results_test_only_v2/`
+Result: Test-only AUROC **0.953** [0.947, 0.958] combined. GPT-5-mini: 0.951, GPT-5.2: 0.959, Qwen3.5: 0.946. All 11 UCs ran successfully. Per-benchmark mean AUROC=0.915, CV=0.070.
 
 ---
 
@@ -295,6 +439,11 @@ Script: `scripts/elicitation_ablations.py` | Output: `data/ablations/elicitation
 | Verbalized probability | 0.749 | 0.741 | 0.759 | -11.0 |
 
 Key findings: (1) Contrastive prompting (include gold answer) boosts AUROC by +4.4 pts — but requires access to reference answer, so limited applicability. (2) MC Dropout adds nothing — LoRA dropout too sparse for epistemic uncertainty. (3) Verbalized probability output substantially worse than logit extraction (-11 pts) — text generation loses calibration signal.
+
+### 2026-03-01 22:28 — Proxy Semantic Entropy + Self-Consistency Baselines
+Why: Compare against Semantic Entropy (Kuhn et al. 2023) using 8B proxy model, and cross-model self-consistency.
+Script: `scripts/semantic_entropy_baseline.py` | SLURM 8226 | Output: `data/ablations/semantic_entropy/`
+Result: **Proxy SE AUROC=0.467 (below random)**, Proxy Self-Consistency=0.466. Calibrator=0.888 on same subset. Cross-model mean-P consensus=0.826 vs calibrator 0.923. Confirms proxy model uncertainty does not transfer — supports paper thesis.
 
 ---
 

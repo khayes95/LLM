@@ -11,8 +11,8 @@ These are CPU-only and run on existing scored data.
 The zero-shot base model baseline requires a separate GPU script.
 
 Usage:
-    python scripts/compute_baselines.py --scored_dir data/use_cases/scored_unified
-    python scripts/compute_baselines.py --scored_dir data/use_cases/scored_unified --smoke_test
+    python scripts/compute_baselines.py --scored_dir data/use_cases/scored_test_only_v2
+    python scripts/compute_baselines.py --scored_dir data/use_cases/scored_test_only_v2 --smoke_test
 """
 
 import argparse
@@ -200,7 +200,7 @@ def compute_combined_baseline(data):
 
 def main():
     parser = argparse.ArgumentParser(description="Compute UQ baselines on scored data")
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified",
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2",
                         help="Directory with scored JSONL files")
     parser.add_argument("--output_dir", default=None,
                         help="Output directory (default: same as scored_dir)")

@@ -468,7 +468,7 @@ def main():
                         required=True, help="Which model's predictions to score (or 'all')")
     parser.add_argument("--checkpoint", default=DEFAULT_CHECKPOINT,
                         help="Path to unified model checkpoint")
-    parser.add_argument("--output_dir", default="data/use_cases/scored_unified",
+    parser.add_argument("--output_dir", default="data/use_cases/scored_test_only_v2",
                         help="Output directory for scored JSONL")
     parser.add_argument("--smoke_test", action="store_true",
                         help="Score 5 samples per benchmark only")

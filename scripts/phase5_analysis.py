@@ -2,8 +2,8 @@
 """Phase 5 analysis: reliability diagrams, confidence histograms, bootstrap CIs,
 selective prediction curves, and use case summary.
 
-All CPU-only. Reads from scored data in data/use_cases/scored_unified/.
-Outputs figures to figures/paper/ and JSON results to data/use_cases/results_unified/.
+All CPU-only. Reads from scored data in data/use_cases/scored_test_only_v2/.
+Outputs figures to figures/paper/ and JSON results to data/use_cases/results_test_only_v2/.
 
 Usage:
     python scripts/phase5_analysis.py
@@ -26,8 +26,8 @@ import numpy as np
 from sklearn.metrics import roc_auc_score, average_precision_score
 from sklearn.isotonic import IsotonicRegression
 
-SCORED_DIR = Path("data/use_cases/scored_unified")
-RESULTS_DIR = Path("data/use_cases/results_unified")
+SCORED_DIR = Path("data/use_cases/scored_test_only_v2")
+RESULTS_DIR = Path("data/use_cases/results_test_only_v2")
 FIG_DIR = Path("figures/paper")
 
 TARGETS = ["gpt5mini", "gpt52", "qwen35"]
@@ -607,8 +607,8 @@ def plot_per_benchmark_breakdown(all_data):
 
 def main():
     parser = argparse.ArgumentParser(description="Phase 5 analysis for UQ paper")
-    parser.add_argument("--scored_dir", type=str, default="data/use_cases/scored_unified")
-    parser.add_argument("--output_dir", type=str, default="data/use_cases/results_unified")
+    parser.add_argument("--scored_dir", type=str, default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", type=str, default="data/use_cases/results_test_only_v2")
     parser.add_argument("--fig_dir", type=str, default="figures/paper")
     parser.add_argument("--tasks", type=str, default="all",
                         help="Comma-separated: reliability,histograms,bootstrap,selective,summary,benchmark")

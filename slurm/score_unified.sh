@@ -28,7 +28,7 @@ nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader
 CUDA_VISIBLE_DEVICES=0 python scripts/score_all_unified.py \
     --target all \
     --checkpoint uq_models/best_unified \
-    --output_dir data/use_cases/scored_unified
+    --output_dir data/use_cases/scored_test_only
 
 echo ""
 echo "Done: $(date)"

@@ -20,7 +20,7 @@ Outputs:
 
 Usage:
     python scripts/uc_c_data_curation.py
-    python scripts/uc_c_data_curation.py --scored_dir data/use_cases/scored_unified
+    python scripts/uc_c_data_curation.py --scored_dir data/use_cases/scored_test_only_v2
     python scripts/uc_c_data_curation.py --smoke_test
 """
 import argparse
@@ -317,6 +317,49 @@ def compute_summary(cal_data, verb_data, rand_data, length_data):
 
 
 # ---------------------------------------------------------------------------
+# Bootstrap CIs
+# ---------------------------------------------------------------------------
+
+def bootstrap_curation_ci(samples, thresholds=THRESHOLDS, n_bootstrap=1000,
+                          rng_seed=42):
+    """Bootstrap 95% CIs on AUAR and accuracy@50% retention for calibrator."""
+    rng = np.random.RandomState(rng_seed)
+    n = len(samples)
+    if n == 0:
+        return {}
+
+    auars = []
+    acc_50s = []
+
+    for _ in range(n_bootstrap):
+        idx = rng.choice(n, size=n, replace=True)
+        boot = [samples[i] for i in idx]
+        cal_data = quality_quantity_calibrator(boot, thresholds)
+        auar = compute_auar(cal_data)
+        acc50 = accuracy_at_retention(cal_data, 0.50)
+        auars.append(auar)
+        if acc50 is not None:
+            acc_50s.append(acc50)
+
+    auars = np.array(auars)
+    result = {
+        "auar": {
+            "mean": float(auars.mean()),
+            "ci_lo": float(np.percentile(auars, 2.5)),
+            "ci_hi": float(np.percentile(auars, 97.5)),
+        },
+    }
+    if acc_50s:
+        acc_50s = np.array(acc_50s)
+        result["accuracy_at_50pct"] = {
+            "mean": float(acc_50s.mean()),
+            "ci_lo": float(np.percentile(acc_50s, 2.5)),
+            "ci_hi": float(np.percentile(acc_50s, 97.5)),
+        }
+    return result
+
+
+# ---------------------------------------------------------------------------
 # Plotting
 # ---------------------------------------------------------------------------
 
@@ -463,11 +506,11 @@ def plot_per_benchmark(all_model_results, fig_path, threshold=0.7):
 def main():
     parser = argparse.ArgumentParser(
         description="UC-C: Synthetic Data Curation / Distillation (Stage 1)")
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified",
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2",
                         help="Directory with scored JSONL files")
-    parser.add_argument("--output_dir", default="data/use_cases/results_unified",
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2",
                         help="Directory for results JSON")
-    parser.add_argument("--fig_dir", default="figures/use_cases_unified",
+    parser.add_argument("--fig_dir", default="figures/use_cases_v2",
                         help="Directory for output figures")
     parser.add_argument("--smoke_test", action="store_true",
                         help="Only use first 50 samples per model")
@@ -574,6 +617,24 @@ def main():
             t90_s = f"{s['threshold_for_90pct_accuracy']:.1f}" if s["threshold_for_90pct_accuracy"] is not None else ">0.9"
             print(f"  {method_labels.get(method_key, method_key):<20} {auar_s:>7} {acc50_s:>11} {t85_s:>11} {t90_s:>11}")
 
+        # --- 5. Bootstrap CIs ---
+        n_boot = 50 if args.smoke_test else 1000
+        boot_ci = bootstrap_curation_ci(samples, n_bootstrap=n_boot)
+
+        print(f"\n--- Bootstrap 95% CIs (n={n_boot}) ---")
+        if "auar" in boot_ci:
+            a = boot_ci["auar"]
+            print(f"  AUAR: {a['mean']:.3f} [{a['ci_lo']:.3f}, {a['ci_hi']:.3f}]")
+        if "accuracy_at_50pct" in boot_ci:
+            a = boot_ci["accuracy_at_50pct"]
+            print(f"  Acc@50% retention: {a['mean']:.3f} [{a['ci_lo']:.3f}, {a['ci_hi']:.3f}]")
+
+        # Data efficiency ratio
+        cal_acc50 = summary.get("calibrator", {}).get("accuracy_at_50pct_retention")
+        if cal_acc50 is not None and base_acc > 0:
+            efficiency = cal_acc50 / base_acc
+            print(f"\n  Data efficiency: 50% of data -> {efficiency:.1%} of full-data accuracy")
+
         # Store results for this target
         all_results[target] = {
             "n_samples": n_total,
@@ -585,6 +646,7 @@ def main():
             "precision_recall": pr_data,
             "per_benchmark": pb_data,
             "summary": summary,
+            "bootstrap_ci": boot_ci,
         }
 
     if not all_results:

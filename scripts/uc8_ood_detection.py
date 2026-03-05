@@ -13,7 +13,7 @@ Baselines: verbalized confidence batch mean, random, hardcoded difficulty.
 
 Usage:
     python scripts/uc8_ood_detection.py
-    python scripts/uc8_ood_detection.py --scored_dir data/use_cases/scored_unified
+    python scripts/uc8_ood_detection.py --scored_dir data/use_cases/scored_test_only_v2
     python scripts/uc8_ood_detection.py --smoke_test
 """
 import argparse
@@ -25,7 +25,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, ks_2samp
 
 
 def load_scored(path):
@@ -430,6 +430,186 @@ def alert_system_hardcoded(samples, accuracy_threshold=0.50):
 
 
 # ---------------------------------------------------------------------------
+# Bootstrap CIs on alert F1
+# ---------------------------------------------------------------------------
+
+def bootstrap_alert_f1(samples, accuracy_threshold=0.50, n_bootstrap=1000,
+                       rng_seed=42):
+    """Bootstrap CI for the alert system's best F1 score.
+
+    Resamples benchmarks (not individual samples) since the alert system
+    operates at benchmark granularity.
+    """
+    rng = np.random.RandomState(rng_seed)
+    groups = group_by_benchmark(samples)
+    bench_list = []
+    for bench, items in groups.items():
+        if len(items) < 5:
+            continue
+        acc = float(np.mean([s["is_correct"] for s in items]))
+        mean_p = float(np.mean([s["p_correct"] for s in items]))
+        bench_list.append({
+            "bench": bench,
+            "n": len(items),
+            "accuracy": acc,
+            "mean_p": mean_p,
+            "is_low_acc": acc < accuracy_threshold,
+        })
+
+    if len(bench_list) < 5:
+        return {"error": "Too few benchmarks for bootstrap"}
+
+    f1s = []
+    for _ in range(n_bootstrap):
+        idx = rng.choice(len(bench_list), size=len(bench_list), replace=True)
+        boot_benches = [bench_list[i] for i in idx]
+
+        n_low = sum(1 for b in boot_benches if b["is_low_acc"])
+        n_high = len(boot_benches) - n_low
+        if n_low == 0 or n_high == 0:
+            f1s.append(0.0)
+            continue
+
+        best_f1 = 0
+        for t in np.linspace(0, 1, 50):
+            tp = sum(1 for b in boot_benches if b["mean_p"] < t and b["is_low_acc"])
+            fp = sum(1 for b in boot_benches if b["mean_p"] < t and not b["is_low_acc"])
+            fn = sum(1 for b in boot_benches if b["mean_p"] >= t and b["is_low_acc"])
+            prec = tp / (tp + fp) if (tp + fp) > 0 else 0
+            rec = tp / (tp + fn) if (tp + fn) > 0 else 0
+            f1 = 2 * prec * rec / (prec + rec) if (prec + rec) > 0 else 0
+            best_f1 = max(best_f1, f1)
+        f1s.append(best_f1)
+
+    f1s = np.array(f1s)
+    return {
+        "mean_f1": float(f1s.mean()),
+        "ci_lo": float(np.percentile(f1s, 2.5)),
+        "ci_hi": float(np.percentile(f1s, 97.5)),
+        "std_f1": float(f1s.std()),
+        "n_benchmarks": len(bench_list),
+    }
+
+
+# ---------------------------------------------------------------------------
+# KS test for distribution shift
+# ---------------------------------------------------------------------------
+
+def ks_test_shift_detection(all_scored, reference_target="gpt5mini",
+                            min_bench_n=10):
+    """Two-sample KS test on P(correct) distributions per benchmark.
+
+    For each benchmark present in both reference and target, test whether
+    the distributions of P(correct) differ significantly.
+    """
+    if reference_target not in all_scored:
+        return {"error": f"Reference target {reference_target} not found"}
+
+    ref_groups = group_by_benchmark(all_scored[reference_target])
+
+    results = {}
+    for target, samples in all_scored.items():
+        if target == reference_target:
+            continue
+        target_groups = group_by_benchmark(samples)
+        bench_results = {}
+        n_sig = 0
+        n_tested = 0
+
+        for bench in sorted(set(ref_groups) & set(target_groups)):
+            ref_items = ref_groups[bench]
+            tgt_items = target_groups[bench]
+            if len(ref_items) < min_bench_n or len(tgt_items) < min_bench_n:
+                continue
+
+            ref_scores = [s["p_correct"] for s in ref_items]
+            tgt_scores = [s["p_correct"] for s in tgt_items]
+            stat, pval = ks_2samp(ref_scores, tgt_scores)
+
+            n_tested += 1
+            is_sig = pval < 0.05
+            if is_sig:
+                n_sig += 1
+
+            bench_results[bench] = {
+                "ks_statistic": float(stat),
+                "p_value": float(pval),
+                "significant": is_sig,
+                "n_ref": len(ref_items),
+                "n_target": len(tgt_items),
+            }
+
+        results[target] = {
+            "benchmarks": bench_results,
+            "n_tested": n_tested,
+            "n_significant": n_sig,
+            "frac_significant": n_sig / n_tested if n_tested > 0 else 0,
+        }
+
+    return {"reference": reference_target, "targets": results}
+
+
+# ---------------------------------------------------------------------------
+# Calibration drift metric
+# ---------------------------------------------------------------------------
+
+def calibration_drift(all_scored, reference_target="gpt5mini", min_bench_n=10):
+    """Measure whether mean P(correct) shifts proportionally with accuracy.
+
+    For each benchmark, compare (accuracy_ref - accuracy_tgt) with
+    (mean_p_ref - mean_p_tgt). If the calibrator tracks accuracy drops,
+    these should correlate.
+    """
+    if reference_target not in all_scored:
+        return {}
+
+    ref_groups = group_by_benchmark(all_scored[reference_target])
+
+    results = {}
+    for target, samples in all_scored.items():
+        if target == reference_target:
+            continue
+        target_groups = group_by_benchmark(samples)
+        acc_deltas = []
+        p_deltas = []
+        bench_details = {}
+
+        for bench in sorted(set(ref_groups) & set(target_groups)):
+            ref_items = ref_groups[bench]
+            tgt_items = target_groups[bench]
+            if len(ref_items) < min_bench_n or len(tgt_items) < min_bench_n:
+                continue
+
+            ref_acc = np.mean([s["is_correct"] for s in ref_items])
+            tgt_acc = np.mean([s["is_correct"] for s in tgt_items])
+            ref_p = np.mean([s["p_correct"] for s in ref_items])
+            tgt_p = np.mean([s["p_correct"] for s in tgt_items])
+
+            acc_deltas.append(ref_acc - tgt_acc)
+            p_deltas.append(ref_p - tgt_p)
+            bench_details[bench] = {
+                "acc_delta": float(ref_acc - tgt_acc),
+                "p_delta": float(ref_p - tgt_p),
+            }
+
+        if len(acc_deltas) >= 5:
+            corr, pval = spearmanr(acc_deltas, p_deltas)
+            results[target] = {
+                "spearman_r": float(corr),
+                "p_value": float(pval),
+                "n_benchmarks": len(acc_deltas),
+                "benchmarks": bench_details,
+            }
+        else:
+            results[target] = {
+                "error": f"Only {len(acc_deltas)} overlapping benchmarks",
+                "benchmarks": bench_details,
+            }
+
+    return results
+
+
+# ---------------------------------------------------------------------------
 # Plotting
 # ---------------------------------------------------------------------------
 
@@ -607,9 +787,9 @@ def plot_ood_detection(all_results, output_path):
 def main():
     parser = argparse.ArgumentParser(
         description="UC8: OOD/Distribution Shift Detection")
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_unified")
-    parser.add_argument("--output_dir", default="data/use_cases/results_unified")
-    parser.add_argument("--fig_dir", default="figures/use_cases_unified")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
+    parser.add_argument("--fig_dir", default="figures/use_cases_v2")
     parser.add_argument("--smoke_test", action="store_true",
                         help="Run on small subset for quick validation")
     args = parser.parse_args()
@@ -754,6 +934,16 @@ def main():
 
         target_results["baselines"] = baselines
 
+        # -------------------------------------------------------------------
+        # Bootstrap CIs on alert F1
+        # -------------------------------------------------------------------
+        n_boot = 50 if args.smoke_test else 1000
+        boot_ci = bootstrap_alert_f1(samples, n_bootstrap=n_boot)
+        target_results["alert_bootstrap_ci"] = boot_ci
+        if "error" not in boot_ci:
+            print(f"  Alert F1 bootstrap 95% CI: [{boot_ci['ci_lo']:.3f}, {boot_ci['ci_hi']:.3f}]")
+            print(f"    (based on resampling {boot_ci['n_benchmarks']} benchmarks)")
+
         all_results[target] = target_results
 
     # -----------------------------------------------------------------------
@@ -786,6 +976,53 @@ def main():
                 flag_str = "***" if bs["flagged"] else ""
                 print(f"    {b:<20} {bs['z_batch']:>8.2f} {bs['target_accuracy']:>8.3f} "
                       f"{bs['ref_accuracy']:>8.3f} {flag_str:>5}")
+
+    # -----------------------------------------------------------------------
+    # KS test for distribution shift
+    # -----------------------------------------------------------------------
+    if "gpt5mini" in all_scored and len(all_scored) >= 2:
+        print(f"\n{'='*70}")
+        print("KS Test: Distribution Shift Detection")
+        print(f"{'='*70}")
+
+        ks_results = ks_test_shift_detection(all_scored, reference_target="gpt5mini")
+        all_results["ks_test"] = ks_results
+
+        for target, tdata in ks_results.get("targets", {}).items():
+            print(f"\n  {target_names.get(target, target)}:")
+            print(f"    Benchmarks tested: {tdata['n_tested']}")
+            print(f"    Significant shifts (p<0.05): {tdata['n_significant']} "
+                  f"({tdata['frac_significant']:.0%})")
+            for bench, bd in sorted(tdata["benchmarks"].items(),
+                                     key=lambda x: x[1]["p_value"]):
+                sig = " ***" if bd["significant"] else ""
+                print(f"      {bench:<20} KS={bd['ks_statistic']:.3f} "
+                      f"p={bd['p_value']:.4f} "
+                      f"(n={bd['n_ref']}/{bd['n_target']}){sig}")
+
+    # -----------------------------------------------------------------------
+    # Calibration drift: does mean P(correct) track accuracy changes?
+    # -----------------------------------------------------------------------
+    if "gpt5mini" in all_scored and len(all_scored) >= 2:
+        print(f"\n{'='*70}")
+        print("Calibration Drift: P(correct) Tracking Accuracy Changes")
+        print(f"{'='*70}")
+
+        drift = calibration_drift(all_scored, reference_target="gpt5mini")
+        all_results["calibration_drift"] = drift
+
+        for target, tdata in drift.items():
+            print(f"\n  {target_names.get(target, target)}:")
+            if "error" in tdata:
+                print(f"    {tdata['error']}")
+            else:
+                print(f"    Spearman r (acc_delta vs p_delta): {tdata['spearman_r']:.3f} "
+                      f"(p={tdata['p_value']:.4f})")
+                print(f"    Benchmarks: {tdata['n_benchmarks']}")
+                if tdata["spearman_r"] > 0.5 and tdata["p_value"] < 0.05:
+                    print(f"    --> Calibrator tracks accuracy changes well")
+                else:
+                    print(f"    --> Weak tracking of accuracy changes")
 
     # -----------------------------------------------------------------------
     # Plot
@@ -825,19 +1062,28 @@ def main():
             continue
         tr = all_results[target]
         bl_r = tr.get("benchmark_level", {}).get("spearman_r")
+        n_bench = tr.get("benchmark_level", {}).get("n_benchmarks", 0)
         bs_min = tr.get("bootstrap", {}).get("min_reliable_batch_size")
         alert_f1 = tr.get("alert_system", {}).get("best_f1")
+        alert_n = tr.get("alert_system", {}).get("n_benchmarks", 0)
+        alert_n_low = tr.get("alert_system", {}).get("n_low_accuracy", 0)
         verb_f1 = tr.get("baselines", {}).get("verbalized", {}).get("best_f1")
-        print(f"  {target_names.get(target, target)}:")
+        boot_ci = tr.get("alert_bootstrap_ci", {})
+        print(f"  {target_names.get(target, target)} ({tr.get('n_samples', '?')} samples):")
         if bl_r is not None:
-            print(f"    Benchmark-level Spearman r: {bl_r:.3f}")
+            print(f"    Benchmark-level Spearman r: {bl_r:.3f} (N={n_bench} benchmarks)")
         if bs_min is not None:
             print(f"    Min reliable batch size: {bs_min}")
         elif "bootstrap" in tr and "error" not in tr["bootstrap"]:
             print(f"    Min reliable batch size: not reached")
         if alert_f1 is not None:
             verb_str = f"{verb_f1:.3f}" if verb_f1 else "N/A"
-            print(f"    Alert F1: {alert_f1:.3f} (verbalized: {verb_str})")
+            ci_str = ""
+            if "ci_lo" in boot_ci:
+                ci_str = f" [{boot_ci['ci_lo']:.3f}, {boot_ci['ci_hi']:.3f}]"
+            print(f"    Alert F1: {alert_f1:.3f}{ci_str} (verbalized: {verb_str})")
+            print(f"      (N={alert_n} benchmarks, {alert_n_low} low-accuracy)")
+            print(f"      CAVEAT: F1 computed over {alert_n} benchmark-level units, not samples")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,74 @@
+{
+  "gpt5mini": [
+    {
+      "auroc": 0.9508899599366601,
+      "ci_low": 0.9395067131153857,
+      "ci_high": 0.9614608149435295,
+      "n": 1361,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.6615893850888487,
+      "ci_low": 0.632856748238974,
+      "ci_high": 0.6897430711873174,
+      "n": 1352,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    }
+  ],
+  "gpt52": [
+    {
+      "auroc": 0.9590275301552951,
+      "ci_low": 0.9496842819141676,
+      "ci_high": 0.9675930326957853,
+      "n": 1642,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.6373944633077052,
+      "ci_low": 0.6093020768102685,
+      "ci_high": 0.6661734979265147,
+      "n": 1597,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    }
+  ],
+  "qwen35": [
+    {
+      "auroc": 0.9461961121485283,
+      "ci_low": 0.9346336243744656,
+      "ci_high": 0.9564287245328791,
+      "n": 1444,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.6131538508820455,
+      "ci_low": 0.5824098852802162,
+      "ci_high": 0.6445459808534965,
+      "n": 1153,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    }
+  ],
+  "combined": [
+    {
+      "auroc": 0.9526323353732871,
+      "ci_low": 0.9468523183745309,
+      "ci_high": 0.9582808554121757,
+      "n": 4447,
+      "n_bootstrap": 2000,
+      "method": "Calibrator (ours)"
+    },
+    {
+      "auroc": 0.6074187389004747,
+      "ci_low": 0.5904508963040394,
+      "ci_high": 0.6243345799413361,
+      "n": 4102,
+      "n_bootstrap": 2000,
+      "method": "Verbalized (raw)"
+    }
+  ]
+}

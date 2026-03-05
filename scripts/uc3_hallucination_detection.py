@@ -7,7 +7,7 @@ Computes precision/recall curves, per-domain breakdown, and labeling efficiency
 
 Usage:
     python scripts/uc3_hallucination_detection.py
-    python scripts/uc3_hallucination_detection.py --scored_dir data/use_cases/scored_v2
+    python scripts/uc3_hallucination_detection.py --scored_dir data/use_cases/scored_test_only_v2
 """
 import argparse
 import json
@@ -241,8 +241,8 @@ def plot_detection(per_target_results, output_path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_v2")
-    parser.add_argument("--output_dir", default="data/use_cases/results")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
     parser.add_argument("--fig_dir", default="figures/use_cases")
     args = parser.parse_args()
 

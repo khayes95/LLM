@@ -9,7 +9,7 @@ Uses calibrator P(correct) to monitor model performance in deployment:
 
 Usage:
     python scripts/uc8_deployment_monitoring.py
-    python scripts/uc8_deployment_monitoring.py --scored_dir data/use_cases/scored_v2
+    python scripts/uc8_deployment_monitoring.py --scored_dir data/use_cases/scored_test_only_v2
 """
 import argparse
 import json
@@ -269,8 +269,8 @@ def plot_deployment_monitoring(all_bench_results, bootstrap_results, shift_resul
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--scored_dir", default="data/use_cases/scored_v2")
-    parser.add_argument("--output_dir", default="data/use_cases/results")
+    parser.add_argument("--scored_dir", default="data/use_cases/scored_test_only_v2")
+    parser.add_argument("--output_dir", default="data/use_cases/results_test_only_v2")
     parser.add_argument("--fig_dir", default="figures/use_cases")
     args = parser.parse_args()
 

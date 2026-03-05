@@ -16,7 +16,7 @@ from pathlib import Path
 
 
 def main():
-    output_dir = "data/use_cases/results_unified"
+    output_dir = "data/use_cases/results_test_only_v2"
     os.makedirs(output_dir, exist_ok=True)
 
     # Our method's results
@@ -29,7 +29,7 @@ def main():
         "multimodal": True,
         "cross_model": True,
         "training_needed": "Yes (fine-tuning with LoRA)",
-        "auroc_reported": 0.831,  # held-out test set
+        "auroc_reported": 0.896,  # held-out test set (v2 r=32)
         "notes": "Trained on 3 source models, evaluated cross-model. "
                  "Handles both text and VLM benchmarks.",
     }
@@ -80,7 +80,7 @@ def main():
             "multimodal": "Depends on base method",
             "cross_model": "No (model-specific)",
             "training_needed": "Minimal (fit scaling parameters)",
-            "auroc_reported": "Same as base (calibration ≠ discrimination)",
+            "auroc_reported": "N/A (improves ECE, not AUROC)",
             "limitations": [
                 "Improves calibration (ECE) but does NOT improve discrimination (AUROC)",
                 "Requires logit access",

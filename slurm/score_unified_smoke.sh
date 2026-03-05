@@ -27,7 +27,7 @@ nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader
 CUDA_VISIBLE_DEVICES=0 python scripts/score_all_unified.py \
     --target gpt5mini \
     --checkpoint uq_models/best_unified \
-    --output_dir data/use_cases/scored_unified_smoke \
+    --output_dir data/use_cases/scored_test_only_smoke \
     --smoke_test
 
 echo ""
