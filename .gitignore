@@ -13,6 +13,20 @@ data/bbeh/
 archive/
 src/
 
+# Large data (too big for git)
+data/finegrain_uq/
+data/use_cases/perturbations/
+data/external/
+
+# Quarantined (contaminated with training data — DO NOT USE)
+data/use_cases/CONTAMINATED_*/
+
+# Temp/smoke test artifacts
+data/use_cases/scored_test_only_v2_baseline_smoke/
+
+# Report check screenshots (temp)
+figures/report_page*_check.png
+
 # SLURM and runtime logs
 logs/
 
