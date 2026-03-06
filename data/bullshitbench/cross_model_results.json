@@ -1,0 +1,45 @@
+{
+  "experiment": "BullshitBench Cross-Model Analysis",
+  "date": "2026-03-06",
+  "models": [
+    {
+      "model": "GPT-5-mini",
+      "n_samples": 100,
+      "pushback_rate": 0.03,
+      "verbalized_confidence": 0.819,
+      "calibrator_mean": 0.351,
+      "gap": 0.468,
+      "verbalized_overconfidence": 0.789,
+      "calibrator_error": 0.321,
+      "calibrator_improvement_ratio": 2.5
+    },
+    {
+      "model": "GPT-5.2-high",
+      "n_samples": 100,
+      "pushback_rate": 0.09,
+      "verbalized_confidence": 0.729,
+      "calibrator_mean": 0.428,
+      "gap": 0.301,
+      "verbalized_overconfidence": 0.639,
+      "calibrator_error": 0.338,
+      "calibrator_improvement_ratio": 1.9
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "n_samples": 100,
+      "pushback_rate": 0.22,
+      "verbalized_confidence": 0.928,
+      "calibrator_mean": 0.373,
+      "gap": 0.555,
+      "verbalized_overconfidence": 0.708,
+      "calibrator_error": 0.153,
+      "calibrator_improvement_ratio": 4.6
+    }
+  ],
+  "key_findings": {
+    "all_models_fail": "Pushback rates 3-22%, models accept fabricated frameworks",
+    "verbalized_useless": "Self-reported confidence 73-93% on 3-22% correct tasks",
+    "calibrator_skeptical": "Mean P(correct) 0.35-0.44, correctly flags domain as unreliable",
+    "calibrator_wins": "Calibrator error is 2.2-5.3x lower than verbalized error"
+  }
+}

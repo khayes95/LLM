@@ -1,0 +1,278 @@
+{
+  "experiment": "BullshitBench UQ Calibrator Analysis",
+  "date": "2026-03-06",
+  "model_evaluated": "Qwen/Qwen3-VL-8B-Instruct",
+  "calibrator": "uq_models/best_v2_r32_combined",
+  "predictions_path": "runs/20260305_235057_bullshitbench_Qwen_Qwen3-VL-8B-Instruct/predictions.jsonl",
+  "scored_path": "runs/20260305_235057_bullshitbench_Qwen_Qwen3-VL-8B-Instruct/bullshitbench_uq_scored.jsonl",
+  "bullshitbench_results": {
+    "n_samples": 100,
+    "pushback_rate": 0.22,
+    "calibrator_auroc": 0.419,
+    "verbalized_auroc": 0.623,
+    "mean_p_correct": 0.373,
+    "mean_verbalized": 0.928,
+    "overconfidence_gap": 0.555,
+    "verbalized_overconfidence": 0.708,
+    "calibrator_error_vs_accuracy": 0.153
+  },
+  "domain_anomaly_detection": {
+    "description": "Can the calibrator-verbalized gap flag adversarial domains?",
+    "bullshitbench_gap_rank": "5/21 (top 24%)",
+    "threshold_0.3": {
+      "flagged": 12,
+      "includes_bullshitbench": true
+    },
+    "threshold_0.4": {
+      "flagged": 8,
+      "includes_bullshitbench": true
+    },
+    "threshold_0.5": {
+      "flagged": 7,
+      "includes_bullshitbench": true
+    }
+  },
+  "calibrator_vs_verbalized": {
+    "description": "Calibrator mean score is closer to true accuracy than verbalized confidence on ALL 21 benchmarks",
+    "calibrator_wins": "21/21 (100%)",
+    "bullshitbench_improvement": "4.6x (cal error 0.153 vs verb error 0.708)"
+  },
+  "selective_prediction": {
+    "calibrator_rejects_at_0.5": "68/100 (68%)",
+    "verbalized_rejects_at_0.5": "0/100 (0%)",
+    "interpretation": "Calibrator flags 68% of BS responses as unreliable; verbalized confidence flags none"
+  },
+  "per_benchmark_comparison": [
+    {
+      "benchmark": "arc_agi",
+      "n": 118,
+      "accuracy": 0.508,
+      "cal_mean": 0.521,
+      "cal_error": 0.013,
+      "is_adversarial": false,
+      "verb_mean": 0.883,
+      "verb_error": 0.374,
+      "gap": 0.361
+    },
+    {
+      "benchmark": "bbeh",
+      "n": 144,
+      "accuracy": 0.479,
+      "cal_mean": 0.49,
+      "cal_error": 0.01,
+      "is_adversarial": false,
+      "verb_mean": 0.829,
+      "verb_error": 0.35,
+      "gap": 0.339
+    },
+    {
+      "benchmark": "bullshitbench",
+      "n": 100,
+      "accuracy": 0.22,
+      "cal_mean": 0.373,
+      "cal_error": 0.153,
+      "is_adversarial": true,
+      "verb_mean": 0.928,
+      "verb_error": 0.708,
+      "gap": 0.555
+    },
+    {
+      "benchmark": "charxiv",
+      "n": 239,
+      "accuracy": 0.628,
+      "cal_mean": 0.718,
+      "cal_error": 0.091,
+      "is_adversarial": false,
+      "verb_mean": 0.863,
+      "verb_error": 0.235,
+      "gap": 0.145
+    },
+    {
+      "benchmark": "chembench",
+      "n": 223,
+      "accuracy": 0.659,
+      "cal_mean": 0.709,
+      "cal_error": 0.049,
+      "is_adversarial": false,
+      "verb_mean": 0.87,
+      "verb_error": 0.211,
+      "gap": 0.161
+    },
+    {
+      "benchmark": "gpqa",
+      "n": 234,
+      "accuracy": 0.765,
+      "cal_mean": 0.689,
+      "cal_error": 0.076,
+      "is_adversarial": false,
+      "verb_mean": 0.887,
+      "verb_error": 0.122,
+      "gap": 0.198
+    },
+    {
+      "benchmark": "hallusionbench",
+      "n": 378,
+      "accuracy": 0.799,
+      "cal_mean": 0.828,
+      "cal_error": 0.029,
+      "is_adversarial": false,
+      "verb_mean": 0.928,
+      "verb_error": 0.129,
+      "gap": 0.099
+    },
+    {
+      "benchmark": "hle",
+      "n": 167,
+      "accuracy": 0.275,
+      "cal_mean": 0.249,
+      "cal_error": 0.027,
+      "is_adversarial": false,
+      "verb_mean": 0.792,
+      "verb_error": 0.517,
+      "gap": 0.544
+    },
+    {
+      "benchmark": "hle_multimodal",
+      "n": 35,
+      "accuracy": 0.143,
+      "cal_mean": 0.15,
+      "cal_error": 0.007,
+      "is_adversarial": false,
+      "verb_mean": 0.831,
+      "verb_error": 0.688,
+      "gap": 0.681
+    },
+    {
+      "benchmark": "livebench",
+      "n": 147,
+      "accuracy": 0.653,
+      "cal_mean": 0.63,
+      "cal_error": 0.023,
+      "is_adversarial": false,
+      "verb_mean": 0.886,
+      "verb_error": 0.233,
+      "gap": 0.256
+    },
+    {
+      "benchmark": "mathverse",
+      "n": 233,
+      "accuracy": 0.489,
+      "cal_mean": 0.523,
+      "cal_error": 0.033,
+      "is_adversarial": false,
+      "verb_mean": 0.896,
+      "verb_error": 0.407,
+      "gap": 0.373
+    },
+    {
+      "benchmark": "mathvision",
+      "n": 283,
+      "accuracy": 0.375,
+      "cal_mean": 0.314,
+      "cal_error": 0.061,
+      "is_adversarial": false,
+      "verb_mean": 0.857,
+      "verb_error": 0.482,
+      "gap": 0.543
+    },
+    {
+      "benchmark": "mathvista",
+      "n": 378,
+      "accuracy": 0.331,
+      "cal_mean": 0.328,
+      "cal_error": 0.002,
+      "is_adversarial": false,
+      "verb_mean": 0.887,
+      "verb_error": 0.556,
+      "gap": 0.558
+    },
+    {
+      "benchmark": "mmmu",
+      "n": 165,
+      "accuracy": 0.685,
+      "cal_mean": 0.785,
+      "cal_error": 0.1,
+      "is_adversarial": false,
+      "verb_mean": 0.883,
+      "verb_error": 0.199,
+      "gap": 0.099
+    },
+    {
+      "benchmark": "mmstar",
+      "n": 362,
+      "accuracy": 0.812,
+      "cal_mean": 0.85,
+      "cal_error": 0.038,
+      "is_adversarial": false,
+      "verb_mean": 0.9,
+      "verb_error": 0.088,
+      "gap": 0.049
+    },
+    {
+      "benchmark": "mmvet",
+      "n": 172,
+      "accuracy": 0.308,
+      "cal_mean": 0.256,
+      "cal_error": 0.052,
+      "is_adversarial": false,
+      "verb_mean": 0.915,
+      "verb_error": 0.607,
+      "gap": 0.659
+    },
+    {
+      "benchmark": "omnimath",
+      "n": 127,
+      "accuracy": 0.323,
+      "cal_mean": 0.299,
+      "cal_error": 0.024,
+      "is_adversarial": false,
+      "verb_mean": 0.905,
+      "verb_error": 0.583,
+      "gap": 0.606
+    },
+    {
+      "benchmark": "prbench",
+      "n": 142,
+      "accuracy": 0.718,
+      "cal_mean": 0.774,
+      "cal_error": 0.056,
+      "is_adversarial": false,
+      "verb_mean": 0.803,
+      "verb_error": 0.084,
+      "gap": 0.028
+    },
+    {
+      "benchmark": "realworldqa",
+      "n": 443,
+      "accuracy": 0.465,
+      "cal_mean": 0.469,
+      "cal_error": 0.004,
+      "is_adversarial": false,
+      "verb_mean": 0.86,
+      "verb_error": 0.395,
+      "gap": 0.391
+    },
+    {
+      "benchmark": "simpleqa",
+      "n": 217,
+      "accuracy": 0.309,
+      "cal_mean": 0.273,
+      "cal_error": 0.036,
+      "is_adversarial": false,
+      "verb_mean": 0.695,
+      "verb_error": 0.387,
+      "gap": 0.423
+    },
+    {
+      "benchmark": "vizwiz",
+      "n": 240,
+      "accuracy": 0.604,
+      "cal_mean": 0.644,
+      "cal_error": 0.04,
+      "is_adversarial": false,
+      "verb_mean": 0.849,
+      "verb_error": 0.245,
+      "gap": 0.205
+    }
+  ]
+}

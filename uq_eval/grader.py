@@ -30,6 +30,7 @@ BENCHMARK_JUDGE_DEFAULTS = {
     "tutorbench": "gpt-5-mini",
     "prbench": "gpt-5-mini",
     "hle": "gpt-5-mini",
+    "bullshitbench": "gpt-5-mini",
 }
 
 

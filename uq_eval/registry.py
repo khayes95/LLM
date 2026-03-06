@@ -59,6 +59,7 @@ from .benchmarks.aokvqa import AOKVQABenchmark
 from .benchmarks.vizwiz import VizWizBenchmark
 from .benchmarks.mmvet import MMVetBenchmark
 from .benchmarks.vsr import VSRBenchmark
+from .benchmarks.bullshitbench import BullshitBenchBenchmark
 
 from .models.openai_client import OpenAIResponsesClient
 from .models.chat_completions_http_client import ChatCompletionsHTTPClient
@@ -130,6 +131,7 @@ _BENCH_REGISTRY: dict[str, type[BaseBenchmark]] = {
     "vizwiz": VizWizBenchmark,
     "mmvet": MMVetBenchmark,
     "vsr": VSRBenchmark,
+    "bullshitbench": BullshitBenchBenchmark,
 }
 
 _MODEL_REGISTRY: dict[str, type[BaseModelClient]] = {
