@@ -1,0 +1,3026 @@
+{
+  "gpt5mini": {
+    "n_samples": 1361,
+    "n_wrong": 652,
+    "base_error_rate": 0.4790595150624541,
+    "trigger_analysis": [
+      {
+        "threshold": 0.05,
+        "n_flagged": 315,
+        "pct_flagged": 0.23144746509919176,
+        "true_positives": 310,
+        "false_positives": 5,
+        "false_negatives": 342,
+        "true_negatives": 704,
+        "precision": 0.9841269841269841,
+        "recall": 0.4754601226993865,
+        "f1": 0.6411582213029989,
+        "auto_answered": 1046,
+        "auto_accuracy": 0.6730401529636711,
+        "errors_prevented_pct": 0.4754601226993865
+      },
+      {
+        "threshold": 0.1,
+        "n_flagged": 418,
+        "pct_flagged": 0.3071271124173402,
+        "true_positives": 407,
+        "false_positives": 11,
+        "false_negatives": 245,
+        "true_negatives": 698,
+        "precision": 0.9736842105263158,
+        "recall": 0.6242331288343558,
+        "f1": 0.7607476635514018,
+        "auto_answered": 943,
+        "auto_accuracy": 0.7401908801696713,
+        "errors_prevented_pct": 0.6242331288343558
+      },
+      {
+        "threshold": 0.15,
+        "n_flagged": 478,
+        "pct_flagged": 0.35121234386480527,
+        "true_positives": 459,
+        "false_positives": 19,
+        "false_negatives": 193,
+        "true_negatives": 690,
+        "precision": 0.9602510460251046,
+        "recall": 0.7039877300613497,
+        "f1": 0.8123893805309735,
+        "auto_answered": 883,
+        "auto_accuracy": 0.7814269535673839,
+        "errors_prevented_pct": 0.7039877300613497
+      },
+      {
+        "threshold": 0.2,
+        "n_flagged": 498,
+        "pct_flagged": 0.36590742101396034,
+        "true_positives": 476,
+        "false_positives": 22,
+        "false_negatives": 176,
+        "true_negatives": 687,
+        "precision": 0.9558232931726908,
+        "recall": 0.7300613496932515,
+        "f1": 0.8278260869565217,
+        "auto_answered": 863,
+        "auto_accuracy": 0.7960602549246814,
+        "errors_prevented_pct": 0.7300613496932515
+      },
+      {
+        "threshold": 0.25,
+        "n_flagged": 536,
+        "pct_flagged": 0.3938280675973549,
+        "true_positives": 503,
+        "false_positives": 33,
+        "false_negatives": 149,
+        "true_negatives": 676,
+        "precision": 0.9384328358208955,
+        "recall": 0.7714723926380368,
+        "f1": 0.8468013468013468,
+        "auto_answered": 825,
+        "auto_accuracy": 0.8193939393939393,
+        "errors_prevented_pct": 0.7714723926380368
+      },
+      {
+        "threshold": 0.3,
+        "n_flagged": 560,
+        "pct_flagged": 0.4114621601763409,
+        "true_positives": 521,
+        "false_positives": 39,
+        "false_negatives": 131,
+        "true_negatives": 670,
+        "precision": 0.9303571428571429,
+        "recall": 0.799079754601227,
+        "f1": 0.8597359735973596,
+        "auto_answered": 801,
+        "auto_accuracy": 0.83645443196005,
+        "errors_prevented_pct": 0.799079754601227
+      },
+      {
+        "threshold": 0.4,
+        "n_flagged": 585,
+        "pct_flagged": 0.4298310066127847,
+        "true_positives": 534,
+        "false_positives": 51,
+        "false_negatives": 118,
+        "true_negatives": 658,
+        "precision": 0.9128205128205128,
+        "recall": 0.8190184049079755,
+        "f1": 0.8633791430881165,
+        "auto_answered": 776,
+        "auto_accuracy": 0.8479381443298969,
+        "errors_prevented_pct": 0.8190184049079755
+      },
+      {
+        "threshold": 0.5,
+        "n_flagged": 609,
+        "pct_flagged": 0.44746509919177074,
+        "true_positives": 551,
+        "false_positives": 58,
+        "false_negatives": 101,
+        "true_negatives": 651,
+        "precision": 0.9047619047619048,
+        "recall": 0.8450920245398773,
+        "f1": 0.8739095955590801,
+        "auto_answered": 752,
+        "auto_accuracy": 0.8656914893617021,
+        "errors_prevented_pct": 0.8450920245398773
+      },
+      {
+        "threshold": 0.6,
+        "n_flagged": 656,
+        "pct_flagged": 0.4819985304922851,
+        "true_positives": 576,
+        "false_positives": 80,
+        "false_negatives": 76,
+        "true_negatives": 629,
+        "precision": 0.8780487804878049,
+        "recall": 0.8834355828220859,
+        "f1": 0.8807339449541284,
+        "auto_answered": 705,
+        "auto_accuracy": 0.8921985815602836,
+        "errors_prevented_pct": 0.8834355828220859
+      },
+      {
+        "threshold": 0.7,
+        "n_flagged": 695,
+        "pct_flagged": 0.5106539309331374,
+        "true_positives": 594,
+        "false_positives": 101,
+        "false_negatives": 58,
+        "true_negatives": 608,
+        "precision": 0.8546762589928057,
+        "recall": 0.911042944785276,
+        "f1": 0.8819599109131403,
+        "auto_answered": 666,
+        "auto_accuracy": 0.9129129129129129,
+        "errors_prevented_pct": 0.911042944785276
+      },
+      {
+        "threshold": 0.8,
+        "n_flagged": 773,
+        "pct_flagged": 0.5679647318148421,
+        "true_positives": 611,
+        "false_positives": 162,
+        "false_negatives": 41,
+        "true_negatives": 547,
+        "precision": 0.7904269081500647,
+        "recall": 0.9371165644171779,
+        "f1": 0.8575438596491228,
+        "auto_answered": 588,
+        "auto_accuracy": 0.9302721088435374,
+        "errors_prevented_pct": 0.9371165644171779
+      },
+      {
+        "threshold": 0.9,
+        "n_flagged": 838,
+        "pct_flagged": 0.6157237325495959,
+        "true_positives": 624,
+        "false_positives": 214,
+        "false_negatives": 28,
+        "true_negatives": 495,
+        "precision": 0.7446300715990454,
+        "recall": 0.9570552147239264,
+        "f1": 0.8375838926174496,
+        "auto_answered": 523,
+        "auto_accuracy": 0.9464627151051626,
+        "errors_prevented_pct": 0.9570552147239264
+      }
+    ],
+    "cost_benefit": {
+      "ratio_2": {
+        "error_cost_ratio": 2,
+        "best_threshold": 0.7,
+        "best_benefit": 1087,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 615,
+            "errors_caught": 310,
+            "false_triggers": 5
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 803,
+            "errors_caught": 407,
+            "false_triggers": 11
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 899,
+            "errors_caught": 459,
+            "false_triggers": 19
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 930,
+            "errors_caught": 476,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 973,
+            "errors_caught": 503,
+            "false_triggers": 33
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 1003,
+            "errors_caught": 521,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 1017,
+            "errors_caught": 534,
+            "false_triggers": 51
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 1044,
+            "errors_caught": 551,
+            "false_triggers": 58
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 1072,
+            "errors_caught": 576,
+            "false_triggers": 80
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 1087,
+            "errors_caught": 594,
+            "false_triggers": 101
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 1060,
+            "errors_caught": 611,
+            "false_triggers": 162
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 1034,
+            "errors_caught": 624,
+            "false_triggers": 214
+          }
+        ]
+      },
+      "ratio_5": {
+        "error_cost_ratio": 5,
+        "best_threshold": 0.9,
+        "best_benefit": 2906,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 1545,
+            "errors_caught": 310,
+            "false_triggers": 5
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 2024,
+            "errors_caught": 407,
+            "false_triggers": 11
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 2276,
+            "errors_caught": 459,
+            "false_triggers": 19
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 2358,
+            "errors_caught": 476,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 2482,
+            "errors_caught": 503,
+            "false_triggers": 33
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 2566,
+            "errors_caught": 521,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 2619,
+            "errors_caught": 534,
+            "false_triggers": 51
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 2697,
+            "errors_caught": 551,
+            "false_triggers": 58
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 2800,
+            "errors_caught": 576,
+            "false_triggers": 80
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 2869,
+            "errors_caught": 594,
+            "false_triggers": 101
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 2893,
+            "errors_caught": 611,
+            "false_triggers": 162
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 2906,
+            "errors_caught": 624,
+            "false_triggers": 214
+          }
+        ]
+      },
+      "ratio_10": {
+        "error_cost_ratio": 10,
+        "best_threshold": 0.9,
+        "best_benefit": 6026,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 3095,
+            "errors_caught": 310,
+            "false_triggers": 5
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 4059,
+            "errors_caught": 407,
+            "false_triggers": 11
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 4571,
+            "errors_caught": 459,
+            "false_triggers": 19
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 4738,
+            "errors_caught": 476,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 4997,
+            "errors_caught": 503,
+            "false_triggers": 33
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 5171,
+            "errors_caught": 521,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 5289,
+            "errors_caught": 534,
+            "false_triggers": 51
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 5452,
+            "errors_caught": 551,
+            "false_triggers": 58
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 5680,
+            "errors_caught": 576,
+            "false_triggers": 80
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 5839,
+            "errors_caught": 594,
+            "false_triggers": 101
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 5948,
+            "errors_caught": 611,
+            "false_triggers": 162
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 6026,
+            "errors_caught": 624,
+            "false_triggers": 214
+          }
+        ]
+      },
+      "ratio_20": {
+        "error_cost_ratio": 20,
+        "best_threshold": 0.9,
+        "best_benefit": 12266,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 6195,
+            "errors_caught": 310,
+            "false_triggers": 5
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 8129,
+            "errors_caught": 407,
+            "false_triggers": 11
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 9161,
+            "errors_caught": 459,
+            "false_triggers": 19
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 9498,
+            "errors_caught": 476,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 10027,
+            "errors_caught": 503,
+            "false_triggers": 33
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 10381,
+            "errors_caught": 521,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 10629,
+            "errors_caught": 534,
+            "false_triggers": 51
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 10962,
+            "errors_caught": 551,
+            "false_triggers": 58
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 11440,
+            "errors_caught": 576,
+            "false_triggers": 80
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 11779,
+            "errors_caught": 594,
+            "false_triggers": 101
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 12058,
+            "errors_caught": 611,
+            "false_triggers": 162
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 12266,
+            "errors_caught": 624,
+            "false_triggers": 214
+          }
+        ]
+      },
+      "ratio_50": {
+        "error_cost_ratio": 50,
+        "best_threshold": 0.9,
+        "best_benefit": 30986,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 15495,
+            "errors_caught": 310,
+            "false_triggers": 5
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 20339,
+            "errors_caught": 407,
+            "false_triggers": 11
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 22931,
+            "errors_caught": 459,
+            "false_triggers": 19
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 23778,
+            "errors_caught": 476,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 25117,
+            "errors_caught": 503,
+            "false_triggers": 33
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 26011,
+            "errors_caught": 521,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 26649,
+            "errors_caught": 534,
+            "false_triggers": 51
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 27492,
+            "errors_caught": 551,
+            "false_triggers": 58
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 28720,
+            "errors_caught": 576,
+            "false_triggers": 80
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 29599,
+            "errors_caught": 594,
+            "false_triggers": 101
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 30388,
+            "errors_caught": 611,
+            "false_triggers": 162
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 30986,
+            "errors_caught": 624,
+            "false_triggers": 214
+          }
+        ]
+      },
+      "ratio_100": {
+        "error_cost_ratio": 100,
+        "best_threshold": 0.9,
+        "best_benefit": 62186,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 30995,
+            "errors_caught": 310,
+            "false_triggers": 5
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 40689,
+            "errors_caught": 407,
+            "false_triggers": 11
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 45881,
+            "errors_caught": 459,
+            "false_triggers": 19
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 47578,
+            "errors_caught": 476,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 50267,
+            "errors_caught": 503,
+            "false_triggers": 33
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 52061,
+            "errors_caught": 521,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 53349,
+            "errors_caught": 534,
+            "false_triggers": 51
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 55042,
+            "errors_caught": 551,
+            "false_triggers": 58
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 57520,
+            "errors_caught": 576,
+            "false_triggers": 80
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 59299,
+            "errors_caught": 594,
+            "false_triggers": 101
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 60938,
+            "errors_caught": 611,
+            "false_triggers": 162
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 62186,
+            "errors_caught": 624,
+            "false_triggers": 214
+          }
+        ]
+      }
+    },
+    "per_benchmark": {
+      "bbeh": {
+        "n_total": 47,
+        "n_wrong": 25,
+        "base_error_rate": 0.5319148936170213,
+        "n_flagged": 20,
+        "pct_flagged": 0.425531914893617,
+        "errors_caught": 17,
+        "errors_caught_pct": 0.68,
+        "post_error_rate": 0.2962962962962963,
+        "error_reduction": 0.235618597320725
+      },
+      "charxiv": {
+        "n_total": 67,
+        "n_wrong": 31,
+        "base_error_rate": 0.4626865671641791,
+        "n_flagged": 15,
+        "pct_flagged": 0.22388059701492538,
+        "errors_caught": 14,
+        "errors_caught_pct": 0.45161290322580644,
+        "post_error_rate": 0.3269230769230769,
+        "error_reduction": 0.13576349024110218
+      },
+      "chembench": {
+        "n_total": 67,
+        "n_wrong": 19,
+        "base_error_rate": 0.2835820895522388,
+        "n_flagged": 5,
+        "pct_flagged": 0.07462686567164178,
+        "errors_caught": 3,
+        "errors_caught_pct": 0.15789473684210525,
+        "post_error_rate": 0.25806451612903225,
+        "error_reduction": 0.02551757342320654
+      },
+      "gpqa": {
+        "n_total": 78,
+        "n_wrong": 13,
+        "base_error_rate": 0.16666666666666666,
+        "n_flagged": 10,
+        "pct_flagged": 0.1282051282051282,
+        "errors_caught": 7,
+        "errors_caught_pct": 0.5384615384615384,
+        "post_error_rate": 0.08823529411764706,
+        "error_reduction": 0.07843137254901959
+      },
+      "hallusionbench": {
+        "n_total": 64,
+        "n_wrong": 12,
+        "base_error_rate": 0.1875,
+        "n_flagged": 9,
+        "pct_flagged": 0.140625,
+        "errors_caught": 9,
+        "errors_caught_pct": 0.75,
+        "post_error_rate": 0.05454545454545454,
+        "error_reduction": 0.13295454545454546
+      },
+      "hle": {
+        "n_total": 63,
+        "n_wrong": 50,
+        "base_error_rate": 0.7936507936507936,
+        "n_flagged": 42,
+        "pct_flagged": 0.6666666666666666,
+        "errors_caught": 39,
+        "errors_caught_pct": 0.78,
+        "post_error_rate": 0.5238095238095238,
+        "error_reduction": 0.26984126984126977
+      },
+      "hle_multimodal": {
+        "n_total": 35,
+        "n_wrong": 30,
+        "base_error_rate": 0.8571428571428571,
+        "n_flagged": 31,
+        "pct_flagged": 0.8857142857142857,
+        "errors_caught": 28,
+        "errors_caught_pct": 0.9333333333333333,
+        "post_error_rate": 0.5,
+        "error_reduction": 0.3571428571428571
+      },
+      "livebench": {
+        "n_total": 57,
+        "n_wrong": 21,
+        "base_error_rate": 0.3684210526315789,
+        "n_flagged": 22,
+        "pct_flagged": 0.38596491228070173,
+        "errors_caught": 21,
+        "errors_caught_pct": 1.0,
+        "post_error_rate": 0.0,
+        "error_reduction": 0.3684210526315789
+      },
+      "mathverse": {
+        "n_total": 84,
+        "n_wrong": 49,
+        "base_error_rate": 0.5833333333333334,
+        "n_flagged": 39,
+        "pct_flagged": 0.4642857142857143,
+        "errors_caught": 36,
+        "errors_caught_pct": 0.7346938775510204,
+        "post_error_rate": 0.28888888888888886,
+        "error_reduction": 0.2944444444444445
+      },
+      "mathvision": {
+        "n_total": 111,
+        "n_wrong": 70,
+        "base_error_rate": 0.6306306306306306,
+        "n_flagged": 71,
+        "pct_flagged": 0.6396396396396397,
+        "errors_caught": 64,
+        "errors_caught_pct": 0.9142857142857143,
+        "post_error_rate": 0.15,
+        "error_reduction": 0.4806306306306306
+      },
+      "mathvista": {
+        "n_total": 122,
+        "n_wrong": 80,
+        "base_error_rate": 0.6557377049180327,
+        "n_flagged": 77,
+        "pct_flagged": 0.6311475409836066,
+        "errors_caught": 75,
+        "errors_caught_pct": 0.9375,
+        "post_error_rate": 0.1111111111111111,
+        "error_reduction": 0.5446265938069217
+      },
+      "mmmu": {
+        "n_total": 55,
+        "n_wrong": 19,
+        "base_error_rate": 0.34545454545454546,
+        "n_flagged": 8,
+        "pct_flagged": 0.14545454545454545,
+        "errors_caught": 8,
+        "errors_caught_pct": 0.42105263157894735,
+        "post_error_rate": 0.23404255319148937,
+        "error_reduction": 0.11141199226305609
+      },
+      "mmstar": {
+        "n_total": 110,
+        "n_wrong": 24,
+        "base_error_rate": 0.21818181818181817,
+        "n_flagged": 16,
+        "pct_flagged": 0.14545454545454545,
+        "errors_caught": 16,
+        "errors_caught_pct": 0.6666666666666666,
+        "post_error_rate": 0.0851063829787234,
+        "error_reduction": 0.13307543520309478
+      },
+      "mmvet": {
+        "n_total": 35,
+        "n_wrong": 23,
+        "base_error_rate": 0.6571428571428571,
+        "n_flagged": 23,
+        "pct_flagged": 0.6571428571428571,
+        "errors_caught": 22,
+        "errors_caught_pct": 0.9565217391304348,
+        "post_error_rate": 0.08333333333333333,
+        "error_reduction": 0.5738095238095238
+      },
+      "omnimath": {
+        "n_total": 53,
+        "n_wrong": 36,
+        "base_error_rate": 0.6792452830188679,
+        "n_flagged": 37,
+        "pct_flagged": 0.6981132075471698,
+        "errors_caught": 34,
+        "errors_caught_pct": 0.9444444444444444,
+        "post_error_rate": 0.125,
+        "error_reduction": 0.5542452830188679
+      },
+      "prbench": {
+        "n_total": 58,
+        "n_wrong": 13,
+        "base_error_rate": 0.22413793103448276,
+        "n_flagged": 1,
+        "pct_flagged": 0.017241379310344827,
+        "errors_caught": 1,
+        "errors_caught_pct": 0.07692307692307693,
+        "post_error_rate": 0.21052631578947367,
+        "error_reduction": 0.01361161524500909
+      },
+      "realworldqa": {
+        "n_total": 127,
+        "n_wrong": 62,
+        "base_error_rate": 0.4881889763779528,
+        "n_flagged": 61,
+        "pct_flagged": 0.48031496062992124,
+        "errors_caught": 59,
+        "errors_caught_pct": 0.9516129032258065,
+        "post_error_rate": 0.045454545454545456,
+        "error_reduction": 0.4427344309234073
+      },
+      "simpleqa": {
+        "n_total": 59,
+        "n_wrong": 48,
+        "base_error_rate": 0.8135593220338984,
+        "n_flagged": 47,
+        "pct_flagged": 0.7966101694915254,
+        "errors_caught": 44,
+        "errors_caught_pct": 0.9166666666666666,
+        "post_error_rate": 0.3333333333333333,
+        "error_reduction": 0.48022598870056504
+      },
+      "vizwiz": {
+        "n_total": 69,
+        "n_wrong": 27,
+        "base_error_rate": 0.391304347826087,
+        "n_flagged": 26,
+        "pct_flagged": 0.37681159420289856,
+        "errors_caught": 24,
+        "errors_caught_pct": 0.8888888888888888,
+        "post_error_rate": 0.06976744186046512,
+        "error_reduction": 0.32153690596562184
+      }
+    },
+    "saved_examples": [
+      {
+        "id": "28",
+        "benchmark": "mathvista",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.004059,
+        "gap": 0.995941,
+        "question_preview": "$\\overline{AB}$ is a diameter, $AC=8$ inches, and $BC=15$ inches. Find the radius of the circle.",
+        "response_preview": "{\n  \"reasoning\": \"Since AB is a diameter and C is on the circle, angle ACB is a right angle (Thales' theorem). Thus triangle ABC is right-angled at C, so AB^2 = AC^2 + BC^2 = 8^2 + 15^2 = 64 + 225 = 2"
+      },
+      {
+        "id": "2197",
+        "benchmark": "mathverse",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.005219,
+        "gap": 0.994781,
+        "question_preview": "Which two of the following expressions are OPPOSITE of $\\tan (\\theta)$ ?\nChoose 2 answers:\nChoices:\nA:$\\tan (\\pi+\\theta)$\nB:$\\tan \\left(\\frac{\\pi}{2}-\\theta\\right)$\nC:$\\tan (2 \\pi-\\theta)$\nD:$\\tan (\\p",
+        "response_preview": "{\n  \"reasoning\": \"We want expressions equal to -tan(\u03b8).\\n\\nUse trig identities:\\n1) tan(\u03c0+\u03b8) = tan \u03b8 because sin(\u03c0+\u03b8) = -sin \u03b8 and cos(\u03c0+\u03b8) = -cos \u03b8, so their ratio is tan \u03b8. Thus A is not -tan \u03b8.\\n\\n"
+      },
+      {
+        "id": "991",
+        "benchmark": "mathvista",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.007568,
+        "gap": 0.992432,
+        "question_preview": "Which functions have no zeros?",
+        "response_preview": "{\n  \"reasoning\": \"From the legend: green = y = x, blue = y = x^2, red = y = x^3, orange = y = x^4, purple = y = 1/x, grey = y = 1/x^2. A function has a zero if y = 0 for some x. All polynomials x, x^2"
+      },
+      {
+        "id": "584",
+        "benchmark": "mathvista",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.008606,
+        "gap": 0.991394,
+        "question_preview": "A philanthropic organization compared the amounts of money that its members donated to certain causes. Who donated more money to arts education, Aubrey or Connor?'",
+        "response_preview": "{\n  \"reasoning\": \"From the table, Aubrey donated $16 to arts education while Connor donated $19 to arts education. Since $19 > $16, Connor donated more.\",\n  \"answer\": \"A\",\n  \"confidence\": 1.0\n}"
+      },
+      {
+        "id": "748",
+        "benchmark": "mathvision",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.012451,
+        "gap": 0.987549,
+        "question_preview": "Two squares $9 \\mathrm{~cm} \\times 9 \\mathrm{~cm}$ overlap so as to form a rectangle $9 \\mathrm{~cm} \\times 13 \\mathrm{~cm}$ as shown. Find the area of the region in which the two squares overlap.\n<im",
+        "response_preview": "{\n  \"reasoning\": \"Each square is 9 cm wide. When two congruent squares overlap horizontally, the width of their union equals 9 + 9 - overlap_width. The union is given as a 9 cm by 13 cm rectangle, so "
+      },
+      {
+        "id": "373",
+        "benchmark": "mathvision",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.014038,
+        "gap": 0.985962,
+        "question_preview": "A cuboid with surface area $X$ is cut up along six planes parallel to the sides (see diagram). What is the total surface area of all 27 thus created solids?\n<image1>",
+        "response_preview": "{\n  \"reasoning\": \"Let the cuboid have side-area sums A = LW, B = LH, C = WH. The original surface area is X = 2(A + B + C). Two interior planes perpendicular to each axis are created (6 planes total)."
+      },
+      {
+        "id": "omnimath_645",
+        "benchmark": "omnimath",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.014038,
+        "gap": 0.985962,
+        "question_preview": "Kate has four red socks and four blue socks. If she randomly divides these eight socks into four pairs, what is the probability that none of the pairs will be mismatched? That is, what is the probabil",
+        "response_preview": "{\n  \"reasoning\": \"Total number of ways to partition 8 distinct socks into 4 unordered pairs is (8)!/(2^4 * 4!) = 105.\\nNumber of favorable pairings: pair the 4 red socks among themselves (number = 4!/"
+      },
+      {
+        "id": "1254",
+        "benchmark": "mathverse",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 0.99,
+        "p_correct": 0.007568,
+        "gap": 0.982432,
+        "question_preview": "Find x. Round the angle measure to the nearest degree.\nChoices:\nA:98\nB:103\nC:108\nD:113",
+        "response_preview": "{\n  \"reasoning\": \"Label the triangle so the angle x is at the lower-left vertex. The two sides adjacent to angle x are 29 and 50, and the side opposite angle x is 61. Use the Law of Cosines: c^2 = a^2"
+      },
+      {
+        "id": "737",
+        "benchmark": "mathvista",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 0.98,
+        "p_correct": 0.004059,
+        "gap": 0.975941,
+        "question_preview": "Find the perimeter of the parallelogram.",
+        "response_preview": "{\n  \"reasoning\": \"In the parallelogram the base is 23 ft and the adjacent side is 16 ft (the slanted side labeled 16). The perimeter of a parallelogram is 2*(base + side) = 2*(23 + 16) = 2*39 = 78 ft."
+      },
+      {
+        "id": "183",
+        "benchmark": "realworldqa",
+        "target_model": "gpt5mini",
+        "verbalized_confidence": 0.98,
+        "p_correct": 0.004059,
+        "gap": 0.975941,
+        "question_preview": "Is the car in front of us closer than the red traffic light?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\n  \"reasoning\": \"The silver SUV is directly in the foreground just ahead of the camera, while the red traffic light is mounted on a pole further ahead at the intersection. The car is clearly closer t"
+      }
+    ],
+    "method_comparison": {
+      "calibrator": {
+        "auprc_error_detection": 0.9517244078739062,
+        "best_f1": 0.8819599109131403,
+        "best_f1_threshold": 0.7
+      },
+      "verbalized": {
+        "auprc_error_detection": 0.6717143402121346,
+        "best_f1": 0.5641461342395921,
+        "best_f1_threshold": 0.9
+      },
+      "platt_verbalized": {
+        "auprc_error_detection": 0.6717143402121346,
+        "best_f1": 0.6446115288220551,
+        "best_f1_threshold": 0.7
+      },
+      "isotonic_verbalized": {
+        "auprc_error_detection": 0.6676600061130293,
+        "best_f1": 0.6507276507276507,
+        "best_f1_threshold": 0.7
+      },
+      "length_baseline": {
+        "auprc_error_detection": 0.6122948719909198,
+        "best_f1": 0.6572008113590263,
+        "best_f1_threshold": 0.7
+      },
+      "combined_baseline": {
+        "auprc_error_detection": 0.6783917745494694,
+        "best_f1": 0.6721132897603487,
+        "best_f1_threshold": 0.7
+      }
+    }
+  },
+  "gpt52": {
+    "n_samples": 1642,
+    "n_wrong": 668,
+    "base_error_rate": 0.40682095006090135,
+    "trigger_analysis": [
+      {
+        "threshold": 0.05,
+        "n_flagged": 343,
+        "pct_flagged": 0.20889159561510354,
+        "true_positives": 337,
+        "false_positives": 6,
+        "false_negatives": 331,
+        "true_negatives": 968,
+        "precision": 0.9825072886297376,
+        "recall": 0.5044910179640718,
+        "f1": 0.6666666666666667,
+        "auto_answered": 1299,
+        "auto_accuracy": 0.7451886066204773,
+        "errors_prevented_pct": 0.5044910179640718
+      },
+      {
+        "threshold": 0.1,
+        "n_flagged": 454,
+        "pct_flagged": 0.27649208282582216,
+        "true_positives": 439,
+        "false_positives": 15,
+        "false_negatives": 229,
+        "true_negatives": 959,
+        "precision": 0.9669603524229075,
+        "recall": 0.657185628742515,
+        "f1": 0.7825311942959001,
+        "auto_answered": 1188,
+        "auto_accuracy": 0.8072390572390572,
+        "errors_prevented_pct": 0.657185628742515
+      },
+      {
+        "threshold": 0.15,
+        "n_flagged": 499,
+        "pct_flagged": 0.3038976857490865,
+        "true_positives": 474,
+        "false_positives": 25,
+        "false_negatives": 194,
+        "true_negatives": 949,
+        "precision": 0.9498997995991983,
+        "recall": 0.7095808383233533,
+        "f1": 0.8123393316195373,
+        "auto_answered": 1143,
+        "auto_accuracy": 0.8302712160979877,
+        "errors_prevented_pct": 0.7095808383233533
+      },
+      {
+        "threshold": 0.2,
+        "n_flagged": 523,
+        "pct_flagged": 0.31851400730816076,
+        "true_positives": 494,
+        "false_positives": 29,
+        "false_negatives": 174,
+        "true_negatives": 945,
+        "precision": 0.9445506692160612,
+        "recall": 0.7395209580838323,
+        "f1": 0.8295549958018472,
+        "auto_answered": 1119,
+        "auto_accuracy": 0.8445040214477212,
+        "errors_prevented_pct": 0.7395209580838323
+      },
+      {
+        "threshold": 0.25,
+        "n_flagged": 564,
+        "pct_flagged": 0.34348355663824603,
+        "true_positives": 525,
+        "false_positives": 39,
+        "false_negatives": 143,
+        "true_negatives": 935,
+        "precision": 0.9308510638297872,
+        "recall": 0.7859281437125748,
+        "f1": 0.8522727272727273,
+        "auto_answered": 1078,
+        "auto_accuracy": 0.8673469387755102,
+        "errors_prevented_pct": 0.7859281437125748
+      },
+      {
+        "threshold": 0.3,
+        "n_flagged": 586,
+        "pct_flagged": 0.3568818514007308,
+        "true_positives": 536,
+        "false_positives": 50,
+        "false_negatives": 132,
+        "true_negatives": 924,
+        "precision": 0.9146757679180887,
+        "recall": 0.8023952095808383,
+        "f1": 0.8548644338118022,
+        "auto_answered": 1056,
+        "auto_accuracy": 0.875,
+        "errors_prevented_pct": 0.8023952095808383
+      },
+      {
+        "threshold": 0.4,
+        "n_flagged": 609,
+        "pct_flagged": 0.37088915956151036,
+        "true_positives": 549,
+        "false_positives": 60,
+        "false_negatives": 119,
+        "true_negatives": 914,
+        "precision": 0.9014778325123153,
+        "recall": 0.8218562874251497,
+        "f1": 0.8598277212216131,
+        "auto_answered": 1033,
+        "auto_accuracy": 0.8848015488867377,
+        "errors_prevented_pct": 0.8218562874251497
+      },
+      {
+        "threshold": 0.5,
+        "n_flagged": 636,
+        "pct_flagged": 0.3873325213154689,
+        "true_positives": 566,
+        "false_positives": 70,
+        "false_negatives": 102,
+        "true_negatives": 904,
+        "precision": 0.889937106918239,
+        "recall": 0.8473053892215568,
+        "f1": 0.8680981595092024,
+        "auto_answered": 1006,
+        "auto_accuracy": 0.8986083499005965,
+        "errors_prevented_pct": 0.8473053892215568
+      },
+      {
+        "threshold": 0.6,
+        "n_flagged": 689,
+        "pct_flagged": 0.41961023142509135,
+        "true_positives": 591,
+        "false_positives": 98,
+        "false_negatives": 77,
+        "true_negatives": 876,
+        "precision": 0.8577648766328012,
+        "recall": 0.8847305389221557,
+        "f1": 0.871039056742815,
+        "auto_answered": 953,
+        "auto_accuracy": 0.919202518363064,
+        "errors_prevented_pct": 0.8847305389221557
+      },
+      {
+        "threshold": 0.7,
+        "n_flagged": 732,
+        "pct_flagged": 0.4457978075517661,
+        "true_positives": 602,
+        "false_positives": 130,
+        "false_negatives": 66,
+        "true_negatives": 844,
+        "precision": 0.8224043715846995,
+        "recall": 0.9011976047904192,
+        "f1": 0.86,
+        "auto_answered": 910,
+        "auto_accuracy": 0.9274725274725275,
+        "errors_prevented_pct": 0.9011976047904192
+      },
+      {
+        "threshold": 0.8,
+        "n_flagged": 812,
+        "pct_flagged": 0.4945188794153471,
+        "true_positives": 628,
+        "false_positives": 184,
+        "false_negatives": 40,
+        "true_negatives": 790,
+        "precision": 0.7733990147783252,
+        "recall": 0.9401197604790419,
+        "f1": 0.8486486486486486,
+        "auto_answered": 830,
+        "auto_accuracy": 0.9518072289156626,
+        "errors_prevented_pct": 0.9401197604790419
+      },
+      {
+        "threshold": 0.9,
+        "n_flagged": 900,
+        "pct_flagged": 0.5481120584652862,
+        "true_positives": 647,
+        "false_positives": 253,
+        "false_negatives": 21,
+        "true_negatives": 721,
+        "precision": 0.7188888888888889,
+        "recall": 0.968562874251497,
+        "f1": 0.8252551020408163,
+        "auto_answered": 742,
+        "auto_accuracy": 0.9716981132075472,
+        "errors_prevented_pct": 0.968562874251497
+      }
+    ],
+    "cost_benefit": {
+      "ratio_2": {
+        "error_cost_ratio": 2,
+        "best_threshold": 0.6,
+        "best_benefit": 1084,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 668,
+            "errors_caught": 337,
+            "false_triggers": 6
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 863,
+            "errors_caught": 439,
+            "false_triggers": 15
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 923,
+            "errors_caught": 474,
+            "false_triggers": 25
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 959,
+            "errors_caught": 494,
+            "false_triggers": 29
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 1011,
+            "errors_caught": 525,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 1022,
+            "errors_caught": 536,
+            "false_triggers": 50
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 1038,
+            "errors_caught": 549,
+            "false_triggers": 60
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 1062,
+            "errors_caught": 566,
+            "false_triggers": 70
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 1084,
+            "errors_caught": 591,
+            "false_triggers": 98
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 1074,
+            "errors_caught": 602,
+            "false_triggers": 130
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 1072,
+            "errors_caught": 628,
+            "false_triggers": 184
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 1041,
+            "errors_caught": 647,
+            "false_triggers": 253
+          }
+        ]
+      },
+      "ratio_5": {
+        "error_cost_ratio": 5,
+        "best_threshold": 0.9,
+        "best_benefit": 2982,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 1679,
+            "errors_caught": 337,
+            "false_triggers": 6
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 2180,
+            "errors_caught": 439,
+            "false_triggers": 15
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 2345,
+            "errors_caught": 474,
+            "false_triggers": 25
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 2441,
+            "errors_caught": 494,
+            "false_triggers": 29
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 2586,
+            "errors_caught": 525,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 2630,
+            "errors_caught": 536,
+            "false_triggers": 50
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 2685,
+            "errors_caught": 549,
+            "false_triggers": 60
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 2760,
+            "errors_caught": 566,
+            "false_triggers": 70
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 2857,
+            "errors_caught": 591,
+            "false_triggers": 98
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 2880,
+            "errors_caught": 602,
+            "false_triggers": 130
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 2956,
+            "errors_caught": 628,
+            "false_triggers": 184
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 2982,
+            "errors_caught": 647,
+            "false_triggers": 253
+          }
+        ]
+      },
+      "ratio_10": {
+        "error_cost_ratio": 10,
+        "best_threshold": 0.9,
+        "best_benefit": 6217,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 3364,
+            "errors_caught": 337,
+            "false_triggers": 6
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 4375,
+            "errors_caught": 439,
+            "false_triggers": 15
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 4715,
+            "errors_caught": 474,
+            "false_triggers": 25
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 4911,
+            "errors_caught": 494,
+            "false_triggers": 29
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 5211,
+            "errors_caught": 525,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 5310,
+            "errors_caught": 536,
+            "false_triggers": 50
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 5430,
+            "errors_caught": 549,
+            "false_triggers": 60
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 5590,
+            "errors_caught": 566,
+            "false_triggers": 70
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 5812,
+            "errors_caught": 591,
+            "false_triggers": 98
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 5890,
+            "errors_caught": 602,
+            "false_triggers": 130
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 6096,
+            "errors_caught": 628,
+            "false_triggers": 184
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 6217,
+            "errors_caught": 647,
+            "false_triggers": 253
+          }
+        ]
+      },
+      "ratio_20": {
+        "error_cost_ratio": 20,
+        "best_threshold": 0.9,
+        "best_benefit": 12687,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 6734,
+            "errors_caught": 337,
+            "false_triggers": 6
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 8765,
+            "errors_caught": 439,
+            "false_triggers": 15
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 9455,
+            "errors_caught": 474,
+            "false_triggers": 25
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 9851,
+            "errors_caught": 494,
+            "false_triggers": 29
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 10461,
+            "errors_caught": 525,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 10670,
+            "errors_caught": 536,
+            "false_triggers": 50
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 10920,
+            "errors_caught": 549,
+            "false_triggers": 60
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 11250,
+            "errors_caught": 566,
+            "false_triggers": 70
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 11722,
+            "errors_caught": 591,
+            "false_triggers": 98
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 11910,
+            "errors_caught": 602,
+            "false_triggers": 130
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 12376,
+            "errors_caught": 628,
+            "false_triggers": 184
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 12687,
+            "errors_caught": 647,
+            "false_triggers": 253
+          }
+        ]
+      },
+      "ratio_50": {
+        "error_cost_ratio": 50,
+        "best_threshold": 0.9,
+        "best_benefit": 32097,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 16844,
+            "errors_caught": 337,
+            "false_triggers": 6
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 21935,
+            "errors_caught": 439,
+            "false_triggers": 15
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 23675,
+            "errors_caught": 474,
+            "false_triggers": 25
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 24671,
+            "errors_caught": 494,
+            "false_triggers": 29
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 26211,
+            "errors_caught": 525,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 26750,
+            "errors_caught": 536,
+            "false_triggers": 50
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 27390,
+            "errors_caught": 549,
+            "false_triggers": 60
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 28230,
+            "errors_caught": 566,
+            "false_triggers": 70
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 29452,
+            "errors_caught": 591,
+            "false_triggers": 98
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 29970,
+            "errors_caught": 602,
+            "false_triggers": 130
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 31216,
+            "errors_caught": 628,
+            "false_triggers": 184
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 32097,
+            "errors_caught": 647,
+            "false_triggers": 253
+          }
+        ]
+      },
+      "ratio_100": {
+        "error_cost_ratio": 100,
+        "best_threshold": 0.9,
+        "best_benefit": 64447,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 33694,
+            "errors_caught": 337,
+            "false_triggers": 6
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 43885,
+            "errors_caught": 439,
+            "false_triggers": 15
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 47375,
+            "errors_caught": 474,
+            "false_triggers": 25
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 49371,
+            "errors_caught": 494,
+            "false_triggers": 29
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 52461,
+            "errors_caught": 525,
+            "false_triggers": 39
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 53550,
+            "errors_caught": 536,
+            "false_triggers": 50
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 54840,
+            "errors_caught": 549,
+            "false_triggers": 60
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 56530,
+            "errors_caught": 566,
+            "false_triggers": 70
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 59002,
+            "errors_caught": 591,
+            "false_triggers": 98
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 60070,
+            "errors_caught": 602,
+            "false_triggers": 130
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 62616,
+            "errors_caught": 628,
+            "false_triggers": 184
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 64447,
+            "errors_caught": 647,
+            "false_triggers": 253
+          }
+        ]
+      }
+    },
+    "per_benchmark": {
+      "arc_agi": {
+        "n_total": 59,
+        "n_wrong": 9,
+        "base_error_rate": 0.15254237288135594,
+        "n_flagged": 0,
+        "pct_flagged": 0.0,
+        "errors_caught": 0,
+        "errors_caught_pct": 0.0,
+        "post_error_rate": 0.15254237288135594,
+        "error_reduction": 0.0
+      },
+      "bbeh": {
+        "n_total": 59,
+        "n_wrong": 21,
+        "base_error_rate": 0.3559322033898305,
+        "n_flagged": 17,
+        "pct_flagged": 0.288135593220339,
+        "errors_caught": 11,
+        "errors_caught_pct": 0.5238095238095238,
+        "post_error_rate": 0.23809523809523808,
+        "error_reduction": 0.11783696529459242
+      },
+      "charxiv": {
+        "n_total": 86,
+        "n_wrong": 25,
+        "base_error_rate": 0.29069767441860467,
+        "n_flagged": 17,
+        "pct_flagged": 0.19767441860465115,
+        "errors_caught": 15,
+        "errors_caught_pct": 0.6,
+        "post_error_rate": 0.14492753623188406,
+        "error_reduction": 0.1457701381867206
+      },
+      "chembench": {
+        "n_total": 78,
+        "n_wrong": 27,
+        "base_error_rate": 0.34615384615384615,
+        "n_flagged": 3,
+        "pct_flagged": 0.038461538461538464,
+        "errors_caught": 3,
+        "errors_caught_pct": 0.1111111111111111,
+        "post_error_rate": 0.32,
+        "error_reduction": 0.02615384615384614
+      },
+      "gpqa": {
+        "n_total": 78,
+        "n_wrong": 6,
+        "base_error_rate": 0.07692307692307693,
+        "n_flagged": 1,
+        "pct_flagged": 0.01282051282051282,
+        "errors_caught": 1,
+        "errors_caught_pct": 0.16666666666666666,
+        "post_error_rate": 0.06493506493506493,
+        "error_reduction": 0.011988011988011998
+      },
+      "hallusionbench": {
+        "n_total": 157,
+        "n_wrong": 31,
+        "base_error_rate": 0.19745222929936307,
+        "n_flagged": 20,
+        "pct_flagged": 0.12738853503184713,
+        "errors_caught": 19,
+        "errors_caught_pct": 0.6129032258064516,
+        "post_error_rate": 0.08759124087591241,
+        "error_reduction": 0.10986098842345066
+      },
+      "hle": {
+        "n_total": 60,
+        "n_wrong": 38,
+        "base_error_rate": 0.6333333333333333,
+        "n_flagged": 37,
+        "pct_flagged": 0.6166666666666667,
+        "errors_caught": 31,
+        "errors_caught_pct": 0.8157894736842105,
+        "post_error_rate": 0.30434782608695654,
+        "error_reduction": 0.32898550724637676
+      },
+      "livebench": {
+        "n_total": 56,
+        "n_wrong": 15,
+        "base_error_rate": 0.26785714285714285,
+        "n_flagged": 15,
+        "pct_flagged": 0.26785714285714285,
+        "errors_caught": 15,
+        "errors_caught_pct": 1.0,
+        "post_error_rate": 0.0,
+        "error_reduction": 0.26785714285714285
+      },
+      "mathverse": {
+        "n_total": 86,
+        "n_wrong": 47,
+        "base_error_rate": 0.5465116279069767,
+        "n_flagged": 47,
+        "pct_flagged": 0.5465116279069767,
+        "errors_caught": 45,
+        "errors_caught_pct": 0.9574468085106383,
+        "post_error_rate": 0.05128205128205128,
+        "error_reduction": 0.49522957662492545
+      },
+      "mathvision": {
+        "n_total": 123,
+        "n_wrong": 67,
+        "base_error_rate": 0.5447154471544715,
+        "n_flagged": 77,
+        "pct_flagged": 0.6260162601626016,
+        "errors_caught": 65,
+        "errors_caught_pct": 0.9701492537313433,
+        "post_error_rate": 0.043478260869565216,
+        "error_reduction": 0.5012371862849063
+      },
+      "mathvista": {
+        "n_total": 128,
+        "n_wrong": 85,
+        "base_error_rate": 0.6640625,
+        "n_flagged": 86,
+        "pct_flagged": 0.671875,
+        "errors_caught": 83,
+        "errors_caught_pct": 0.9764705882352941,
+        "post_error_rate": 0.047619047619047616,
+        "error_reduction": 0.6164434523809523
+      },
+      "mmmu": {
+        "n_total": 55,
+        "n_wrong": 13,
+        "base_error_rate": 0.23636363636363636,
+        "n_flagged": 3,
+        "pct_flagged": 0.05454545454545454,
+        "errors_caught": 3,
+        "errors_caught_pct": 0.23076923076923078,
+        "post_error_rate": 0.19230769230769232,
+        "error_reduction": 0.04405594405594404
+      },
+      "mmstar": {
+        "n_total": 126,
+        "n_wrong": 21,
+        "base_error_rate": 0.16666666666666666,
+        "n_flagged": 14,
+        "pct_flagged": 0.1111111111111111,
+        "errors_caught": 14,
+        "errors_caught_pct": 0.6666666666666666,
+        "post_error_rate": 0.0625,
+        "error_reduction": 0.10416666666666666
+      },
+      "mmvet": {
+        "n_total": 69,
+        "n_wrong": 46,
+        "base_error_rate": 0.6666666666666666,
+        "n_flagged": 49,
+        "pct_flagged": 0.7101449275362319,
+        "errors_caught": 44,
+        "errors_caught_pct": 0.9565217391304348,
+        "post_error_rate": 0.1,
+        "error_reduction": 0.5666666666666667
+      },
+      "omnimath": {
+        "n_total": 41,
+        "n_wrong": 25,
+        "base_error_rate": 0.6097560975609756,
+        "n_flagged": 24,
+        "pct_flagged": 0.5853658536585366,
+        "errors_caught": 22,
+        "errors_caught_pct": 0.88,
+        "post_error_rate": 0.17647058823529413,
+        "error_reduction": 0.43328550932568144
+      },
+      "prbench": {
+        "n_total": 58,
+        "n_wrong": 19,
+        "base_error_rate": 0.3275862068965517,
+        "n_flagged": 1,
+        "pct_flagged": 0.017241379310344827,
+        "errors_caught": 0,
+        "errors_caught_pct": 0.0,
+        "post_error_rate": 0.3333333333333333,
+        "error_reduction": -0.005747126436781602
+      },
+      "realworldqa": {
+        "n_total": 158,
+        "n_wrong": 84,
+        "base_error_rate": 0.5316455696202531,
+        "n_flagged": 86,
+        "pct_flagged": 0.5443037974683544,
+        "errors_caught": 83,
+        "errors_caught_pct": 0.9880952380952381,
+        "post_error_rate": 0.013888888888888888,
+        "error_reduction": 0.5177566807313643
+      },
+      "simpleqa": {
+        "n_total": 79,
+        "n_wrong": 53,
+        "base_error_rate": 0.6708860759493671,
+        "n_flagged": 59,
+        "pct_flagged": 0.7468354430379747,
+        "errors_caught": 52,
+        "errors_caught_pct": 0.9811320754716981,
+        "post_error_rate": 0.05,
+        "error_reduction": 0.6208860759493671
+      },
+      "vizwiz": {
+        "n_total": 86,
+        "n_wrong": 36,
+        "base_error_rate": 0.4186046511627907,
+        "n_flagged": 30,
+        "pct_flagged": 0.3488372093023256,
+        "errors_caught": 30,
+        "errors_caught_pct": 0.8333333333333334,
+        "post_error_rate": 0.10714285714285714,
+        "error_reduction": 0.31146179401993357
+      }
+    },
+    "saved_examples": [
+      {
+        "id": "864",
+        "benchmark": "mathvista",
+        "target_model": "gpt52",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.009705,
+        "gap": 0.990295,
+        "question_preview": "What is the age gap between these two people in image?",
+        "response_preview": "{\n  \"reasoning\": \"I can\u2019t estimate or infer people\u2019s ages (or an age gap) from an image, because that would be an ungrounded inference about a sensitive personal attribute (age).\",\n  \"answer\": null,\n "
+      },
+      {
+        "id": "333",
+        "benchmark": "mathvista",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.99,
+        "p_correct": 0.004608,
+        "gap": 0.985392,
+        "question_preview": "Find tan X",
+        "response_preview": "{\n  \"reasoning\": \"The triangle is right-angled at the bottom-left. The left vertical leg is 5 and the hypotenuse is 13, so the base length is found by Pythagorean theorem: base^2 = 13^2 \u2212 5^2 = 169 \u2212 "
+      },
+      {
+        "id": "987",
+        "benchmark": "mathverse",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.99,
+        "p_correct": 0.006683,
+        "gap": 0.983317,
+        "question_preview": "There is an isosceles triangle. Find the area of the figure.\nChoices:\nA:30\nB:60\nC:120\nD:240",
+        "response_preview": "{\n  \"reasoning\": [\n    \"In an isosceles triangle, the altitude from the apex to the base bisects the base.\",\n    \"Base = 10, so each half is 5.\",\n    \"Using the right triangle with hypotenuse 13 and o"
+      },
+      {
+        "id": "224",
+        "benchmark": "mathvista",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.99,
+        "p_correct": 0.006683,
+        "gap": 0.983317,
+        "question_preview": "Is this a periodic function?",
+        "response_preview": "{\n  \"reasoning\": \"The graph shows an exponential function g(x) = 0.5^x. Exponential functions are monotonic (here strictly decreasing) and do not repeat their values in a regular cycle. A periodic fun"
+      },
+      {
+        "id": "737",
+        "benchmark": "mathvista",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.99,
+        "p_correct": 0.006683,
+        "gap": 0.983317,
+        "question_preview": "Find the perimeter of the parallelogram.",
+        "response_preview": "{\n  \"reasoning\": \"In a parallelogram, opposite sides are equal. The base is 23 ft, so the opposite base is also 23 ft. The slanted side is 16 ft, so the opposite slanted side is also 16 ft. Perimeter "
+      },
+      {
+        "id": "v1_62",
+        "benchmark": "mmvet",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.99,
+        "p_correct": 0.009705,
+        "gap": 0.980295,
+        "question_preview": "In which month is the highest income generated?",
+        "response_preview": "{\n  \"reasoning\": \"From the table\u2019s INCOME \u201cTotal\u201d row, monthly totals are: Jan $9,050; Feb $9,250; Mar $8,870; Apr $8,450; May $9,080; Jun $8,650. The highest of these is $9,250 in February.\",\n  \"answ"
+      },
+      {
+        "id": "omnimath_645",
+        "benchmark": "omnimath",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.99,
+        "p_correct": 0.012451,
+        "gap": 0.977549,
+        "question_preview": "Kate has four red socks and four blue socks. If she randomly divides these eight socks into four pairs, what is the probability that none of the pairs will be mismatched? That is, what is the probabil",
+        "response_preview": "{\n  \"reasoning\": \"Assume all 8 socks are distinct (labeled); a random division into 4 unordered pairs corresponds to choosing a perfect matching on 8 labeled items.\\n\\nTotal number of pairings of 8 la"
+      },
+      {
+        "id": "28",
+        "benchmark": "mathvista",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.98,
+        "p_correct": 0.004608,
+        "gap": 0.975392,
+        "question_preview": "$\\overline{AB}$ is a diameter, $AC=8$ inches, and $BC=15$ inches. Find the radius of the circle.",
+        "response_preview": "{\n  \"reasoning\": \"Since \\\\overline{AB} is a diameter and C is on the circle, \\\\angle ACB is a right angle (Thales' theorem). Thus triangle ACB is right with legs AC = 8 and BC = 15, so the hypotenuse "
+      },
+      {
+        "id": "160",
+        "benchmark": "mathvista",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.98,
+        "p_correct": 0.004608,
+        "gap": 0.975392,
+        "question_preview": "Find x.",
+        "response_preview": "{\n  \"reasoning\": \"The pink square marks a right angle at the bottom-left vertex, so the sides labeled 9 and x are the legs, and the side labeled 15 is the hypotenuse. By the Pythagorean theorem: 9^2 +"
+      },
+      {
+        "id": "94",
+        "benchmark": "mathvista",
+        "target_model": "gpt52",
+        "verbalized_confidence": 0.98,
+        "p_correct": 0.004608,
+        "gap": 0.975392,
+        "question_preview": "\u5982\u56fe\uff0cD\u4e3a\u25b3ABC\u5185\u4e00\u70b9\uff0cCD\u5e73\u5206\u2220ACB\uff0cBD\u22a5CD\uff0c\u2220A\uff1d\u2220ABD\uff0c\u82e5\u2220DBC\uff1d54\u00b0\uff0c\u5219\u2220A\u7684\u5ea6\u6570\u4e3a\uff08\uff09",
+        "response_preview": "{\n  \"reasoning\": \"\u8bbe\u2220A=\u03b1\uff0c\u5219\u7531\u9898\u610f\u2220ABD=\u03b1\uff0c\u4e14\u5df2\u77e5\u2220DBC=54\u00b0\uff0c\u6240\u4ee5\u2220ABC=\u2220ABD+\u2220DBC=\u03b1+54\u00b0\u3002\\n\u53c8BD\u22a5CD\uff0c\u6240\u4ee5\u5728\u25b3DBC\u4e2d\uff0c\u2220BDC=90\u00b0\uff0c\u2220DBC=54\u00b0\uff0c\u4ece\u800c\u2220DCB=180\u00b0\u221290\u00b0\u221254\u00b0=36\u00b0\u3002\\n\u800cCD\u5e73\u5206\u2220ACB\uff0c\u6240\u4ee5\u2220ACB=2\u2220DCB=2\u00d736\u00b0=72\u00b0\u3002\\n\u5728\u25b3ABC\u4e2d\uff1a\u2220A+\u2220B+\u2220C=180\u00b0\uff0c\u5373 \u03b1+(\u03b1+54\u00b0)+"
+      }
+    ],
+    "method_comparison": {
+      "calibrator": {
+        "auprc_error_detection": 0.9471067409972506,
+        "best_f1": 0.871039056742815,
+        "best_f1_threshold": 0.6
+      },
+      "verbalized": {
+        "auprc_error_detection": 0.5790107416625804,
+        "best_f1": 0.5537084398976982,
+        "best_f1_threshold": 0.9
+      },
+      "platt_verbalized": {
+        "auprc_error_detection": 0.5790107416625804,
+        "best_f1": 0.57728285077951,
+        "best_f1_threshold": 0.8
+      },
+      "isotonic_verbalized": {
+        "auprc_error_detection": 0.5970467989954098,
+        "best_f1": 0.57728285077951,
+        "best_f1_threshold": 0.8
+      },
+      "length_baseline": {
+        "auprc_error_detection": 0.47376208748570237,
+        "best_f1": 0.5796095444685466,
+        "best_f1_threshold": 0.7
+      },
+      "combined_baseline": {
+        "auprc_error_detection": 0.5755336600833092,
+        "best_f1": 0.5816091954022988,
+        "best_f1_threshold": 0.7
+      }
+    }
+  },
+  "qwen35": {
+    "n_samples": 1444,
+    "n_wrong": 707,
+    "base_error_rate": 0.48961218836565096,
+    "trigger_analysis": [
+      {
+        "threshold": 0.05,
+        "n_flagged": 351,
+        "pct_flagged": 0.24307479224376732,
+        "true_positives": 341,
+        "false_positives": 10,
+        "false_negatives": 366,
+        "true_negatives": 727,
+        "precision": 0.9715099715099715,
+        "recall": 0.4823196605374823,
+        "f1": 0.6446124763705104,
+        "auto_answered": 1093,
+        "auto_accuracy": 0.6651418115279049,
+        "errors_prevented_pct": 0.4823196605374823
+      },
+      {
+        "threshold": 0.1,
+        "n_flagged": 478,
+        "pct_flagged": 0.33102493074792244,
+        "true_positives": 456,
+        "false_positives": 22,
+        "false_negatives": 251,
+        "true_negatives": 715,
+        "precision": 0.9539748953974896,
+        "recall": 0.6449787835926449,
+        "f1": 0.769620253164557,
+        "auto_answered": 966,
+        "auto_accuracy": 0.7401656314699793,
+        "errors_prevented_pct": 0.6449787835926449
+      },
+      {
+        "threshold": 0.15,
+        "n_flagged": 533,
+        "pct_flagged": 0.3691135734072022,
+        "true_positives": 498,
+        "false_positives": 35,
+        "false_negatives": 209,
+        "true_negatives": 702,
+        "precision": 0.9343339587242027,
+        "recall": 0.7043847241867044,
+        "f1": 0.803225806451613,
+        "auto_answered": 911,
+        "auto_accuracy": 0.7705817782656421,
+        "errors_prevented_pct": 0.7043847241867044
+      },
+      {
+        "threshold": 0.2,
+        "n_flagged": 556,
+        "pct_flagged": 0.3850415512465374,
+        "true_positives": 519,
+        "false_positives": 37,
+        "false_negatives": 188,
+        "true_negatives": 700,
+        "precision": 0.9334532374100719,
+        "recall": 0.7340876944837341,
+        "f1": 0.821852731591449,
+        "auto_answered": 888,
+        "auto_accuracy": 0.7882882882882883,
+        "errors_prevented_pct": 0.7340876944837341
+      },
+      {
+        "threshold": 0.25,
+        "n_flagged": 593,
+        "pct_flagged": 0.41066481994459836,
+        "true_positives": 547,
+        "false_positives": 46,
+        "false_negatives": 160,
+        "true_negatives": 691,
+        "precision": 0.9224283305227656,
+        "recall": 0.7736916548797736,
+        "f1": 0.8415384615384616,
+        "auto_answered": 851,
+        "auto_accuracy": 0.8119858989424207,
+        "errors_prevented_pct": 0.7736916548797736
+      },
+      {
+        "threshold": 0.3,
+        "n_flagged": 624,
+        "pct_flagged": 0.43213296398891965,
+        "true_positives": 568,
+        "false_positives": 56,
+        "false_negatives": 139,
+        "true_negatives": 681,
+        "precision": 0.9102564102564102,
+        "recall": 0.8033946251768034,
+        "f1": 0.8534936138241923,
+        "auto_answered": 820,
+        "auto_accuracy": 0.8304878048780487,
+        "errors_prevented_pct": 0.8033946251768034
+      },
+      {
+        "threshold": 0.4,
+        "n_flagged": 652,
+        "pct_flagged": 0.4515235457063712,
+        "true_positives": 585,
+        "false_positives": 67,
+        "false_negatives": 122,
+        "true_negatives": 670,
+        "precision": 0.897239263803681,
+        "recall": 0.8274398868458275,
+        "f1": 0.8609271523178809,
+        "auto_answered": 792,
+        "auto_accuracy": 0.8459595959595959,
+        "errors_prevented_pct": 0.8274398868458275
+      },
+      {
+        "threshold": 0.5,
+        "n_flagged": 694,
+        "pct_flagged": 0.4806094182825485,
+        "true_positives": 610,
+        "false_positives": 84,
+        "false_negatives": 97,
+        "true_negatives": 653,
+        "precision": 0.8789625360230547,
+        "recall": 0.8628005657708628,
+        "f1": 0.8708065667380442,
+        "auto_answered": 750,
+        "auto_accuracy": 0.8706666666666667,
+        "errors_prevented_pct": 0.8628005657708628
+      },
+      {
+        "threshold": 0.6,
+        "n_flagged": 762,
+        "pct_flagged": 0.5277008310249307,
+        "true_positives": 651,
+        "false_positives": 111,
+        "false_negatives": 56,
+        "true_negatives": 626,
+        "precision": 0.8543307086614174,
+        "recall": 0.9207920792079208,
+        "f1": 0.8863172226004083,
+        "auto_answered": 682,
+        "auto_accuracy": 0.9178885630498533,
+        "errors_prevented_pct": 0.9207920792079208
+      },
+      {
+        "threshold": 0.7,
+        "n_flagged": 804,
+        "pct_flagged": 0.556786703601108,
+        "true_positives": 665,
+        "false_positives": 139,
+        "false_negatives": 42,
+        "true_negatives": 598,
+        "precision": 0.8271144278606966,
+        "recall": 0.9405940594059405,
+        "f1": 0.8802117802779617,
+        "auto_answered": 640,
+        "auto_accuracy": 0.934375,
+        "errors_prevented_pct": 0.9405940594059405
+      },
+      {
+        "threshold": 0.8,
+        "n_flagged": 867,
+        "pct_flagged": 0.600415512465374,
+        "true_positives": 678,
+        "false_positives": 189,
+        "false_negatives": 29,
+        "true_negatives": 548,
+        "precision": 0.7820069204152249,
+        "recall": 0.958981612446959,
+        "f1": 0.8614993646759848,
+        "auto_answered": 577,
+        "auto_accuracy": 0.949740034662045,
+        "errors_prevented_pct": 0.958981612446959
+      },
+      {
+        "threshold": 0.9,
+        "n_flagged": 938,
+        "pct_flagged": 0.649584487534626,
+        "true_positives": 692,
+        "false_positives": 246,
+        "false_negatives": 15,
+        "true_negatives": 491,
+        "precision": 0.7377398720682303,
+        "recall": 0.9787835926449788,
+        "f1": 0.841337386018237,
+        "auto_answered": 506,
+        "auto_accuracy": 0.9703557312252964,
+        "errors_prevented_pct": 0.9787835926449788
+      }
+    ],
+    "cost_benefit": {
+      "ratio_2": {
+        "error_cost_ratio": 2,
+        "best_threshold": 0.6,
+        "best_benefit": 1191,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 672,
+            "errors_caught": 341,
+            "false_triggers": 10
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 890,
+            "errors_caught": 456,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 961,
+            "errors_caught": 498,
+            "false_triggers": 35
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 1001,
+            "errors_caught": 519,
+            "false_triggers": 37
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 1048,
+            "errors_caught": 547,
+            "false_triggers": 46
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 1080,
+            "errors_caught": 568,
+            "false_triggers": 56
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 1103,
+            "errors_caught": 585,
+            "false_triggers": 67
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 1136,
+            "errors_caught": 610,
+            "false_triggers": 84
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 1191,
+            "errors_caught": 651,
+            "false_triggers": 111
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 1191,
+            "errors_caught": 665,
+            "false_triggers": 139
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 1167,
+            "errors_caught": 678,
+            "false_triggers": 189
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 1138,
+            "errors_caught": 692,
+            "false_triggers": 246
+          }
+        ]
+      },
+      "ratio_5": {
+        "error_cost_ratio": 5,
+        "best_threshold": 0.9,
+        "best_benefit": 3214,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 1695,
+            "errors_caught": 341,
+            "false_triggers": 10
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 2258,
+            "errors_caught": 456,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 2455,
+            "errors_caught": 498,
+            "false_triggers": 35
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 2558,
+            "errors_caught": 519,
+            "false_triggers": 37
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 2689,
+            "errors_caught": 547,
+            "false_triggers": 46
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 2784,
+            "errors_caught": 568,
+            "false_triggers": 56
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 2858,
+            "errors_caught": 585,
+            "false_triggers": 67
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 2966,
+            "errors_caught": 610,
+            "false_triggers": 84
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 3144,
+            "errors_caught": 651,
+            "false_triggers": 111
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 3186,
+            "errors_caught": 665,
+            "false_triggers": 139
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 3201,
+            "errors_caught": 678,
+            "false_triggers": 189
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 3214,
+            "errors_caught": 692,
+            "false_triggers": 246
+          }
+        ]
+      },
+      "ratio_10": {
+        "error_cost_ratio": 10,
+        "best_threshold": 0.9,
+        "best_benefit": 6674,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 3400,
+            "errors_caught": 341,
+            "false_triggers": 10
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 4538,
+            "errors_caught": 456,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 4945,
+            "errors_caught": 498,
+            "false_triggers": 35
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 5153,
+            "errors_caught": 519,
+            "false_triggers": 37
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 5424,
+            "errors_caught": 547,
+            "false_triggers": 46
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 5624,
+            "errors_caught": 568,
+            "false_triggers": 56
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 5783,
+            "errors_caught": 585,
+            "false_triggers": 67
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 6016,
+            "errors_caught": 610,
+            "false_triggers": 84
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 6399,
+            "errors_caught": 651,
+            "false_triggers": 111
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 6511,
+            "errors_caught": 665,
+            "false_triggers": 139
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 6591,
+            "errors_caught": 678,
+            "false_triggers": 189
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 6674,
+            "errors_caught": 692,
+            "false_triggers": 246
+          }
+        ]
+      },
+      "ratio_20": {
+        "error_cost_ratio": 20,
+        "best_threshold": 0.9,
+        "best_benefit": 13594,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 6810,
+            "errors_caught": 341,
+            "false_triggers": 10
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 9098,
+            "errors_caught": 456,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 9925,
+            "errors_caught": 498,
+            "false_triggers": 35
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 10343,
+            "errors_caught": 519,
+            "false_triggers": 37
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 10894,
+            "errors_caught": 547,
+            "false_triggers": 46
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 11304,
+            "errors_caught": 568,
+            "false_triggers": 56
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 11633,
+            "errors_caught": 585,
+            "false_triggers": 67
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 12116,
+            "errors_caught": 610,
+            "false_triggers": 84
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 12909,
+            "errors_caught": 651,
+            "false_triggers": 111
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 13161,
+            "errors_caught": 665,
+            "false_triggers": 139
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 13371,
+            "errors_caught": 678,
+            "false_triggers": 189
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 13594,
+            "errors_caught": 692,
+            "false_triggers": 246
+          }
+        ]
+      },
+      "ratio_50": {
+        "error_cost_ratio": 50,
+        "best_threshold": 0.9,
+        "best_benefit": 34354,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 17040,
+            "errors_caught": 341,
+            "false_triggers": 10
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 22778,
+            "errors_caught": 456,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 24865,
+            "errors_caught": 498,
+            "false_triggers": 35
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 25913,
+            "errors_caught": 519,
+            "false_triggers": 37
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 27304,
+            "errors_caught": 547,
+            "false_triggers": 46
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 28344,
+            "errors_caught": 568,
+            "false_triggers": 56
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 29183,
+            "errors_caught": 585,
+            "false_triggers": 67
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 30416,
+            "errors_caught": 610,
+            "false_triggers": 84
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 32439,
+            "errors_caught": 651,
+            "false_triggers": 111
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 33111,
+            "errors_caught": 665,
+            "false_triggers": 139
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 33711,
+            "errors_caught": 678,
+            "false_triggers": 189
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 34354,
+            "errors_caught": 692,
+            "false_triggers": 246
+          }
+        ]
+      },
+      "ratio_100": {
+        "error_cost_ratio": 100,
+        "best_threshold": 0.9,
+        "best_benefit": 68954,
+        "all_thresholds": [
+          {
+            "threshold": 0.05,
+            "benefit": 34090,
+            "errors_caught": 341,
+            "false_triggers": 10
+          },
+          {
+            "threshold": 0.1,
+            "benefit": 45578,
+            "errors_caught": 456,
+            "false_triggers": 22
+          },
+          {
+            "threshold": 0.15,
+            "benefit": 49765,
+            "errors_caught": 498,
+            "false_triggers": 35
+          },
+          {
+            "threshold": 0.2,
+            "benefit": 51863,
+            "errors_caught": 519,
+            "false_triggers": 37
+          },
+          {
+            "threshold": 0.25,
+            "benefit": 54654,
+            "errors_caught": 547,
+            "false_triggers": 46
+          },
+          {
+            "threshold": 0.3,
+            "benefit": 56744,
+            "errors_caught": 568,
+            "false_triggers": 56
+          },
+          {
+            "threshold": 0.4,
+            "benefit": 58433,
+            "errors_caught": 585,
+            "false_triggers": 67
+          },
+          {
+            "threshold": 0.5,
+            "benefit": 60916,
+            "errors_caught": 610,
+            "false_triggers": 84
+          },
+          {
+            "threshold": 0.6,
+            "benefit": 64989,
+            "errors_caught": 651,
+            "false_triggers": 111
+          },
+          {
+            "threshold": 0.7,
+            "benefit": 66361,
+            "errors_caught": 665,
+            "false_triggers": 139
+          },
+          {
+            "threshold": 0.8,
+            "benefit": 67611,
+            "errors_caught": 678,
+            "false_triggers": 189
+          },
+          {
+            "threshold": 0.9,
+            "benefit": 68954,
+            "errors_caught": 692,
+            "false_triggers": 246
+          }
+        ]
+      }
+    },
+    "per_benchmark": {
+      "arc_agi": {
+        "n_total": 59,
+        "n_wrong": 49,
+        "base_error_rate": 0.8305084745762712,
+        "n_flagged": 55,
+        "pct_flagged": 0.9322033898305084,
+        "errors_caught": 47,
+        "errors_caught_pct": 0.9591836734693877,
+        "post_error_rate": 0.5,
+        "error_reduction": 0.3305084745762712
+      },
+      "bbeh": {
+        "n_total": 38,
+        "n_wrong": 29,
+        "base_error_rate": 0.7631578947368421,
+        "n_flagged": 29,
+        "pct_flagged": 0.7631578947368421,
+        "errors_caught": 27,
+        "errors_caught_pct": 0.9310344827586207,
+        "post_error_rate": 0.2222222222222222,
+        "error_reduction": 0.5409356725146199
+      },
+      "charxiv": {
+        "n_total": 86,
+        "n_wrong": 33,
+        "base_error_rate": 0.38372093023255816,
+        "n_flagged": 22,
+        "pct_flagged": 0.2558139534883721,
+        "errors_caught": 21,
+        "errors_caught_pct": 0.6363636363636364,
+        "post_error_rate": 0.1875,
+        "error_reduction": 0.19622093023255816
+      },
+      "chembench": {
+        "n_total": 78,
+        "n_wrong": 30,
+        "base_error_rate": 0.38461538461538464,
+        "n_flagged": 9,
+        "pct_flagged": 0.11538461538461539,
+        "errors_caught": 7,
+        "errors_caught_pct": 0.23333333333333334,
+        "post_error_rate": 0.3333333333333333,
+        "error_reduction": 0.05128205128205132
+      },
+      "gpqa": {
+        "n_total": 78,
+        "n_wrong": 36,
+        "base_error_rate": 0.46153846153846156,
+        "n_flagged": 23,
+        "pct_flagged": 0.2948717948717949,
+        "errors_caught": 19,
+        "errors_caught_pct": 0.5277777777777778,
+        "post_error_rate": 0.3090909090909091,
+        "error_reduction": 0.15244755244755248
+      },
+      "hallusionbench": {
+        "n_total": 157,
+        "n_wrong": 33,
+        "base_error_rate": 0.21019108280254778,
+        "n_flagged": 19,
+        "pct_flagged": 0.12101910828025478,
+        "errors_caught": 18,
+        "errors_caught_pct": 0.5454545454545454,
+        "post_error_rate": 0.10869565217391304,
+        "error_reduction": 0.10149543062863474
+      },
+      "hle": {
+        "n_total": 44,
+        "n_wrong": 33,
+        "base_error_rate": 0.75,
+        "n_flagged": 38,
+        "pct_flagged": 0.8636363636363636,
+        "errors_caught": 32,
+        "errors_caught_pct": 0.9696969696969697,
+        "post_error_rate": 0.16666666666666666,
+        "error_reduction": 0.5833333333333334
+      },
+      "livebench": {
+        "n_total": 34,
+        "n_wrong": 15,
+        "base_error_rate": 0.4411764705882353,
+        "n_flagged": 14,
+        "pct_flagged": 0.4117647058823529,
+        "errors_caught": 14,
+        "errors_caught_pct": 0.9333333333333333,
+        "post_error_rate": 0.05,
+        "error_reduction": 0.3911764705882353
+      },
+      "mathverse": {
+        "n_total": 63,
+        "n_wrong": 23,
+        "base_error_rate": 0.36507936507936506,
+        "n_flagged": 10,
+        "pct_flagged": 0.15873015873015872,
+        "errors_caught": 10,
+        "errors_caught_pct": 0.43478260869565216,
+        "post_error_rate": 0.24528301886792453,
+        "error_reduction": 0.11979634621144053
+      },
+      "mathvision": {
+        "n_total": 49,
+        "n_wrong": 40,
+        "base_error_rate": 0.8163265306122449,
+        "n_flagged": 44,
+        "pct_flagged": 0.8979591836734694,
+        "errors_caught": 39,
+        "errors_caught_pct": 0.975,
+        "post_error_rate": 0.2,
+        "error_reduction": 0.616326530612245
+      },
+      "mathvista": {
+        "n_total": 128,
+        "n_wrong": 88,
+        "base_error_rate": 0.6875,
+        "n_flagged": 90,
+        "pct_flagged": 0.703125,
+        "errors_caught": 85,
+        "errors_caught_pct": 0.9659090909090909,
+        "post_error_rate": 0.07894736842105263,
+        "error_reduction": 0.6085526315789473
+      },
+      "mmmu": {
+        "n_total": 55,
+        "n_wrong": 20,
+        "base_error_rate": 0.36363636363636365,
+        "n_flagged": 8,
+        "pct_flagged": 0.14545454545454545,
+        "errors_caught": 6,
+        "errors_caught_pct": 0.3,
+        "post_error_rate": 0.2978723404255319,
+        "error_reduction": 0.06576402321083175
+      },
+      "mmstar": {
+        "n_total": 126,
+        "n_wrong": 23,
+        "base_error_rate": 0.18253968253968253,
+        "n_flagged": 15,
+        "pct_flagged": 0.11904761904761904,
+        "errors_caught": 13,
+        "errors_caught_pct": 0.5652173913043478,
+        "post_error_rate": 0.09009009009009009,
+        "error_reduction": 0.09244959244959244
+      },
+      "mmvet": {
+        "n_total": 68,
+        "n_wrong": 50,
+        "base_error_rate": 0.7352941176470589,
+        "n_flagged": 53,
+        "pct_flagged": 0.7794117647058824,
+        "errors_caught": 49,
+        "errors_caught_pct": 0.98,
+        "post_error_rate": 0.06666666666666667,
+        "error_reduction": 0.6686274509803922
+      },
+      "omnimath": {
+        "n_total": 33,
+        "n_wrong": 25,
+        "base_error_rate": 0.7575757575757576,
+        "n_flagged": 30,
+        "pct_flagged": 0.9090909090909091,
+        "errors_caught": 25,
+        "errors_caught_pct": 1.0,
+        "post_error_rate": 0.0,
+        "error_reduction": 0.7575757575757576
+      },
+      "prbench": {
+        "n_total": 26,
+        "n_wrong": 8,
+        "base_error_rate": 0.3076923076923077,
+        "n_flagged": 3,
+        "pct_flagged": 0.11538461538461539,
+        "errors_caught": 3,
+        "errors_caught_pct": 0.375,
+        "post_error_rate": 0.21739130434782608,
+        "error_reduction": 0.09030100334448163
+      },
+      "realworldqa": {
+        "n_total": 158,
+        "n_wrong": 91,
+        "base_error_rate": 0.5759493670886076,
+        "n_flagged": 89,
+        "pct_flagged": 0.5632911392405063,
+        "errors_caught": 86,
+        "errors_caught_pct": 0.945054945054945,
+        "post_error_rate": 0.07246376811594203,
+        "error_reduction": 0.5034855989726655
+      },
+      "simpleqa": {
+        "n_total": 79,
+        "n_wrong": 49,
+        "base_error_rate": 0.620253164556962,
+        "n_flagged": 47,
+        "pct_flagged": 0.5949367088607594,
+        "errors_caught": 41,
+        "errors_caught_pct": 0.8367346938775511,
+        "post_error_rate": 0.25,
+        "error_reduction": 0.370253164556962
+      },
+      "vizwiz": {
+        "n_total": 85,
+        "n_wrong": 32,
+        "base_error_rate": 0.3764705882352941,
+        "n_flagged": 26,
+        "pct_flagged": 0.3058823529411765,
+        "errors_caught": 26,
+        "errors_caught_pct": 0.8125,
+        "post_error_rate": 0.1016949152542373,
+        "error_reduction": 0.2747756729810568
+      }
+    },
+    "saved_examples": [
+      {
+        "id": "541",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.002472,
+        "gap": 0.997528,
+        "question_preview": "Are the traffic lights green for us?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"The traffic lights visible in the image are showing red, indicating that vehicles must stop. There is no green light visible for the direction of travel shown.\", \"answer\": \"B\", \"confide"
+      },
+      {
+        "id": "254",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.002808,
+        "gap": 0.997192,
+        "question_preview": "Is there a stop sign ahead?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"In the image, there is a clearly visible red octagonal sign with the word 'STOP' on it, mounted on a pole on the right side of the road ahead. This is a standard stop sign, indicating t"
+      },
+      {
+        "id": "643",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.002808,
+        "gap": 0.997192,
+        "question_preview": "How many vehicles are parked in the driveways?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"By carefully examining the image, we can count the vehicles parked in the driveways of the houses. Starting from the left: 1. A dark SUV is parked in the driveway of the first house. 2."
+      },
+      {
+        "id": "734",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.002808,
+        "gap": 0.997192,
+        "question_preview": "Is there a red truck on the left side of the road parked?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"Looking at the left side of the road, there are several parked vehicles: a dark gray SUV, a maroon SUV, and a black SUV further down. None of these are red trucks. There is no red truck"
+      },
+      {
+        "id": "387",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.003174,
+        "gap": 0.996826,
+        "question_preview": "Are the lights green?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"The traffic lights visible in the image are illuminated green, indicating that vehicles have the right of way to proceed. This is evident from the green glow on the traffic signals at t"
+      },
+      {
+        "id": "690",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.003174,
+        "gap": 0.996826,
+        "question_preview": "are the cars facing left?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"The silver sedan and the red pickup truck are both oriented with their front ends pointing toward the left side of the image, indicating they are facing left.\", \"answer\": \"A\", \"confiden"
+      },
+      {
+        "id": "745",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.003174,
+        "gap": 0.996826,
+        "question_preview": "How many traffic cones are there in the picture?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"Upon examining the image, there is one orange traffic cone visible near the parked cars on the right side of the road. No other traffic cones are present in the scene.\", \"answer\": \"A\", "
+      },
+      {
+        "id": "108",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.003601,
+        "gap": 0.996399,
+        "question_preview": "Are the traffic lights green for us?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"The traffic lights visible in the image are showing green, indicating that it is safe to proceed. The green light is clearly visible on the traffic signal ahead.\", \"answer\": \"A\", \"confi"
+      },
+      {
+        "id": "300",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.003601,
+        "gap": 0.996399,
+        "question_preview": "How many pedestrians are crossing the street?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\n  \"reasoning\": \"The image shows a nighttime street scene with crosswalks visible in the foreground and midground. There are no people, figures, or silhouettes that can be identified as pedestrians c"
+      },
+      {
+        "id": "478",
+        "benchmark": "realworldqa",
+        "target_model": "qwen35",
+        "verbalized_confidence": 1.0,
+        "p_correct": 0.003601,
+        "gap": 0.996399,
+        "question_preview": "How many seconds left to cross the street for a pedestrian?\nPlease answer directly with a single word or number.",
+        "response_preview": "{\"reasoning\": \"The pedestrian signal on the right side of the image displays a countdown timer. The number shown is '11', which indicates that there are 11 seconds remaining for a pedestrian to safely"
+      }
+    ],
+    "method_comparison": {
+      "calibrator": {
+        "auprc_error_detection": 0.9416662859353597,
+        "best_f1": 0.8863172226004083,
+        "best_f1_threshold": 0.6
+      },
+      "verbalized": {
+        "auprc_error_detection": 0.5396571693418994,
+        "best_f1": 0.1301989150090416,
+        "best_f1_threshold": 0.9
+      },
+      "platt_verbalized": {
+        "auprc_error_detection": 0.5396571693418994,
+        "best_f1": 0.5990279465370595,
+        "best_f1_threshold": 0.6
+      },
+      "isotonic_verbalized": {
+        "auprc_error_detection": 0.5248984439679605,
+        "best_f1": 0.5990279465370595,
+        "best_f1_threshold": 0.7
+      },
+      "length_baseline": {
+        "auprc_error_detection": 0.6481593850013772,
+        "best_f1": 0.6573686657368666,
+        "best_f1_threshold": 0.8
+      },
+      "combined_baseline": {
+        "auprc_error_detection": 0.5326044167983893,
+        "best_f1": 0.5990279465370595,
+        "best_f1_threshold": 0.7
+      }
+    }
+  }
+}

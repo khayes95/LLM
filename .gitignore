@@ -83,3 +83,4 @@ Thumbs.db
 # Keep placeholders
 # ============================================
 !logs/.gitkeep
+data/legal_hallucinations/

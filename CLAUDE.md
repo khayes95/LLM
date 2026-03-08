@@ -18,9 +18,9 @@ conda activate uq_eval
 
 ---
 
-## ⚠️ DATA LEAKAGE — CONTAMINATED DIRECTORIES (DO NOT USE)
+## ⚠️⚠️⚠️ CRITICAL: QUESTION-LEVEL DATA LEAKAGE — ALL CURRENT SCORES ARE SUSPECT ⚠️⚠️⚠️
 
-The following directories contain **60-67% training data** mixed with test data. All metrics from these are inflated and **INVALID for the paper**:
+### Problem 1: CONTAMINATED Directories (previously known)
 
 | Directory | Status | Use Instead |
 |-----------|--------|-------------|
@@ -28,12 +28,38 @@ The following directories contain **60-67% training data** mixed with test data.
 | `data/use_cases/CONTAMINATED_scored_v2/` | QUARANTINED | `data/use_cases/scored_test_only_v2/` |
 | `data/use_cases/CONTAMINATED_results_unified/` | QUARANTINED | `data/use_cases/results_test_only_v2/` |
 
+### Problem 2: QUESTION-LEVEL LEAKAGE IN TRAIN/TEST SPLIT (newly discovered 2026-03-05)
+
+**The train/test split in `train_best_uq.py` splits by SAMPLE INDEX, not by QUESTION ID.**
+Since each question appears up to 3 times (once per source model: gpt5mini, gpt52, qwen35),
+the SAME QUESTION ends up in both train and test sets across different source models.
+
+**Measured overlap in `scored_test_only_v2/`:**
+- gpt5mini_scored.jsonl: **82.4%** of questions also in training set
+- gpt52_scored.jsonl: **92.5%** of questions also in training set
+- qwen35_scored.jsonl: **95.9%** of questions also in training set
+- In `split_info.json`: **76.2%** of test IDs also appear in train IDs (1,169 of 1,535)
+
+**Impact:** Both headline numbers are likely INFLATED:
+- Held-out AUROC 0.898 — suspect
+- Test-only scoring AUROC 0.953 — suspect
+
+**Root cause (3 bugs):**
+1. `train_best_uq.py` (line ~839): `train_test_split(indices, ...)` splits by sample index, not question ID
+2. `split_info.json`: stores bare `id` values without `source_model`, making overlap invisible
+3. `filter_test_only.py` (line ~115): matches on `id` alone, passing contaminated questions
+
+**REQUIRED FIX before any paper submission:**
+- Split must be done at the QUESTION ID level: if question X goes to test, ALL samples for X (across all source models) must go to test
+- Retrain the model with the fixed split
+- Re-score and re-run all evaluations
+- Update all paper numbers
+
 **Rules:**
-- **NEVER read from `CONTAMINATED_*` directories** for any metric, figure, or table that will appear in the paper
-- **ALWAYS use `scored_test_only_v2/`** (4,447 samples) for scoring and evaluation
-- **ALWAYS use `results_test_only_v2/`** for use case results, baselines, and figures
-- The CONTAMINATED directories exist only for the `filter_test_only.py` pipeline — nowhere else should reference them
-- If you see any script defaulting to a non-test-only scored/results directory, fix it immediately
+- **NEVER read from `CONTAMINATED_*` directories** for any metric, figure, or table
+- **ALL current `scored_test_only_v2/` numbers are SUSPECT** until the split is fixed and model retrained
+- **DO NOT submit the paper** until the question-level split is fixed and numbers are verified
+- If you see any script splitting by sample index instead of question ID, fix it immediately
 
 ---
 

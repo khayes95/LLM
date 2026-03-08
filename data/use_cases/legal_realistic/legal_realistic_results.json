@@ -1,0 +1,264 @@
+{
+  "in_distribution": {
+    "n": 1439,
+    "triage": {
+      "n_total": 1439,
+      "n_errors": 620,
+      "associate_catch_rate": 0.82,
+      "associate_errors_missed": 111,
+      "triage": [
+        {
+          "review_pct": 0.1,
+          "n_reviewed": 143,
+          "errors_caught": 140,
+          "errors_slipped": 480,
+          "catch_rate": 0.22580645161290322,
+          "auto_error_rate": 0.37037037037037035,
+          "better_than_associate": false,
+          "memos_saved_from_review": 1296
+        },
+        {
+          "review_pct": 0.15,
+          "n_reviewed": 215,
+          "errors_caught": 208,
+          "errors_slipped": 412,
+          "catch_rate": 0.33548387096774196,
+          "auto_error_rate": 0.3366013071895425,
+          "better_than_associate": false,
+          "memos_saved_from_review": 1224
+        },
+        {
+          "review_pct": 0.2,
+          "n_reviewed": 287,
+          "errors_caught": 273,
+          "errors_slipped": 347,
+          "catch_rate": 0.4403225806451613,
+          "auto_error_rate": 0.3012152777777778,
+          "better_than_associate": false,
+          "memos_saved_from_review": 1152
+        },
+        {
+          "review_pct": 0.25,
+          "n_reviewed": 359,
+          "errors_caught": 333,
+          "errors_slipped": 287,
+          "catch_rate": 0.5370967741935484,
+          "auto_error_rate": 0.2657407407407407,
+          "better_than_associate": false,
+          "memos_saved_from_review": 1080
+        },
+        {
+          "review_pct": 0.3,
+          "n_reviewed": 431,
+          "errors_caught": 383,
+          "errors_slipped": 237,
+          "catch_rate": 0.617741935483871,
+          "auto_error_rate": 0.23511904761904762,
+          "better_than_associate": false,
+          "memos_saved_from_review": 1008
+        },
+        {
+          "review_pct": 0.4,
+          "n_reviewed": 575,
+          "errors_caught": 468,
+          "errors_slipped": 152,
+          "catch_rate": 0.7548387096774194,
+          "auto_error_rate": 0.17592592592592593,
+          "better_than_associate": false,
+          "memos_saved_from_review": 864
+        },
+        {
+          "review_pct": 0.5,
+          "n_reviewed": 719,
+          "errors_caught": 534,
+          "errors_slipped": 86,
+          "catch_rate": 0.8612903225806452,
+          "auto_error_rate": 0.11944444444444445,
+          "better_than_associate": true,
+          "memos_saved_from_review": 720
+        }
+      ]
+    },
+    "annotation": {
+      "tiers": [
+        {
+          "name": "GREEN",
+          "label": "Appears reliable",
+          "color": "#27ae60",
+          "n": 552,
+          "pct": 0.38359972202918696,
+          "accuracy": 0.927536231884058,
+          "false_rate": 0.07246376811594202,
+          "n_false": 40
+        },
+        {
+          "name": "YELLOW",
+          "label": "Verify key claims",
+          "color": "#f39c12",
+          "n": 332,
+          "pct": 0.23071577484364142,
+          "accuracy": 0.6445783132530121,
+          "false_rate": 0.35542168674698793,
+          "n_false": 118
+        },
+        {
+          "name": "RED",
+          "label": "Likely unreliable",
+          "color": "#e74c3c",
+          "n": 555,
+          "pct": 0.3856845031271717,
+          "accuracy": 0.16756756756756758,
+          "false_rate": 0.8324324324324324,
+          "n_false": 462
+        }
+      ],
+      "false_green_rate": 0.07246376811594202,
+      "n_false_greens": 40,
+      "total_greens": 552
+    },
+    "audit": {
+      "review_threshold": 0.7,
+      "total_items": 1439,
+      "auto_approved": 682,
+      "human_reviewed": 757,
+      "errors_caught_by_review": 548,
+      "errors_slipped_through": 72,
+      "total_errors": 620,
+      "catch_rate": 0.8838709677419355,
+      "billable_hours_saved": 68.2,
+      "cost_saved_dollars": 13640.0,
+      "defensible": false
+    }
+  },
+  "out_of_distribution": {
+    "n": 729,
+    "triage": {
+      "n_total": 729,
+      "n_errors": 68,
+      "associate_catch_rate": 0.82,
+      "associate_errors_missed": 12,
+      "triage": [
+        {
+          "review_pct": 0.1,
+          "n_reviewed": 72,
+          "errors_caught": 15,
+          "errors_slipped": 53,
+          "catch_rate": 0.22058823529411764,
+          "auto_error_rate": 0.0806697108066971,
+          "better_than_associate": false,
+          "memos_saved_from_review": 657
+        },
+        {
+          "review_pct": 0.15,
+          "n_reviewed": 109,
+          "errors_caught": 21,
+          "errors_slipped": 47,
+          "catch_rate": 0.3088235294117647,
+          "auto_error_rate": 0.07580645161290323,
+          "better_than_associate": false,
+          "memos_saved_from_review": 620
+        },
+        {
+          "review_pct": 0.2,
+          "n_reviewed": 145,
+          "errors_caught": 26,
+          "errors_slipped": 42,
+          "catch_rate": 0.38235294117647056,
+          "auto_error_rate": 0.07191780821917808,
+          "better_than_associate": false,
+          "memos_saved_from_review": 584
+        },
+        {
+          "review_pct": 0.25,
+          "n_reviewed": 182,
+          "errors_caught": 33,
+          "errors_slipped": 35,
+          "catch_rate": 0.4852941176470588,
+          "auto_error_rate": 0.06398537477148081,
+          "better_than_associate": false,
+          "memos_saved_from_review": 547
+        },
+        {
+          "review_pct": 0.3,
+          "n_reviewed": 218,
+          "errors_caught": 37,
+          "errors_slipped": 31,
+          "catch_rate": 0.5441176470588235,
+          "auto_error_rate": 0.060665362035225046,
+          "better_than_associate": false,
+          "memos_saved_from_review": 511
+        },
+        {
+          "review_pct": 0.4,
+          "n_reviewed": 291,
+          "errors_caught": 40,
+          "errors_slipped": 28,
+          "catch_rate": 0.5882352941176471,
+          "auto_error_rate": 0.0639269406392694,
+          "better_than_associate": false,
+          "memos_saved_from_review": 438
+        },
+        {
+          "review_pct": 0.5,
+          "n_reviewed": 364,
+          "errors_caught": 46,
+          "errors_slipped": 22,
+          "catch_rate": 0.6764705882352942,
+          "auto_error_rate": 0.06027397260273973,
+          "better_than_associate": false,
+          "memos_saved_from_review": 365
+        }
+      ]
+    },
+    "annotation": {
+      "tiers": [
+        {
+          "name": "GREEN",
+          "label": "Appears reliable",
+          "color": "#27ae60",
+          "n": 444,
+          "pct": 0.6090534979423868,
+          "accuracy": 0.9346846846846847,
+          "false_rate": 0.06531531531531531,
+          "n_false": 29
+        },
+        {
+          "name": "YELLOW",
+          "label": "Verify key claims",
+          "color": "#f39c12",
+          "n": 179,
+          "pct": 0.24554183813443073,
+          "accuracy": 0.8938547486033519,
+          "false_rate": 0.1061452513966481,
+          "n_false": 19
+        },
+        {
+          "name": "RED",
+          "label": "Likely unreliable",
+          "color": "#e74c3c",
+          "n": 106,
+          "pct": 0.14540466392318244,
+          "accuracy": 0.8113207547169812,
+          "false_rate": 0.18867924528301883,
+          "n_false": 20
+        }
+      ],
+      "false_green_rate": 0.06531531531531531,
+      "n_false_greens": 29,
+      "total_greens": 444
+    },
+    "audit": {
+      "review_threshold": 0.7,
+      "total_items": 729,
+      "auto_approved": 530,
+      "human_reviewed": 199,
+      "errors_caught_by_review": 36,
+      "errors_slipped_through": 32,
+      "total_errors": 68,
+      "catch_rate": 0.5294117647058824,
+      "billable_hours_saved": 53.0,
+      "cost_saved_dollars": 10600.0,
+      "defensible": false
+    }
+  }
+}

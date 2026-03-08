@@ -105,23 +105,35 @@ def grade_predictions(
             continue
 
         # Determine grading method based on metadata
-        example_meta = pred.get("example", {}).get("meta", {})
-        rubrics = example_meta.get("rubrics") or score.get("rubrics")
+        # Support both nested (example.meta) and flat (top-level meta) layouts
+        example_meta = pred.get("example", {}).get("meta", {}) or pred.get("meta", {}) or {}
+        rubrics = (
+            example_meta.get("rubrics")
+            or example_meta.get("rubric")
+            or score.get("rubrics")
+        )
 
         try:
             if rubrics:
                 # Use rubric-based grading
                 question = example_meta.get("last_user_message", "")
                 if not question:
-                    # Try to get from example input
-                    ex_input = pred.get("example", {}).get("input", [])
+                    # Try to get from example input or top-level input
+                    ex_input = pred.get("example", {}).get("input") or pred.get("input")
                     if isinstance(ex_input, list):
                         for msg in reversed(ex_input):
                             if msg.get("role") == "user":
                                 question = msg.get("content", "")
                                 break
-                    else:
+                    elif ex_input:
                         question = str(ex_input)
+                # Fall back to extracting from request messages
+                if not question:
+                    msgs = pred.get("request", {}).get("messages", [])
+                    for msg in reversed(msgs):
+                        if msg.get("role") == "user":
+                            question = msg.get("content", "")
+                            break
 
                 result = judge_rubric(
                     client=judge_client,
@@ -131,8 +143,8 @@ def grade_predictions(
                 )
             else:
                 # Use correctness-based grading
-                question = str(pred.get("example", {}).get("input", ""))
-                reference = str(pred.get("example", {}).get("target", ""))
+                question = str(pred.get("example", {}).get("input") or pred.get("input") or "")
+                reference = str(pred.get("example", {}).get("target") or pred.get("target") or "")
                 model_answer = pred.get("prediction", {}).get("answer", "")
 
                 result = judge_correctness(

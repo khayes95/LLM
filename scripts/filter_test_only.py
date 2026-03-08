@@ -68,14 +68,36 @@ def resolve_uc3_script():
 # ---------------------------------------------------------------------------
 
 def load_split_ids(split_info_path: str):
-    """Load train_ids and test_ids from split_info.json."""
+    """Load train and test question IDs from split_info.json.
+
+    Prefers question-level IDs (split_method='question_level') which guarantee
+    zero overlap.  Falls back to sample-level IDs for legacy split files but
+    prints a loud warning.
+    """
     print(f"[filter] Loading split info from {split_info_path}")
     with open(split_info_path) as f:
         info = json.load(f)
-    train_ids = set(info["train_ids"])
-    test_ids = set(info["test_ids"])
-    print(f"[filter] Loaded {len(test_ids):,} test IDs, "
-          f"{len(train_ids):,} train IDs")
+
+    if info.get("split_method") == "question_level":
+        train_ids = set(info["train_question_ids"])
+        test_ids = set(info["test_question_ids"])
+        overlap = train_ids & test_ids
+        assert len(overlap) == 0, (
+            f"Question-level split has {len(overlap)} overlapping IDs — this should never happen!"
+        )
+        print(f"[filter] Question-level split: {len(test_ids):,} test questions, "
+              f"{len(train_ids):,} train questions, 0 overlap ✓")
+    else:
+        # Legacy split — sample-level IDs may have question overlap
+        train_ids = set(info["train_ids"])
+        test_ids = set(info["test_ids"])
+        overlap = train_ids & test_ids
+        if overlap:
+            print(f"[filter] ⚠️ WARNING: Legacy split has {len(overlap)} IDs in both train and test!")
+            print(f"[filter] ⚠️ Retrain with question-level split to fix this.")
+        print(f"[filter] Loaded {len(test_ids):,} test IDs, "
+              f"{len(train_ids):,} train IDs (legacy sample-level split)")
+
     return train_ids, test_ids
 
 

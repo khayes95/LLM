@@ -412,6 +412,127 @@ def fig_calibration_curve(args):
     return True
 
 
+def fig_roc_curves(args):
+    """ROC curves for calibrator vs all baselines."""
+    scored_dir = args.scored_dir
+    all_records = []
+    for fname in ["gpt5mini_scored.jsonl", "gpt52_scored.jsonl", "qwen35_scored.jsonl"]:
+        fpath = os.path.join(scored_dir, fname)
+        records = load_jsonl(fpath)
+        if records is not None:
+            all_records.extend(records)
+
+    if not all_records:
+        print(f"[SKIP] fig_roc_curves: no scored data in {scored_dir}")
+        return False
+
+    setup_style()
+
+    from sklearn.metrics import roc_curve, auc
+
+    # Extract predictions for each method
+    labels = np.array([int(r["is_correct"]) for r in all_records if r.get("is_correct") is not None])
+    methods = {
+        "Pinocchio (ours)": np.array([float(r["p_correct"]) for r in all_records if r.get("p_correct") is not None]),
+        "Verbalized (Isotonic)": np.array([float(r["p_isotonic_verbalized"]) for r in all_records if r.get("p_isotonic_verbalized") is not None]),
+        "Verbalized (raw)": np.array([float(r["verbalized_confidence"]) for r in all_records if r.get("verbalized_confidence") is not None]),
+        "Combined": np.array([float(r["p_combined_baseline"]) for r in all_records if r.get("p_combined_baseline") is not None]),
+        "Response length": np.array([float(r["p_length_baseline"]) for r in all_records if r.get("p_length_baseline") is not None]),
+    }
+
+    fig, ax = plt.subplots(figsize=(4, 4))
+
+    # Random baseline
+    ax.plot([0, 1], [0, 1], "--", color="grey", linewidth=0.8, label="Random (0.500)")
+
+    # Plot each method
+    style_map = {
+        "Pinocchio (ours)": {"color": CALIBRATOR_COLOR, "linewidth": 2.5, "zorder": 10},
+        "Verbalized (raw)": {"color": CB_PALETTE[0], "linewidth": 1.2, "linestyle": "--", "zorder": 5},
+        "Verbalized (Isotonic)": {"color": CB_PALETTE[2], "linewidth": 1.2, "linestyle": "-.", "zorder": 5},
+        "Combined": {"color": CB_PALETTE[4], "linewidth": 1.2, "linestyle": ":", "zorder": 5},
+        "Response length": {"color": CB_PALETTE[5], "linewidth": 1.2, "linestyle": "--", "zorder": 5},
+    }
+
+    for method_name in ["Response length", "Combined", "Verbalized (raw)", "Verbalized (Isotonic)", "Pinocchio (ours)"]:
+        preds = methods[method_name]
+        n = min(len(preds), len(labels))
+        fpr, tpr, _ = roc_curve(labels[:n], preds[:n])
+        roc_auc = auc(fpr, tpr)
+        style = style_map[method_name]
+        ax.plot(fpr, tpr, label=f"{method_name} ({roc_auc:.3f})", **style)
+
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.set_xlabel("False Positive Rate")
+    ax.set_ylabel("True Positive Rate")
+    ax.legend(loc="lower right", fontsize=7, frameon=True, framealpha=0.9)
+    ax.set_aspect("equal")
+
+    fig.tight_layout()
+    savefig(fig, args.fig_dir, "fig_roc_curves", args.dpi)
+    print("[OK] fig_roc_curves")
+    return True
+
+
+def fig_cross_model_transfer(args):
+    """Heatmap: training source (rows) x evaluation target (columns), cell = AUROC."""
+    bootstrap_path = args.bootstrap_ci
+    data = load_json(bootstrap_path)
+    if data is None:
+        print(f"[SKIP] fig_cross_model_transfer: missing {bootstrap_path}")
+        return False
+
+    setup_style()
+
+    # Cross-model transfer matrix from Table 2 in the paper
+    # Rows = training data source, Cols = evaluation target
+    sources = ["GPT-5-mini only", "GPT-5.2 only", "Qwen3.5 only", "All three (ours)"]
+    targets = ["GPT-5-mini", "GPT-5.2", "Qwen3.5"]
+
+    # Values from tab:cross_model (these are the paper numbers)
+    matrix = np.array([
+        [np.nan, 0.715, 0.693],   # GPT-5-mini only
+        [0.741,  np.nan, 0.776],   # GPT-5.2 only
+        [0.658,  0.687, np.nan],   # Qwen3.5 only
+        [0.951,  0.959, 0.946],    # All three
+    ])
+
+    fig, ax = plt.subplots(figsize=(4, 3.2))
+    # Use a diverging colormap centered around the transition from poor to good
+    im = ax.imshow(matrix, aspect="auto", cmap="RdYlGn", vmin=0.5, vmax=1.0)
+
+    ax.set_xticks(np.arange(len(targets)))
+    ax.set_xticklabels(targets, fontsize=10)
+    ax.set_yticks(np.arange(len(sources)))
+    ax.set_yticklabels(sources, fontsize=10)
+    ax.set_xlabel("Evaluation target", fontsize=11)
+    ax.set_ylabel("Training source", fontsize=11)
+
+    # Annotate cells
+    for i in range(len(sources)):
+        for j in range(len(targets)):
+            val = matrix[i, j]
+            if np.isnan(val):
+                ax.text(j, i, "n/a", ha="center", va="center", fontsize=10, color="gray",
+                        fontstyle="italic")
+            else:
+                text_color = "white" if val < 0.7 else "black"
+                fontweight = "bold" if i == 3 else "normal"
+                ax.text(j, i, f"{val:.3f}", ha="center", va="center", fontsize=10,
+                        color=text_color, fontweight=fontweight)
+
+    # Add a horizontal line to separate "All three" from single-source rows
+    ax.axhline(2.5, color="black", linewidth=1.5)
+
+    cb = fig.colorbar(im, ax=ax, shrink=0.8, label="AUROC")
+
+    fig.tight_layout()
+    savefig(fig, args.fig_dir, "fig_cross_model_transfer", args.dpi)
+    print("[OK] fig_cross_model_transfer")
+    return True
+
+
 def fig_selective_prediction(args):
     """Coverage vs accuracy curves per target model."""
     uc1_path = args.uc1_results
@@ -870,6 +991,8 @@ FIGURE_REGISTRY = [
     ("fig_auroc_comparison", fig_auroc_comparison),
     ("fig_per_benchmark_heatmap", fig_per_benchmark_heatmap),
     ("fig_calibration_curve", fig_calibration_curve),
+    ("fig_roc_curves", fig_roc_curves),
+    ("fig_cross_model_transfer", fig_cross_model_transfer),
     ("fig_selective_prediction", fig_selective_prediction),
     ("fig_bootstrap_distribution", fig_bootstrap_distribution),
     ("fig_effect_size", fig_effect_size),

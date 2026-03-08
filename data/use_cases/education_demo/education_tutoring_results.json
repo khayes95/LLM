@@ -1,0 +1,247 @@
+{
+  "wrong_step_detection": {
+    "n_total": 1399,
+    "n_wrong": 765,
+    "base_accuracy": 0.453180843459614,
+    "calibrator_auroc": 0.9516803777241707,
+    "verbalized_auroc": 0.6486000288653841,
+    "calibration_buckets": [
+      {
+        "bucket": "0.0-0.1",
+        "lo": 0.0,
+        "hi": 0.1,
+        "n": 546,
+        "accuracy": 0.031135531135531136,
+        "cal_mean": 0.0306161043956044
+      },
+      {
+        "bucket": "0.1-0.2",
+        "lo": 0.1,
+        "hi": 0.2,
+        "n": 99,
+        "accuracy": 0.1919191919191919,
+        "cal_mean": 0.1435448686868687
+      },
+      {
+        "bucket": "0.2-0.3",
+        "lo": 0.2,
+        "hi": 0.30000000000000004,
+        "n": 87,
+        "accuracy": 0.3563218390804598,
+        "cal_mean": 0.24516187356321845
+      },
+      {
+        "bucket": "0.3-0.4",
+        "lo": 0.30000000000000004,
+        "hi": 0.4,
+        "n": 31,
+        "accuracy": 0.4838709677419355,
+        "cal_mean": 0.34803393548387085
+      },
+      {
+        "bucket": "0.4-0.5",
+        "lo": 0.4,
+        "hi": 0.5,
+        "n": 26,
+        "accuracy": 0.4230769230769231,
+        "cal_mean": 0.4346453846153846
+      },
+      {
+        "bucket": "0.5-0.6",
+        "lo": 0.5,
+        "hi": 0.6000000000000001,
+        "n": 50,
+        "accuracy": 0.6,
+        "cal_mean": 0.55125
+      },
+      {
+        "bucket": "0.6-0.7",
+        "lo": 0.6000000000000001,
+        "hi": 0.7000000000000001,
+        "n": 45,
+        "accuracy": 0.6444444444444445,
+        "cal_mean": 0.6537329777777777
+      },
+      {
+        "bucket": "0.7-0.8",
+        "lo": 0.7000000000000001,
+        "hi": 0.8,
+        "n": 79,
+        "accuracy": 0.8734177215189873,
+        "cal_mean": 0.7510877721518987
+      },
+      {
+        "bucket": "0.8-0.9",
+        "lo": 0.8,
+        "hi": 0.9,
+        "n": 86,
+        "accuracy": 0.8488372093023255,
+        "cal_mean": 0.8637808139534883
+      },
+      {
+        "bucket": "0.9-1.0",
+        "lo": 0.9,
+        "hi": 1.0,
+        "n": 327,
+        "accuracy": 0.9694189602446484,
+        "cal_mean": 0.9679018837920489
+      }
+    ],
+    "detection": [
+      {
+        "threshold": 0.2,
+        "precision": 0.9441860465116279,
+        "recall": 0.796078431372549,
+        "f1": 0.8638297872340425,
+        "n_flagged": 645,
+        "pct_flagged": 0.4610436025732666
+      },
+      {
+        "threshold": 0.3,
+        "precision": 0.9084699453551912,
+        "recall": 0.869281045751634,
+        "f1": 0.8884435537742151,
+        "n_flagged": 732,
+        "pct_flagged": 0.5232308791994281
+      },
+      {
+        "threshold": 0.4,
+        "precision": 0.8925294888597641,
+        "recall": 0.8901960784313725,
+        "f1": 0.8913612565445026,
+        "n_flagged": 763,
+        "pct_flagged": 0.5453895639742673
+      },
+      {
+        "threshold": 0.5,
+        "precision": 0.8821292775665399,
+        "recall": 0.9098039215686274,
+        "f1": 0.8957528957528959,
+        "n_flagged": 789,
+        "pct_flagged": 0.5639742673338098
+      },
+      {
+        "threshold": 0.6,
+        "precision": 0.8533969010727056,
+        "recall": 0.9359477124183007,
+        "f1": 0.8927680798004988,
+        "n_flagged": 839,
+        "pct_flagged": 0.5997140814867763
+      },
+      {
+        "threshold": 0.7,
+        "precision": 0.8280542986425339,
+        "recall": 0.9568627450980393,
+        "f1": 0.8878107944208612,
+        "n_flagged": 884,
+        "pct_flagged": 0.631879914224446
+      },
+      {
+        "threshold": 0.8,
+        "precision": 0.770508826583593,
+        "recall": 0.9699346405228758,
+        "f1": 0.8587962962962964,
+        "n_flagged": 963,
+        "pct_flagged": 0.688348820586133
+      }
+    ]
+  },
+  "adaptive_routing": [
+    {
+      "threshold": 0.5,
+      "auto_pct": 0.43602573266619016,
+      "auto_accuracy": 0.8868852459016393,
+      "human_pct": 0.5639742673338098,
+      "human_accuracy": 0.11787072243346007,
+      "overall_accuracy_if_human_perfect": 0.9506790564689063
+    },
+    {
+      "threshold": 0.6,
+      "auto_pct": 0.4002859185132237,
+      "auto_accuracy": 0.9125,
+      "human_pct": 0.5997140814867763,
+      "human_accuracy": 0.1466030989272944,
+      "overall_accuracy_if_human_perfect": 0.9649749821300929
+    },
+    {
+      "threshold": 0.7,
+      "auto_pct": 0.36812008577555394,
+      "auto_accuracy": 0.9359223300970874,
+      "human_pct": 0.631879914224446,
+      "human_accuracy": 0.17194570135746606,
+      "overall_accuracy_if_human_perfect": 0.9764117226590421
+    },
+    {
+      "threshold": 0.8,
+      "auto_pct": 0.31165117941386705,
+      "auto_accuracy": 0.9472477064220184,
+      "human_pct": 0.688348820586133,
+      "human_accuracy": 0.22949117341640707,
+      "overall_accuracy_if_human_perfect": 0.9835596854896356
+    },
+    {
+      "threshold": 0.9,
+      "auto_pct": 0.25017869907076484,
+      "auto_accuracy": 0.9714285714285714,
+      "human_pct": 0.7498213009292352,
+      "human_accuracy": 0.28026692087702576,
+      "overall_accuracy_if_human_perfect": 0.9928520371694067
+    },
+    {
+      "threshold": 0.95,
+      "auto_pct": 0.19228020014295927,
+      "auto_accuracy": 0.9814126394052045,
+      "human_pct": 0.8077197998570408,
+      "human_accuracy": 0.3274336283185841,
+      "overall_accuracy_if_human_perfect": 0.9964260185847034
+    }
+  ],
+  "per_benchmark": {
+    "bbeh": {
+      "accuracy": 0.4791666666666667,
+      "mean_confidence": 0.4896367708333334,
+      "n": 144,
+      "overconfident": false
+    },
+    "gpqa": {
+      "accuracy": 0.7649572649572649,
+      "mean_confidence": 0.6891197393162393,
+      "n": 234,
+      "overconfident": false
+    },
+    "mathverse": {
+      "accuracy": 0.4892703862660944,
+      "mean_confidence": 0.5227356480686696,
+      "n": 233,
+      "overconfident": false
+    },
+    "mathvision": {
+      "accuracy": 0.3745583038869258,
+      "mean_confidence": 0.31376601413427563,
+      "n": 283,
+      "overconfident": false
+    },
+    "mathvista": {
+      "accuracy": 0.3306878306878307,
+      "mean_confidence": 0.3284003888888889,
+      "n": 378,
+      "overconfident": false
+    },
+    "omnimath": {
+      "accuracy": 0.3228346456692913,
+      "mean_confidence": 0.2989093307086615,
+      "n": 127,
+      "overconfident": false
+    }
+  },
+  "narrative": {
+    "scenario": "AI-powered math tutoring platform",
+    "problem": "AI sometimes gives wrong solutions; students learn incorrect methods",
+    "solution": "UQ calibrator catches wrong steps before students see them",
+    "key_findings": [
+      "AUROC 0.952 for detecting wrong math solutions",
+      "At threshold 0.5: catches 91% of errors (precision 88%)",
+      "Routing at 0.8 threshold: 31% auto-answered at 94.7% accuracy"
+    ]
+  }
+}

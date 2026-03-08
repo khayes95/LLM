@@ -1,0 +1,255 @@
+{
+  "in_distribution": {
+    "n": 1006,
+    "base_accuracy": 0.5487077534791253,
+    "auroc": 0.89821953010279,
+    "triage": {
+      "n_total": 1006,
+      "n_wrong": 454,
+      "base_error_rate": 0.45129224652087474,
+      "resident_catch_rate": 0.9,
+      "resident_errors_missed": 45,
+      "triage": [
+        {
+          "threshold": 0.5,
+          "coverage": 0.588469184890656,
+          "n_auto_approved": 592,
+          "wrong_reaching_patient": 114,
+          "wrong_rate_in_auto": 0.19256756756756757,
+          "flagged_for_physician": 414,
+          "catch_rate": 0.748898678414097,
+          "better_than_resident": false
+        },
+        {
+          "threshold": 0.6,
+          "coverage": 0.4960238568588469,
+          "n_auto_approved": 499,
+          "wrong_reaching_patient": 66,
+          "wrong_rate_in_auto": 0.13226452905811623,
+          "flagged_for_physician": 507,
+          "catch_rate": 0.8546255506607929,
+          "better_than_resident": false
+        },
+        {
+          "threshold": 0.7,
+          "coverage": 0.4294234592445328,
+          "n_auto_approved": 432,
+          "wrong_reaching_patient": 45,
+          "wrong_rate_in_auto": 0.10416666666666667,
+          "flagged_for_physician": 574,
+          "catch_rate": 0.9008810572687225,
+          "better_than_resident": true
+        },
+        {
+          "threshold": 0.8,
+          "coverage": 0.3359840954274354,
+          "n_auto_approved": 338,
+          "wrong_reaching_patient": 26,
+          "wrong_rate_in_auto": 0.07692307692307693,
+          "flagged_for_physician": 668,
+          "catch_rate": 0.9427312775330396,
+          "better_than_resident": true
+        },
+        {
+          "threshold": 0.9,
+          "coverage": 0.2654075546719682,
+          "n_auto_approved": 267,
+          "wrong_reaching_patient": 11,
+          "wrong_rate_in_auto": 0.04119850187265917,
+          "flagged_for_physician": 739,
+          "catch_rate": 0.9757709251101322,
+          "better_than_resident": true
+        }
+      ]
+    },
+    "harm_severity": {
+      "nnr_curve": [
+        {
+          "n_reviewed": 10,
+          "errors_found": 10,
+          "nnr": 1.0,
+          "review_pct": 0.009940357852882704,
+          "error_recall": 0.022026431718061675
+        },
+        {
+          "n_reviewed": 25,
+          "errors_found": 25,
+          "nnr": 1.0,
+          "review_pct": 0.02485089463220676,
+          "error_recall": 0.05506607929515418
+        },
+        {
+          "n_reviewed": 50,
+          "errors_found": 48,
+          "nnr": 1.0416666666666667,
+          "review_pct": 0.04970178926441352,
+          "error_recall": 0.10572687224669604
+        },
+        {
+          "n_reviewed": 100,
+          "errors_found": 97,
+          "nnr": 1.0309278350515463,
+          "review_pct": 0.09940357852882704,
+          "error_recall": 0.21365638766519823
+        },
+        {
+          "n_reviewed": 150,
+          "errors_found": 145,
+          "nnr": 1.0344827586206897,
+          "review_pct": 0.14910536779324055,
+          "error_recall": 0.31938325991189426
+        },
+        {
+          "n_reviewed": 200,
+          "errors_found": 188,
+          "nnr": 1.0638297872340425,
+          "review_pct": 0.1988071570576541,
+          "error_recall": 0.41409691629955947
+        },
+        {
+          "n_reviewed": 300,
+          "errors_found": 270,
+          "nnr": 1.1111111111111112,
+          "review_pct": 0.2982107355864811,
+          "error_recall": 0.5947136563876652
+        },
+        {
+          "n_reviewed": 500,
+          "errors_found": 385,
+          "nnr": 1.2987012987012987,
+          "review_pct": 0.4970178926441352,
+          "error_recall": 0.8480176211453745
+        },
+        {
+          "n_reviewed": 1006,
+          "errors_found": 454,
+          "nnr": 2.2158590308370045,
+          "review_pct": 1.0,
+          "error_recall": 1.0
+        }
+      ],
+      "harm_tiers": {
+        "high_confidence_errors": 26,
+        "medium_confidence_errors": 88,
+        "low_confidence_errors": 340,
+        "high_conf_error_pct": 0.05726872246696035,
+        "note": "High-confidence errors are most dangerous \u2014 clinician may not double-check"
+      }
+    },
+    "telehealth_routing": {
+      "all_physician_cost": 25150.0,
+      "cost_per_question_baseline": 25.0,
+      "strategies": [
+        {
+          "strategy": "All physician review",
+          "ai_pct": 0.0,
+          "nurse_pct": 0.0,
+          "physician_pct": 1.0,
+          "total_cost": 25150.0,
+          "cost_per_question": 25.0,
+          "cost_savings": 0.0,
+          "ai_errors": 0,
+          "ai_error_rate": 0.0
+        },
+        {
+          "strategy": "AI>0.9, else physician",
+          "ai_pct": 0.2654075546719682,
+          "nurse_pct": 0.0,
+          "physician_pct": 0.7345924453280318,
+          "total_cost": 18501.7,
+          "cost_per_question": 18.391351888667995,
+          "cost_savings": 0.2643459244532803,
+          "ai_errors": 11,
+          "ai_error_rate": 0.04119850187265917
+        },
+        {
+          "strategy": "AI>0.8, nurse 0.5-0.8, else MD",
+          "ai_pct": 0.3359840954274354,
+          "nurse_pct": 0.2524850894632207,
+          "physician_pct": 0.4115308151093439,
+          "total_cost": 11653.8,
+          "cost_per_question": 11.584294234592445,
+          "cost_savings": 0.5366282306163022,
+          "ai_errors": 26,
+          "ai_error_rate": 0.07692307692307693
+        },
+        {
+          "strategy": "AI>0.7, nurse 0.4-0.7, else MD",
+          "ai_pct": 0.4294234592445328,
+          "nurse_pct": 0.19980119284294234,
+          "physician_pct": 0.37077534791252487,
+          "total_cost": 10373.2,
+          "cost_per_question": 10.311332007952288,
+          "cost_savings": 0.5875467196819085,
+          "ai_errors": 45,
+          "ai_error_rate": 0.10416666666666667
+        },
+        {
+          "strategy": "AI>0.6, nurse 0.3-0.6, else MD",
+          "ai_pct": 0.4960238568588469,
+          "nurse_pct": 0.16600397614314116,
+          "physician_pct": 0.3379721669980119,
+          "total_cost": 9384.9,
+          "cost_per_question": 9.328926441351888,
+          "cost_savings": 0.6268429423459245,
+          "ai_errors": 66,
+          "ai_error_rate": 0.13226452905811623
+        }
+      ]
+    },
+    "patient_safety": {
+      "tiers": [
+        {
+          "name": "GREEN",
+          "label": "General health information",
+          "message": "This is based on general medical information. It is not a substitute for professional medical advice.",
+          "color": "#27ae60",
+          "n": 338,
+          "pct": 0.3359840954274354,
+          "accuracy": 0.9230769230769231,
+          "false_rate": 0.07692307692307687,
+          "n_false": 26
+        },
+        {
+          "name": "YELLOW",
+          "label": "Consult your doctor",
+          "message": "This information may not be fully accurate for your situation. Please discuss with your healthcare provider.",
+          "color": "#f39c12",
+          "n": 254,
+          "pct": 0.2524850894632207,
+          "accuracy": 0.6535433070866141,
+          "false_rate": 0.3464566929133859,
+          "n_false": 88
+        },
+        {
+          "name": "RED",
+          "label": "Seek professional help",
+          "message": "This response may contain inaccuracies. Please consult a qualified healthcare professional before acting.",
+          "color": "#e74c3c",
+          "n": 414,
+          "pct": 0.4115308151093439,
+          "accuracy": 0.178743961352657,
+          "false_rate": 0.821256038647343,
+          "n_false": 340
+        }
+      ],
+      "false_green_rate": 0.07692307692307687,
+      "n_false_greens": 26,
+      "total_greens": 338
+    },
+    "compliance_audit": {
+      "review_threshold": 0.7,
+      "total_items": 1006,
+      "auto_approved": 432,
+      "physician_reviewed": 574,
+      "errors_caught_by_review": 409,
+      "errors_slipped_through": 45,
+      "total_errors": 454,
+      "catch_rate": 0.9008810572687225,
+      "physician_hours_saved": 108.0,
+      "cost_saved_dollars": 10800.0,
+      "fda_defensible": false,
+      "slip_rate": 0.09911894273127753
+    }
+  }
+}

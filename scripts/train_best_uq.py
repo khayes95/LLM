@@ -834,19 +834,38 @@ def main():
         n_classes = len(set(strat_key_safe))
         n_test = max(1, int(len(all_samples) * args.test_fraction))
 
-        indices = list(range(len(all_samples)))
+        # Group samples by question ID so all source-model variants of the same
+        # question end up in the same split (prevents question-level leakage).
+        from collections import OrderedDict
+        qid_to_indices = OrderedDict()
+        for i, s in enumerate(all_samples):
+            qid_to_indices.setdefault(s.id, []).append(i)
+
+        unique_qids = list(qid_to_indices.keys())
+        # Stratify by the benchmark of the first sample for each question
+        qid_strat = []
+        for qid in unique_qids:
+            bench = all_samples[qid_to_indices[qid][0]].benchmark
+            qid_strat.append(bench if strat_counts.get(bench, 0) >= 3 else "other")
+
         try:
-            train_idx, test_idx = train_test_split(
-                indices, test_size=args.test_fraction, random_state=42, stratify=strat_key_safe
+            train_qids, test_qids = train_test_split(
+                unique_qids, test_size=args.test_fraction, random_state=42, stratify=qid_strat
             )
         except ValueError:
-            # Fallback: no stratification
-            train_idx, test_idx = train_test_split(
-                indices, test_size=args.test_fraction, random_state=42
+            train_qids, test_qids = train_test_split(
+                unique_qids, test_size=args.test_fraction, random_state=42
             )
 
-        train_samples = [all_samples[i] for i in train_idx]
-        test_samples = [all_samples[i] for i in test_idx]
+        train_qid_set = set(train_qids)
+        test_qid_set = set(test_qids)
+        train_samples = [all_samples[i] for qid in train_qids for i in qid_to_indices[qid]]
+        test_samples = [all_samples[i] for qid in test_qids for i in qid_to_indices[qid]]
+
+        # Verify zero question-level overlap
+        overlap = train_qid_set & test_qid_set
+        assert len(overlap) == 0, f"Question-level leakage: {len(overlap)} shared question IDs!"
+        print(f"  Question-level split: {len(train_qids)} train questions, {len(test_qids)} test questions, 0 overlap")
 
     # Subsample training data for size ablation
     if args.max_train_samples and args.max_train_samples < len(train_samples):
@@ -864,13 +883,27 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
+    # Unique question IDs (no duplicates across source models)
+    train_question_ids = sorted(set(s.id for s in train_samples))
+    test_question_ids = sorted(set(s.id for s in test_samples))
+    question_overlap = set(train_question_ids) & set(test_question_ids)
+    if question_overlap:
+        print(f"  FATAL: {len(question_overlap)} question IDs in both train and test!")
+        sys.exit(1)
+
     split_info = {
         "n_train": len(train_samples),
         "n_test": len(test_samples),
         "n_train_vlm": n_train_vlm,
         "n_test_vlm": n_test_vlm,
+        "n_train_questions": len(train_question_ids),
+        "n_test_questions": len(test_question_ids),
+        "question_overlap": len(question_overlap),
+        "split_method": "question_level",
         "train_ids": [s.id for s in train_samples],
         "test_ids": [s.id for s in test_samples],
+        "train_question_ids": train_question_ids,
+        "test_question_ids": test_question_ids,
     }
     with open(output_dir / "split_info.json", "w") as f:
         json.dump(split_info, f)

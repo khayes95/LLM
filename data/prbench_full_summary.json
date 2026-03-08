@@ -1,0 +1,62 @@
+[
+  {
+    "run": "prbench_legal_gpt5mini",
+    "total": 611,
+    "correct": 531,
+    "incorrect": 80,
+    "ungraded": 0,
+    "accuracy": 0.869,
+    "domains": {
+      "legal": {
+        "correct": 531,
+        "incorrect": 80,
+        "total": 611
+      }
+    }
+  },
+  {
+    "run": "prbench_legal_hard_gpt5mini",
+    "total": 250,
+    "correct": 212,
+    "incorrect": 38,
+    "ungraded": 0,
+    "accuracy": 0.848,
+    "domains": {
+      "legal_hard": {
+        "correct": 212,
+        "incorrect": 38,
+        "total": 250
+      }
+    }
+  },
+  {
+    "run": "prbench_legal_gpt52",
+    "total": 541,
+    "correct": 426,
+    "incorrect": 115,
+    "ungraded": 0,
+    "accuracy": 0.787,
+    "domains": {
+      "legal": {
+        "correct": 426,
+        "incorrect": 115,
+        "total": 541
+      }
+    }
+  },
+  {
+    "run": "prbench_legal_hard_gpt52",
+    "total": 250,
+    "correct": 60,
+    "incorrect": 190,
+    "ungraded": 0,
+    "accuracy": 0.24,
+    "domains": {
+      "legal_hard": {
+        "correct": 60,
+        "incorrect": 190,
+        "total": 250
+      }
+    }
+  }
+]

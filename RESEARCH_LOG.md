@@ -4,6 +4,172 @@
 
 ---
 
+### 2026-03-06 03:30 — [RUNNING] v3 retrain with question-level split fix
+Why: Fix critical data leakage — train/test split was by sample index, not question ID (82-96% question overlap in test set).
+Script: `scripts/train_best_uq.py` | SLURM job ID: 8527 (depends on 8515) | Args: `--output_dir uq_models/best_v3_qsplit --epochs 3 --lora_r 32 --lora_alpha 64 --prompt_variant combined`
+Smoke test passed (job 8521): 0 question overlap verified. Awaiting GPU availability.
+
+### 2026-03-06 — Reviewer rebuttal experiments (Agent 1, GPU experiments)
+Why: Address 5 reviewer concerns requiring GPU experiments.
+Scripts: `scripts/ablation_no_metadata.py`, `scripts/ablation_truncation_scramble.py`, `scripts/unseen_model_eval.py`, `scripts/retrain_best_v2.py`
+Results:
+- **No-metadata ablation (Issue 1)**: 0.953 → 0.926 (−2.7 pts). Model reads content, not just metadata. Output: `data/ablations/no_metadata/`
+- **Truncation (Issue 9)**: r200=0.863, r400=0.929, r800=0.953, r1600=0.953. 800 chars is sweet spot. Output: `data/ablations/truncation_scramble/`
+- **Word scramble (Issue 5)**: 0.953 → 0.830 (−12.3 pts). Proves semantic reading. Sentence scramble: −1.6 pts only.
+- **Unseen model (Issue 4)**: LLaMA-3.1-8B AUROC=0.800, 700 samples, 7 benchmarks. Output: `data/ablations/unseen_model/`
+- **Multi-seed (Issue 8)**: 42=0.898, 123=0.843, 456=0.904. Mean=0.882±0.033. Output: `data/ablations/multi_seed/seed_456/`
+
+### 2026-03-05 — Legal hallucination detection on Stanford RegLab dataset (OOD)
+Why: Test calibrator on genuinely out-of-distribution legal domain data (reglab/legal_hallucinations, 745K examples).
+Script: `scripts/score_legal_hallucinations.py` | SLURM 8473 | Output: `data/legal_hallucinations/scored/`
+Result (1,031 stratified samples across 4 LLMs × 11 tasks):
+- **Overall AUROC: 0.568** (genuinely OOD — calibrator never saw legal data)
+- Best tasks: case_existence 0.970, court_id 0.863, year_overruled 0.735
+- Worst tasks: fake_year_overruled 0.188, fake_case_existence 0.325, quotation 0.377
+- Per-LLM: Llama 2 0.620, PaLM 2 0.575, GPT 3.5 0.560, GPT 4 0.530
+- Factual verification tasks (case existence, court ID) transfer well; domain-specific tasks (quotation, fake cases) do not.
+
+### 2026-03-05 — Realistic domain demos (legal, education, medical)
+Why: Create practitioner-facing UQ demos using real calibrator scores on test-only data + OOD healthbench.
+Scripts: `scripts/demo_legal_realistic.py`, `scripts/demo_education_realistic.py`, `scripts/demo_medical_realistic.py`
+Results:
+- Legal: 7.2% false green rate (in-dist), not defensible at threshold 0.7
+- Education: wrong-step shield at 0.7 threshold → 8.6% error rate (vs 54% unfiltered)
+- Medical (OOD healthbench): 93% accuracy in "General information" tier, 81% cost savings with routing
+
+### 2026-03-05 — OOD scoring on unseen benchmarks (healthbench + triviaqa)
+Why: Score genuinely unseen benchmarks to get honest OOD AUROC.
+Script: `scripts/score_unseen_benchmarks.py` | SLURM 8437 | Output: `data/use_cases/scored_unseen/`
+Result: Combined OOD AUROC 0.657 (vs 0.953 in-distribution)
+
+### 2026-03-05 — Paper figures and LaTeX for UC-E/F/G
+Script: `scripts/generate_production_uc_figure.py` | Output: `figures/paper/fig_production_use_cases.{pdf,png}`, `fig_production_use_cases_permodel.{pdf,png}`
+Also: Added Production Deployment Use Cases subsection + appendix tables to `paper/main.tex`.
+
+### 2026-03-05 07:34 — FineGRAIN transfer eval on 12 unseen T2I models
+Why: Test cross-model transfer of finetuned UQ model to entirely new architectures (Flux2, GPT-Image, Gemini, etc.)
+Script: `scripts/finegrain_transfer_eval.py` | SLURM 8448 | Output: `data/finegrain_uq/transfer_eval/transfer_results.json`
+Result (2400 samples, 200/model × 12 models):
+- **Zero-shot: 0.729 AUROC**, Spearman ρ=0.774 (p=0.003)
+- **Finetuned (fold_flux): 0.756 AUROC** (+0.028), Spearman ρ=0.767
+- Selective prediction: finetuned gets 91.3% accuracy at 25% coverage (vs 80.7% zero-shot)
+- Best per-model: gemini_image_native 0.783, qwen 0.782; Worst: sd1 0.558, sd2 0.647
+- Key finding: Modest finetuning gain (+2.8 pts) on totally unseen models. Zero-shot already decent (0.729). Model ranking highly significant (p<0.004).
+
+### 2026-03-05 05:30 — FineGRAIN baseline experiments (full scale, 3750 samples)
+Why: Compare UQ calibrator against standard T2I metrics on FineGRAIN failure detection.
+Script: `scripts/finegrain_all_experiments.py` | SLURM 8430
+Output: `data/finegrain_uq/experiments/all_experiments.json`
+Result: CLIPScore 0.513, BLIP-2 ITM 0.507, Prompt-only 0.501, Caption-based 0.608, **UQ+image 0.736**. Standard metrics near random — UQ has real signal.
+
+### 2026-03-05 05:00 — FineGRAIN 5-fold CV finetuning complete
+Why: Leave-one-model-out CV on 5 human-labeled T2I models (3750 samples).
+Script: `scripts/finegrain_finetune.py` (via `slurm/finegrain_finetune_cv.sh`) | SLURM 8432
+Output: `data/finegrain_uq/exp1_human_cv/`
+Result: flux=0.973, sd3.5_large=0.969, sd3.5_medium=0.967, sd3_m=0.958, sd3_xl=0.899. **Mean AUROC 0.953 ± 0.028** (vs 0.736 zero-shot). Domain adaptation gives +0.217 improvement.
+
+### 2026-03-05 04:30 — Realistic domain demos (legal, education, medical)
+Why: Rework use-case demos to match what actual practitioners (lawyers, teachers, clinicians) need, not generic ML metrics.
+Scripts: `scripts/demo_legal_realistic.py`, `demo_education_realistic.py`, `demo_medical_realistic.py`
+Output: `data/use_cases/{legal,education,medical}_realistic/` | Figures: `figures/{legal,education,medical}_realistic/`
+Both in-distribution and OOD (unseen healthbench) results.
+
+**Key results (realistic framing):**
+
+Legal (in-dist, 1439 samples, AUROC 0.908):
+- GREEN tier: 38% of responses, 92.8% accurate, **40 false greens (7.2% malpractice risk)**
+- Review 50% of memos to match 1st-year associate catch rate (82%)
+- Billing audit: $13,640 saved but **NOT defensible** (>10% slip rate at threshold 0.7)
+
+Education (in-dist, 1789 samples, AUROC 0.935):
+- Wrong-step shield at 0.7: AI handles 36% of questions, only 8.6% error rate (vs 54% unfiltered)
+- Trust meter: "Confident" answers are 91% correct (8.6% false confidence)
+- Calibrator-guided grading review catches 1.8-1.9x more errors than random review
+- Difficulty radar: math/competition < 40% acc → human tutor required; GPQA 76% → AI handles
+
+Medical (healthbench OOD, 660 samples, AUROC 0.649):
+- "General information" tier: 60% of answers, 93% accurate
+- Telehealth routing: AI>0.8 + nurse>0.5 → **81% cost savings**, 28 AI errors out of 660
+- NNR (number needed to review): starts at 2.5, rises to 7.3 — efficient early, diminishing returns
+- Even OOD: calibrator provides useful triage signal despite lower AUROC
+
+### 2026-03-05 03:41 — Analysis: UC-E/F/G production use cases
+Why: Interpret results from new use cases and identify follow-up work.
+
+**UC-E (Adaptive Clarification — "Ask Before Answering"):**
+- Calibrator AUPRC 0.942-0.952 vs best baseline 0.648-0.672. Gap is ~0.30 — overwhelming advantage.
+- Best F1 for error detection: 0.871-0.886 (cal) vs 0.130-0.564 (verbalized). Verbalized is especially bad on Qwen3.5 (F1=0.130).
+- At t=0.7: catches 91-94% of errors while flagging 51-56% of queries. Practical operating point.
+- **Killer examples**: Models say "100% confident" but calibrator gives p=0.004. All truly wrong. Perfect for paper figure.
+- **Paper pitch**: "A single UQ pass prevents 90%+ of confident-but-wrong answers."
+
+**UC-F (Confidence-Gated Actions — "Think Before Acting"):**
+- Coverage@95% accuracy: 33-51% (calibrator) vs 0-0.4% (all baselines). Calibrator is the ONLY method that can gate actions at 95% accuracy with meaningful throughput.
+- Cost savings ~84% at 10x error cost ratio. At 50x cost ratio: 95.5-97.8% savings.
+- GPT-5.2 best: 50.5% auto-execute at 95% accuracy. Conservative profile (2% error): 39.5% coverage at 1.7% error.
+- **Paper pitch**: "For agentic systems, our calibrator is the only method that enables any meaningful auto-execution at 95%+ accuracy."
+
+**UC-G (Human Escalation — "Route to Human"):**
+- Green tier: 40-51% of queries auto-sent at 93-95% accuracy, containing only 4-6% of errors.
+- Red tier: 36-43% of queries, captures 80% of ALL errors. Review just this tier for massive efficiency.
+- At 20% review: UQ catches 2.1-2.5x more errors than random review.
+- **Headline**: To reach 95% accuracy, review 48-62% (UQ) vs 100% (random) — 38-52% workload reduction.
+- **Paper pitch**: "Deploy with 95% accuracy while halving human review workload."
+
+**Cross-cutting insight**: The AUSC metric for UC-F is lower than expected (0.41-0.44) because the base accuracy is only 51-59%. The absolute coverage at high accuracy targets is still strong. On higher-accuracy models, the effect would be even more dramatic.
+
+**Follow-up work identified:**
+1. Paper-ready figures for UC-E/F/G (unified style matching existing paper figures)
+2. Combine UC-E/F/G into a single "production deployment" section for the paper
+3. No GPU jobs needed — these are analysis-only
+
+### 2026-03-05 05:46 — FineGRAIN finetuning CV complete (5-fold leave-one-model-out)
+Why: Test if domain adaptation improves UQ model on T2I failure detection.
+Script: `scripts/finegrain_finetune.py` | SLURM 8432 | Output: `data/finegrain_uq/exp1_human_cv/`
+Result: **Mean AUROC 0.953 ± 0.028** (vs 0.736 zero-shot). Massive improvement.
+- flux: 0.973 | sd3.5_large: 0.969 | sd3.5_medium: 0.967 | sd3_m: 0.958 | sd3_xl: 0.899
+- sd3_xl hardest (most different architecture). All others >0.95.
+- Training: 34 min/fold, 2 epochs, lr=2e-5, continued from v2 checkpoint.
+
+### 2026-03-05 02:40 — FineGRAIN baseline experiments (CLIPScore, BLIP-2, prompt-only, caption-based)
+Why: Compare UQ model against standard T2I evaluation metrics on 3,750 human-labeled samples.
+Script: `scripts/finegrain_all_experiments.py` | Output: `data/finegrain_uq/experiments/`
+Result:
+- CLIPScore (ViT-L/14): AUROC **0.513** — near random
+- BLIP-2 ITM: AUROC **0.507** — near random
+- UQ prompt-only (no image): AUROC **0.501** — random (needs image)
+- UQ caption-based (Molmo captions, flux only, n=750): AUROC **0.608**
+- UQ + image (existing): AUROC **0.736** [0.719, 0.751]
+- Ensembles add nothing — CLIP/BLIP are noise on this task
+- Note: FineGRAIN labels are per-prompt (same across all 5 models), so per-sample model routing is impossible
+
+### 2026-03-05 03:10 — Out-of-distribution scoring on unseen benchmarks
+Why: Verify calibrator generalizes to benchmarks NOT in training data (healthbench, triviaqa).
+Script: `scripts/score_unseen_benchmarks.py` | SLURM 8437 | Output: `data/use_cases/scored_unseen/`
+Result:
+- Combined OOD AUROC: **0.657** (729 samples, 90.7% base accuracy)
+- healthbench GPT-5-mini: 0.701 (n=250) | GPT-5.2: 0.636 (n=250) | Qwen3.5: 0.601 (n=160)
+- triviaqa GPT-5-mini: 0.757 (n=69)
+- Compare: in-distribution AUROC = 0.953, held-out (same benchmarks) = 0.898
+- Note: High base accuracy (84-93%) limits AUROC ceiling. Calibrator still above random but clearly degrades OOD.
+
+### 2026-03-05 01:30 — Domain use case demos (legal, education, professional safety)
+Why: Brainstorm & prototype how lawyers, tutors, pro-se litigants would use UQ calibrator.
+Scripts: `scripts/demo_domain_analysis.py`, `demo_legal_hallucination.py`, `demo_education_tutoring.py`, `demo_professional_safety.py`
+Output: `data/use_cases/{domain_analysis,legal_demo,education_demo,professional_safety}/` | Figures: `figures/{domain_analysis,legal_demo,education_demo,professional_safety}/`
+Note: These use in-distribution scored data (scored_test_only_v2). Numbers are in-distribution, not OOD.
+
+### 2026-03-05 02:16 — New use cases: UC-E, UC-F, UC-G (production-oriented)
+Why: Demonstrate UQ value for AI lab deployment — clarification triggers, agentic gating, human escalation.
+Scripts: `scripts/uc_e_adaptive_clarification.py`, `scripts/uc_f_confidence_gated_actions.py`, `scripts/uc_g_human_escalation.py`
+Output: `data/use_cases/results_test_only_v2/uc_{e,f,g}_results.json` | Figures: `figures/use_cases_v2/uc_{e,f,g}_*.pdf`
+Data: test-only v2 (4,447 samples), CPU-only analysis.
+
+Results (averaged across GPT-5-mini, GPT-5.2, Qwen3.5):
+- **UC-E** (adaptive clarification): Calibrator AUPRC=0.947, best F1=0.880 vs verbalized 0.416. At t=0.7, catches 91% of errors.
+- **UC-F** (confidence-gated actions): Coverage@95%acc = 33-51%. Cost savings ~84% at 10x error cost. Only method with >0% coverage at 95% accuracy.
+- **UC-G** (human escalation): Green tier 40-51% volume at 93-95% acc, red tier captures 80% of errors. Workload reduction 38-52% to reach 95% accuracy vs random review.
+
 ## 2026-03-03
 
 ### Qwen3.5 Model Size Ablation (0.8B, 2B, 4B, 9B) — Complete

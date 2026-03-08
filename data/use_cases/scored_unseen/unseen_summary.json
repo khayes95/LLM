@@ -1,0 +1,36 @@
+{
+  "description": "Out-of-distribution evaluation on benchmarks NEVER in training data",
+  "checkpoint": "uq_models/best_v2_r32_combined",
+  "combined_auroc": 0.6568924090059626,
+  "total_samples": 729,
+  "per_benchmark": {
+    "gpt5mini_healthbench": {
+      "benchmark": "healthbench",
+      "target_model": "gpt5mini",
+      "n": 250,
+      "accuracy": 0.932,
+      "auroc": 0.7010855844483717
+    },
+    "gpt5mini_triviaqa": {
+      "benchmark": "triviaqa",
+      "target_model": "gpt5mini",
+      "n": 69,
+      "accuracy": 0.9710144927536232,
+      "auroc": 0.7574626865671642
+    },
+    "gpt52_healthbench": {
+      "benchmark": "healthbench",
+      "target_model": "gpt52",
+      "n": 250,
+      "accuracy": 0.908,
+      "auroc": 0.6358935069909978
+    },
+    "qwen35_healthbench": {
+      "benchmark": "healthbench",
+      "target_model": "qwen35",
+      "n": 160,
+      "accuracy": 0.8375,
+      "auroc": 0.600889781859931
+    }
+  }
+}

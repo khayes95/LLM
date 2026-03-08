@@ -1,0 +1,256 @@
+{
+  "factual_benchmarks": {
+    "total_samples": 909,
+    "n_correct": 457,
+    "n_wrong": 452,
+    "base_accuracy": 0.5027502750275028,
+    "calibrator_auroc": 0.9380288917720416,
+    "verbalized_auroc": 0.7033316550802657,
+    "threshold_analysis": [
+      {
+        "threshold": 0.3,
+        "n_flagged": 421,
+        "review_fraction": 0.46314631463146316,
+        "hallucination_recall": 0.8207964601769911,
+        "flag_precision": 0.8812351543942993,
+        "verbalized_recall": 0.09292035398230089
+      },
+      {
+        "threshold": 0.4,
+        "n_flagged": 450,
+        "review_fraction": 0.49504950495049505,
+        "hallucination_recall": 0.8539823008849557,
+        "flag_precision": 0.8577777777777778,
+        "verbalized_recall": 0.12831858407079647
+      },
+      {
+        "threshold": 0.5,
+        "n_flagged": 478,
+        "review_fraction": 0.5258525852585259,
+        "hallucination_recall": 0.8893805309734514,
+        "flag_precision": 0.8410041841004184,
+        "verbalized_recall": 0.14380530973451328
+      },
+      {
+        "threshold": 0.6,
+        "n_flagged": 527,
+        "review_fraction": 0.5797579757975797,
+        "hallucination_recall": 0.9314159292035398,
+        "flag_precision": 0.7988614800759013,
+        "verbalized_recall": 0.3407079646017699
+      },
+      {
+        "threshold": 0.7,
+        "n_flagged": 565,
+        "review_fraction": 0.6215621562156216,
+        "hallucination_recall": 0.9557522123893806,
+        "flag_precision": 0.7646017699115044,
+        "verbalized_recall": 0.4491150442477876
+      },
+      {
+        "threshold": 0.8,
+        "n_flagged": 624,
+        "review_fraction": 0.6864686468646864,
+        "hallucination_recall": 0.9756637168141593,
+        "flag_precision": 0.7067307692307693,
+        "verbalized_recall": 0.5265486725663717
+      },
+      {
+        "threshold": 0.9,
+        "n_flagged": 679,
+        "review_fraction": 0.746974697469747,
+        "hallucination_recall": 0.9867256637168141,
+        "flag_precision": 0.6568483063328424,
+        "verbalized_recall": 0.6327433628318584
+      }
+    ],
+    "triage_analysis": [
+      {
+        "review_pct": 0.05,
+        "n_reviewed": 45,
+        "errors_caught": 45,
+        "error_recall": 0.09955752212389381,
+        "accuracy_of_unreviewed": 0.5289351851851852
+      },
+      {
+        "review_pct": 0.1,
+        "n_reviewed": 90,
+        "errors_caught": 89,
+        "error_recall": 0.19690265486725664,
+        "accuracy_of_unreviewed": 0.5567765567765568
+      },
+      {
+        "review_pct": 0.15,
+        "n_reviewed": 136,
+        "errors_caught": 134,
+        "error_recall": 0.29646017699115046,
+        "accuracy_of_unreviewed": 0.5886157826649417
+      },
+      {
+        "review_pct": 0.2,
+        "n_reviewed": 181,
+        "errors_caught": 177,
+        "error_recall": 0.3915929203539823,
+        "accuracy_of_unreviewed": 0.6222527472527473
+      },
+      {
+        "review_pct": 0.25,
+        "n_reviewed": 227,
+        "errors_caught": 220,
+        "error_recall": 0.48672566371681414,
+        "accuracy_of_unreviewed": 0.6598240469208211
+      },
+      {
+        "review_pct": 0.3,
+        "n_reviewed": 272,
+        "errors_caught": 259,
+        "error_recall": 0.5730088495575221,
+        "accuracy_of_unreviewed": 0.6970172684458399
+      },
+      {
+        "review_pct": 0.4,
+        "n_reviewed": 363,
+        "errors_caught": 334,
+        "error_recall": 0.7389380530973452,
+        "accuracy_of_unreviewed": 0.7838827838827839
+      },
+      {
+        "review_pct": 0.5,
+        "n_reviewed": 454,
+        "errors_caught": 388,
+        "error_recall": 0.8584070796460177,
+        "accuracy_of_unreviewed": 0.8593406593406593
+      }
+    ]
+  },
+  "full_dataset": {
+    "total_samples": 4447,
+    "n_correct": 2420,
+    "n_wrong": 2027,
+    "base_accuracy": 0.5441870924218575,
+    "calibrator_auroc": 0.9526323353732871,
+    "verbalized_auroc": 0.6305410022546857,
+    "threshold_analysis": [
+      {
+        "threshold": 0.3,
+        "n_flagged": 1770,
+        "review_fraction": 0.3980211378457387,
+        "hallucination_recall": 0.801677355698076,
+        "flag_precision": 0.9180790960451978,
+        "verbalized_recall": 0.026640355204736062
+      },
+      {
+        "threshold": 0.4,
+        "n_flagged": 1846,
+        "review_fraction": 0.4151113109961772,
+        "hallucination_recall": 0.822890971879625,
+        "flag_precision": 0.9035752979414952,
+        "verbalized_recall": 0.04045387271830291
+      },
+      {
+        "threshold": 0.5,
+        "n_flagged": 1939,
+        "review_fraction": 0.43602428603552956,
+        "hallucination_recall": 0.8519980266403552,
+        "flag_precision": 0.8906652913873131,
+        "verbalized_recall": 0.0493339911198816
+      },
+      {
+        "threshold": 0.6,
+        "n_flagged": 2107,
+        "review_fraction": 0.47380256352597255,
+        "hallucination_recall": 0.8968919585594475,
+        "flag_precision": 0.8628381585192216,
+        "verbalized_recall": 0.2007893438579181
+      },
+      {
+        "threshold": 0.7,
+        "n_flagged": 2231,
+        "review_fraction": 0.501686530245109,
+        "hallucination_recall": 0.9181055747409965,
+        "flag_precision": 0.8341550874047512,
+        "verbalized_recall": 0.29107054760730144
+      },
+      {
+        "threshold": 0.8,
+        "n_flagged": 2452,
+        "review_fraction": 0.5513829548009894,
+        "hallucination_recall": 0.9457326097681302,
+        "flag_precision": 0.781810766721044,
+        "verbalized_recall": 0.3991119881598421
+      },
+      {
+        "threshold": 0.9,
+        "n_flagged": 2676,
+        "review_fraction": 0.6017539914549134,
+        "hallucination_recall": 0.9684262456832757,
+        "flag_precision": 0.7335575485799701,
+        "verbalized_recall": 0.5150468672915639
+      }
+    ],
+    "triage_analysis": [
+      {
+        "review_pct": 0.05,
+        "n_reviewed": 222,
+        "errors_caught": 221,
+        "error_recall": 0.10902812037493834,
+        "accuracy_of_unreviewed": 0.5725443786982248
+      },
+      {
+        "review_pct": 0.1,
+        "n_reviewed": 444,
+        "errors_caught": 443,
+        "error_recall": 0.2185495806610755,
+        "accuracy_of_unreviewed": 0.6042967774169373
+      },
+      {
+        "review_pct": 0.15,
+        "n_reviewed": 667,
+        "errors_caught": 660,
+        "error_recall": 0.3256043413912186,
+        "accuracy_of_unreviewed": 0.6383597883597883
+      },
+      {
+        "review_pct": 0.2,
+        "n_reviewed": 889,
+        "errors_caught": 873,
+        "error_recall": 0.4306857424765664,
+        "accuracy_of_unreviewed": 0.6756604834176504
+      },
+      {
+        "review_pct": 0.25,
+        "n_reviewed": 1111,
+        "errors_caught": 1086,
+        "error_recall": 0.5357671435619141,
+        "accuracy_of_unreviewed": 0.717925659472422
+      },
+      {
+        "review_pct": 0.3,
+        "n_reviewed": 1334,
+        "errors_caught": 1288,
+        "error_recall": 0.635421805624075,
+        "accuracy_of_unreviewed": 0.7626084163186637
+      },
+      {
+        "review_pct": 0.4,
+        "n_reviewed": 1778,
+        "errors_caught": 1629,
+        "error_recall": 0.8036507153428712,
+        "accuracy_of_unreviewed": 0.8508804795803672
+      },
+      {
+        "review_pct": 0.5,
+        "n_reviewed": 2223,
+        "errors_caught": 1858,
+        "error_recall": 0.9166255550074001,
+        "accuracy_of_unreviewed": 0.9240107913669064
+      }
+    ]
+  },
+  "narrative": {
+    "scenario": "Legal research assistant / Pro-se litigant tool",
+    "problem": "LLMs fabricate case citations, misstate dates, and invent legal precedents",
+    "solution": "UQ calibrator flags unreliable answers before they reach the user",
+    "key_finding": "By reviewing only the bottom 20% of answers by calibrator confidence, a user catches 39% of all errors. The remaining 80% of auto-approved answers have 62.2% accuracy."
+  }
+}

@@ -1,0 +1,511 @@
+{
+  "junior_associate": {
+    "full_review_cost": 88940,
+    "n_items": 4447,
+    "base_accuracy": 0.5441870924218575,
+    "strategies": [
+      {
+        "threshold": 0.5,
+        "auto_approve_pct": 0.5639757139644704,
+        "auto_accuracy": 0.8803827751196173,
+        "review_count": 1939,
+        "review_cost": 38780,
+        "cost_savings_pct": 0.5639757139644704,
+        "errors_slipped": 300,
+        "slip_rate": 0.11961722488038277,
+        "final_accuracy": 0.9325387901956375
+      },
+      {
+        "threshold": 0.6,
+        "auto_approve_pct": 0.5261974364740274,
+        "auto_accuracy": 0.9106837606837607,
+        "review_count": 2107,
+        "review_cost": 42140,
+        "cost_savings_pct": 0.5261974364740274,
+        "errors_slipped": 209,
+        "slip_rate": 0.08931623931623932,
+        "final_accuracy": 0.9530020238362942
+      },
+      {
+        "threshold": 0.7,
+        "auto_approve_pct": 0.49831346975489094,
+        "auto_accuracy": 0.9250902527075813,
+        "review_count": 2231,
+        "review_cost": 44620,
+        "cost_savings_pct": 0.498313469754891,
+        "errors_slipped": 166,
+        "slip_rate": 0.07490974729241877,
+        "final_accuracy": 0.9626714639082528
+      },
+      {
+        "threshold": 0.8,
+        "auto_approve_pct": 0.4486170451990106,
+        "auto_accuracy": 0.9448621553884712,
+        "review_count": 2452,
+        "review_cost": 49040,
+        "cost_savings_pct": 0.4486170451990106,
+        "errors_slipped": 110,
+        "slip_rate": 0.05513784461152882,
+        "final_accuracy": 0.9752642230717338
+      },
+      {
+        "threshold": 0.9,
+        "auto_approve_pct": 0.39824600854508657,
+        "auto_accuracy": 0.96386222473179,
+        "review_count": 2676,
+        "review_cost": 53520,
+        "cost_savings_pct": 0.3982460085450866,
+        "errors_slipped": 64,
+        "slip_rate": 0.03613777526821005,
+        "final_accuracy": 0.985608275241736
+      },
+      {
+        "threshold": 0.95,
+        "auto_approve_pct": 0.3485495839892062,
+        "auto_accuracy": 0.9754838709677419,
+        "review_count": 2897,
+        "review_cost": 57940,
+        "cost_savings_pct": 0.3485495839892062,
+        "errors_slipped": 38,
+        "slip_rate": 0.024516129032258065,
+        "final_accuracy": 0.9914549134247808
+      }
+    ]
+  },
+  "safety_tiers": [
+    {
+      "name": "GREEN (Safe)",
+      "lo": 0.8,
+      "hi": 1.01,
+      "color": "#2ecc71",
+      "n": 1995,
+      "pct": 0.4486170451990106,
+      "accuracy": 0.9448621553884712
+    },
+    {
+      "name": "YELLOW (Caution)",
+      "lo": 0.5,
+      "hi": 0.8,
+      "color": "#f39c12",
+      "n": 513,
+      "pct": 0.11535866876545986,
+      "accuracy": 0.6296296296296297
+    },
+    {
+      "name": "RED (Don't Trust)",
+      "lo": 0.0,
+      "hi": 0.5,
+      "color": "#e74c3c",
+      "n": 1939,
+      "pct": 0.43602428603552956,
+      "accuracy": 0.10933470861268695
+    }
+  ],
+  "cross_model_trust": {
+    "gpt52": {
+      "arc_agi": {
+        "auroc": 0.7544444444444445,
+        "accuracy": 0.847457627118644,
+        "mean_confidence": 0.929621406779661,
+        "n": 59,
+        "calibrated": true
+      },
+      "bbeh": {
+        "auroc": 0.843984962406015,
+        "accuracy": 0.6440677966101694,
+        "mean_confidence": 0.6558527627118644,
+        "n": 59,
+        "calibrated": true
+      },
+      "charxiv": {
+        "auroc": 0.9485245901639344,
+        "accuracy": 0.7093023255813954,
+        "mean_confidence": 0.7519204767441858,
+        "n": 86,
+        "calibrated": true
+      },
+      "chembench": {
+        "auroc": 0.7988380537400146,
+        "accuracy": 0.6538461538461539,
+        "mean_confidence": 0.7134337307692308,
+        "n": 78,
+        "calibrated": true
+      },
+      "gpqa": {
+        "auroc": 0.9351851851851852,
+        "accuracy": 0.9230769230769231,
+        "mean_confidence": 0.8700921538461538,
+        "n": 78,
+        "calibrated": true
+      },
+      "hallusionbench": {
+        "auroc": 0.9628776241679466,
+        "accuracy": 0.802547770700637,
+        "mean_confidence": 0.8233511146496816,
+        "n": 157,
+        "calibrated": true
+      },
+      "hle": {
+        "auroc": 0.8624401913875598,
+        "accuracy": 0.36666666666666664,
+        "mean_confidence": 0.31490371666666667,
+        "n": 60,
+        "calibrated": true
+      },
+      "livebench": {
+        "auroc": 1.0,
+        "accuracy": 0.7321428571428571,
+        "mean_confidence": 0.7368775000000001,
+        "n": 56,
+        "calibrated": true
+      },
+      "mathverse": {
+        "auroc": 0.9852700490998363,
+        "accuracy": 0.45348837209302323,
+        "mean_confidence": 0.4418330232558139,
+        "n": 86,
+        "calibrated": true
+      },
+      "mathvision": {
+        "auroc": 0.9285714285714286,
+        "accuracy": 0.45528455284552843,
+        "mean_confidence": 0.36133512195121953,
+        "n": 123,
+        "calibrated": true
+      },
+      "mathvista": {
+        "auroc": 0.9963064295485635,
+        "accuracy": 0.3359375,
+        "mean_confidence": 0.327203953125,
+        "n": 128,
+        "calibrated": true
+      },
+      "mmmu": {
+        "auroc": 0.9578754578754579,
+        "accuracy": 0.7636363636363637,
+        "mean_confidence": 0.8358132727272727,
+        "n": 55,
+        "calibrated": true
+      },
+      "mmstar": {
+        "auroc": 0.9306122448979591,
+        "accuracy": 0.8333333333333334,
+        "mean_confidence": 0.8747820873015874,
+        "n": 126,
+        "calibrated": true
+      },
+      "mmvet": {
+        "auroc": 0.9768431001890359,
+        "accuracy": 0.3333333333333333,
+        "mean_confidence": 0.26721723188405794,
+        "n": 69,
+        "calibrated": true
+      },
+      "omnimath": {
+        "auroc": 0.9412499999999999,
+        "accuracy": 0.3902439024390244,
+        "mean_confidence": 0.39354563414634147,
+        "n": 41,
+        "calibrated": true
+      },
+      "prbench": {
+        "auroc": 0.674089068825911,
+        "accuracy": 0.6724137931034483,
+        "mean_confidence": 0.7826306206896553,
+        "n": 58,
+        "calibrated": false
+      },
+      "realworldqa": {
+        "auroc": 0.996541184041184,
+        "accuracy": 0.46835443037974683,
+        "mean_confidence": 0.4635818734177216,
+        "n": 158,
+        "calibrated": true
+      },
+      "simpleqa": {
+        "auroc": 0.9230769230769231,
+        "accuracy": 0.3291139240506329,
+        "mean_confidence": 0.25856856962025315,
+        "n": 79,
+        "calibrated": true
+      },
+      "vizwiz": {
+        "auroc": 0.995,
+        "accuracy": 0.5813953488372093,
+        "mean_confidence": 0.636819523255814,
+        "n": 86,
+        "calibrated": true
+      }
+    },
+    "gpt5mini": {
+      "bbeh": {
+        "auroc": 0.870909090909091,
+        "accuracy": 0.46808510638297873,
+        "mean_confidence": 0.48477499999999996,
+        "n": 47,
+        "calibrated": true
+      },
+      "charxiv": {
+        "auroc": 0.871863799283154,
+        "accuracy": 0.5373134328358209,
+        "mean_confidence": 0.6966535522388059,
+        "n": 67,
+        "calibrated": false
+      },
+      "chembench": {
+        "auroc": 0.7335526315789473,
+        "accuracy": 0.7164179104477612,
+        "mean_confidence": 0.7576340298507462,
+        "n": 67,
+        "calibrated": true
+      },
+      "gpqa": {
+        "auroc": 0.8532544378698224,
+        "accuracy": 0.8333333333333334,
+        "mean_confidence": 0.7413986666666667,
+        "n": 78,
+        "calibrated": true
+      },
+      "hallusionbench": {
+        "auroc": 1.0,
+        "accuracy": 0.8125,
+        "mean_confidence": 0.8372422187499999,
+        "n": 64,
+        "calibrated": true
+      },
+      "hle": {
+        "auroc": 0.8800000000000001,
+        "accuracy": 0.20634920634920634,
+        "mean_confidence": 0.2644498412698412,
+        "n": 63,
+        "calibrated": true
+      },
+      "hle_multimodal": {
+        "auroc": 0.8099999999999999,
+        "accuracy": 0.14285714285714285,
+        "mean_confidence": 0.150143,
+        "n": 35,
+        "calibrated": true
+      },
+      "livebench": {
+        "auroc": 0.9933862433862434,
+        "accuracy": 0.631578947368421,
+        "mean_confidence": 0.5962043333333334,
+        "n": 57,
+        "calibrated": true
+      },
+      "mathverse": {
+        "auroc": 0.9594752186588921,
+        "accuracy": 0.4166666666666667,
+        "mean_confidence": 0.4784280119047619,
+        "n": 84,
+        "calibrated": true
+      },
+      "mathvision": {
+        "auroc": 0.9459930313588849,
+        "accuracy": 0.36936936936936937,
+        "mean_confidence": 0.3444285315315315,
+        "n": 111,
+        "calibrated": true
+      },
+      "mathvista": {
+        "auroc": 0.9805059523809524,
+        "accuracy": 0.3442622950819672,
+        "mean_confidence": 0.3612546229508196,
+        "n": 122,
+        "calibrated": true
+      },
+      "mmmu": {
+        "auroc": 0.9195906432748537,
+        "accuracy": 0.6545454545454545,
+        "mean_confidence": 0.7619850909090911,
+        "n": 55,
+        "calibrated": false
+      },
+      "mmstar": {
+        "auroc": 0.9183624031007752,
+        "accuracy": 0.7818181818181819,
+        "mean_confidence": 0.8357544636363636,
+        "n": 110,
+        "calibrated": true
+      },
+      "mmvet": {
+        "auroc": 0.9855072463768116,
+        "accuracy": 0.34285714285714286,
+        "mean_confidence": 0.30725185714285724,
+        "n": 35,
+        "calibrated": true
+      },
+      "omnimath": {
+        "auroc": 0.9264705882352942,
+        "accuracy": 0.32075471698113206,
+        "mean_confidence": 0.3243097358490566,
+        "n": 53,
+        "calibrated": true
+      },
+      "prbench": {
+        "auroc": 0.8384615384615385,
+        "accuracy": 0.7758620689655172,
+        "mean_confidence": 0.8060176724137931,
+        "n": 58,
+        "calibrated": true
+      },
+      "realworldqa": {
+        "auroc": 0.996650124069479,
+        "accuracy": 0.5118110236220472,
+        "mean_confidence": 0.5123286692913386,
+        "n": 127,
+        "calibrated": true
+      },
+      "simpleqa": {
+        "auroc": 0.9602272727272727,
+        "accuracy": 0.1864406779661017,
+        "mean_confidence": 0.17418525423728815,
+        "n": 59,
+        "calibrated": true
+      },
+      "vizwiz": {
+        "auroc": 0.9448853615520283,
+        "accuracy": 0.6086956521739131,
+        "mean_confidence": 0.616304724637681,
+        "n": 69,
+        "calibrated": true
+      }
+    },
+    "qwen35": {
+      "arc_agi": {
+        "auroc": 0.7387755102040816,
+        "accuracy": 0.1694915254237288,
+        "mean_confidence": 0.11256754237288136,
+        "n": 59,
+        "calibrated": true
+      },
+      "bbeh": {
+        "auroc": 0.9770114942528736,
+        "accuracy": 0.23684210526315788,
+        "mean_confidence": 0.2375778157894737,
+        "n": 38,
+        "calibrated": true
+      },
+      "charxiv": {
+        "auroc": 0.884505431675243,
+        "accuracy": 0.6162790697674418,
+        "mean_confidence": 0.7014146744186047,
+        "n": 86,
+        "calibrated": true
+      },
+      "chembench": {
+        "auroc": 0.8159722222222222,
+        "accuracy": 0.6153846153846154,
+        "mean_confidence": 0.6618933974358975,
+        "n": 78,
+        "calibrated": true
+      },
+      "gpqa": {
+        "auroc": 0.8131613756613757,
+        "accuracy": 0.5384615384615384,
+        "mean_confidence": 0.4558683974358975,
+        "n": 78,
+        "calibrated": true
+      },
+      "hallusionbench": {
+        "auroc": 0.9417155425219942,
+        "accuracy": 0.7898089171974523,
+        "mean_confidence": 0.8297050063694268,
+        "n": 157,
+        "calibrated": true
+      },
+      "hle": {
+        "auroc": 0.8663911845730028,
+        "accuracy": 0.25,
+        "mean_confidence": 0.13575336363636364,
+        "n": 44,
+        "calibrated": false
+      },
+      "livebench": {
+        "auroc": 0.9964912280701755,
+        "accuracy": 0.5588235294117647,
+        "mean_confidence": 0.512524705882353,
+        "n": 34,
+        "calibrated": true
+      },
+      "mathverse": {
+        "auroc": 0.9233695652173912,
+        "accuracy": 0.6349206349206349,
+        "mean_confidence": 0.692251,
+        "n": 63,
+        "calibrated": true
+      },
+      "mathvision": {
+        "auroc": 0.9097222222222222,
+        "accuracy": 0.1836734693877551,
+        "mean_confidence": 0.12489785714285717,
+        "n": 49,
+        "calibrated": true
+      },
+      "mathvista": {
+        "auroc": 0.9732954545454546,
+        "accuracy": 0.3125,
+        "mean_confidence": 0.2982826328125,
+        "n": 128,
+        "calibrated": true
+      },
+      "mmmu": {
+        "auroc": 0.8592857142857142,
+        "accuracy": 0.6363636363636364,
+        "mean_confidence": 0.7559481999999998,
+        "n": 55,
+        "calibrated": false
+      },
+      "mmstar": {
+        "auroc": 0.9480793583790629,
+        "accuracy": 0.8174603174603174,
+        "mean_confidence": 0.838487492063492,
+        "n": 126,
+        "calibrated": true
+      },
+      "mmvet": {
+        "auroc": 0.9644444444444445,
+        "accuracy": 0.2647058823529412,
+        "mean_confidence": 0.2178451617647059,
+        "n": 68,
+        "calibrated": true
+      },
+      "omnimath": {
+        "auroc": 0.835,
+        "accuracy": 0.24242424242424243,
+        "mean_confidence": 0.140536303030303,
+        "n": 33,
+        "calibrated": false
+      },
+      "prbench": {
+        "auroc": 0.8819444444444444,
+        "accuracy": 0.6923076923076923,
+        "mean_confidence": 0.6845702692307694,
+        "n": 26,
+        "calibrated": true
+      },
+      "realworldqa": {
+        "auroc": 0.9849926193209775,
+        "accuracy": 0.4240506329113924,
+        "mean_confidence": 0.4387309810126582,
+        "n": 158,
+        "calibrated": true
+      },
+      "simpleqa": {
+        "auroc": 0.8965986394557823,
+        "accuracy": 0.379746835443038,
+        "mean_confidence": 0.36001007594936707,
+        "n": 79,
+        "calibrated": true
+      },
+      "vizwiz": {
+        "auroc": 0.9870283018867925,
+        "accuracy": 0.6235294117647059,
+        "mean_confidence": 0.6741957647058824,
+        "n": 85,
+        "calibrated": true
+      }
+    }
+  }
+}

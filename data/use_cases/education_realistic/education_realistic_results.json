@@ -1,0 +1,406 @@
+{
+  "in_dist": {
+    "n": 1789,
+    "shield": {
+      "n_total": 1789,
+      "n_wrong": 962,
+      "base_error_rate": 0.5377305757406372,
+      "shields": [
+        {
+          "threshold": 0.3,
+          "coverage": 0.5159306875349358,
+          "n_shown": 923,
+          "wrong_shown": 182,
+          "wrong_shown_rate": 0.19718309859154928,
+          "correct_blocked": 86,
+          "waste_rate": 0.09930715935334873
+        },
+        {
+          "threshold": 0.4,
+          "coverage": 0.4913359418669648,
+          "n_shown": 879,
+          "wrong_shown": 158,
+          "wrong_shown_rate": 0.17974971558589306,
+          "correct_blocked": 106,
+          "waste_rate": 0.11648351648351649
+        },
+        {
+          "threshold": 0.5,
+          "coverage": 0.4689770821688094,
+          "n_shown": 839,
+          "wrong_shown": 134,
+          "wrong_shown_rate": 0.15971394517282478,
+          "correct_blocked": 122,
+          "waste_rate": 0.12842105263157894
+        },
+        {
+          "threshold": 0.6,
+          "coverage": 0.4108440469536054,
+          "n_shown": 735,
+          "wrong_shown": 84,
+          "wrong_shown_rate": 0.11428571428571428,
+          "correct_blocked": 176,
+          "waste_rate": 0.16698292220113853
+        },
+        {
+          "threshold": 0.7,
+          "coverage": 0.36277249860257127,
+          "n_shown": 649,
+          "wrong_shown": 56,
+          "wrong_shown_rate": 0.08628659476117104,
+          "correct_blocked": 234,
+          "waste_rate": 0.20526315789473684
+        },
+        {
+          "threshold": 0.8,
+          "coverage": 0.29681386249301284,
+          "n_shown": 531,
+          "wrong_shown": 34,
+          "wrong_shown_rate": 0.064030131826742,
+          "correct_blocked": 330,
+          "waste_rate": 0.26232114467408585
+        },
+        {
+          "threshold": 0.9,
+          "coverage": 0.23700391280044716,
+          "n_shown": 424,
+          "wrong_shown": 17,
+          "wrong_shown_rate": 0.04009433962264151,
+          "correct_blocked": 420,
+          "waste_rate": 0.3076923076923077
+        }
+      ]
+    },
+    "grading": {
+      "n_total": 1789,
+      "n_grading_errors": 962,
+      "base_error_rate": 0.5377305757406372,
+      "random_20pct_catches": 207,
+      "grading": [
+        {
+          "review_pct": 0.05,
+          "n_reviewed": 89,
+          "calibrator_catches": 89,
+          "random_catches": 47.67,
+          "advantage_ratio": 1.8670023075309419,
+          "calibrator_catch_rate": 0.09251559251559252
+        },
+        {
+          "review_pct": 0.1,
+          "n_reviewed": 178,
+          "calibrator_catches": 178,
+          "random_catches": 95.5,
+          "advantage_ratio": 1.8638743455497382,
+          "calibrator_catch_rate": 0.18503118503118504
+        },
+        {
+          "review_pct": 0.15,
+          "n_reviewed": 268,
+          "calibrator_catches": 266,
+          "random_catches": 143.19,
+          "advantage_ratio": 1.8576716251134857,
+          "calibrator_catch_rate": 0.2765072765072765
+        },
+        {
+          "review_pct": 0.2,
+          "n_reviewed": 357,
+          "calibrator_catches": 351,
+          "random_catches": 192.77,
+          "advantage_ratio": 1.8208227421279244,
+          "calibrator_catch_rate": 0.36486486486486486
+        },
+        {
+          "review_pct": 0.25,
+          "n_reviewed": 447,
+          "calibrator_catches": 436,
+          "random_catches": 239.53,
+          "advantage_ratio": 1.8202312862689434,
+          "calibrator_catch_rate": 0.45322245322245325
+        },
+        {
+          "review_pct": 0.3,
+          "n_reviewed": 536,
+          "calibrator_catches": 521,
+          "random_catches": 289.05,
+          "advantage_ratio": 1.8024563224355648,
+          "calibrator_catch_rate": 0.5415800415800416
+        }
+      ]
+    },
+    "radar": {
+      "bbeh": {
+        "topic": "Logic & Reasoning",
+        "accuracy": 0.4791666666666667,
+        "mean_confidence": 0.4896367708333334,
+        "auroc": 0.898743961352657,
+        "n": 144,
+        "teacher_action": "Supplement with human"
+      },
+      "chembench": {
+        "topic": "Chemistry",
+        "accuracy": 0.6591928251121076,
+        "mean_confidence": 0.7086860807174887,
+        "auroc": 0.787012173290369,
+        "n": 223,
+        "teacher_action": "Supplement with human"
+      },
+      "gpqa": {
+        "topic": "Graduate-Level Science",
+        "accuracy": 0.7649572649572649,
+        "mean_confidence": 0.6891197393162393,
+        "auroc": 0.8928390045708482,
+        "n": 234,
+        "teacher_action": "AI handles"
+      },
+      "hle": {
+        "topic": "Expert Knowledge",
+        "accuracy": 0.2754491017964072,
+        "mean_confidence": 0.24866892814371255,
+        "auroc": 0.8617499101688825,
+        "n": 167,
+        "teacher_action": "Human tutor required"
+      },
+      "mathverse": {
+        "topic": "Geometry & Visual Math",
+        "accuracy": 0.4892703862660944,
+        "mean_confidence": 0.5227356480686696,
+        "auroc": 0.9610054548135043,
+        "n": 233,
+        "teacher_action": "Supplement with human"
+      },
+      "mathvision": {
+        "topic": "Math Problem Solving (Visual)",
+        "accuracy": 0.3745583038869258,
+        "mean_confidence": 0.31376601413427563,
+        "auroc": 0.9351081974203177,
+        "n": 283,
+        "teacher_action": "Human tutor required"
+      },
+      "mathvista": {
+        "topic": "Math Reasoning (Charts/Graphs)",
+        "accuracy": 0.3306878306878307,
+        "mean_confidence": 0.3284003888888889,
+        "auroc": 0.9847430830039526,
+        "n": 378,
+        "teacher_action": "Human tutor required"
+      },
+      "omnimath": {
+        "topic": "Competition Math",
+        "accuracy": 0.3228346456692913,
+        "mean_confidence": 0.2989093307086615,
+        "auroc": 0.9119398752127056,
+        "n": 127,
+        "teacher_action": "Human tutor required"
+      }
+    },
+    "trust": {
+      "threshold": 0.7,
+      "confident_pct": 0.36277249860257127,
+      "confident_accuracy": 0.9137134052388289,
+      "confident_wrong": 56,
+      "confident_wrong_rate": 0.08628659476117104,
+      "unsure_pct": 0.6372275013974288,
+      "unsure_accuracy": 0.20526315789473684,
+      "separation": 0.7084502473440921
+    },
+    "parent": {
+      "total_questions": 1789,
+      "ai_answered_correctly": 827,
+      "ai_answered_incorrectly": 962,
+      "overall_accuracy": 0.4622694242593628,
+      "high_confidence": {
+        "count": 531,
+        "accuracy": 0.935969868173258,
+        "description": "AI was confident \u2014 these answers are almost always correct"
+      },
+      "medium_confidence": {
+        "count": 308,
+        "accuracy": 0.6753246753246753,
+        "description": "AI was somewhat unsure \u2014 your child should double-check these"
+      },
+      "low_confidence": {
+        "count": 950,
+        "accuracy": 0.12842105263157894,
+        "description": "AI flagged these as unreliable \u2014 a human tutor reviewed them"
+      }
+    }
+  },
+  "ood": {
+    "n": 729,
+    "shield": {
+      "n_total": 729,
+      "n_wrong": 68,
+      "base_error_rate": 0.09327846364883402,
+      "shields": [
+        {
+          "threshold": 0.3,
+          "coverage": 0.9231824417009602,
+          "n_shown": 673,
+          "wrong_shown": 55,
+          "wrong_shown_rate": 0.08172362555720654,
+          "correct_blocked": 43,
+          "waste_rate": 0.7678571428571429
+        },
+        {
+          "threshold": 0.4,
+          "coverage": 0.8888888888888888,
+          "n_shown": 648,
+          "wrong_shown": 51,
+          "wrong_shown_rate": 0.0787037037037037,
+          "correct_blocked": 64,
+          "waste_rate": 0.7901234567901234
+        },
+        {
+          "threshold": 0.5,
+          "coverage": 0.8545953360768176,
+          "n_shown": 623,
+          "wrong_shown": 48,
+          "wrong_shown_rate": 0.07704654895666131,
+          "correct_blocked": 86,
+          "waste_rate": 0.8113207547169812
+        },
+        {
+          "threshold": 0.6,
+          "coverage": 0.7914951989026063,
+          "n_shown": 577,
+          "wrong_shown": 41,
+          "wrong_shown_rate": 0.07105719237435008,
+          "correct_blocked": 125,
+          "waste_rate": 0.8223684210526315
+        },
+        {
+          "threshold": 0.7,
+          "coverage": 0.7270233196159122,
+          "n_shown": 530,
+          "wrong_shown": 32,
+          "wrong_shown_rate": 0.06037735849056604,
+          "correct_blocked": 163,
+          "waste_rate": 0.8190954773869347
+        },
+        {
+          "threshold": 0.8,
+          "coverage": 0.6090534979423868,
+          "n_shown": 444,
+          "wrong_shown": 29,
+          "wrong_shown_rate": 0.06531531531531531,
+          "correct_blocked": 246,
+          "waste_rate": 0.8631578947368421
+        },
+        {
+          "threshold": 0.9,
+          "coverage": 0.43072702331961593,
+          "n_shown": 314,
+          "wrong_shown": 20,
+          "wrong_shown_rate": 0.06369426751592357,
+          "correct_blocked": 367,
+          "waste_rate": 0.8843373493975903
+        }
+      ]
+    },
+    "grading": {
+      "n_total": 729,
+      "n_grading_errors": 68,
+      "base_error_rate": 0.09327846364883402,
+      "random_20pct_catches": 17,
+      "grading": [
+        {
+          "review_pct": 0.05,
+          "n_reviewed": 36,
+          "calibrator_catches": 8,
+          "random_catches": 3.6,
+          "advantage_ratio": 2.2222222222222223,
+          "calibrator_catch_rate": 0.11764705882352941
+        },
+        {
+          "review_pct": 0.1,
+          "n_reviewed": 72,
+          "calibrator_catches": 15,
+          "random_catches": 6.79,
+          "advantage_ratio": 2.2091310751104567,
+          "calibrator_catch_rate": 0.22058823529411764
+        },
+        {
+          "review_pct": 0.15,
+          "n_reviewed": 109,
+          "calibrator_catches": 21,
+          "random_catches": 10.22,
+          "advantage_ratio": 2.054794520547945,
+          "calibrator_catch_rate": 0.3088235294117647
+        },
+        {
+          "review_pct": 0.2,
+          "n_reviewed": 145,
+          "calibrator_catches": 26,
+          "random_catches": 13.44,
+          "advantage_ratio": 1.9345238095238095,
+          "calibrator_catch_rate": 0.38235294117647056
+        },
+        {
+          "review_pct": 0.25,
+          "n_reviewed": 182,
+          "calibrator_catches": 33,
+          "random_catches": 16.66,
+          "advantage_ratio": 1.9807923169267707,
+          "calibrator_catch_rate": 0.4852941176470588
+        },
+        {
+          "review_pct": 0.3,
+          "n_reviewed": 218,
+          "calibrator_catches": 37,
+          "random_catches": 20.47,
+          "advantage_ratio": 1.80752320468979,
+          "calibrator_catch_rate": 0.5441176470588235
+        }
+      ]
+    },
+    "radar": {
+      "healthbench": {
+        "topic": "Health & Medicine",
+        "accuracy": 0.9,
+        "mean_confidence": 0.771630859375,
+        "auroc": 0.6491812059993878,
+        "n": 660,
+        "teacher_action": "AI handles"
+      },
+      "triviaqa": {
+        "topic": "Trivia & General Knowledge",
+        "accuracy": 0.9710144927536232,
+        "mean_confidence": 0.772675002830616,
+        "auroc": 0.7574626865671642,
+        "n": 69,
+        "teacher_action": "AI handles"
+      }
+    },
+    "trust": {
+      "threshold": 0.7,
+      "confident_pct": 0.7270233196159122,
+      "confident_accuracy": 0.939622641509434,
+      "confident_wrong": 32,
+      "confident_wrong_rate": 0.06037735849056604,
+      "unsure_pct": 0.2729766803840878,
+      "unsure_accuracy": 0.8190954773869347,
+      "separation": 0.12052716412249931
+    },
+    "parent": {
+      "total_questions": 729,
+      "ai_answered_correctly": 661,
+      "ai_answered_incorrectly": 68,
+      "overall_accuracy": 0.906721536351166,
+      "high_confidence": {
+        "count": 444,
+        "accuracy": 0.9346846846846847,
+        "description": "AI was confident \u2014 these answers are almost always correct"
+      },
+      "medium_confidence": {
+        "count": 179,
+        "accuracy": 0.8938547486033519,
+        "description": "AI was somewhat unsure \u2014 your child should double-check these"
+      },
+      "low_confidence": {
+        "count": 106,
+        "accuracy": 0.8113207547169812,
+        "description": "AI flagged these as unreliable \u2014 a human tutor reviewed them"
+      }
+    }
+  }
+}

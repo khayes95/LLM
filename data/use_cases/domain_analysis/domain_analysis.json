@@ -1,0 +1,289 @@
+{
+  "domain_analysis": {
+    "domains": {
+      "Code & Engineering": {
+        "n": 142,
+        "accuracy": 0.7183098591549296,
+        "calibrator_auroc": 0.7724264705882352,
+        "calibrator_ci": [
+          0.6872619047619049,
+          0.8527380952380953
+        ],
+        "verbalized_auroc": 0.5753676470588236,
+        "verbalized_ci": [
+          0.46963686298443696,
+          0.6796105383734249
+        ],
+        "advantage": 0.19705882352941162,
+        "benchmarks": [
+          "prbench"
+        ]
+      },
+      "Factual Knowledge": {
+        "n": 217,
+        "accuracy": 0.3087557603686636,
+        "calibrator_auroc": 0.9284577114427861,
+        "calibrator_ci": [
+          0.8909389671361502,
+          0.9617117117117118
+        ],
+        "verbalized_auroc": 0.7029850746268657,
+        "verbalized_ci": [
+          0.6323034888608658,
+          0.7710375816993464
+        ],
+        "advantage": 0.22547263681592045,
+        "benchmarks": [
+          "simpleqa"
+        ]
+      },
+      "Math & Education": {
+        "n": 1021,
+        "accuracy": 0.3780607247796278,
+        "calibrator_auroc": 0.9605809636489739,
+        "calibrator_ci": [
+          0.9490749002303625,
+          0.9713826327244273
+        ],
+        "verbalized_auroc": 0.6573273224266656,
+        "verbalized_ci": [
+          0.6240411393951238,
+          0.6914033890405485
+        ],
+        "advantage": 0.30325364122230836,
+        "benchmarks": [
+          "mathverse",
+          "mathvision",
+          "mathvista",
+          "omnimath"
+        ]
+      },
+      "Medical & Science": {
+        "n": 388,
+        "accuracy": 0.6701030927835051,
+        "calibrator_auroc": 0.8486328125,
+        "calibrator_ci": [
+          0.8080076123554385,
+          0.8857781753130591
+        ],
+        "verbalized_auroc": 0.7568960336538462,
+        "verbalized_ci": [
+          0.7051994767822105,
+          0.8058263797394232
+        ],
+        "advantage": 0.09173677884615383,
+        "benchmarks": [
+          "chembench",
+          "mmmu"
+        ]
+      },
+      "Reasoning & Logic": {
+        "n": 845,
+        "accuracy": 0.5384615384615384,
+        "calibrator_auroc": 0.9307382361228514,
+        "calibrator_ci": [
+          0.9133981403212172,
+          0.9465710267229255
+        ],
+        "verbalized_auroc": 0.6439954916877993,
+        "verbalized_ci": [
+          0.607303338992643,
+          0.6795553706369197
+        ],
+        "advantage": 0.2867427444350521,
+        "benchmarks": [
+          "arc_agi",
+          "bbeh",
+          "gpqa",
+          "hle",
+          "hle_multimodal",
+          "livebench"
+        ]
+      },
+      "Vision & Perception": {
+        "n": 1834,
+        "accuracy": 0.6270447110141767,
+        "calibrator_auroc": 0.9691374269005848,
+        "calibrator_ci": [
+          0.9599888452982299,
+          0.976950070259042
+        ],
+        "verbalized_auroc": 0.5976055174167302,
+        "verbalized_ci": [
+          0.5713065414586632,
+          0.6241939322214862
+        ],
+        "advantage": 0.3715319094838546,
+        "benchmarks": [
+          "charxiv",
+          "hallusionbench",
+          "mmstar",
+          "mmvet",
+          "realworldqa",
+          "vizwiz"
+        ]
+      }
+    },
+    "benchmarks": {
+      "arc_agi": {
+        "n": 118,
+        "accuracy": 0.5084745762711864,
+        "auroc": 0.9058908045977011,
+        "domain": "Reasoning & Logic"
+      },
+      "bbeh": {
+        "n": 144,
+        "accuracy": 0.4791666666666667,
+        "auroc": 0.898743961352657,
+        "domain": "Reasoning & Logic"
+      },
+      "charxiv": {
+        "n": 239,
+        "accuracy": 0.6276150627615062,
+        "auroc": 0.8985018726591761,
+        "domain": "Vision & Perception"
+      },
+      "chembench": {
+        "n": 223,
+        "accuracy": 0.6591928251121076,
+        "auroc": 0.787012173290369,
+        "domain": "Medical & Science"
+      },
+      "gpqa": {
+        "n": 234,
+        "accuracy": 0.7649572649572649,
+        "auroc": 0.8928390045708482,
+        "domain": "Reasoning & Logic"
+      },
+      "hallusionbench": {
+        "n": 378,
+        "accuracy": 0.798941798941799,
+        "auroc": 0.9617898222377134,
+        "domain": "Vision & Perception"
+      },
+      "hle": {
+        "n": 167,
+        "accuracy": 0.2754491017964072,
+        "auroc": 0.8617499101688825,
+        "domain": "Reasoning & Logic"
+      },
+      "hle_multimodal": {
+        "n": 35,
+        "accuracy": 0.14285714285714285,
+        "auroc": 0.8099999999999999,
+        "domain": "Reasoning & Logic"
+      },
+      "livebench": {
+        "n": 147,
+        "accuracy": 0.6530612244897959,
+        "auroc": 0.9977532679738562,
+        "domain": "Reasoning & Logic"
+      },
+      "mathverse": {
+        "n": 233,
+        "accuracy": 0.4892703862660944,
+        "auroc": 0.9610054548135043,
+        "domain": "Math & Education"
+      },
+      "mathvision": {
+        "n": 283,
+        "accuracy": 0.3745583038869258,
+        "auroc": 0.9351081974203177,
+        "domain": "Math & Education"
+      },
+      "mathvista": {
+        "n": 378,
+        "accuracy": 0.3306878306878307,
+        "auroc": 0.9847430830039526,
+        "domain": "Math & Education"
+      },
+      "mmmu": {
+        "n": 165,
+        "accuracy": 0.6848484848484848,
+        "auroc": 0.9118447923757658,
+        "domain": "Medical & Science"
+      },
+      "mmstar": {
+        "n": 362,
+        "accuracy": 0.8121546961325967,
+        "auroc": 0.928296318527411,
+        "domain": "Vision & Perception"
+      },
+      "mmvet": {
+        "n": 172,
+        "accuracy": 0.3081395348837209,
+        "auroc": 0.9750277469478357,
+        "domain": "Vision & Perception"
+      },
+      "omnimath": {
+        "n": 127,
+        "accuracy": 0.3228346456692913,
+        "auroc": 0.9119398752127056,
+        "domain": "Math & Education"
+      },
+      "prbench": {
+        "n": 142,
+        "accuracy": 0.7183098591549296,
+        "auroc": 0.7724264705882352,
+        "domain": "Code & Engineering"
+      },
+      "realworldqa": {
+        "n": 443,
+        "accuracy": 0.4650112866817156,
+        "auroc": 0.9926160337552742,
+        "domain": "Vision & Perception"
+      },
+      "simpleqa": {
+        "n": 217,
+        "accuracy": 0.3087557603686636,
+        "auroc": 0.9284577114427861,
+        "domain": "Factual Knowledge"
+      },
+      "vizwiz": {
+        "n": 240,
+        "accuracy": 0.6041666666666666,
+        "auroc": 0.976442831215971,
+        "domain": "Vision & Perception"
+      }
+    }
+  },
+  "selective_prediction": {
+    "Code & Engineering": {
+      "coverage_at_90acc": 0.36619718309859156,
+      "accuracy_at_50cov": 0.8591549295774648,
+      "n": 142,
+      "base_accuracy": 0.7183098591549296
+    },
+    "Factual Knowledge": {
+      "coverage_at_90acc": 0.2119815668202765,
+      "accuracy_at_50cov": 0.5833333333333334,
+      "n": 217,
+      "base_accuracy": 0.3087557603686636
+    },
+    "Math & Education": {
+      "coverage_at_90acc": 0.3476983349657199,
+      "accuracy_at_50cov": 0.7235294117647059,
+      "n": 1021,
+      "base_accuracy": 0.3780607247796278
+    },
+    "Medical & Science": {
+      "coverage_at_90acc": 0.48195876288659795,
+      "accuracy_at_50cov": 0.8969072164948454,
+      "n": 388,
+      "base_accuracy": 0.6701030927835051
+    },
+    "Reasoning & Logic": {
+      "coverage_at_90acc": 0.4863905325443787,
+      "accuracy_at_50cov": 0.8909952606635071,
+      "n": 845,
+      "base_accuracy": 0.5384615384615384
+    },
+    "Vision & Perception": {
+      "coverage_at_90acc": 0.6793893129770993,
+      "accuracy_at_50cov": 0.9749182115594329,
+      "n": 1834,
+      "base_accuracy": 0.6270447110141767
+    }
+  },
+  "total_samples": 4447
+}
