@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=train_qwen35_uq
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:3
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16

@@ -84,3 +84,4 @@ Thumbs.db
 # ============================================
 !logs/.gitkeep
 data/legal_hallucinations/
+pinocchio_package/

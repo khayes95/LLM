@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=score_unseen
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:1
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=8
 #SBATCH --time=02:00:00

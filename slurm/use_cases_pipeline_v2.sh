@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=uc_pipeline_v2
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:1
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16

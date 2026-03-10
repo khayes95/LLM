@@ -145,6 +145,7 @@ Result: <1-2 lines of key metrics or outcome>
 ```
 1. Verify all [RUNNING] entries in RESEARCH_LOG.md are resolved (completed or marked failed)
 2. Note any issues for next session (1 line max)
+3. Push code/configs/docs to the private GitHub repo (see Nightly Push rules)
 ```
 
 ---
@@ -440,6 +441,7 @@ gt_yes = ground_truth_lower in ["yes", "1", "true"]
   4. Only after a clean smoke test, submit the full-scale job.
 - If writing a SLURM job script, include a commented-out smoke test invocation at the top.
 - Do not skip the smoke test to save time. A failed full-scale job wastes far more time than a 2-minute smoke test.
+- **Always report GPU count and estimated walltime to the user.** Before submitting the smoke test, state: how many GPUs, expected walltime. After the smoke test passes, before submitting the full job, state again: how many GPUs, expected walltime for the full run. This applies to every SLURM job (training, eval, inference). Example: "Smoke test: 2× A100, ~2 min. Full job: 4× A100, ~90 min."
 
 ### Long-Running Jobs: Monitor with Periodic Checks
 - **After submitting a long-running SLURM job, the agent must periodically check on it.** Do not submit and forget. The workflow is:
@@ -486,6 +488,13 @@ GPU hours are expensive and shared. Always use the fastest, most efficient appro
 - **Support resuming from checkpoint.** Training scripts should accept a `--resume_from_checkpoint` flag so crashed or preempted jobs can pick up where they left off.
 - **Save intermediate results** for long-running evaluations (e.g., flush predictions to disk periodically, not just at the end). If a job dies at 90%, we should not lose the first 90%.
 - **Log progress** so it's easy to tell how far along a job is (e.g., tqdm, periodic print statements with step/total).
+
+### Nightly Push
+- **Every night, push current work to the private GitHub remote** so nothing is lost if the cluster has issues.
+- **Push:** scripts, configs, notebooks, docs, paper source, small result summaries (RESEARCH_LOG.md, CSV/JSON metrics files).
+- **Do NOT push:** model checkpoints, datasets, large generated outputs (STEP/STL files, rendered images), anything in `models/`, `data/`, `runs/`, or files over ~10 MB. These stay on the cluster only.
+- Ensure `.gitignore` covers the large directories. If unsure whether something is too big, check file size first.
+- Commit with a descriptive message. Do not force-push.
 
 ---
 

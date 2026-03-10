@@ -4,6 +4,7 @@
 #SBATCH --error=logs/vlm_ablation_%j.err
 #SBATCH --time=24:00:00
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:4
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16

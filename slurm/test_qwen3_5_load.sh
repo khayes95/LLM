@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=q35_test
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:8
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32

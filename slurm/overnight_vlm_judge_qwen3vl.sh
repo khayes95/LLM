@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=vlm_q3vl
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:1
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8

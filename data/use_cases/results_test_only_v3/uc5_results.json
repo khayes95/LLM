@@ -1,0 +1,193 @@
+{
+  "pairwise_ranking": {
+    "p_correct": {
+      "gpt5mini_vs_gpt52": {
+        "pairwise_accuracy": 0.7252747252747253,
+        "n_discriminative": 91,
+        "n_correct": 66,
+        "p_value": 1.0141644604072778e-05,
+        "significant": 1.0
+      },
+      "gpt5mini_vs_qwen35": {
+        "pairwise_accuracy": 0.6753246753246753,
+        "n_discriminative": 77,
+        "n_correct": 52,
+        "p_value": 0.001399526938638812,
+        "significant": 1.0
+      },
+      "gpt52_vs_qwen35": {
+        "pairwise_accuracy": 0.7712418300653595,
+        "n_discriminative": 153,
+        "n_correct": 118,
+        "p_value": 5.111582898008506e-12,
+        "significant": 1.0
+      }
+    },
+    "z_score_global": {
+      "gpt5mini_vs_gpt52": {
+        "pairwise_accuracy": 0.6263736263736264,
+        "n_discriminative": 91,
+        "n_correct": 57,
+        "p_value": 0.010292104519187127,
+        "significant": 1.0
+      },
+      "gpt5mini_vs_qwen35": {
+        "pairwise_accuracy": 0.7012987012987013,
+        "n_discriminative": 77,
+        "n_correct": 54,
+        "p_value": 0.0002693900849980243,
+        "significant": 1.0
+      },
+      "gpt52_vs_qwen35": {
+        "pairwise_accuracy": 0.803921568627451,
+        "n_discriminative": 153,
+        "n_correct": 123,
+        "p_value": 7.165714356239141e-15,
+        "significant": 1.0
+      }
+    },
+    "z_score_bench": {
+      "gpt5mini_vs_gpt52": {
+        "pairwise_accuracy": 0.5934065934065934,
+        "n_discriminative": 91,
+        "n_correct": 54,
+        "p_value": 0.046473471558970594,
+        "significant": 1.0
+      },
+      "gpt5mini_vs_qwen35": {
+        "pairwise_accuracy": 0.5194805194805194,
+        "n_discriminative": 77,
+        "n_correct": 40,
+        "p_value": 0.4099464518745244,
+        "significant": 0.0
+      },
+      "gpt52_vs_qwen35": {
+        "pairwise_accuracy": 0.7254901960784313,
+        "n_discriminative": 153,
+        "n_correct": 111,
+        "p_value": 1.122779376310874e-08,
+        "significant": 1.0
+      }
+    },
+    "percentile": {
+      "gpt5mini_vs_gpt52": {
+        "pairwise_accuracy": 0.6703296703296703,
+        "n_discriminative": 91,
+        "n_correct": 61,
+        "p_value": 0.0007582565972286104,
+        "significant": 1.0
+      },
+      "gpt5mini_vs_qwen35": {
+        "pairwise_accuracy": 0.7142857142857143,
+        "n_discriminative": 77,
+        "n_correct": 55,
+        "p_value": 0.00010840192920873831,
+        "significant": 1.0
+      },
+      "gpt52_vs_qwen35": {
+        "pairwise_accuracy": 0.803921568627451,
+        "n_discriminative": 153,
+        "n_correct": 123,
+        "p_value": 7.165714356239141e-15,
+        "significant": 1.0
+      }
+    },
+    "verbalized": {
+      "gpt5mini_vs_gpt52": {
+        "pairwise_accuracy": 0.4725274725274725,
+        "n_discriminative": 91,
+        "n_correct": 43,
+        "p_value": 0.7351989522618771,
+        "significant": 0.0
+      },
+      "gpt5mini_vs_qwen35": {
+        "pairwise_accuracy": 0.44155844155844154,
+        "n_discriminative": 77,
+        "n_correct": 34,
+        "p_value": 0.87284766692615,
+        "significant": 0.0
+      },
+      "gpt52_vs_qwen35": {
+        "pairwise_accuracy": 0.3333333333333333,
+        "n_discriminative": 153,
+        "n_correct": 51,
+        "p_value": 0.9999890126950237,
+        "significant": 0.0
+      }
+    },
+    "response_length": {
+      "gpt5mini_vs_gpt52": {
+        "pairwise_accuracy": 0.4725274725274725,
+        "n_discriminative": 91,
+        "n_correct": 43,
+        "p_value": 0.7351989522618771,
+        "significant": 0.0
+      },
+      "gpt5mini_vs_qwen35": {
+        "pairwise_accuracy": 0.4935064935064935,
+        "n_discriminative": 77,
+        "n_correct": 38,
+        "p_value": 0.5900535481254756,
+        "significant": 0.0
+      },
+      "gpt52_vs_qwen35": {
+        "pairwise_accuracy": 0.6470588235294118,
+        "n_discriminative": 153,
+        "n_correct": 99,
+        "p_value": 0.00017148966142126174,
+        "significant": 1.0
+      }
+    }
+  },
+  "best_of_n": {
+    "p_correct": {
+      "n_questions": 643,
+      "selected_accuracy": 0.614307931570762,
+      "random_accuracy": 0.53784344219803
+    },
+    "z_score_global": {
+      "n_questions": 643,
+      "selected_accuracy": 0.6065318818040435,
+      "random_accuracy": 0.53784344219803
+    },
+    "z_score_bench": {
+      "n_questions": 643,
+      "selected_accuracy": 0.5816485225505443,
+      "random_accuracy": 0.53784344219803
+    },
+    "percentile": {
+      "n_questions": 643,
+      "selected_accuracy": 0.614307931570762,
+      "random_accuracy": 0.53784344219803
+    },
+    "verbalized": {
+      "n_questions": 511,
+      "selected_accuracy": 0.5733855185909981,
+      "random_accuracy": 0.5714285714285714
+    },
+    "response_length": {
+      "n_questions": 643,
+      "selected_accuracy": 0.5505443234836703,
+      "random_accuracy": 0.53784344219803
+    }
+  },
+  "normalization_stats": {
+    "gpt5mini": {
+      "mean": 0.4919610595419847,
+      "std": 0.40401713221974916,
+      "n": 655
+    },
+    "gpt52": {
+      "mean": 0.5766423737931035,
+      "std": 0.389818004428356,
+      "n": 725
+    },
+    "qwen35": {
+      "mean": 0.481080087260035,
+      "std": 0.40047877960373157,
+      "n": 573
+    }
+  },
+  "n_multi_model_questions": 643,
+  "n_triple_model_questions": 336
+}

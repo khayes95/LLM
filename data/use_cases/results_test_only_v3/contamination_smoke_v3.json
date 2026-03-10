@@ -1,0 +1,583 @@
+{
+  "exact_duplicates": {
+    "train_internal_exact_qr": 0,
+    "test_internal_exact_qr": 0,
+    "train_test_overlap_exact_qr": 0,
+    "train_test_overlap_exact_question": 4,
+    "details_train_internal": [],
+    "details_test_internal": [],
+    "details_train_test_qr": [],
+    "details_train_test_question": [
+      {
+        "train_ids": [
+          "arc_agi_1_task_245_0"
+        ],
+        "test_ids": [
+          "arc_agi_1_task_245_1"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "arc_agi_1_task_148_0",
+          "arc_agi_1_task_107_0"
+        ],
+        "test_ids": [
+          "arc_agi_1_task_33_0"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "arc_agi_1_task_366_0"
+        ],
+        "test_ids": [
+          "arc_agi_1_task_339_0"
+        ],
+        "type": "exact_question_only"
+      },
+      {
+        "train_ids": [
+          "arc_agi_1_task_184_0"
+        ],
+        "test_ids": [
+          "arc_agi_1_task_184_1"
+        ],
+        "type": "exact_question_only"
+      }
+    ]
+  },
+  "near_duplicates": {
+    "threshold": 0.8,
+    "ngram_n": 5,
+    "train_internal": 305,
+    "test_internal": 78,
+    "cross_split": 305,
+    "examples_train_internal": [
+      {
+        "id_a": "arc_agi_1_task_361_0",
+        "id_b": "arc_agi_1_task_47_0",
+        "jaccard": 0.8125
+      },
+      {
+        "id_a": "arc_agi_1_task_361_0",
+        "id_b": "arc_agi_1_task_271_0",
+        "jaccard": 0.8361
+      },
+      {
+        "id_a": "arc_agi_1_task_124_0",
+        "id_b": "arc_agi_1_task_124_1",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_13_0",
+        "jaccard": 0.8033
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_273_0",
+        "jaccard": 0.8305
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_172_0",
+        "jaccard": 0.8036
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_228_0",
+        "jaccard": 0.9074
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_83_0",
+        "jaccard": 0.875
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_186_0",
+        "jaccard": 0.8364
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_228_1",
+        "jaccard": 0.9074
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_117_0",
+        "jaccard": 0.8033
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_396_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_16_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_292_0",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_140_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_385_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_172_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_366_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_49_0",
+        "jaccard": 0.8246
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_148_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_300_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_280_0",
+        "jaccard": 0.875
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_146_0",
+        "jaccard": 0.9184
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_51_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_186_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_107_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_315_0",
+        "jaccard": 0.8246
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_28_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_117_0",
+        "jaccard": 0.8393
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_376_0",
+        "jaccard": 0.8246
+      }
+    ],
+    "examples_test_internal": [
+      {
+        "id_a": "arc_agi_1_task_57_0",
+        "id_b": "arc_agi_1_task_339_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_57_0",
+        "id_b": "arc_agi_1_task_268_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_57_0",
+        "id_b": "arc_agi_1_task_33_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_57_0",
+        "id_b": "arc_agi_1_task_56_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_57_0",
+        "id_b": "arc_agi_1_task_166_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_57_0",
+        "id_b": "arc_agi_1_task_390_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_118_1",
+        "id_b": "arc_agi_1_task_329_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_22_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_268_0",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_380_0",
+        "jaccard": 0.82
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_360_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_87_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_260_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_384_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_33_0",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_199_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_56_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_375_0",
+        "jaccard": 0.8235
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_166_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_42_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_339_0",
+        "id_b": "arc_agi_1_task_390_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_22_0",
+        "id_b": "arc_agi_1_task_268_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_22_0",
+        "id_b": "arc_agi_1_task_33_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_40_0",
+        "id_b": "arc_agi_1_task_360_0",
+        "jaccard": 0.8033
+      },
+      {
+        "id_a": "arc_agi_1_task_40_0",
+        "id_b": "arc_agi_1_task_87_0",
+        "jaccard": 0.8033
+      },
+      {
+        "id_a": "arc_agi_1_task_40_0",
+        "id_b": "arc_agi_1_task_260_0",
+        "jaccard": 0.8033
+      },
+      {
+        "id_a": "arc_agi_1_task_40_0",
+        "id_b": "arc_agi_1_task_384_0",
+        "jaccard": 0.8033
+      },
+      {
+        "id_a": "arc_agi_1_task_268_0",
+        "id_b": "arc_agi_1_task_380_0",
+        "jaccard": 0.82
+      },
+      {
+        "id_a": "arc_agi_1_task_268_0",
+        "id_b": "arc_agi_1_task_360_0",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_268_0",
+        "id_b": "arc_agi_1_task_87_0",
+        "jaccard": 0.8571
+      }
+    ],
+    "examples_cross_split": [
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_118_1",
+        "jaccard": 0.8571
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_329_0",
+        "jaccard": 0.8305
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_199_0",
+        "jaccard": 0.9074
+      },
+      {
+        "id_a": "arc_agi_1_task_114_0",
+        "id_b": "arc_agi_1_task_390_0",
+        "jaccard": 0.8036
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_57_0",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_339_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_268_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_33_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_56_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_166_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_71_0",
+        "id_b": "arc_agi_1_task_390_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_330_0",
+        "id_b": "arc_agi_1_task_329_0",
+        "jaccard": 0.85
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_57_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_339_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_268_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_380_0",
+        "jaccard": 0.92
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_360_0",
+        "jaccard": 0.9592
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_87_0",
+        "jaccard": 0.9592
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_260_0",
+        "jaccard": 0.9592
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_384_0",
+        "jaccard": 0.9592
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_33_0",
+        "jaccard": 0.8936
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_56_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_375_0",
+        "jaccard": 0.9216
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_166_0",
+        "jaccard": 1.0
+      },
+      {
+        "id_a": "arc_agi_1_task_396_0",
+        "id_b": "arc_agi_1_task_390_0",
+        "jaccard": 0.8077
+      },
+      {
+        "id_a": "arc_agi_1_task_265_1",
+        "id_b": "arc_agi_1_task_339_0",
+        "jaccard": 0.84
+      },
+      {
+        "id_a": "arc_agi_1_task_265_1",
+        "id_b": "arc_agi_1_task_268_0",
+        "jaccard": 0.84
+      },
+      {
+        "id_a": "arc_agi_1_task_265_1",
+        "id_b": "arc_agi_1_task_329_0",
+        "jaccard": 0.8246
+      },
+      {
+        "id_a": "arc_agi_1_task_265_1",
+        "id_b": "arc_agi_1_task_33_0",
+        "jaccard": 0.84
+      },
+      {
+        "id_a": "arc_agi_1_task_265_1",
+        "id_b": "arc_agi_1_task_56_0",
+        "jaccard": 0.94
+      }
+    ]
+  },
+  "cross_benchmark_contamination": {
+    "threshold": 0.8,
+    "total_cross_benchmark_pairs": 0,
+    "benchmark_pairs_with_overlap": 0,
+    "details": []
+  },
+  "ngram_overlap": {
+    "ngram_n": 5,
+    "train_unique_ngrams": 1894,
+    "test_token_ngram_overlap_with_train_union": {
+      "mean": 0.2471,
+      "median": 0.0,
+      "std": 0.3775,
+      "min": 0.0,
+      "max": 1.0,
+      "pct_above_50": 26.0,
+      "pct_above_80": 17.0
+    },
+    "test_max_jaccard_vs_any_train_sample": {
+      "mean": 0.157,
+      "median": 0.0,
+      "std": 0.2902,
+      "min": 0.0,
+      "max": 1.0,
+      "pct_above_50": 12.0,
+      "pct_above_80": 8.0
+    }
+  },
+  "benchmark_distribution": {
+    "train": {
+      "arc": 100
+    },
+    "test": {
+      "arc": 38,
+      "bbeh": 30,
+      "charxiv": 32
+    },
+    "total_train": 100,
+    "total_test": 100,
+    "num_benchmarks_total": 3,
+    "benchmarks_train_only": [],
+    "benchmarks_test_only": [
+      "bbeh",
+      "charxiv"
+    ],
+    "distribution_comparison": {
+      "arc": {
+        "train_count": 100,
+        "test_count": 38,
+        "train_pct": 100.0,
+        "test_pct": 38.0,
+        "pct_diff": 62.0
+      },
+      "bbeh": {
+        "train_count": 0,
+        "test_count": 30,
+        "train_pct": 0.0,
+        "test_pct": 30.0,
+        "pct_diff": 30.0
+      },
+      "charxiv": {
+        "train_count": 0,
+        "test_count": 32,
+        "train_pct": 0.0,
+        "test_pct": 32.0,
+        "pct_diff": 32.0
+      }
+    }
+  },
+  "summary": "======================================================================\nDATA CONTAMINATION CHECK SUMMARY\n======================================================================\n\nEXACT DUPLICATES:\n  Train internal (question+response): 0 duplicate groups\n  Test internal (question+response):  0 duplicate groups\n  Train-test overlap (question+response): 0\n  Train-test overlap (question only):     4\n  Note: 4 questions appear in both splits\n  (same question, possibly different model responses -- expected for multi-model data)\n\nNEAR-DUPLICATES (char 5-gram Jaccard >= 0.8):\n  Train internal: 305 pairs\n  Test internal:  78 pairs\n  Cross-split:    305 pairs\n  ** WARNING: Near-duplicate questions found across train/test split. **\n    arc_agi_1_task_114_0 <-> arc_agi_1_task_118_1 (Jaccard=0.8571)\n    arc_agi_1_task_114_0 <-> arc_agi_1_task_329_0 (Jaccard=0.8305)\n    arc_agi_1_task_114_0 <-> arc_agi_1_task_199_0 (Jaccard=0.9074)\n    arc_agi_1_task_114_0 <-> arc_agi_1_task_390_0 (Jaccard=0.8036)\n    arc_agi_1_task_71_0 <-> arc_agi_1_task_57_0 (Jaccard=1.0)\n\nCROSS-BENCHMARK CONTAMINATION (Jaccard >= 0.8):\n  Total cross-benchmark near-duplicate pairs: 0\n  Benchmark pairs with overlap: 0\n\nTOKEN 5-GRAM OVERLAP (test vs train):\n  Overlap with train union: mean=0.2471, median=0.0000, std=0.3775\n  % test samples >50% overlap: 26.0%\n  % test samples >80% overlap: 17.0%\n  Max Jaccard vs any train sample: mean=0.1570, median=0.0000, max=1.0000\n  % test with max Jaccard >0.5: 12.0%\n  % test with max Jaccard >0.8: 8.0%\n  ** WARNING: >5% of test samples have >0.8 Jaccard with a train sample. **\n\nBENCHMARK DISTRIBUTION:\n  Train: 100 samples across 1 benchmarks\n  Test:  100 samples across 3 benchmarks\n  Benchmarks in test only: ['bbeh', 'charxiv']\n\n----------------------------------------------------------------------\nVERDICT: POTENTIAL CONTAMINATION DETECTED\n  - 305 near-duplicate cross-split pairs\n  - 8.0% test samples with >0.8 token Jaccard to train\n======================================================================"
+}

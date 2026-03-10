@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=vlm_vsr_fix
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:5
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8

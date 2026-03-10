@@ -458,22 +458,63 @@ def main():
     samples = load_all_samples(max_per_benchmark=max_per)
     print(f"\nTotal: {len(samples)} samples")
 
-    # Train/test split (stratified by benchmark)
-    benchmarks = [s.benchmark for s in samples]
-    train_samples, test_samples = train_test_split(
-        samples, test_size=args.test_fraction, random_state=args.seed,
-        stratify=benchmarks,
-    )
-    print(f"Train: {len(train_samples)}, Test: {len(test_samples)}")
+    # Train/test split (QUESTION-LEVEL to prevent data leakage)
+    # Group samples by question ID so all source-model variants of the same
+    # question end up in the same split.
+    from collections import OrderedDict
+    qid_to_indices = OrderedDict()
+    for i, s in enumerate(samples):
+        qid_to_indices.setdefault(s.id, []).append(i)
+
+    unique_qids = list(qid_to_indices.keys())
+
+    # Stratify by benchmark of first sample per question
+    bench_counts = defaultdict(int)
+    for qid in unique_qids:
+        bench = samples[qid_to_indices[qid][0]].benchmark
+        bench_counts[bench] += 1
+
+    qid_strat = []
+    for qid in unique_qids:
+        bench = samples[qid_to_indices[qid][0]].benchmark
+        qid_strat.append(bench if bench_counts[bench] >= 3 else "other")
+
+    try:
+        train_qids, test_qids = train_test_split(
+            unique_qids, test_size=args.test_fraction, random_state=args.seed,
+            stratify=qid_strat,
+        )
+    except ValueError:
+        train_qids, test_qids = train_test_split(
+            unique_qids, test_size=args.test_fraction, random_state=args.seed,
+        )
+
+    train_qid_set = set(train_qids)
+    test_qid_set = set(test_qids)
+    train_samples = [samples[i] for qid in train_qids for i in qid_to_indices[qid]]
+    test_samples = [samples[i] for qid in test_qids for i in qid_to_indices[qid]]
+
+    # Verify zero question-level overlap
+    overlap = train_qid_set & test_qid_set
+    assert len(overlap) == 0, f"Question-level leakage: {len(overlap)} shared question IDs!"
+    print(f"Train: {len(train_samples)} ({len(train_qids)} questions), "
+          f"Test: {len(test_samples)} ({len(test_qids)} questions), "
+          f"Overlap: {len(overlap)}")
 
     # Save split info
     split_info = {
+        "split_method": "question_level",
         "n_train": len(train_samples),
         "n_test": len(test_samples),
         "n_train_vlm": sum(1 for s in train_samples if s.has_image),
         "n_test_vlm": sum(1 for s in test_samples if s.has_image),
+        "n_train_questions": len(train_qids),
+        "n_test_questions": len(test_qids),
+        "question_overlap": len(overlap),
         "train_ids": [s.id for s in train_samples],
         "test_ids": [s.id for s in test_samples],
+        "train_question_ids": list(train_qids),
+        "test_question_ids": list(test_qids),
         "config": {
             "lora_r": args.lora_r,
             "lora_alpha": args.lora_alpha,

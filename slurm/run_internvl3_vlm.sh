@@ -4,6 +4,7 @@
 #SBATCH --error=logs/internvl3_vlm_%j.err
 #SBATCH --time=48:00:00
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:4
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32

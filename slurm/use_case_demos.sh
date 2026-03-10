@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=uq_demos
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:1
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=1M

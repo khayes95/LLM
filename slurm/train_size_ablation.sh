@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=uq_size_ablation
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:2
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32

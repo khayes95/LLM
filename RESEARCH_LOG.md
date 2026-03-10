@@ -4,7 +4,59 @@
 
 ---
 
-### 2026-03-06 03:30 — [RUNNING] v3 retrain with question-level split fix
+### 2026-03-10 — Pinocchio package: fixed model loading + token ID bugs
+Why: Package was non-functional — LoRA weights silently failed to load, scores were random.
+Script: `pinocchio_package/src/pinocchio/model.py`
+Result:
+- Bug 1: Used `AutoModelForCausalLM` but Qwen3.5-0.8B is a VLM (`Qwen3_5ForConditionalGeneration`). All 192 LoRA weights silently skipped. Fixed.
+- Bug 2: Token IDs for `"i"`/`"ii"` (72/3680) wrong — model predicts `"(i"`/`"(ii"` (1889/29731). Fixed.
+- Before fix: all scores ~0.65, no discrimination. After: Paris=0.707, Berlin=0.438 (correct separation).
+- HF weights repo (`KevinDavidHayes/pinocchio-0.8b`) confirmed private. Package not published yet.
+- All 11 unit tests pass.
+
+### 2026-03-09 01:30 — v3 scoring, use cases, and ablations complete
+Why: Complete v3 pipeline (question-level split fix) and re-run all ablations on clean data.
+Script: `slurm/score_v3_full.sh`, `slurm/filter_v3_usecases.sh`, ablation scripts | Jobs: 8703, 8722, 8723, 8740
+Result:
+- **v3 test-only AUROC: 0.878 [0.863, 0.892]** (was 0.953 on v2 leaked data, −7.5 pts)
+- Per-model: gpt5mini=0.882, gpt52=0.877, qwen35=0.873 | ECE=0.087, Brier=0.151
+- **No-metadata (v3): 0.827** (−5.0 pts from 0.878). Metadata contributes more on clean data.
+- **Truncation (v3)**: r200=0.805, r400=0.846, r800=0.878, r1600=0.888, r3000=0.890
+- **Scramble (v3)**: word=0.781 (−9.7 pts), sentence=0.867 (−1.1 pts). Confirms semantic reading.
+- **UC-A inform acc**: 0.745 (was 0.888, −14 pts). UC1 cov@90: 0.29-0.39 (was 0.49-0.60).
+- All 11 use cases recomputed: `data/use_cases/results_test_only_v3/`
+- Bootstrap CIs: `data/use_cases/results_test_only_v3/bootstrap_ci_v3.json`
+- Verbalized AUROC on v3: 0.610 (p < 0.001 vs calibrator)
+- Paper (overleaf) updated: abstract, intro, experiments, discussion, conclusion — all v2→v3
+
+### 2026-03-09 01:30 — [RUNNING] Multi-seed training (v3, 5 seeds)
+Why: Get error bars on v3 AUROC across multiple random seeds.
+Script: `scripts/multi_seed_training.py` | SLURM job IDs: 8741 (failed OOM), 8810 (failed OOM), 8811 (queued, depends on 8806/8808/8809)
+Args: `--seeds 123 456 789 314 --epochs 3 --lora_r 32` (seed 42 already done: AUROC 0.889)
+Status: Seed 42 complete. Seeds 123-314 waiting for GPU availability.
+Note: `retrain_best_v2.py` updated to use question-level split (same fix as train_best_uq.py).
+
+### 2026-03-09 07:00 — Paper v3 updates: domain tables, figures, error analysis
+Why: Update all remaining v2 numbers in the paper to v3.
+Result:
+- Healthcare: N=533, AUROC=0.834 (was 0.898), acc=49.9%
+- Finance: N=896, AUROC=0.895 (was 0.952), acc=42.4%
+- Error analysis: 116 hard errors (48 CW + 68 UR, was 112=64+48)
+- Three-tier routing updated: green tier acc 0.879-0.897, workload reduction 20-25%
+- Method.tex: Fixed stale 0.953 → 0.878, updated data description to v3 split
+- Figures: 7/11 regenerated with v3 data (ROC curves, AUROC comparison, bootstrap, effect size need baseline scores)
+- All TODO markers removed from paper
+
+### 2026-03-09 01:45 — Near-duplicate contamination check + deduped AUROC (v3)
+Why: Measure near-duplicate overlap in v3 train/test split and verify AUROC is not inflated.
+Script: `scripts/fast_contamination_check.py`, `scripts/deduped_auroc.py` | Output: `data/use_cases/results_test_only_v3/`
+Result:
+- 405/1953 (20.7%) test samples have near-duplicates in training (Jaccard ≥ 0.8)
+- Worst benchmarks: arc_agi 65.8%, mmvet 41.2%, chembench 39.8%, hallusionbench 39.1%
+- AUROC full: 0.878, deduped (1,392 samples): 0.872 (delta: −0.006). Near-duplicates do NOT inflate scores.
+- Paper appendix updated with contamination analysis section and all v2→v3 number changes.
+
+### 2026-03-06 03:30 — v3 retrain with question-level split fix
 Why: Fix critical data leakage — train/test split was by sample index, not question ID (82-96% question overlap in test set).
 Script: `scripts/train_best_uq.py` | SLURM job ID: 8527 (depends on 8515) | Args: `--output_dir uq_models/best_v3_qsplit --epochs 3 --lora_r 32 --lora_alpha 64 --prompt_variant combined`
 Smoke test passed (job 8521): 0 question overlap verified. Awaiting GPU availability.

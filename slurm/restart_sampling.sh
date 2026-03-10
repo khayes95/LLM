@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=qwen35_sampling
 #SBATCH --partition=GPU
+#SBATCH --gres=gpu:A100:1
 #SBATCH --time=18:00:00
 #SBATCH --cpus-per-task=32
 #SBATCH --output=logs/restart_sampling_%j.log

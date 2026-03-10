@@ -1,0 +1,41 @@
+{
+  "threshold": 0.8,
+  "per_target": {
+    "gpt5mini": {
+      "n_full": 655,
+      "n_clean": 476,
+      "n_removed": 179,
+      "pct_removed": 27.328244274809162,
+      "auroc_full": 0.8823002908928173,
+      "auroc_clean": 0.8840353982300886,
+      "auroc_delta": 0.0017351073372713355
+    },
+    "gpt52": {
+      "n_full": 725,
+      "n_clean": 524,
+      "n_removed": 201,
+      "pct_removed": 27.72413793103448,
+      "auroc_full": 0.8766329589760318,
+      "auroc_clean": 0.8802374096491744,
+      "auroc_delta": 0.003604450673142634
+    },
+    "qwen35": {
+      "n_full": 573,
+      "n_clean": 392,
+      "n_removed": 181,
+      "pct_removed": 31.588132635253054,
+      "auroc_full": 0.8733083349618918,
+      "auroc_clean": 0.8481710983868016,
+      "auroc_delta": -0.02513723657509015
+    }
+  },
+  "combined": {
+    "n_full": 1953,
+    "n_clean": 1392,
+    "n_removed": 561,
+    "pct_removed": 28.72503840245776,
+    "auroc_full": 0.8777624091136061,
+    "auroc_clean": 0.8720325512463027,
+    "auroc_delta": -0.005729857867303401
+  }
+}
