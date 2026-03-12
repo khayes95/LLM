@@ -4,6 +4,47 @@
 
 ---
 
+### 2026-03-11 — GPU access unavailable until further notice
+GPUs cannot be used. All GPU work is blocked until further notice.
+
+### 2026-03-11 — CPU-only housekeeping session (6 parallel agents)
+Why: Catch up on non-GPU tasks that eat context when done manually.
+
+**1. MASTER_PLAN.md updated to v3**
+All stale v2 numbers replaced (0.953→0.878, etc.), key paths updated, remaining work section expanded.
+
+**2. Paper numbers audit (report only, no edits)**
+Found 4 stale v2 numbers in .tex files: `related_work.tex:16` (0.953→0.878), `experiments.tex:56` (AUROC 0.949→0.878, ECE 0.022→0.087), `experiments.tex:72` (0.607→0.610). Also found AUPRC inconsistency: intro/conclusion say 0.886, experiments table says 0.865 — needs resolution. Leave-K-out table (experiments.tex:182-198) still has v2 fold numbers.
+
+**3. Easy question calibration data — already prepared**
+9,000 samples at `data/finetune/easy_questions/all_easy.jsonl` (6 benchmarks × 750 questions × 2 samples). Ready to mix into training when GPUs available.
+
+**4. Multi-seed OOM diagnosis + fix**
+Root cause: `multi_seed_training.py` runs all seeds in one process; CUDA context leaks 75.77 GiB after seed 42, OOMing seeds 123-314. Fix: `slurm/multi_seed_v3_fixed.sh` — each seed as separate SLURM job with clean CUDA context. Ready to submit.
+
+**5. Missing figures inventory**
+All 9 paper figures in overleaf are stale (pre-Mar 9). 7/9 have updated v3 versions in `figures/paper/` but not copied to overleaf. 3 figures (auroc_comparison, bootstrap_distribution, effect_size) are broken because v3 `bootstrap_ci.json` only has Calibrator method — needs re-run of `bootstrap_ci.py` with all baselines (CPU-only). Cross-model transfer figure has hardcoded v2 matrix values.
+
+**6. Repo cleanup audit (report only)**
+62 GB total. ~23 GB safe to reclaim immediately: `uq_models/size_ablation/` (18 GB, v2 leaked split), smoke test artifacts (2 GB), superseded v1/v2 checkpoints (3 GB), CONTAMINATED dirs (22 MB). Additional ~20 GB possible: `data/finegrain_uq/` (13 GB, needs confirmation), v2-era ablations (4 GB), legacy calibrators (2.5 GB).
+
+### 2026-03-11 — HF Spaces demo deployed (private)
+Why: Interactive Gradio demo for Pinocchio on HF Spaces for pre-launch testing.
+Result: Private Space at `https://huggingface.co/spaces/KevinDavidHayes/pinocchio`. Uses pinocchio-0.8b on CPU. Landing page also created at `website/landing-page/index.html`.
+
+### 2026-03-11 — OPEN ISSUE: 0.8B model has narrow score range on easy questions
+Why: Demo testing revealed the model outputs ~0.70-0.80 for everything on trivial questions (e.g. "2+2=4" scores 0.777, "capital of Australia is Sydney" scores 0.730). Cannot distinguish trivially correct from trivially wrong.
+Root cause: Training data is exclusively hard benchmarks (40-60% accuracy). Model never saw easy questions, so it has no calibration signal outside the hard-question range.
+Tested: 15 easy Q&A pairs on 0.8B model — all scores in [0.59, 0.80], correct/incorrect gap only ~5 pts. "Dog has six legs" scored 0.797 (same as correct answer).
+Impact: Demo unusable for general-purpose use. Currently restricted to benchmark-style examples with disclaimer.
+**Potential fixes (need to decide):**
+1. Add easy calibration data (BoolQ, ARC-Easy, GSM8K-easy) with correct+incorrect answers to training mix
+2. Synthetic hard negatives: take real questions, generate deliberately wrong answers
+3. Two-stage training: broad difficulty pre-calibration, then fine-tune on hard benchmarks
+4. Post-hoc Platt scaling on held-out set spanning full difficulty range
+5. Difficulty-aware prompt field (requires retrain)
+**Status:** Parked — need to discuss approach with advisor before committing GPU time to retraining.
+
 ### 2026-03-10 — Pinocchio package: fixed model loading + token ID bugs
 Why: Package was non-functional — LoRA weights silently failed to load, scores were random.
 Script: `pinocchio_package/src/pinocchio/model.py`
