@@ -1,0 +1,97 @@
+{
+  "n_bins": 10,
+  "total_samples": 1953,
+  "ece": 0.08615048694316434,
+  "bins": [
+    {
+      "bin_index": 0,
+      "bin_lower": 0.0,
+      "bin_upper": 0.1,
+      "n_samples": 570,
+      "mean_predicted_probability": 0.02676231052631579,
+      "mean_actual_accuracy": 0.11929824561403508,
+      "calibration_gap": -0.09253593508771929
+    },
+    {
+      "bin_index": 1,
+      "bin_lower": 0.1,
+      "bin_upper": 0.2,
+      "n_samples": 105,
+      "mean_predicted_probability": 0.14092730476190476,
+      "mean_actual_accuracy": 0.29523809523809524,
+      "calibration_gap": -0.15431079047619048
+    },
+    {
+      "bin_index": 2,
+      "bin_lower": 0.2,
+      "bin_upper": 0.30000000000000004,
+      "n_samples": 98,
+      "mean_predicted_probability": 0.24719966326530618,
+      "mean_actual_accuracy": 0.42857142857142855,
+      "calibration_gap": -0.18137176530612237
+    },
+    {
+      "bin_index": 3,
+      "bin_lower": 0.30000000000000004,
+      "bin_upper": 0.4,
+      "n_samples": 55,
+      "mean_predicted_probability": 0.3479400000000001,
+      "mean_actual_accuracy": 0.38181818181818183,
+      "calibration_gap": -0.03387818181818175
+    },
+    {
+      "bin_index": 4,
+      "bin_lower": 0.4,
+      "bin_upper": 0.5,
+      "n_samples": 67,
+      "mean_predicted_probability": 0.4440589701492537,
+      "mean_actual_accuracy": 0.4925373134328358,
+      "calibration_gap": -0.04847834328358208
+    },
+    {
+      "bin_index": 5,
+      "bin_lower": 0.5,
+      "bin_upper": 0.6000000000000001,
+      "n_samples": 106,
+      "mean_predicted_probability": 0.5442216981132075,
+      "mean_actual_accuracy": 0.5943396226415094,
+      "calibration_gap": -0.05011792452830188
+    },
+    {
+      "bin_index": 6,
+      "bin_lower": 0.6000000000000001,
+      "bin_upper": 0.7000000000000001,
+      "n_samples": 84,
+      "mean_predicted_probability": 0.6457871428571429,
+      "mean_actual_accuracy": 0.5952380952380952,
+      "calibration_gap": 0.05054904761904766
+    },
+    {
+      "bin_index": 7,
+      "bin_lower": 0.7000000000000001,
+      "bin_upper": 0.8,
+      "n_samples": 129,
+      "mean_predicted_probability": 0.7529675348837209,
+      "mean_actual_accuracy": 0.6124031007751938,
+      "calibration_gap": 0.14056443410852715
+    },
+    {
+      "bin_index": 8,
+      "bin_lower": 0.8,
+      "bin_upper": 0.9,
+      "n_samples": 138,
+      "mean_predicted_probability": 0.857676608695652,
+      "mean_actual_accuracy": 0.7391304347826086,
+      "calibration_gap": 0.11854617391304334
+    },
+    {
+      "bin_index": 9,
+      "bin_lower": 0.9,
+      "bin_upper": 1.0,
+      "n_samples": 601,
+      "mean_predicted_probability": 0.9739886838602329,
+      "mean_actual_accuracy": 0.9201331114808652,
+      "calibration_gap": 0.05385557237936767
+    }
+  ]
+}

@@ -477,10 +477,14 @@ def fig_roc_curves(args):
 
 def fig_cross_model_transfer(args):
     """Heatmap: training source (rows) x evaluation target (columns), cell = AUROC."""
+    # Load cross-model analysis for the "All three" row (v3 numbers)
+    cross_model_path = getattr(args, "cross_model_analysis", None)
+    cross_model_data = load_json(cross_model_path) if cross_model_path else None
+
     bootstrap_path = args.bootstrap_ci
     data = load_json(bootstrap_path)
-    if data is None:
-        print(f"[SKIP] fig_cross_model_transfer: missing {bootstrap_path}")
+    if data is None and cross_model_data is None:
+        print(f"[SKIP] fig_cross_model_transfer: missing {bootstrap_path} and {cross_model_path}")
         return False
 
     setup_style()
@@ -490,13 +494,28 @@ def fig_cross_model_transfer(args):
     sources = ["GPT-5-mini only", "GPT-5.2 only", "Qwen3.5 only", "All three (ours)"]
     targets = ["GPT-5-mini", "GPT-5.2", "Qwen3.5"]
 
-    # Values from tab:cross_model (these are the paper numbers)
-    matrix = np.array([
+    # Single-source rows from v1 ablations (data/ablations/source_model/)
+    # These are cross-model transfer: train on one source, evaluate on other targets
+    # TODO: re-run single-source ablations with v3 question-level split
+    single_source_rows = [
         [np.nan, 0.715, 0.693],   # GPT-5-mini only
         [0.741,  np.nan, 0.776],   # GPT-5.2 only
         [0.658,  0.687, np.nan],   # Qwen3.5 only
-        [0.951,  0.959, 0.946],    # All three
-    ])
+    ]
+
+    # "All three" row: load from v3 cross_model_analysis.json if available
+    if cross_model_data and "overall_aurocs" in cross_model_data:
+        oa = cross_model_data["overall_aurocs"]
+        all_three_row = [oa.get("gpt5mini", np.nan),
+                         oa.get("gpt52", np.nan),
+                         oa.get("qwen35", np.nan)]
+        print(f"  [INFO] Loaded v3 'All three' AUROCs: {all_three_row}")
+    else:
+        # Fallback: hardcoded v3 values
+        all_three_row = [0.882, 0.877, 0.873]
+        print("  [WARN] cross_model_analysis.json not found, using hardcoded v3 values")
+
+    matrix = np.array(single_source_rows + [all_three_row])
 
     fig, ax = plt.subplots(figsize=(4, 3.2))
     # Use a diverging colormap centered around the transition from poor to good
@@ -1027,21 +1046,23 @@ def parse_args():
     parser.add_argument("--fig_dir", default=os.path.join(base, "figures", "paper"),
                         help="Output directory for figures")
     parser.add_argument("--bootstrap_ci",
-                        default=os.path.join(base, "data/use_cases/results_test_only_v2/bootstrap_ci.json"))
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/bootstrap_ci_v3.json"))
     parser.add_argument("--per_benchmark_breakdown",
-                        default=os.path.join(base, "data/use_cases/results_test_only_v2/per_benchmark_breakdown.json"))
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/per_benchmark_breakdown.json"))
     parser.add_argument("--per_benchmark_auroc",
-                        default=os.path.join(base, "data/use_cases/results_test_only_v2/per_benchmark_auroc.json"))
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/per_benchmark_auroc.json"))
     parser.add_argument("--scored_dir",
-                        default=os.path.join(base, "data/use_cases/scored_test_only_v2"))
+                        default=os.path.join(base, "data/use_cases/scored_test_only_v3"))
     parser.add_argument("--uc1_results",
-                        default=os.path.join(base, "data/use_cases/results_test_only_v2/uc1_results.json"))
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/uc1_results.json"))
     parser.add_argument("--uc3_results",
-                        default=os.path.join(base, "data/use_cases/results_test_only_v2/uc3_results.json"))
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/uc3_results.json"))
     parser.add_argument("--uc4_results",
-                        default=os.path.join(base, "data/use_cases/results_test_only_v2/uc4_results.json"))
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/uc4_results.json"))
     parser.add_argument("--uc9_results",
-                        default=os.path.join(base, "data/use_cases/results_test_only_v2/uc9_results.json"))
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/uc9_results.json"))
+    parser.add_argument("--cross_model_analysis",
+                        default=os.path.join(base, "data/use_cases/results_test_only_v3/cross_model_analysis.json"))
     parser.add_argument("--training_size_summary",
                         default=os.path.join(base, "data/ablations/training_size/summary.json"))
     parser.add_argument("--dpi", type=int, default=300,

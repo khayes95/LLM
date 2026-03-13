@@ -1,0 +1,155 @@
+{
+  "gpt5mini": {
+    "calibrator": {
+      "auprc": 0.8777,
+      "n_samples": 655,
+      "n_positive": 327,
+      "prevalence": 0.4992,
+      "n_nan_excluded": 0
+    },
+    "verbalized_raw": {
+      "auprc": 0.6094,
+      "n_samples": 645,
+      "n_positive": 325,
+      "prevalence": 0.5039,
+      "n_nan_excluded": 10
+    },
+    "isotonic_verbalized": {
+      "auprc": 0.5994,
+      "n_samples": 655,
+      "n_positive": 327,
+      "prevalence": 0.4992,
+      "n_nan_excluded": 0
+    },
+    "length_baseline": {
+      "auprc": 0.6527,
+      "n_samples": 655,
+      "n_positive": 327,
+      "prevalence": 0.4992,
+      "n_nan_excluded": 0
+    },
+    "combined_baseline": {
+      "auprc": 0.6871,
+      "n_samples": 655,
+      "n_positive": 327,
+      "prevalence": 0.4992,
+      "n_nan_excluded": 0
+    }
+  },
+  "gpt52": {
+    "calibrator": {
+      "auprc": 0.8962,
+      "n_samples": 725,
+      "n_positive": 414,
+      "prevalence": 0.571,
+      "n_nan_excluded": 0
+    },
+    "verbalized_raw": {
+      "auprc": 0.6573,
+      "n_samples": 709,
+      "n_positive": 408,
+      "prevalence": 0.5755,
+      "n_nan_excluded": 16
+    },
+    "isotonic_verbalized": {
+      "auprc": 0.6607,
+      "n_samples": 725,
+      "n_positive": 414,
+      "prevalence": 0.571,
+      "n_nan_excluded": 0
+    },
+    "length_baseline": {
+      "auprc": 0.6872,
+      "n_samples": 725,
+      "n_positive": 414,
+      "prevalence": 0.571,
+      "n_nan_excluded": 0
+    },
+    "combined_baseline": {
+      "auprc": 0.6983,
+      "n_samples": 725,
+      "n_positive": 414,
+      "prevalence": 0.571,
+      "n_nan_excluded": 0
+    }
+  },
+  "qwen35": {
+    "calibrator": {
+      "auprc": 0.8851,
+      "n_samples": 573,
+      "n_positive": 301,
+      "prevalence": 0.5253,
+      "n_nan_excluded": 0
+    },
+    "verbalized_raw": {
+      "auprc": 0.6406,
+      "n_samples": 447,
+      "n_positive": 268,
+      "prevalence": 0.5996,
+      "n_nan_excluded": 126
+    },
+    "isotonic_verbalized": {
+      "auprc": 0.6273,
+      "n_samples": 573,
+      "n_positive": 301,
+      "prevalence": 0.5253,
+      "n_nan_excluded": 0
+    },
+    "length_baseline": {
+      "auprc": 0.5253,
+      "n_samples": 573,
+      "n_positive": 301,
+      "prevalence": 0.5253,
+      "n_nan_excluded": 0
+    },
+    "combined_baseline": {
+      "auprc": 0.6276,
+      "n_samples": 573,
+      "n_positive": 301,
+      "prevalence": 0.5253,
+      "n_nan_excluded": 0
+    }
+  },
+  "combined": {
+    "calibrator": {
+      "auprc": 0.8872,
+      "n_samples": 1953,
+      "n_positive": 1042,
+      "prevalence": 0.5335,
+      "n_nan_excluded": 0,
+      "bootstrap_ci_95": [
+        0.8687,
+        0.9042
+      ],
+      "bootstrap_mean": 0.8873
+    },
+    "verbalized_raw": {
+      "auprc": 0.6302,
+      "n_samples": 1801,
+      "n_positive": 1001,
+      "prevalence": 0.5558,
+      "n_nan_excluded": 152
+    },
+    "isotonic_verbalized": {
+      "auprc": 0.6256,
+      "n_samples": 1953,
+      "n_positive": 1042,
+      "prevalence": 0.5335,
+      "n_nan_excluded": 0
+    },
+    "length_baseline": {
+      "auprc": 0.5796,
+      "n_samples": 1953,
+      "n_positive": 1042,
+      "prevalence": 0.5335,
+      "n_nan_excluded": 0
+    },
+    "combined_baseline": {
+      "auprc": 0.6374,
+      "n_samples": 1953,
+      "n_positive": 1042,
+      "prevalence": 0.5335,
+      "n_nan_excluded": 0
+    }
+  }
+}

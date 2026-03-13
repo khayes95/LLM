@@ -227,7 +227,7 @@ Each run creates `runs/<timestamp>_<bench>_<model>/`:
 
 **Script:** `scripts/train_best_uq.py`
 **Base model:** Qwen3-VL-8B-Instruct + LoRA
-**Training data:** ALL benchmarks × ALL target models (GPT-5-mini + GPT-5.2 + Qwen3.5), ~11,342 samples
+**Training data:** ALL benchmarks × ALL target models (GPT-5-mini + GPT-5.2 + Qwen3.5), 10,892 samples
 **Images:** Real images for VLM benchmarks (cached in `data/training_images/`), gray placeholder for text benchmarks
 
 **Training command:**

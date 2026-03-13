@@ -1,0 +1,1780 @@
+{
+  "combined": {
+    "baselines": {
+      "Calibrator (ours)": {
+        "auroc": 0.8777624091136061,
+        "ci_lower": 0.8626591858787936,
+        "ci_upper": 0.8923462662900907,
+        "std": 0.007531132502428231,
+        "n": 1953,
+        "n_bootstrap": 10000,
+        "method": "Calibrator (ours)"
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.6490062806685615,
+        "ci_lower": 0.6241648128142417,
+        "ci_upper": 0.6734186531286643,
+        "std": 0.012542567379549332,
+        "n": 1953,
+        "n_bootstrap": 10000,
+        "method": "Combined (verb+len)"
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.6435083254149012,
+        "ci_lower": 0.6200237199778935,
+        "ci_upper": 0.6668562212199257,
+        "std": 0.011878694074203238,
+        "n": 1953,
+        "n_bootstrap": 10000,
+        "method": "Verbalized (Isotonic)"
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.610393981018981,
+        "ci_lower": 0.5837290593539963,
+        "ci_upper": 0.6361990250504429,
+        "std": 0.01337327307819674,
+        "n": 1801,
+        "n_bootstrap": 10000,
+        "method": "Verbalized (raw)"
+      },
+      "Response length": {
+        "auroc": 0.5664289732444784,
+        "ci_lower": 0.5415021347229013,
+        "ci_upper": 0.5916009950059418,
+        "std": 0.012755428889015026,
+        "n": 1953,
+        "n_bootstrap": 10000,
+        "method": "Response length"
+      },
+      "Random": {
+        "auroc": 0.5298821610893516,
+        "ci_lower": 0.503941935330596,
+        "ci_upper": 0.55572365066496,
+        "std": 0.013196510632652043,
+        "n": 1953,
+        "n_bootstrap": 10000,
+        "method": "Random"
+      }
+    },
+    "significance_vs_calibrator": {
+      "Verbalized (raw)": {
+        "auroc_method": 0.8746278721278721,
+        "auroc_baseline": 0.610393981018981,
+        "observed_diff": 0.26423389110889106,
+        "p_value": 9.999000099990002e-05,
+        "n_permutations": 10000,
+        "baseline": "Verbalized (raw)"
+      },
+      "Verbalized (Isotonic)": {
+        "auroc_method": 0.8777624091136061,
+        "auroc_baseline": 0.6435083254149012,
+        "observed_diff": 0.23425408369870493,
+        "p_value": 9.999000099990002e-05,
+        "n_permutations": 10000,
+        "baseline": "Verbalized (Isotonic)"
+      },
+      "Response length": {
+        "auroc_method": 0.8777624091136061,
+        "auroc_baseline": 0.5664289732444784,
+        "observed_diff": 0.31133343586912776,
+        "p_value": 9.999000099990002e-05,
+        "n_permutations": 10000,
+        "baseline": "Response length"
+      },
+      "Combined (verb+len)": {
+        "auroc_method": 0.8777624091136061,
+        "auroc_baseline": 0.6490062806685615,
+        "observed_diff": 0.22875612844504467,
+        "p_value": 9.999000099990002e-05,
+        "n_permutations": 10000,
+        "baseline": "Combined (verb+len)"
+      },
+      "Random": {
+        "auroc_method": 0.8777624091136061,
+        "auroc_baseline": 0.5298821610893516,
+        "observed_diff": 0.34788024802425455,
+        "p_value": 9.999000099990002e-05,
+        "n_permutations": 10000,
+        "baseline": "Random"
+      }
+    }
+  },
+  "per_target": {
+    "gpt5mini": {
+      "baselines": {
+        "Calibrator (ours)": {
+          "auroc": 0.8823002908928173,
+          "ci_lower": 0.8566046421645409,
+          "ci_upper": 0.9059503733567191,
+          "std": 0.012582792151151418,
+          "n": 655,
+          "n_bootstrap": 10000,
+          "method": "Calibrator (ours)"
+        },
+        "Combined (verb+len)": {
+          "auroc": 0.693219959722533,
+          "ci_lower": 0.6527223317519841,
+          "ci_upper": 0.7330948584536198,
+          "std": 0.020412961484827432,
+          "n": 655,
+          "n_bootstrap": 10000,
+          "method": "Combined (verb+len)"
+        },
+        "Verbalized (Isotonic)": {
+          "auroc": 0.6470500484821362,
+          "ci_lower": 0.611090069628851,
+          "ci_upper": 0.6833099809455003,
+          "std": 0.01845446878077548,
+          "n": 655,
+          "n_bootstrap": 10000,
+          "method": "Verbalized (Isotonic)"
+        },
+        "Verbalized (raw)": {
+          "auroc": 0.6451778846153846,
+          "ci_lower": 0.6031060201892479,
+          "ci_upper": 0.6860125537503998,
+          "std": 0.021285985214470504,
+          "n": 645,
+          "n_bootstrap": 10000,
+          "method": "Verbalized (raw)"
+        },
+        "Response length": {
+          "auroc": 0.633419109420452,
+          "ci_lower": 0.5904784720724818,
+          "ci_upper": 0.6746081388015662,
+          "std": 0.021704162404077573,
+          "n": 655,
+          "n_bootstrap": 10000,
+          "method": "Response length"
+        },
+        "Random": {
+          "auroc": 0.524035951368688,
+          "ci_lower": 0.4796605931571801,
+          "ci_upper": 0.568099353849819,
+          "std": 0.022679963961720596,
+          "n": 655,
+          "n_bootstrap": 10000,
+          "method": "Random"
+        }
+      },
+      "significance_vs_calibrator": {
+        "Verbalized (raw)": {
+          "auroc_method": 0.8808317307692307,
+          "auroc_baseline": 0.6451778846153846,
+          "observed_diff": 0.2356538461538461,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Verbalized (raw)"
+        },
+        "Verbalized (Isotonic)": {
+          "auroc_method": 0.8823002908928173,
+          "auroc_baseline": 0.6470500484821362,
+          "observed_diff": 0.23525024241068104,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Verbalized (Isotonic)"
+        },
+        "Response length": {
+          "auroc_method": 0.8823002908928173,
+          "auroc_baseline": 0.633419109420452,
+          "observed_diff": 0.24888118147236526,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Response length"
+        },
+        "Combined (verb+len)": {
+          "auroc_method": 0.8823002908928173,
+          "auroc_baseline": 0.693219959722533,
+          "observed_diff": 0.18908033117028422,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Combined (verb+len)"
+        },
+        "Random": {
+          "auroc_method": 0.8823002908928173,
+          "auroc_baseline": 0.524035951368688,
+          "observed_diff": 0.3582643395241293,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Random"
+        }
+      }
+    },
+    "gpt52": {
+      "baselines": {
+        "Calibrator (ours)": {
+          "auroc": 0.8766329589760318,
+          "ci_lower": 0.8510517647657936,
+          "ci_upper": 0.9002804794164481,
+          "std": 0.01265940300664086,
+          "n": 725,
+          "n_bootstrap": 10000,
+          "method": "Calibrator (ours)"
+        },
+        "Combined (verb+len)": {
+          "auroc": 0.658348478493872,
+          "ci_lower": 0.6176688335124415,
+          "ci_upper": 0.6977778738415461,
+          "std": 0.02048657287168392,
+          "n": 725,
+          "n_bootstrap": 10000,
+          "method": "Combined (verb+len)"
+        },
+        "Verbalized (Isotonic)": {
+          "auroc": 0.646473119281731,
+          "ci_lower": 0.606216809430308,
+          "ci_upper": 0.6860761601196672,
+          "std": 0.020360625241230598,
+          "n": 725,
+          "n_bootstrap": 10000,
+          "method": "Verbalized (Isotonic)"
+        },
+        "Verbalized (raw)": {
+          "auroc": 0.6366360497687448,
+          "ci_lower": 0.5947984696613459,
+          "ci_upper": 0.6785788810466279,
+          "std": 0.0216390192844089,
+          "n": 709,
+          "n_bootstrap": 10000,
+          "method": "Verbalized (raw)"
+        },
+        "Response length": {
+          "auroc": 0.6085752675645029,
+          "ci_lower": 0.5681848133756453,
+          "ci_upper": 0.6491857914105698,
+          "std": 0.020854551543246457,
+          "n": 725,
+          "n_bootstrap": 10000,
+          "method": "Response length"
+        },
+        "Random": {
+          "auroc": 0.5374900973950324,
+          "ci_lower": 0.4957767123420203,
+          "ci_upper": 0.5795221549220378,
+          "std": 0.021389848152470105,
+          "n": 725,
+          "n_bootstrap": 10000,
+          "method": "Random"
+        }
+      },
+      "significance_vs_calibrator": {
+        "Verbalized (raw)": {
+          "auroc_method": 0.8769176275161228,
+          "auroc_baseline": 0.6366360497687448,
+          "observed_diff": 0.24028157774737802,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Verbalized (raw)"
+        },
+        "Verbalized (Isotonic)": {
+          "auroc_method": 0.8766329589760318,
+          "auroc_baseline": 0.646473119281731,
+          "observed_diff": 0.23015983969430076,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Verbalized (Isotonic)"
+        },
+        "Response length": {
+          "auroc_method": 0.8766329589760318,
+          "auroc_baseline": 0.6085752675645029,
+          "observed_diff": 0.2680576914115289,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Response length"
+        },
+        "Combined (verb+len)": {
+          "auroc_method": 0.8766329589760318,
+          "auroc_baseline": 0.658348478493872,
+          "observed_diff": 0.21828448048215976,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Combined (verb+len)"
+        },
+        "Random": {
+          "auroc_method": 0.8766329589760318,
+          "auroc_baseline": 0.5374900973950324,
+          "observed_diff": 0.3391428615809994,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Random"
+        }
+      }
+    },
+    "qwen35": {
+      "baselines": {
+        "Calibrator (ours)": {
+          "auroc": 0.8733083349618918,
+          "ci_lower": 0.8444697762946008,
+          "ci_upper": 0.9003186998752443,
+          "std": 0.014241137808995044,
+          "n": 573,
+          "n_bootstrap": 10000,
+          "method": "Calibrator (ours)"
+        },
+        "Verbalized (Isotonic)": {
+          "auroc": 0.6593707250341998,
+          "ci_lower": 0.6179094503625441,
+          "ci_upper": 0.7017460093261585,
+          "std": 0.021353259535078342,
+          "n": 573,
+          "n_bootstrap": 10000,
+          "method": "Verbalized (Isotonic)"
+        },
+        "Combined (verb+len)": {
+          "auroc": 0.6558591459839751,
+          "ci_lower": 0.6136445492545972,
+          "ci_upper": 0.6991601992797938,
+          "std": 0.021762026081543488,
+          "n": 573,
+          "n_bootstrap": 10000,
+          "method": "Combined (verb+len)"
+        },
+        "Verbalized (raw)": {
+          "auroc": 0.5694050696239473,
+          "ci_lower": 0.5201355616212305,
+          "ci_upper": 0.6178596942079103,
+          "std": 0.02490507401411432,
+          "n": 447,
+          "n_bootstrap": 10000,
+          "method": "Verbalized (raw)"
+        },
+        "Response length": {
+          "auroc": 0.5,
+          "ci_lower": 0.5,
+          "ci_upper": 0.5,
+          "std": 0.0,
+          "n": 573,
+          "n_bootstrap": 10000,
+          "method": "Response length"
+        },
+        "Random": {
+          "auroc": 0.46085352745749464,
+          "ci_lower": 0.4144260618521126,
+          "ci_upper": 0.5070904462649751,
+          "std": 0.023926810945816418,
+          "n": 573,
+          "n_bootstrap": 10000,
+          "method": "Random"
+        }
+      },
+      "significance_vs_calibrator": {
+        "Verbalized (raw)": {
+          "auroc_method": 0.8653798048861837,
+          "auroc_baseline": 0.5694050696239473,
+          "observed_diff": 0.2959747352622364,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Verbalized (raw)"
+        },
+        "Verbalized (Isotonic)": {
+          "auroc_method": 0.8733083349618918,
+          "auroc_baseline": 0.6593707250341998,
+          "observed_diff": 0.21393760992769195,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Verbalized (Isotonic)"
+        },
+        "Response length": {
+          "auroc_method": 0.8733083349618918,
+          "auroc_baseline": 0.5,
+          "observed_diff": 0.37330833496189175,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Response length"
+        },
+        "Combined (verb+len)": {
+          "auroc_method": 0.8733083349618918,
+          "auroc_baseline": 0.6558591459839751,
+          "observed_diff": 0.21744918897791665,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Combined (verb+len)"
+        },
+        "Random": {
+          "auroc_method": 0.8733083349618918,
+          "auroc_baseline": 0.46085352745749464,
+          "observed_diff": 0.4124548075043971,
+          "p_value": 9.999000099990002e-05,
+          "n_permutations": 10000,
+          "baseline": "Random"
+        }
+      }
+    }
+  },
+  "per_benchmark": {
+    "arc_agi": {
+      "Calibrator (ours)": {
+        "auroc": 0.90107970784376,
+        "ci_lower": 0.834093514575827,
+        "ci_upper": 0.9562014709265348,
+        "std": 0.03097821630741113,
+        "n": 114,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 114,
+        "accuracy": 0.41228070175438597
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.4925345278088839,
+        "ci_lower": 0.37296092278719395,
+        "ci_upper": 0.6088893011750155,
+        "std": 0.05990977556885796,
+        "n": 104,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 104,
+        "accuracy": 0.41228070175438597
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.6382978723404256,
+        "ci_lower": 0.5368382697852345,
+        "ci_upper": 0.7310831823671498,
+        "std": 0.04939774993886917,
+        "n": 114,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 114,
+        "accuracy": 0.41228070175438597
+      },
+      "Response length": {
+        "auroc": 0.4355350905049222,
+        "ci_lower": 0.32541543261961525,
+        "ci_upper": 0.5428450808436022,
+        "std": 0.05415701077614906,
+        "n": 114,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 114,
+        "accuracy": 0.41228070175438597
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.5598602731025722,
+        "ci_lower": 0.44281688558419735,
+        "ci_upper": 0.6691835730183188,
+        "std": 0.05623392846100832,
+        "n": 114,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 114,
+        "accuracy": 0.41228070175438597
+      },
+      "Random": {
+        "auroc": 0.5417592886630676,
+        "ci_lower": 0.4223972199675325,
+        "ci_upper": 0.6544455442586378,
+        "std": 0.05873302791179146,
+        "n": 114,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 114,
+        "accuracy": 0.41228070175438597
+      }
+    },
+    "bbeh": {
+      "Calibrator (ours)": {
+        "auroc": 0.8650937689050211,
+        "ci_lower": 0.7942741283366663,
+        "ci_upper": 0.9261031225836562,
+        "std": 0.03326737062312761,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 115,
+        "accuracy": 0.4956521739130435
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.6638370118845501,
+        "ci_lower": 0.5393894830659536,
+        "ci_upper": 0.777473214285714,
+        "std": 0.061243097807154784,
+        "n": 88,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 88,
+        "accuracy": 0.4956521739130435
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.8174531155474895,
+        "ci_lower": 0.7412184306921149,
+        "ci_upper": 0.8875605326876512,
+        "std": 0.03778561708341409,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 115,
+        "accuracy": 0.4956521739130435
+      },
+      "Response length": {
+        "auroc": 0.3545069570477919,
+        "ci_lower": 0.25367302036199096,
+        "ci_upper": 0.4575060716454158,
+        "std": 0.052091456222316715,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 115,
+        "accuracy": 0.4956521739130435
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.7994555353901995,
+        "ci_lower": 0.7141544505857118,
+        "ci_upper": 0.8802197564520594,
+        "std": 0.04331829469504017,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 115,
+        "accuracy": 0.4956521739130435
+      },
+      "Random": {
+        "auroc": 0.514216575922565,
+        "ci_lower": 0.4066633393829401,
+        "ci_upper": 0.6215180202762923,
+        "std": 0.05460410023604098,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 115,
+        "accuracy": 0.4956521739130435
+      }
+    },
+    "charxiv": {
+      "Calibrator (ours)": {
+        "auroc": 0.7277960526315791,
+        "ci_lower": 0.6298271900592576,
+        "ci_upper": 0.8177077364444625,
+        "std": 0.048313469722109925,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 118,
+        "accuracy": 0.6779661016949152
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.6515624999999999,
+        "ci_lower": 0.5370257452574526,
+        "ci_upper": 0.7569716680710223,
+        "std": 0.055572699810970044,
+        "n": 116,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 116,
+        "accuracy": 0.6779661016949152
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.6572368421052632,
+        "ci_lower": 0.5530564037080805,
+        "ci_upper": 0.7528474572856221,
+        "std": 0.05196349000134825,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 118,
+        "accuracy": 0.6779661016949152
+      },
+      "Response length": {
+        "auroc": 0.5851973684210527,
+        "ci_lower": 0.47201320304261474,
+        "ci_upper": 0.6962218240890437,
+        "std": 0.05823905428145842,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 118,
+        "accuracy": 0.6779661016949152
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.6646381578947369,
+        "ci_lower": 0.5518008031963223,
+        "ci_upper": 0.7658916276318414,
+        "std": 0.05506382717446453,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 118,
+        "accuracy": 0.6779661016949152
+      },
+      "Random": {
+        "auroc": 0.5187499999999999,
+        "ci_lower": 0.40585134381894594,
+        "ci_upper": 0.6316153256026674,
+        "std": 0.05761993912519999,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 118,
+        "accuracy": 0.6779661016949152
+      }
+    },
+    "chembench": {
+      "Calibrator (ours)": {
+        "auroc": 0.6981667394151027,
+        "ci_lower": 0.5798769241676568,
+        "ci_upper": 0.8064169715392852,
+        "std": 0.058128384962386585,
+        "n": 108,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 108,
+        "accuracy": 0.7314814814814815
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.7354866870362287,
+        "ci_lower": 0.6247470183546292,
+        "ci_upper": 0.8301380846701513,
+        "std": 0.052370664607870286,
+        "n": 108,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 108,
+        "accuracy": 0.7314814814814815
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.6962025316455696,
+        "ci_lower": 0.5989934070162164,
+        "ci_upper": 0.7884560032894736,
+        "std": 0.048976589039749,
+        "n": 108,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 108,
+        "accuracy": 0.7314814814814815
+      },
+      "Response length": {
+        "auroc": 0.6745962461807071,
+        "ci_lower": 0.5603395061728395,
+        "ci_upper": 0.7822419384423334,
+        "std": 0.056929238685070944,
+        "n": 108,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 108,
+        "accuracy": 0.7314814814814815
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.7346137058053253,
+        "ci_lower": 0.6235545488532072,
+        "ci_upper": 0.83334017515052,
+        "std": 0.053067778283126546,
+        "n": 108,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 108,
+        "accuracy": 0.7314814814814815
+      },
+      "Random": {
+        "auroc": 0.5482322130074202,
+        "ci_lower": 0.4303585889431207,
+        "ci_upper": 0.6651793995915695,
+        "std": 0.06038764390175916,
+        "n": 108,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 108,
+        "accuracy": 0.7314814814814815
+      }
+    },
+    "gpqa": {
+      "Calibrator (ours)": {
+        "auroc": 0.7256610576923077,
+        "ci_lower": 0.6107931949733476,
+        "ci_upper": 0.8315704946626425,
+        "std": 0.05687216856295794,
+        "n": 90,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 90,
+        "accuracy": 0.7111111111111111
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.625,
+        "ci_lower": 0.49452160138248846,
+        "ci_upper": 0.7525886765408506,
+        "std": 0.06562592246960315,
+        "n": 90,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 90,
+        "accuracy": 0.7111111111111111
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.5991586538461539,
+        "ci_lower": 0.490211383668415,
+        "ci_upper": 0.7083032184334075,
+        "std": 0.05602970514609586,
+        "n": 90,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 90,
+        "accuracy": 0.7111111111111111
+      },
+      "Response length": {
+        "auroc": 0.5736177884615384,
+        "ci_lower": 0.4380237786224158,
+        "ci_upper": 0.710473698336017,
+        "std": 0.0700549602263596,
+        "n": 90,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 90,
+        "accuracy": 0.7111111111111111
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.5952524038461539,
+        "ci_lower": 0.46256359551396314,
+        "ci_upper": 0.7277068850267379,
+        "std": 0.06907200418681553,
+        "n": 90,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 90,
+        "accuracy": 0.7111111111111111
+      },
+      "Random": {
+        "auroc": 0.44471153846153844,
+        "ci_lower": 0.3267666666666667,
+        "ci_upper": 0.5685246394230767,
+        "std": 0.061307779790772586,
+        "n": 90,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 90,
+        "accuracy": 0.7111111111111111
+      }
+    },
+    "hallusionbench": {
+      "Calibrator (ours)": {
+        "auroc": 0.8747637051039697,
+        "ci_lower": 0.8001871028836754,
+        "ci_upper": 0.936475647726009,
+        "std": 0.034787790731408065,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 115,
+        "accuracy": 0.8
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.6110586011342155,
+        "ci_lower": 0.46407051219863743,
+        "ci_upper": 0.753189612594536,
+        "std": 0.074268388946879,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 115,
+        "accuracy": 0.8
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.5886105860113422,
+        "ci_lower": 0.446839437511304,
+        "ci_upper": 0.728757840501792,
+        "std": 0.07254700932070295,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 115,
+        "accuracy": 0.8
+      },
+      "Response length": {
+        "auroc": 0.6190926275992439,
+        "ci_lower": 0.48380912364945977,
+        "ci_upper": 0.7522969656747746,
+        "std": 0.06761083330069416,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 115,
+        "accuracy": 0.8
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.6164933837429112,
+        "ci_lower": 0.4633719436050282,
+        "ci_upper": 0.7644517543859648,
+        "std": 0.07732367399684016,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 115,
+        "accuracy": 0.8
+      },
+      "Random": {
+        "auroc": 0.5812854442344045,
+        "ci_lower": 0.4650212362464253,
+        "ci_upper": 0.6957253289473684,
+        "std": 0.05973392803085472,
+        "n": 115,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 115,
+        "accuracy": 0.8
+      }
+    },
+    "hle": {
+      "Calibrator (ours)": {
+        "auroc": 0.61640625,
+        "ci_lower": 0.46210691987729857,
+        "ci_upper": 0.7586070992320991,
+        "std": 0.07630960353166708,
+        "n": 96,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 96,
+        "accuracy": 0.16666666666666666
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.589544513457557,
+        "ci_lower": 0.41443552132760914,
+        "ci_upper": 0.7560542421193828,
+        "std": 0.08792391621645981,
+        "n": 83,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 83,
+        "accuracy": 0.16666666666666666
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.57578125,
+        "ci_lower": 0.4242169137286325,
+        "ci_upper": 0.7304010070778364,
+        "std": 0.07757950398360396,
+        "n": 96,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 96,
+        "accuracy": 0.16666666666666666
+      },
+      "Response length": {
+        "auroc": 0.551171875,
+        "ci_lower": 0.39587441390286915,
+        "ci_upper": 0.6992249122660427,
+        "std": 0.07830480375058142,
+        "n": 96,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 96,
+        "accuracy": 0.16666666666666666
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.576953125,
+        "ci_lower": 0.42794269944149066,
+        "ci_upper": 0.7247452090592333,
+        "std": 0.07551808126565777,
+        "n": 96,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 96,
+        "accuracy": 0.16666666666666666
+      },
+      "Random": {
+        "auroc": 0.48359375,
+        "ci_lower": 0.32976190476190476,
+        "ci_upper": 0.6403366126543208,
+        "std": 0.07941461109677558,
+        "n": 96,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 96,
+        "accuracy": 0.16666666666666666
+      }
+    },
+    "hle_multimodal": {
+      "Calibrator (ours)": {
+        "auroc": 0.669407894736842,
+        "ci_lower": 0.4536542824730573,
+        "ci_upper": 0.8660788020163019,
+        "std": 0.1054284682837669,
+        "n": 46,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 46,
+        "accuracy": 0.17391304347826086
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.5953947368421053,
+        "ci_lower": 0.3992144241417497,
+        "ci_upper": 0.7898124869055098,
+        "std": 0.09931710741654357,
+        "n": 46,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 46,
+        "accuracy": 0.17391304347826086
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.649671052631579,
+        "ci_lower": 0.46846846846846846,
+        "ci_upper": 0.8223684210526316,
+        "std": 0.0899317465236092,
+        "n": 46,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 46,
+        "accuracy": 0.17391304347826086
+      },
+      "Response length": {
+        "auroc": 0.3651315789473685,
+        "ci_lower": 0.14285714285714285,
+        "ci_upper": 0.613907520325203,
+        "std": 0.11972024223634757,
+        "n": 46,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 46,
+        "accuracy": 0.17391304347826086
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.5296052631578947,
+        "ci_lower": 0.33748740842490843,
+        "ci_upper": 0.7171205745218902,
+        "std": 0.09620139261792204,
+        "n": 46,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 46,
+        "accuracy": 0.17391304347826086
+      },
+      "Random": {
+        "auroc": 0.41118421052631576,
+        "ci_lower": 0.17857142857142855,
+        "ci_upper": 0.6666666666666666,
+        "std": 0.1257359684715691,
+        "n": 46,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 46,
+        "accuracy": 0.17391304347826086
+      }
+    },
+    "livebench": {
+      "Calibrator (ours)": {
+        "auroc": 0.9953886693017128,
+        "ci_lower": 0.9859728629579375,
+        "ci_upper": 1.0,
+        "std": 0.003866610364979715,
+        "n": 102,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 102,
+        "accuracy": 0.6764705882352942
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.546448087431694,
+        "ci_lower": 0.4101159253151874,
+        "ci_upper": 0.675279559953603,
+        "std": 0.0676079547359312,
+        "n": 88,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 88,
+        "accuracy": 0.6764705882352942
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.6084760649978042,
+        "ci_lower": 0.4942012835869113,
+        "ci_upper": 0.7149150674551608,
+        "std": 0.056403445868944926,
+        "n": 102,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 102,
+        "accuracy": 0.6764705882352942
+      },
+      "Response length": {
+        "auroc": 0.5873956960913482,
+        "ci_lower": 0.45180502946127943,
+        "ci_upper": 0.7120502348711487,
+        "std": 0.06662222425077989,
+        "n": 102,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 102,
+        "accuracy": 0.6764705882352942
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.5920070267896356,
+        "ci_lower": 0.4601143789389777,
+        "ci_upper": 0.7117323448255508,
+        "std": 0.06404264021591746,
+        "n": 102,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 102,
+        "accuracy": 0.6764705882352942
+      },
+      "Random": {
+        "auroc": 0.5371102327624067,
+        "ci_lower": 0.41534351112871554,
+        "ci_upper": 0.6702769063706563,
+        "std": 0.06465679640684534,
+        "n": 102,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 102,
+        "accuracy": 0.6764705882352942
+      }
+    },
+    "mathverse": {
+      "Calibrator (ours)": {
+        "auroc": 0.883441258094357,
+        "ci_lower": 0.8109732102529359,
+        "ci_upper": 0.9448072506761531,
+        "std": 0.03444468450867072,
+        "n": 93,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 93,
+        "accuracy": 0.4946236559139785
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.682608695652174,
+        "ci_lower": 0.5671082427536231,
+        "ci_upper": 0.7881973329872489,
+        "std": 0.05631857716170715,
+        "n": 86,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 86,
+        "accuracy": 0.4946236559139785
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.7305735430157262,
+        "ci_lower": 0.6370206772167557,
+        "ci_upper": 0.8147548566142461,
+        "std": 0.045686955149751914,
+        "n": 93,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 93,
+        "accuracy": 0.4946236559139785
+      },
+      "Response length": {
+        "auroc": 0.6167900092506938,
+        "ci_lower": 0.4956493277174359,
+        "ci_upper": 0.7319609788359788,
+        "std": 0.059625350417243594,
+        "n": 93,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 93,
+        "accuracy": 0.4946236559139785
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.7504625346901018,
+        "ci_lower": 0.6428563161375662,
+        "ci_upper": 0.8451162790697674,
+        "std": 0.05134899872831544,
+        "n": 93,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 93,
+        "accuracy": 0.4946236559139785
+      },
+      "Random": {
+        "auroc": 0.46207215541165586,
+        "ci_lower": 0.3394887344471063,
+        "ci_upper": 0.5819539728682169,
+        "std": 0.06188085727568887,
+        "n": 93,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 93,
+        "accuracy": 0.4946236559139785
+      }
+    },
+    "mathvision": {
+      "Calibrator (ours)": {
+        "auroc": 0.8621967654986523,
+        "ci_lower": 0.774178131522474,
+        "ci_upper": 0.9378683973995079,
+        "std": 0.041701731174330806,
+        "n": 81,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 81,
+        "accuracy": 0.345679012345679
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.6559766763848397,
+        "ci_lower": 0.5237064253041117,
+        "ci_upper": 0.7783815991309899,
+        "std": 0.06482481592759183,
+        "n": 77,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 77,
+        "accuracy": 0.345679012345679
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.6782345013477089,
+        "ci_lower": 0.567854262672811,
+        "ci_upper": 0.7788106261022927,
+        "std": 0.054515324051149686,
+        "n": 81,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 81,
+        "accuracy": 0.345679012345679
+      },
+      "Response length": {
+        "auroc": 0.5488544474393531,
+        "ci_lower": 0.41358328875905204,
+        "ci_upper": 0.6785826673326671,
+        "std": 0.06811671710757103,
+        "n": 81,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 81,
+        "accuracy": 0.345679012345679
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.6671159029649596,
+        "ci_lower": 0.5364532019704433,
+        "ci_upper": 0.786937094155844,
+        "std": 0.06321906710728388,
+        "n": 81,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 81,
+        "accuracy": 0.345679012345679
+      },
+      "Random": {
+        "auroc": 0.4898921832884097,
+        "ci_lower": 0.36145284136184525,
+        "ci_upper": 0.6206205764716112,
+        "std": 0.06630057691741072,
+        "n": 81,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 81,
+        "accuracy": 0.345679012345679
+      }
+    },
+    "mathvista": {
+      "Calibrator (ours)": {
+        "auroc": 0.9536489151873767,
+        "ci_lower": 0.9128942761057308,
+        "ci_upper": 0.9832753603104212,
+        "std": 0.018215641783385108,
+        "n": 117,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 117,
+        "accuracy": 0.3333333333333333
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.562793427230047,
+        "ci_lower": 0.44112539487539487,
+        "ci_upper": 0.6835332207207208,
+        "std": 0.06171251425841021,
+        "n": 107,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 107,
+        "accuracy": 0.3333333333333333
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.5882642998027613,
+        "ci_lower": 0.4799292100222079,
+        "ci_upper": 0.6966325516693163,
+        "std": 0.0545688564078651,
+        "n": 117,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 117,
+        "accuracy": 0.3333333333333333
+      },
+      "Response length": {
+        "auroc": 0.5111768573307035,
+        "ci_lower": 0.3973176633762707,
+        "ci_upper": 0.6217905459615585,
+        "std": 0.05757845438632778,
+        "n": 117,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 117,
+        "accuracy": 0.3333333333333333
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.5498027613412229,
+        "ci_lower": 0.43687452060048215,
+        "ci_upper": 0.6641900893134983,
+        "std": 0.05787197708113053,
+        "n": 117,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 117,
+        "accuracy": 0.3333333333333333
+      },
+      "Random": {
+        "auroc": 0.5105193951347797,
+        "ci_lower": 0.39758962679988247,
+        "ci_upper": 0.6219521982539249,
+        "std": 0.057362773219556275,
+        "n": 117,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 117,
+        "accuracy": 0.3333333333333333
+      }
+    },
+    "mmmu": {
+      "Calibrator (ours)": {
+        "auroc": 0.8669590643274853,
+        "ci_lower": 0.7668644650842792,
+        "ci_upper": 0.9461659356725144,
+        "std": 0.045813279394005625,
+        "n": 69,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 69,
+        "accuracy": 0.8260869565217391
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.7767295597484276,
+        "ci_lower": 0.6129941668500991,
+        "ci_upper": 0.9134615384615383,
+        "std": 0.07767680583593772,
+        "n": 62,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 62,
+        "accuracy": 0.8260869565217391
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.7763157894736842,
+        "ci_lower": 0.6468200161420501,
+        "ci_upper": 0.8957627118644067,
+        "std": 0.06283656576187571,
+        "n": 69,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 69,
+        "accuracy": 0.8260869565217391
+      },
+      "Response length": {
+        "auroc": 0.618421052631579,
+        "ci_lower": 0.4016393442622951,
+        "ci_upper": 0.8203703703703704,
+        "std": 0.10745845742343269,
+        "n": 69,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 69,
+        "accuracy": 0.8260869565217391
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.793859649122807,
+        "ci_lower": 0.6418023799252229,
+        "ci_upper": 0.9200819672131146,
+        "std": 0.07187950799852838,
+        "n": 69,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 69,
+        "accuracy": 0.8260869565217391
+      },
+      "Random": {
+        "auroc": 0.6578947368421052,
+        "ci_lower": 0.4694857946651848,
+        "ci_upper": 0.8338598142247802,
+        "std": 0.09234720519599311,
+        "n": 69,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 69,
+        "accuracy": 0.8260869565217391
+      }
+    },
+    "mmstar": {
+      "Calibrator (ours)": {
+        "auroc": 0.8094362745098039,
+        "ci_lower": 0.6969901927116999,
+        "ci_upper": 0.903160448676038,
+        "std": 0.052027555878717976,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 118,
+        "accuracy": 0.864406779661017
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.6292929292929293,
+        "ci_lower": 0.48367128917662766,
+        "ci_upper": 0.7655655742204655,
+        "std": 0.07200390614254083,
+        "n": 114,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 114,
+        "accuracy": 0.864406779661017
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.6580882352941176,
+        "ci_lower": 0.5487421383647799,
+        "ci_upper": 0.7673412929528245,
+        "std": 0.056590890012196464,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 118,
+        "accuracy": 0.864406779661017
+      },
+      "Response length": {
+        "auroc": 0.4632352941176471,
+        "ci_lower": 0.3198803507171773,
+        "ci_upper": 0.6073116879189993,
+        "std": 0.07306949389582507,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 118,
+        "accuracy": 0.864406779661017
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.5906862745098039,
+        "ci_lower": 0.43725805577491833,
+        "ci_upper": 0.7329317734062574,
+        "std": 0.07520787719597748,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 118,
+        "accuracy": 0.864406779661017
+      },
+      "Random": {
+        "auroc": 0.517156862745098,
+        "ci_lower": 0.36807988373754136,
+        "ci_upper": 0.6610413868517704,
+        "std": 0.07652968387685988,
+        "n": 118,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 118,
+        "accuracy": 0.864406779661017
+      }
+    },
+    "mmvet": {
+      "Calibrator (ours)": {
+        "auroc": 0.8427672955974843,
+        "ci_lower": 0.7409200968523002,
+        "ci_upper": 0.92765815916884,
+        "std": 0.04822101592888062,
+        "n": 80,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 80,
+        "accuracy": 0.3375
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.35933048433048426,
+        "ci_lower": 0.22272727272727272,
+        "ci_upper": 0.5024182630906768,
+        "std": 0.07098336624713276,
+        "n": 79,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 79,
+        "accuracy": 0.3375
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.4168413696715583,
+        "ci_lower": 0.28916146925227115,
+        "ci_upper": 0.5437918180609711,
+        "std": 0.0663134334505213,
+        "n": 80,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 80,
+        "accuracy": 0.3375
+      },
+      "Response length": {
+        "auroc": 0.37386443046820406,
+        "ci_lower": 0.24066041666666668,
+        "ci_upper": 0.5071704067321179,
+        "std": 0.06880038312734087,
+        "n": 80,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 80,
+        "accuracy": 0.3375
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.35569531795946885,
+        "ci_lower": 0.2183251488095238,
+        "ci_upper": 0.49418359456635313,
+        "std": 0.07130383919689134,
+        "n": 80,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 80,
+        "accuracy": 0.3375
+      },
+      "Random": {
+        "auroc": 0.5108315863032844,
+        "ci_lower": 0.37222951310662494,
+        "ci_upper": 0.6443512795075294,
+        "std": 0.06963808799396937,
+        "n": 80,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 80,
+        "accuracy": 0.3375
+      }
+    },
+    "omnimath": {
+      "Calibrator (ours)": {
+        "auroc": 0.9290811775200712,
+        "ci_lower": 0.8278256593881419,
+        "ci_upper": 0.9894532299596955,
+        "std": 0.04345249526470058,
+        "n": 78,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 78,
+        "accuracy": 0.24358974358974358
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.7255639097744361,
+        "ci_lower": 0.575,
+        "ci_upper": 0.8594228778467908,
+        "std": 0.07252203396978192,
+        "n": 61,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 61,
+        "accuracy": 0.24358974358974358
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.7997323818019625,
+        "ci_lower": 0.6866379310344828,
+        "ci_upper": 0.8996458306783908,
+        "std": 0.05433790556439411,
+        "n": 78,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 78,
+        "accuracy": 0.24358974358974358
+      },
+      "Response length": {
+        "auroc": 0.5735950044603032,
+        "ci_lower": 0.4240509259259259,
+        "ci_upper": 0.728042328042328,
+        "std": 0.07692141119695707,
+        "n": 78,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 78,
+        "accuracy": 0.24358974358974358
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.8064228367528992,
+        "ci_lower": 0.6648137626262627,
+        "ci_upper": 0.9259267519080188,
+        "std": 0.06673686349004102,
+        "n": 78,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 78,
+        "accuracy": 0.24358974358974358
+      },
+      "Random": {
+        "auroc": 0.4460303300624442,
+        "ci_lower": 0.2806980994152047,
+        "ci_upper": 0.6133188430199037,
+        "std": 0.08476027590064075,
+        "n": 78,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 78,
+        "accuracy": 0.24358974358974358
+      }
+    },
+    "prbench": {
+      "Calibrator (ours)": {
+        "auroc": 0.6385063559322035,
+        "ci_lower": 0.5202004863210107,
+        "ci_upper": 0.7548006505523329,
+        "std": 0.05936520481657997,
+        "n": 91,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 91,
+        "accuracy": 0.6483516483516484
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.5124362244897959,
+        "ci_lower": 0.3893312937062937,
+        "ci_upper": 0.6376587107635494,
+        "std": 0.06423591426936592,
+        "n": 84,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 84,
+        "accuracy": 0.6483516483516484
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.5609110169491526,
+        "ci_lower": 0.44501133786848074,
+        "ci_upper": 0.6770742411499351,
+        "std": 0.0574083115133828,
+        "n": 91,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 91,
+        "accuracy": 0.6483516483516484
+      },
+      "Response length": {
+        "auroc": 0.5230402542372881,
+        "ci_lower": 0.38596107615978725,
+        "ci_upper": 0.6618470508758327,
+        "std": 0.06906653835958514,
+        "n": 91,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 91,
+        "accuracy": 0.6483516483516484
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.572563559322034,
+        "ci_lower": 0.4523305084745763,
+        "ci_upper": 0.6940171057551031,
+        "std": 0.06173844532783295,
+        "n": 91,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 91,
+        "accuracy": 0.6483516483516484
+      },
+      "Random": {
+        "auroc": 0.4841101694915254,
+        "ci_lower": 0.3462495817999331,
+        "ci_upper": 0.6187943722943722,
+        "std": 0.06950940378306332,
+        "n": 91,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 91,
+        "accuracy": 0.6483516483516484
+      }
+    },
+    "realworldqa": {
+      "Calibrator (ours)": {
+        "auroc": 0.9104996837444655,
+        "ci_lower": 0.8549176709619604,
+        "ci_upper": 0.9568653567984571,
+        "std": 0.026343059064926455,
+        "n": 113,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 113,
+        "accuracy": 0.45132743362831856
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.5984162895927602,
+        "ci_lower": 0.47002582282913163,
+        "ci_upper": 0.7255552978084125,
+        "std": 0.0651668409143809,
+        "n": 86,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 86,
+        "accuracy": 0.45132743362831856
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.47106261859582543,
+        "ci_lower": 0.3669791666666667,
+        "ci_upper": 0.5749513610891176,
+        "std": 0.053343334429811984,
+        "n": 113,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 113,
+        "accuracy": 0.45132743362831856
+      },
+      "Response length": {
+        "auroc": 0.6238140417457305,
+        "ci_lower": 0.5206144201716792,
+        "ci_upper": 0.7262589794383446,
+        "std": 0.05232049572454274,
+        "n": 113,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 113,
+        "accuracy": 0.45132743362831856
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.48086654016445285,
+        "ci_lower": 0.3712154722750398,
+        "ci_upper": 0.5894541493444195,
+        "std": 0.05615731434482481,
+        "n": 113,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 113,
+        "accuracy": 0.45132743362831856
+      },
+      "Random": {
+        "auroc": 0.4364326375711575,
+        "ci_lower": 0.3338479920305811,
+        "ci_upper": 0.5427479533480056,
+        "std": 0.05363752935774303,
+        "n": 113,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 113,
+        "accuracy": 0.45132743362831856
+      }
+    },
+    "simpleqa": {
+      "Calibrator (ours)": {
+        "auroc": 0.798054587688734,
+        "ci_lower": 0.7063472442275125,
+        "ci_upper": 0.8764240683824601,
+        "std": 0.04316792163530787,
+        "n": 124,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 124,
+        "accuracy": 0.3387096774193548
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.77061556329849,
+        "ci_lower": 0.6868017601528122,
+        "ci_upper": 0.8464651627722323,
+        "std": 0.040698736405181665,
+        "n": 124,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 124,
+        "accuracy": 0.3387096774193548
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.7723577235772358,
+        "ci_lower": 0.6912090442721404,
+        "ci_upper": 0.8463653805272107,
+        "std": 0.03961085891497199,
+        "n": 124,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 124,
+        "accuracy": 0.3387096774193548
+      },
+      "Response length": {
+        "auroc": 0.7504355400696865,
+        "ci_lower": 0.6576755275974027,
+        "ci_upper": 0.8327610091935685,
+        "std": 0.04451223823288455,
+        "n": 124,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 124,
+        "accuracy": 0.3387096774193548
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.7759872241579558,
+        "ci_lower": 0.6931802606658692,
+        "ci_upper": 0.8503857630008523,
+        "std": 0.040393286561765204,
+        "n": 124,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 124,
+        "accuracy": 0.3387096774193548
+      },
+      "Random": {
+        "auroc": 0.5394889663182346,
+        "ci_lower": 0.4354560894268774,
+        "ci_upper": 0.6464662956091528,
+        "std": 0.05386047831301493,
+        "n": 124,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 124,
+        "accuracy": 0.3387096774193548
+      }
+    },
+    "vizwiz": {
+      "Calibrator (ours)": {
+        "auroc": 0.8456666666666667,
+        "ci_lower": 0.7537593342988619,
+        "ci_upper": 0.9245534028812716,
+        "std": 0.04444158314042865,
+        "n": 85,
+        "n_bootstrap": 5000,
+        "method": "Calibrator (ours)",
+        "n_samples": 85,
+        "accuracy": 0.7058823529411765
+      },
+      "Verbalized (raw)": {
+        "auroc": 0.620409604519774,
+        "ci_lower": 0.4743453313927452,
+        "ci_upper": 0.7628260869565215,
+        "std": 0.07409432954057511,
+        "n": 83,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (raw)",
+        "n_samples": 83,
+        "accuracy": 0.7058823529411765
+      },
+      "Verbalized (Isotonic)": {
+        "auroc": 0.5956666666666667,
+        "ci_lower": 0.4656449478487614,
+        "ci_upper": 0.7283017566075718,
+        "std": 0.06725464543516393,
+        "n": 85,
+        "n_bootstrap": 5000,
+        "method": "Verbalized (Isotonic)",
+        "n_samples": 85,
+        "accuracy": 0.7058823529411765
+      },
+      "Response length": {
+        "auroc": 0.6253333333333334,
+        "ci_lower": 0.48010121107266435,
+        "ci_upper": 0.7672786711586551,
+        "std": 0.07401309633558821,
+        "n": 85,
+        "n_bootstrap": 5000,
+        "method": "Response length",
+        "n_samples": 85,
+        "accuracy": 0.7058823529411765
+      },
+      "Combined (verb+len)": {
+        "auroc": 0.6153333333333333,
+        "ci_lower": 0.4687011082138201,
+        "ci_upper": 0.7574733130746455,
+        "std": 0.07375848186103494,
+        "n": 85,
+        "n_bootstrap": 5000,
+        "method": "Combined (verb+len)",
+        "n_samples": 85,
+        "accuracy": 0.7058823529411765
+      },
+      "Random": {
+        "auroc": 0.5466666666666666,
+        "ci_lower": 0.4143974067282805,
+        "ci_upper": 0.6826757363253857,
+        "std": 0.06954752645024843,
+        "n": 85,
+        "n_bootstrap": 5000,
+        "method": "Random",
+        "n_samples": 85,
+        "accuracy": 0.7058823529411765
+      }
+    }
+  },
+  "summary": {
+    "n_test_samples": 1953,
+    "n_benchmarks": 20,
+    "methods_evaluated": [
+      "Calibrator (ours)",
+      "Verbalized (raw)",
+      "Verbalized (Isotonic)",
+      "Response length",
+      "Combined (verb+len)",
+      "Random"
+    ],
+    "calibrator_per_benchmark_mean": 0.8207010945198798,
+    "calibrator_per_benchmark_std": 0.10473839695401836
+  }
+}

@@ -20,7 +20,7 @@ cd /scratch/khayes/LLM
 eval "$(conda shell.bash hook)"
 conda activate uq_eval
 
-export CUDA_VISIBLE_DEVICES=2,3,4
+export CUDA_VISIBLE_DEVICES=0,1,2
 
 echo "Start time: $(date)"
 echo "GPUs: $CUDA_VISIBLE_DEVICES"

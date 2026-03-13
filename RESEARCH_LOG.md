@@ -4,6 +4,155 @@
 
 ---
 
+### 2026-03-12 (evening) — Paper overhaul: 22 agents, all figures + content + fixes
+Why: Use remaining Claude compute to close all paper gaps before submission.
+
+**Leave-K-Out CV (v3, CPU-only) — DONE**
+- Script: `scripts/held_out_benchmark_eval.py` | Output: `data/use_cases/results_test_only_v3/held_out_eval.json`
+- **Mean gap: +0.003 (std: 0.009)** — negligible, better than v2's +0.010
+- Fold AUROCs: 0.866, 0.885, 0.876, 0.872 (all strong)
+- experiments.tex table updated — no longer says "pending v3 re-run"
+
+**All 12 paper figures now v3** (previously 7/11 + 1 new):
+- 3 blocked figures generated: auroc_comparison, bootstrap_distribution, effect_size (from new all-baselines bootstrap CIs)
+- Reliability diagram: new figure (`fig_reliability_diagram.pdf`)
+- Production UC figure: regenerated with v3 uc_e/f/g results
+- Cross-model transfer figure: already done in earlier session
+
+**UC E/F/G results computed** (CPU-only, v3 scored data):
+- UC-E: AUPRC 0.852–0.888, Best F1 0.763–0.798
+- UC-F: Coverage at 95% acc 14–21%
+- UC-G: Green tier acc 0.879–0.897, ~21% workload reduction
+- Output: `data/use_cases/results_test_only_v3/uc_{e,f,g}_results.json`
+
+**Paper proofread — 20 issues found and 15 fixed:**
+- CRITICAL fixed: "over 25pts"→"over 26pts", "over 40pts"→"over 34pts", "95%"→"97%" retention (4 locations), healthcare threshold mismatch, missing bib entry `si2024finegrain`
+- All AUPRC values corrected to 0.887
+- All remaining v2 numbers replaced (related_work.tex 0.953→0.878)
+- Benchmark naming standardized (MM-Vet, HLE-Multimodal)
+- Notation consistency fixed in method.tex
+- Still open: model size ablation caveat, benchmark count ambiguity, workload reduction mismatch, training count ~11K vs 10,892
+
+**New paper content inserted:**
+- Error analysis paragraph (experiments.tex, after per-benchmark figure)
+- Response length shortcut defense paragraph (experiments.tex, Section 4.2)
+- Difficulty stratification paragraph (experiments.tex, Section 4.4)
+- 3 discussion limitation paragraphs (frontier difficulty, easy question collapse, cross-model variance)
+- 3 appendix tables (per-benchmark, length analysis, difficulty stratification)
+
+**Other outputs:**
+- HuggingFace model card: `pinocchio_package/MODEL_CARD.md`
+- Training sample count verified: 10,892 (confirmed by split_info.json + training log)
+- Paper review notes saved: `data/paper_review_notes.md`
+- Qwen3.5 ablation script fixed for v3 (split_info path, per-size HP tuning, CUDA indices)
+
+**Appendix content added:**
+- Cross-model transfer matrix table (19 benchmarks × 3 models)
+- Per-benchmark breakdown table (20 rows, sorted by AUROC)
+- Response length analysis table (quartile AUROCs)
+- Difficulty stratification table (3 tiers)
+
+**Overleaf pushed** (2 commits: `40c9505`, `732f605`). Paper live on Overleaf with all v3 updates.
+
+**Page count warning:** Estimated ~11-12 pages, ICML limit is 8. Need to move ~3-4 pages to appendix. Candidates: domain deployment (healthcare/finance), production use case details, model size figure. Trimming plan agent hit compute limit — needs follow-up.
+
+**CLAUDE.md fixed:** Training count 11,342 → 10,892.
+
+**GPU jobs ready (not submitted):**
+1. Multi-seed v3: `slurm/multi_seed_v3_fixed.sh` — 4 jobs × 4×A100 × ~4.5h each
+2. Qwen3.5 size ablation: `slurm/qwen35_full_ablation.sh` — 3×A100 × ~7h (script fixed)
+3. Leave-K-out: DONE (was CPU-only, not GPU)
+
+---
+
+### 2026-03-12 — v3 analysis blitz + paper fixes (11 parallel agents)
+Why: Batch of CPU-only analyses to strengthen paper and fix stale numbers.
+
+**New v3 analyses** (all saved to `data/use_cases/results_test_only_v3/`):
+- `per_benchmark_deep_analysis.json`: 20 benchmarks, mean AUROC 0.821. Best: livebench 0.995, mathvista 0.954. Worst: HLE 0.616, prbench 0.638. **Accuracy vs AUROC correlation ≈ 0** (r=0.045) — calibrator performance unrelated to benchmark difficulty.
+- `cross_model_analysis.json`: Per-model AUROCs stable (range 0.009). Score correlation across models rho=0.586–0.635. Biggest gaps: prbench on Qwen3.5 (0.443), charxiv on GPT-5-mini (0.570).
+- `difficulty_stratified_analysis.json`: Easy tier 0.832, Medium 0.862, Hard 0.848. High-confidence accuracy 87.1%. ECE=0.086.
+- `length_analysis.json`: **Calibrator is NOT using length as shortcut.** Length-only AUROC=0.630 vs calibrator 0.878. Residual AUROC after regressing out length=0.866 (−0.012). Length explains only 3.2% of signal above chance.
+- `auprc_v3.json`: Combined AUPRC=0.887 [0.869, 0.904]. Per-model: gpt5mini 0.878, gpt52 0.896, qwen35 0.885.
+- `bootstrap_ci_v3_all_baselines.json`: All-baseline bootstrap CIs (was previously missing — only had Calibrator). Enables 3 blocked paper figures.
+- `reliability_diagram_data.json`: 10-bin reliability diagram data for paper figure.
+
+**Paper fixes** (Overleaf):
+- Fixed AUROC 0.949→0.878, ECE 0.022→0.087 in experiments.tex:56
+- Fixed verbalized 0.607→0.610 in experiments.tex:72
+- Fixed AUPRC 0.865→0.887 in intro, conclusion, experiments (5 locations)
+- Leave-K-out table (experiments.tex:182-194) flagged as pending v3 re-run
+- Cross-model transfer figure updated from v2 (0.951/0.959/0.946) to v3 (0.882/0.877/0.873)
+
+**Figures regenerated**: 7/11 paper figures updated with v3 data and copied to overleaf/figures/. Remaining 3 (auroc_comparison, bootstrap_distribution, effect_size) should now be unblocked by all-baselines bootstrap CIs.
+
+**Easy question data** (`data/finetune/easy_questions/all_easy.jsonl`): 9K samples, 6 easy benchmarks, 50/50 correct/incorrect, synthetic source. Zero overlap with v3 test. If mixed into training, recommend downsampling to 1.5–3K to avoid dominating (would be 45% of combined).
+
+**Still TODO (needs GPU)**:
+- Multi-seed v3 training (OOM-fixed script ready at `slurm/multi_seed_v3_fixed.sh`)
+- Leave-K-out CV with v3 split (for experiments table)
+- Regenerate 3 remaining figures from all-baseline bootstrap CIs
+- Re-run Qwen3.5 model size ablation with per-size HP tuning
+
+---
+
+### 2026-03-12 — Comprehensive code audit (6 parallel agents)
+Why: AI-generated codebase has never been systematically audited for bugs. Ran 6 agents in parallel to audit all major script categories.
+
+**Agent 1: `train_best_uq.py` — 14 issues found**
+- CRITICAL: Image file handle leak (lines 520, 634) — `Image.open()` never closed, OOM risk over epochs
+- CRITICAL: pixel_values shape bugs (lines 592-605, 992, 994) — `torch.cat` vs `torch.stack`, empty list instead of tensor
+- HIGH: Question-level split key uses bare `sample.id` (line 842), not `(benchmark, source_model, id)` — potential hidden leakage if different benchmarks reuse same IDs
+- HIGH: Unmatched samples silently added to train when reusing old split_info (lines 807-814)
+- MEDIUM: Target token "ii"/"i" assumed single-token (line 533), hardcoded assistant fallback 77091 (line 507), ECE off-by-one excluding p=1.0 (line 695)
+
+**Agent 3: Use case scripts — 5 bugs found**
+- HIGH: AURC trapezoid integration may use unsorted coverages (uc1, line 80)
+- MEDIUM: PR curve starts at (0, precisions[0]) not (0, 1.0) — PR-AUC slightly wrong (uc_e, line 272)
+- MEDIUM: Inverted trigger logic gap at boundary (uc_e, lines 106-109)
+- MEDIUM: Silent NaN dropout in cross-method AUROC (cpu_difficulty_stratification, line 65)
+- LOW: "Pairwise accuracy" naming includes ties (uc_a, line 189)
+
+**Agent 4: Benchmark harness (`uq_eval/`) — 8 bugs found**
+- CRITICAL: `extract_choice_letter()` hardcoded to A-D regex (common.py:47), MMLU-Pro/ChemBench have A-J → answers E-J silently dropped
+- HIGH: MMMU letter extraction strips all non-letters then takes first char (mmmu.py:190) — "The best answer is B" → extracts "T"
+- HIGH: LiveBench asymmetric matching `gold in pred` only (livebench.py:158) — should also check `pred in gold`
+- MEDIUM: SimpleQA/HLE word-subset matching too permissive (simpleqa.py:44, hle.py:74) — "yes" matches "yes no maybe"
+- MEDIUM: HLE fallback answer extraction captures wrong token (hle.py:241)
+- NOTE: HealthBench returns correct=-1 but NOT in training data, so no impact
+
+**Agent 6: Ablation & analysis scripts — 2 high bugs**
+- HIGH: Cross-model transfer figure uses hard-coded stale numbers, ignores loaded data (cpu_generate_all_figures.py:493)
+- HIGH: No-metadata ablation token ID extraction may not match in-context generation (ablation_no_metadata.py:272)
+
+**Agent 2: Scoring & eval scripts — 8 issues found**
+- CRITICAL: `filter_test_only.py` loads question-level IDs but matches sample-level IDs (lines 83-137) — works by coincidence (both 832 items), fragile
+- HIGH: Platt scaling baseline fits on train subset but stores predictions for ALL samples including train (compute_baselines.py:45-105) — inflates Platt baseline
+- HIGH: Permutation test is one-tailed (Method > Baseline) but not documented (bootstrap_ci_v3.py:66-93)
+- MEDIUM: AUROC rounded to 4 decimals in filter_test_only.py:204, bootstrap skips degenerate samples silently
+
+**Agent 5: Pinocchio package (`pinocchio_package/`) — 3 critical, 4 medium**
+- CRITICAL: Token IDs wrong — package uses `"(i"`/`"(ii"` but model trained on `"i"`/`"ii"` (model.py:129). ALL package scores are incorrect.
+- CRITICAL: Default base model is `Qwen/Qwen3.5-0.8B` but checkpoints use `Qwen/Qwen3-VL-8B-Instruct` (model.py:23). Model loading fails.
+- CRITICAL: No Qwen3-VL class detection — falls back to AutoModelForCausalLM, can't load VLM (model.py:55)
+- MEDIUM: Website `.format()` crashes on `{` in input, no inference error handling, wrong test checkpoint, README says "text only" for VLM model
+
+**Confirmed findings:**
+- Question-level split key (`s.id` at line 842) causes cross-benchmark ID collision: vizwiz=3309, mathverse=1655, etc. are simple integers that overlap. Fix: use `(s.benchmark, s.id)` as key.
+- `extract_choice_letter` A-D bug confirmed in code (common.py:47), but MMLU-Pro has its own A-J parser (line 101). Impact limited to MMMU, ChemBench, GPQA (GPQA is 4-choice so unaffected).
+- HealthBench correct=-1 confirmed but NOT in training data — no impact.
+
+**Impact assessment:** The most impactful bugs are likely: (1) SimpleQA/HLE word-subset matching inflating "correct" labels in ~5K training samples, (2) MMMU letter extraction wrong for verbose responses, (3) LiveBench asymmetric matching. These could meaningfully affect training labels and thus model quality. The question-level split ID collision biases split composition but doesn't cause leakage. Shape bugs in training script likely masked by batch_size=1.
+
+**TODO (ordered by priority):**
+1. Fix pinocchio package: token IDs `"i"`/`"ii"` not `"(i"`/`"(ii"`, base model → Qwen3-VL-8B, add VLM class detection
+2. Fix grading: `simpleqa.py:44` and `hle.py:74` word-subset match, `mmmu.py:190` letter extraction, `livebench.py:158` symmetric match, `common.py:47` A-D→A-J regex
+3. Fix `train_best_uq.py:842` split key → `(s.benchmark, s.id)`, close Image handles (lines 520/634)
+4. Fix `compute_baselines.py:68` Platt scaling train/test contamination
+5. Fix `cpu_generate_all_figures.py:493` hard-coded cross-model matrix → read from data
+6. After fixes: re-run benchmark evals, retrain model, re-score, re-generate figures
+7. Full detailed agent outputs saved at `/tmp/claude-1039/-scratch-khayes-LLM/tasks/*.output` (may not persist across sessions)
+
 ### 2026-03-11 — GPU access unavailable until further notice
 GPUs cannot be used. All GPU work is blocked until further notice.
 

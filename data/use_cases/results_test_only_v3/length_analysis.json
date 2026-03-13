@@ -1,0 +1,415 @@
+{
+  "gpt5mini": {
+    "model": "gpt5mini",
+    "n_samples": 655,
+    "accuracy": 0.4992,
+    "length_stats": {
+      "mean": 2325.8,
+      "median": 947.0,
+      "std": 3134.2,
+      "min": 81,
+      "max": 16384
+    },
+    "correlations": {
+      "spearman": {
+        "length_vs_cal_prob": {
+          "r": -0.316,
+          "p": 1.1761e-16
+        },
+        "length_vs_correctness": {
+          "r": -0.2311,
+          "p": 2.1753e-09
+        },
+        "cal_prob_vs_correctness": {
+          "r": 0.6624,
+          "p": 5.6806e-84
+        }
+      },
+      "pearson": {
+        "length_vs_cal_prob": {
+          "r": -0.289,
+          "p": 4.537e-14
+        },
+        "length_vs_correctness": {
+          "r": -0.1848,
+          "p": 1.9134e-06
+        }
+      }
+    },
+    "auroc": {
+      "calibrator": 0.8823,
+      "length_only": 0.6334,
+      "length_direction": "negative",
+      "log_length_only": 0.6334,
+      "calibrator_residual_after_length": 0.8606,
+      "auroc_drop_from_length_control": 0.0217
+    },
+    "partial_correlations": {
+      "cal_prob_vs_correct_controlling_length": {
+        "r": 0.6356,
+        "p": 2.6798e-75
+      },
+      "length_vs_correct_controlling_cal_prob": {
+        "r": 0.0047,
+        "p": 0.90367
+      }
+    },
+    "quartile_auroc": [
+      {
+        "quartile": "Q1 (\u2264426)",
+        "n": 164,
+        "accuracy": 0.7134,
+        "mean_cal_prob": 0.7086,
+        "auroc": 0.89,
+        "length_range": [
+          0,
+          426
+        ]
+      },
+      {
+        "quartile": "Q2 (426-947)",
+        "n": 163,
+        "accuracy": 0.4356,
+        "mean_cal_prob": 0.4407,
+        "auroc": 0.8588,
+        "length_range": [
+          426,
+          947
+        ]
+      },
+      {
+        "quartile": "Q3 (947-2850)",
+        "n": 164,
+        "accuracy": 0.4695,
+        "mean_cal_prob": 0.4817,
+        "auroc": 0.8524,
+        "length_range": [
+          947,
+          2849
+        ]
+      },
+      {
+        "quartile": "Q4 (>2850)",
+        "n": 164,
+        "accuracy": 0.378,
+        "mean_cal_prob": 0.3365,
+        "auroc": 0.8861,
+        "length_range": [
+          2849,
+          16384
+        ]
+      }
+    ]
+  },
+  "gpt52": {
+    "model": "gpt52",
+    "n_samples": 725,
+    "accuracy": 0.571,
+    "length_stats": {
+      "mean": 2980.7,
+      "median": 546.0,
+      "std": 6571.0,
+      "min": 34,
+      "max": 58468
+    },
+    "correlations": {
+      "spearman": {
+        "length_vs_cal_prob": {
+          "r": -0.2725,
+          "p": 8.1846e-14
+        },
+        "length_vs_correctness": {
+          "r": -0.1862,
+          "p": 4.4692e-07
+        },
+        "cal_prob_vs_correctness": {
+          "r": 0.646,
+          "p": 7.3549e-87
+        }
+      },
+      "pearson": {
+        "length_vs_cal_prob": {
+          "r": -0.1064,
+          "p": 0.0041381
+        },
+        "length_vs_correctness": {
+          "r": -0.1226,
+          "p": 0.00093802
+        }
+      }
+    },
+    "auroc": {
+      "calibrator": 0.8766,
+      "length_only": 0.6086,
+      "length_direction": "negative",
+      "log_length_only": 0.6086,
+      "calibrator_residual_after_length": 0.8641,
+      "auroc_drop_from_length_control": 0.0126
+    },
+    "partial_correlations": {
+      "cal_prob_vs_correct_controlling_length": {
+        "r": 0.6424,
+        "p": 1.6456e-85
+      },
+      "length_vs_correct_controlling_cal_prob": {
+        "r": -0.071,
+        "p": 0.056348
+      }
+    },
+    "quartile_auroc": [
+      {
+        "quartile": "Q1 (\u2264215)",
+        "n": 180,
+        "accuracy": 0.7111,
+        "mean_cal_prob": 0.7209,
+        "auroc": 0.9118,
+        "length_range": [
+          0,
+          215
+        ]
+      },
+      {
+        "quartile": "Q2 (215-546)",
+        "n": 182,
+        "accuracy": 0.5879,
+        "mean_cal_prob": 0.5725,
+        "auroc": 0.9059,
+        "length_range": [
+          215,
+          546
+        ]
+      },
+      {
+        "quartile": "Q3 (546-2714)",
+        "n": 181,
+        "accuracy": 0.5028,
+        "mean_cal_prob": 0.5245,
+        "auroc": 0.8587,
+        "length_range": [
+          546,
+          2714
+        ]
+      },
+      {
+        "quartile": "Q4 (>2714)",
+        "n": 182,
+        "accuracy": 0.4835,
+        "mean_cal_prob": 0.4899,
+        "auroc": 0.7843,
+        "length_range": [
+          2714,
+          58468
+        ]
+      }
+    ]
+  },
+  "qwen35": {
+    "model": "qwen35",
+    "n_samples": 573,
+    "accuracy": 0.5253,
+    "length_stats": {
+      "mean": 1395.6,
+      "median": 852.0,
+      "std": 2135.1,
+      "min": 100,
+      "max": 22128
+    },
+    "correlations": {
+      "spearman": {
+        "length_vs_cal_prob": {
+          "r": -0.2881,
+          "p": 2.0694e-12
+        },
+        "length_vs_correctness": {
+          "r": -0.2999,
+          "p": 2.2579e-13
+        },
+        "cal_prob_vs_correctness": {
+          "r": 0.6459,
+          "p": 5.7403e-69
+        }
+      },
+      "pearson": {
+        "length_vs_cal_prob": {
+          "r": -0.3133,
+          "p": 1.6278e-14
+        },
+        "length_vs_correctness": {
+          "r": -0.3016,
+          "p": 1.6231e-13
+        }
+      }
+    },
+    "auroc": {
+      "calibrator": 0.8733,
+      "length_only": 0.6734,
+      "length_direction": "negative",
+      "log_length_only": 0.6734,
+      "calibrator_residual_after_length": 0.8256,
+      "auroc_drop_from_length_control": 0.0477
+    },
+    "partial_correlations": {
+      "cal_prob_vs_correct_controlling_length": {
+        "r": 0.5978,
+        "p": 1.0554e-56
+      },
+      "length_vs_correct_controlling_cal_prob": {
+        "r": -0.1398,
+        "p": 0.00080319
+      }
+    },
+    "quartile_auroc": [
+      {
+        "quartile": "Q1 (\u2264387)",
+        "n": 143,
+        "accuracy": 0.6503,
+        "mean_cal_prob": 0.5626,
+        "auroc": 0.7549,
+        "length_range": [
+          0,
+          387
+        ]
+      },
+      {
+        "quartile": "Q2 (387-852)",
+        "n": 143,
+        "accuracy": 0.5944,
+        "mean_cal_prob": 0.557,
+        "auroc": 0.9256,
+        "length_range": [
+          387,
+          852
+        ]
+      },
+      {
+        "quartile": "Q3 (852-1495)",
+        "n": 142,
+        "accuracy": 0.6268,
+        "mean_cal_prob": 0.6031,
+        "auroc": 0.8441,
+        "length_range": [
+          852,
+          1495
+        ]
+      },
+      {
+        "quartile": "Q4 (>1495)",
+        "n": 145,
+        "accuracy": 0.2345,
+        "mean_cal_prob": 0.2063,
+        "auroc": 0.8655,
+        "length_range": [
+          1495,
+          22128
+        ]
+      }
+    ]
+  },
+  "combined": {
+    "model": "combined",
+    "n_samples": 1953,
+    "accuracy": 0.5335,
+    "length_stats": {
+      "mean": 2296.0,
+      "median": 809.0,
+      "std": 4590.5,
+      "min": 34,
+      "max": 58468
+    },
+    "correlations": {
+      "spearman": {
+        "length_vs_cal_prob": {
+          "r": -0.2716,
+          "p": 2.2663e-34
+        },
+        "length_vs_correctness": {
+          "r": -0.2255,
+          "p": 6.203e-24
+        },
+        "cal_prob_vs_correctness": {
+          "r": 0.6531,
+          "p": 8.0789e-238
+        }
+      },
+      "pearson": {
+        "length_vs_cal_prob": {
+          "r": -0.1514,
+          "p": 1.7536e-11
+        },
+        "length_vs_correctness": {
+          "r": -0.1433,
+          "p": 1.9971e-10
+        }
+      }
+    },
+    "auroc": {
+      "calibrator": 0.8778,
+      "length_only": 0.6305,
+      "length_direction": "negative",
+      "log_length_only": 0.6305,
+      "calibrator_residual_after_length": 0.8659,
+      "auroc_drop_from_length_control": 0.0119
+    },
+    "partial_correlations": {
+      "cal_prob_vs_correct_controlling_length": {
+        "r": 0.6383,
+        "p": 7.5533e-224
+      },
+      "length_vs_correct_controlling_cal_prob": {
+        "r": -0.0603,
+        "p": 0.0077225
+      }
+    },
+    "quartile_auroc": [
+      {
+        "quartile": "Q1 (\u2264319)",
+        "n": 488,
+        "accuracy": 0.6947,
+        "mean_cal_prob": 0.669,
+        "auroc": 0.8733,
+        "length_range": [
+          0,
+          319
+        ]
+      },
+      {
+        "quartile": "Q2 (319-809)",
+        "n": 488,
+        "accuracy": 0.5512,
+        "mean_cal_prob": 0.5412,
+        "auroc": 0.8914,
+        "length_range": [
+          319,
+          809
+        ]
+      },
+      {
+        "quartile": "Q3 (809-2240)",
+        "n": 487,
+        "accuracy": 0.5175,
+        "mean_cal_prob": 0.5099,
+        "auroc": 0.8488,
+        "length_range": [
+          809,
+          2240
+        ]
+      },
+      {
+        "quartile": "Q4 (>2240)",
+        "n": 490,
+        "accuracy": 0.3714,
+        "mean_cal_prob": 0.3613,
+        "auroc": 0.8612,
+        "length_range": [
+          2240,
+          58468
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "conclusion": "Length-only baseline AUROC: 0.630 vs calibrator: 0.878. After regressing out length, calibrator residual AUROC: 0.866 (drop of 0.012). Partial correlation of cal_prob with correctness controlling for length: 0.638. The calibrator captures substantial signal beyond response length.",
+    "is_shortcut": false,
+    "length_signal_fraction": 0.0315
+  }
+}

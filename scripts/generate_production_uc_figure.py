@@ -56,7 +56,7 @@ MODEL_NAMES = {
 
 # Use GPT-5.2 as the representative model (cross-model, best results)
 REPRESENTATIVE = "gpt52"
-RESULTS_DIR = Path("data/use_cases/results_test_only_v2")
+RESULTS_DIR = Path("data/use_cases/results_test_only_v3")
 
 
 def load_results(uc_name):

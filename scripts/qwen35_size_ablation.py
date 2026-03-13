@@ -53,16 +53,16 @@ MODELS = {
         "name": "Qwen/Qwen3.5-4B",
         "lora_r": 16,
         "lora_alpha": 32,
-        "learning_rate": 1e-4,
+        "learning_rate": 5e-5,
         "grad_accum": 16,
         "batch_size": 1,
         "gpus": 1,
     },
     "9b": {
         "name": "Qwen/Qwen3.5-9B",
-        "lora_r": 32,
-        "lora_alpha": 64,
-        "learning_rate": 1e-4,
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "learning_rate": 3e-5,
         "grad_accum": 16,
         "batch_size": 1,
         "gpus": 2,
@@ -70,7 +70,7 @@ MODELS = {
 }
 
 OUTPUT_BASE = Path("data/ablations/qwen35_model_size")
-SPLIT_INFO = "uq_models/best_v2_r32_combined/split_info.json"
+SPLIT_INFO = "uq_models/best_v3_qsplit/split_info.json"
 
 
 def train_single_model(size_key, config, smoke_test=False, epochs=3):

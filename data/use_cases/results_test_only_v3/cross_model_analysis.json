@@ -1,0 +1,662 @@
+{
+  "description": "Cross-model transfer analysis for v3 scored test data (question-level split)",
+  "overall_aurocs": {
+    "gpt5mini": 0.8823,
+    "gpt52": 0.8766,
+    "qwen35": 0.8733
+  },
+  "auroc_matrix": {
+    "gpt5mini": {
+      "arc_agi": 0.9137,
+      "bbeh": 0.7602,
+      "charxiv": 0.5696,
+      "chembench": 0.6232,
+      "gpqa": 0.83,
+      "hallusionbench": 0.8448,
+      "hle": 0.6207,
+      "hle_multimodal": 0.7353,
+      "livebench": 1.0,
+      "mathverse": 0.8665,
+      "mathvision": 0.8817,
+      "mathvista": 0.9493,
+      "mmmu": 0.8556,
+      "mmstar": 0.7708,
+      "mmvet": 0.92,
+      "omnimath": 0.913,
+      "prbench": 0.731,
+      "realworldqa": 0.8757,
+      "simpleqa": 0.8379,
+      "vizwiz": 0.9028
+    },
+    "gpt52": {
+      "arc_agi": 0.7732,
+      "bbeh": 0.8312,
+      "charxiv": 0.8245,
+      "chembench": 0.7324,
+      "gpqa": 0.7257,
+      "hallusionbench": 0.9196,
+      "hle": 0.6367,
+      "hle_multimodal": 0.6531,
+      "livebench": 0.9971,
+      "mathverse": 0.9477,
+      "mathvision": 0.8079,
+      "mathvista": 0.9716,
+      "mmmu": 0.875,
+      "mmstar": 0.75,
+      "mmvet": 0.875,
+      "omnimath": 0.9474,
+      "prbench": 0.6748,
+      "realworldqa": 0.9152,
+      "simpleqa": 0.8963,
+      "vizwiz": 0.791
+    },
+    "qwen35": {
+      "arc_agi": 0.7939,
+      "bbeh": 0.8907,
+      "charxiv": 0.8378,
+      "chembench": 0.7021,
+      "gpqa": 0.6575,
+      "hallusionbench": 0.877,
+      "hle": 0.5048,
+      "hle_multimodal": null,
+      "livebench": 0.9852,
+      "mathverse": 0.7656,
+      "mathvision": 0.8571,
+      "mathvista": 0.9514,
+      "mmmu": 0.8289,
+      "mmstar": 0.8634,
+      "mmvet": 0.7727,
+      "omnimath": 0.9615,
+      "prbench": 0.4429,
+      "realworldqa": 0.9544,
+      "simpleqa": 0.664,
+      "vizwiz": 0.8065
+    }
+  },
+  "sample_counts": {
+    "gpt5mini": {
+      "arc_agi": 38,
+      "bbeh": 30,
+      "charxiv": 38,
+      "chembench": 32,
+      "gpqa": 30,
+      "hallusionbench": 37,
+      "hle": 30,
+      "hle_multimodal": 18,
+      "livebench": 37,
+      "mathverse": 38,
+      "mathvision": 37,
+      "mathvista": 45,
+      "mmmu": 23,
+      "mmstar": 34,
+      "mmvet": 15,
+      "omnimath": 37,
+      "prbench": 37,
+      "realworldqa": 39,
+      "simpleqa": 34,
+      "vizwiz": 26
+    },
+    "gpt52": {
+      "arc_agi": 38,
+      "bbeh": 46,
+      "charxiv": 40,
+      "chembench": 38,
+      "gpqa": 30,
+      "hallusionbench": 39,
+      "hle": 40,
+      "hle_multimodal": 28,
+      "livebench": 41,
+      "mathverse": 35,
+      "mathvision": 36,
+      "mathvista": 36,
+      "mmmu": 23,
+      "mmstar": 42,
+      "mmvet": 33,
+      "omnimath": 26,
+      "prbench": 42,
+      "realworldqa": 37,
+      "simpleqa": 45,
+      "vizwiz": 30
+    },
+    "qwen35": {
+      "arc_agi": 38,
+      "bbeh": 39,
+      "charxiv": 40,
+      "chembench": 38,
+      "gpqa": 30,
+      "hallusionbench": 39,
+      "hle": 26,
+      "hle_multimodal": 0,
+      "livebench": 24,
+      "mathverse": 20,
+      "mathvision": 8,
+      "mathvista": 36,
+      "mmmu": 23,
+      "mmstar": 42,
+      "mmvet": 32,
+      "omnimath": 15,
+      "prbench": 12,
+      "realworldqa": 37,
+      "simpleqa": 45,
+      "vizwiz": 29
+    }
+  },
+  "accuracy_matrix": {
+    "gpt5mini": {
+      "arc_agi": 0.3684,
+      "bbeh": 0.5667,
+      "charxiv": 0.6053,
+      "chembench": 0.7188,
+      "gpqa": 0.6667,
+      "hallusionbench": 0.7838,
+      "hle": 0.0333,
+      "hle_multimodal": 0.0556,
+      "livebench": 0.6757,
+      "mathverse": 0.4211,
+      "mathvision": 0.3243,
+      "mathvista": 0.3111,
+      "mmmu": 0.7826,
+      "mmstar": 0.8235,
+      "mmvet": 0.3333,
+      "omnimath": 0.2703,
+      "prbench": 0.8108,
+      "realworldqa": 0.4615,
+      "simpleqa": 0.1471,
+      "vizwiz": 0.6923
+    },
+    "gpt52": {
+      "arc_agi": 0.7368,
+      "bbeh": 0.6739,
+      "charxiv": 0.725,
+      "chembench": 0.6842,
+      "gpqa": 0.8,
+      "hallusionbench": 0.8205,
+      "hle": 0.25,
+      "hle_multimodal": 0.25,
+      "livebench": 0.7073,
+      "mathverse": 0.5143,
+      "mathvision": 0.4167,
+      "mathvista": 0.3611,
+      "mmmu": 0.8696,
+      "mmstar": 0.9048,
+      "mmvet": 0.3636,
+      "omnimath": 0.2692,
+      "prbench": 0.5714,
+      "realworldqa": 0.4324,
+      "simpleqa": 0.3111,
+      "vizwiz": 0.7
+    },
+    "qwen35": {
+      "arc_agi": 0.1316,
+      "bbeh": 0.2308,
+      "charxiv": 0.7,
+      "chembench": 0.7895,
+      "gpqa": 0.6667,
+      "hallusionbench": 0.7949,
+      "hle": 0.1923,
+      "hle_multimodal": null,
+      "livebench": 0.625,
+      "mathverse": 0.6,
+      "mathvision": 0.125,
+      "mathvista": 0.3333,
+      "mmmu": 0.8261,
+      "mmstar": 0.8571,
+      "mmvet": 0.3125,
+      "omnimath": 0.1333,
+      "prbench": 0.4167,
+      "realworldqa": 0.4595,
+      "simpleqa": 0.5111,
+      "vizwiz": 0.7241
+    }
+  },
+  "benchmark_consistency": [
+    {
+      "benchmark": "livebench",
+      "aurocs": {
+        "gpt5mini": 1.0,
+        "gpt52": 0.9971,
+        "qwen35": 0.9852
+      },
+      "mean": 0.9941,
+      "std": 0.0064,
+      "range": 0.0148,
+      "n_models": 3,
+      "min_samples": 24
+    },
+    {
+      "benchmark": "mathvista",
+      "aurocs": {
+        "gpt5mini": 0.9493,
+        "gpt52": 0.9716,
+        "qwen35": 0.9514
+      },
+      "mean": 0.9574,
+      "std": 0.0101,
+      "range": 0.0223,
+      "n_models": 3,
+      "min_samples": 36
+    },
+    {
+      "benchmark": "mmmu",
+      "aurocs": {
+        "gpt5mini": 0.8556,
+        "gpt52": 0.875,
+        "qwen35": 0.8289
+      },
+      "mean": 0.8532,
+      "std": 0.0189,
+      "range": 0.0461,
+      "n_models": 3,
+      "min_samples": 23
+    },
+    {
+      "benchmark": "omnimath",
+      "aurocs": {
+        "gpt5mini": 0.913,
+        "gpt52": 0.9474,
+        "qwen35": 0.9615
+      },
+      "mean": 0.9406,
+      "std": 0.0204,
+      "range": 0.0485,
+      "n_models": 3,
+      "min_samples": 15
+    },
+    {
+      "benchmark": "hallusionbench",
+      "aurocs": {
+        "gpt5mini": 0.8448,
+        "gpt52": 0.9196,
+        "qwen35": 0.877
+      },
+      "mean": 0.8805,
+      "std": 0.0306,
+      "range": 0.0748,
+      "n_models": 3,
+      "min_samples": 37
+    },
+    {
+      "benchmark": "realworldqa",
+      "aurocs": {
+        "gpt5mini": 0.8757,
+        "gpt52": 0.9152,
+        "qwen35": 0.9544
+      },
+      "mean": 0.9151,
+      "std": 0.0321,
+      "range": 0.0787,
+      "n_models": 3,
+      "min_samples": 37
+    },
+    {
+      "benchmark": "hle_multimodal",
+      "aurocs": {
+        "gpt5mini": 0.7353,
+        "gpt52": 0.6531,
+        "qwen35": null
+      },
+      "mean": 0.6942,
+      "std": 0.0411,
+      "range": 0.0822,
+      "n_models": 2,
+      "min_samples": 18
+    },
+    {
+      "benchmark": "chembench",
+      "aurocs": {
+        "gpt5mini": 0.6232,
+        "gpt52": 0.7324,
+        "qwen35": 0.7021
+      },
+      "mean": 0.6859,
+      "std": 0.046,
+      "range": 0.1092,
+      "n_models": 3,
+      "min_samples": 32
+    },
+    {
+      "benchmark": "vizwiz",
+      "aurocs": {
+        "gpt5mini": 0.9028,
+        "gpt52": 0.791,
+        "qwen35": 0.8065
+      },
+      "mean": 0.8334,
+      "std": 0.0495,
+      "range": 0.1118,
+      "n_models": 3,
+      "min_samples": 26
+    },
+    {
+      "benchmark": "mmstar",
+      "aurocs": {
+        "gpt5mini": 0.7708,
+        "gpt52": 0.75,
+        "qwen35": 0.8634
+      },
+      "mean": 0.7947,
+      "std": 0.0493,
+      "range": 0.1134,
+      "n_models": 3,
+      "min_samples": 34
+    },
+    {
+      "benchmark": "bbeh",
+      "aurocs": {
+        "gpt5mini": 0.7602,
+        "gpt52": 0.8312,
+        "qwen35": 0.8907
+      },
+      "mean": 0.8274,
+      "std": 0.0533,
+      "range": 0.1305,
+      "n_models": 3,
+      "min_samples": 30
+    },
+    {
+      "benchmark": "hle",
+      "aurocs": {
+        "gpt5mini": 0.6207,
+        "gpt52": 0.6367,
+        "qwen35": 0.5048
+      },
+      "mean": 0.5874,
+      "std": 0.0588,
+      "range": 0.1319,
+      "n_models": 3,
+      "min_samples": 26
+    },
+    {
+      "benchmark": "arc_agi",
+      "aurocs": {
+        "gpt5mini": 0.9137,
+        "gpt52": 0.7732,
+        "qwen35": 0.7939
+      },
+      "mean": 0.8269,
+      "std": 0.0619,
+      "range": 0.1405,
+      "n_models": 3,
+      "min_samples": 38
+    },
+    {
+      "benchmark": "mmvet",
+      "aurocs": {
+        "gpt5mini": 0.92,
+        "gpt52": 0.875,
+        "qwen35": 0.7727
+      },
+      "mean": 0.8559,
+      "std": 0.0616,
+      "range": 0.1473,
+      "n_models": 3,
+      "min_samples": 15
+    },
+    {
+      "benchmark": "gpqa",
+      "aurocs": {
+        "gpt5mini": 0.83,
+        "gpt52": 0.7257,
+        "qwen35": 0.6575
+      },
+      "mean": 0.7377,
+      "std": 0.0709,
+      "range": 0.1725,
+      "n_models": 3,
+      "min_samples": 30
+    },
+    {
+      "benchmark": "mathverse",
+      "aurocs": {
+        "gpt5mini": 0.8665,
+        "gpt52": 0.9477,
+        "qwen35": 0.7656
+      },
+      "mean": 0.8599,
+      "std": 0.0745,
+      "range": 0.1821,
+      "n_models": 3,
+      "min_samples": 20
+    },
+    {
+      "benchmark": "simpleqa",
+      "aurocs": {
+        "gpt5mini": 0.8379,
+        "gpt52": 0.8963,
+        "qwen35": 0.664
+      },
+      "mean": 0.7994,
+      "std": 0.0987,
+      "range": 0.2323,
+      "n_models": 3,
+      "min_samples": 34
+    },
+    {
+      "benchmark": "charxiv",
+      "aurocs": {
+        "gpt5mini": 0.5696,
+        "gpt52": 0.8245,
+        "qwen35": 0.8378
+      },
+      "mean": 0.744,
+      "std": 0.1234,
+      "range": 0.2682,
+      "n_models": 3,
+      "min_samples": 38
+    },
+    {
+      "benchmark": "prbench",
+      "aurocs": {
+        "gpt5mini": 0.731,
+        "gpt52": 0.6748,
+        "qwen35": 0.4429
+      },
+      "mean": 0.6162,
+      "std": 0.1247,
+      "range": 0.2881,
+      "n_models": 3,
+      "min_samples": 12
+    }
+  ],
+  "most_consistent_top5": [
+    "livebench",
+    "mathvista",
+    "mmmu",
+    "omnimath",
+    "hallusionbench"
+  ],
+  "most_divergent_top5": [
+    "gpqa",
+    "mathverse",
+    "simpleqa",
+    "charxiv",
+    "prbench"
+  ],
+  "score_correlations": {
+    "gpt5mini_vs_gpt52": {
+      "n_shared": 379,
+      "pearson_r": 0.623,
+      "pearson_p": 4.0100832468218064e-42,
+      "spearman_rho": 0.6354,
+      "spearman_p": 2.9708441138808955e-44,
+      "label_agreement": 0.7335,
+      "calibrator_prediction_agreement": 0.7467
+    },
+    "gpt5mini_vs_qwen35": {
+      "n_shared": 313,
+      "pearson_r": 0.5677,
+      "pearson_p": 4.209464402390641e-28,
+      "spearman_rho": 0.5861,
+      "spearman_p": 2.9026005661858047e-30,
+      "label_agreement": 0.7316,
+      "calibrator_prediction_agreement": 0.7029
+    },
+    "gpt52_vs_qwen35": {
+      "n_shared": 496,
+      "pearson_r": 0.5446,
+      "pearson_p": 1.2113834887040489e-39,
+      "spearman_rho": 0.6174,
+      "spearman_p": 1.9067809272124538e-53,
+      "label_agreement": 0.7157,
+      "calibrator_prediction_agreement": 0.6734
+    }
+  },
+  "large_gap_benchmarks": [
+    {
+      "benchmark": "chembench",
+      "best_model": "gpt52",
+      "best_auroc": 0.7324,
+      "worst_model": "gpt5mini",
+      "worst_auroc": 0.6232,
+      "gap": 0.1092,
+      "all_aurocs": {
+        "gpt5mini": 0.6232,
+        "gpt52": 0.7324,
+        "qwen35": 0.7021
+      }
+    },
+    {
+      "benchmark": "vizwiz",
+      "best_model": "gpt5mini",
+      "best_auroc": 0.9028,
+      "worst_model": "gpt52",
+      "worst_auroc": 0.791,
+      "gap": 0.1118,
+      "all_aurocs": {
+        "gpt5mini": 0.9028,
+        "gpt52": 0.791,
+        "qwen35": 0.8065
+      }
+    },
+    {
+      "benchmark": "mmstar",
+      "best_model": "qwen35",
+      "best_auroc": 0.8634,
+      "worst_model": "gpt52",
+      "worst_auroc": 0.75,
+      "gap": 0.1134,
+      "all_aurocs": {
+        "gpt5mini": 0.7708,
+        "gpt52": 0.75,
+        "qwen35": 0.8634
+      }
+    },
+    {
+      "benchmark": "bbeh",
+      "best_model": "qwen35",
+      "best_auroc": 0.8907,
+      "worst_model": "gpt5mini",
+      "worst_auroc": 0.7602,
+      "gap": 0.1305,
+      "all_aurocs": {
+        "gpt5mini": 0.7602,
+        "gpt52": 0.8312,
+        "qwen35": 0.8907
+      }
+    },
+    {
+      "benchmark": "hle",
+      "best_model": "gpt52",
+      "best_auroc": 0.6367,
+      "worst_model": "qwen35",
+      "worst_auroc": 0.5048,
+      "gap": 0.1319,
+      "all_aurocs": {
+        "gpt5mini": 0.6207,
+        "gpt52": 0.6367,
+        "qwen35": 0.5048
+      }
+    },
+    {
+      "benchmark": "arc_agi",
+      "best_model": "gpt5mini",
+      "best_auroc": 0.9137,
+      "worst_model": "gpt52",
+      "worst_auroc": 0.7732,
+      "gap": 0.1405,
+      "all_aurocs": {
+        "gpt5mini": 0.9137,
+        "gpt52": 0.7732,
+        "qwen35": 0.7939
+      }
+    },
+    {
+      "benchmark": "mmvet",
+      "best_model": "gpt5mini",
+      "best_auroc": 0.92,
+      "worst_model": "qwen35",
+      "worst_auroc": 0.7727,
+      "gap": 0.1473,
+      "all_aurocs": {
+        "gpt5mini": 0.92,
+        "gpt52": 0.875,
+        "qwen35": 0.7727
+      }
+    },
+    {
+      "benchmark": "gpqa",
+      "best_model": "gpt5mini",
+      "best_auroc": 0.83,
+      "worst_model": "qwen35",
+      "worst_auroc": 0.6575,
+      "gap": 0.1725,
+      "all_aurocs": {
+        "gpt5mini": 0.83,
+        "gpt52": 0.7257,
+        "qwen35": 0.6575
+      }
+    },
+    {
+      "benchmark": "mathverse",
+      "best_model": "gpt52",
+      "best_auroc": 0.9477,
+      "worst_model": "qwen35",
+      "worst_auroc": 0.7656,
+      "gap": 0.1821,
+      "all_aurocs": {
+        "gpt5mini": 0.8665,
+        "gpt52": 0.9477,
+        "qwen35": 0.7656
+      }
+    },
+    {
+      "benchmark": "simpleqa",
+      "best_model": "gpt52",
+      "best_auroc": 0.8963,
+      "worst_model": "qwen35",
+      "worst_auroc": 0.664,
+      "gap": 0.2323,
+      "all_aurocs": {
+        "gpt5mini": 0.8379,
+        "gpt52": 0.8963,
+        "qwen35": 0.664
+      }
+    },
+    {
+      "benchmark": "charxiv",
+      "best_model": "qwen35",
+      "best_auroc": 0.8378,
+      "worst_model": "gpt5mini",
+      "worst_auroc": 0.5696,
+      "gap": 0.2682,
+      "all_aurocs": {
+        "gpt5mini": 0.5696,
+        "gpt52": 0.8245,
+        "qwen35": 0.8378
+      }
+    },
+    {
+      "benchmark": "prbench",
+      "best_model": "gpt5mini",
+      "best_auroc": 0.731,
+      "worst_model": "qwen35",
+      "worst_auroc": 0.4429,
+      "gap": 0.2881,
+      "all_aurocs": {
+        "gpt5mini": 0.731,
+        "gpt52": 0.6748,
+        "qwen35": 0.4429
+      }
+    }
+  ]
+}
