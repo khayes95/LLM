@@ -1,0 +1,147 @@
+{
+  "total_training_samples": 12972,
+  "total_flips": 18,
+  "flip_rate_pct": 0.139,
+  "bug1_flips": 15,
+  "bug2_flips": 0,
+  "bug3_flips": 0,
+  "bug4_flips": 3,
+  "correct_to_incorrect": 18,
+  "incorrect_to_correct": 0,
+  "bug1_examples": [
+    {
+      "benchmark": "simpleqa",
+      "model": "gpt5mini",
+      "id": "simpleqa_3271",
+      "gold": "In the shipbuilding industry.",
+      "predicted": "He worked in the shipbuilding (maritime) industry.",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "simpleqa",
+      "model": "gpt5mini",
+      "id": "simpleqa_1403",
+      "gold": "Khotyn Fortress, Ukraine",
+      "predicted": "Khotyn, Ukraine (at Khotyn Fortress)",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "simpleqa",
+      "model": "gpt52",
+      "id": "simpleqa_3834",
+      "gold": "June 15, 1923.",
+      "predicted": "15 June 1923",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "simpleqa",
+      "model": "gpt52",
+      "id": "simpleqa_1973",
+      "gold": "Mirza Afzal Beg",
+      "predicted": "Mirza Mohammad Afzal Beg",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "simpleqa",
+      "model": "gpt52",
+      "id": "simpleqa_1735",
+      "gold": "In Relation in Space",
+      "predicted": "Relation in Space",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "simpleqa",
+      "model": "qwen35",
+      "id": "simpleqa_916",
+      "gold": "21 June 2001",
+      "predicted": "June 21, 2001",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "simpleqa",
+      "model": "qwen35",
+      "id": "simpleqa_2020",
+      "gold": "29 January 1983",
+      "predicted": "January 29, 1983",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "simpleqa",
+      "model": "qwen35",
+      "id": "simpleqa_4158",
+      "gold": "30 June 1880.",
+      "predicted": "June 30, 1880",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "hle",
+      "model": "gpt5mini",
+      "id": "hle_1367",
+      "gold": "S_t converges in distribution, not in L1",
+      "predicted": "S_t converges almost surely (hence in probability and in distribution) to a finite random limit S_\u221e, but it does not con",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "hle",
+      "model": "gpt5mini",
+      "id": "hle_1076",
+      "gold": "AD, CB, EF",
+      "predicted": "CB, EF, AD",
+      "buggy": true,
+      "fixed": false,
+      "direction": "correct->incorrect"
+    }
+  ],
+  "bug2_examples": [],
+  "bug3_examples": [],
+  "bug4_examples": [
+    {
+      "benchmark": "mmmu",
+      "model": "qwen35",
+      "id": "dev_Music_4",
+      "gold": "D",
+      "predicted": "D",
+      "buggy_extract": "D",
+      "fixed_extract": "E",
+      "buggy_score": 1,
+      "fixed_score": 0,
+      "direction": "correct->incorrect"
+    },
+    {
+      "benchmark": "mathvista",
+      "model": "qwen35",
+      "id": "827",
+      "gold": "D",
+      "predicted": "D",
+      "buggy_extract": "D",
+      "fixed_extract": "E",
+      "buggy_score": 1,
+      "fixed_score": 0,
+      "direction": "correct->incorrect"
+    }
+  ],
+  "notes": {
+    "bug1": "15 flips, all correct->incorrect. But ~7 are debatable (date reordering, list reordering where answer IS correct). Only ~8 are genuinely wrong labels.",
+    "bug2": "0 flips. MMMU predictions are all single letters (JSON parse always succeeds). Bug exists in code but never triggers on this data.",
+    "bug3": "0 flips. No LiveBench case where got_norm is a substring of gold_norm but not vice versa.",
+    "bug4": "3 flips, all correct->incorrect. Only Qwen3.5 predictions with failed JSON parse. Buggy [A-D] regex coincidentally matched gold letter, but fixed [A-J] would extract a different (later) letter."
+  }
+}

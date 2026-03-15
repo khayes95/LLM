@@ -1,0 +1,5 @@
+torch
+transformers>=4.40.0
+peft>=0.10.0
+huggingface-hub
+gradio==5.12.0

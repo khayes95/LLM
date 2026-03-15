@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinocchio - LLM Uncertainty Estimation</title>
+    <meta name="description" content="Estimate the uncertainty of any LLM in a single forward pass. Works with GPT-5, Claude, Gemini, and more.">
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-card: #12121a;
+            --bg-code: #0d0d14;
+            --text: #e4e4e7;
+            --text-muted: #888;
+            --accent: #22c55e;
+            --accent-dim: #166534;
+            --amber: #f59e0b;
+            --red: #ef4444;
+            --border: #222;
+            --max-w: 960px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+        /* ---- NAV ---- */
+        nav {
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        nav .logo {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--text);
+        }
+        nav .links { display: flex; gap: 24px; font-size: 0.95em; }
+        nav .links a { color: var(--text-muted); }
+        nav .links a:hover { color: var(--text); text-decoration: none; }
+
+        /* ---- HERO ---- */
+        .hero {
+            text-align: center;
+            padding: 100px 0 80px 0;
+        }
+        .hero h1 {
+            font-size: 3.2em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero h1 .accent { color: var(--accent); }
+        .hero .subtitle {
+            font-size: 1.25em;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 36px auto;
+        }
+        .hero .cta-row {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s, box-shadow 0.2s;
+        }
+        .btn:hover { transform: translateY(-1px); text-decoration: none; }
+        .btn-primary {
+            background: var(--accent);
+            color: #000;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        .install-snippet {
+            margin-top: 28px;
+            display: inline-block;
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.95em;
+            color: var(--accent);
+            user-select: all;
+        }
+
+        /* ---- FEATURES ---- */
+        .features {
+            padding: 80px 0;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+        .feature-card .icon {
+            font-size: 2em;
+            margin-bottom: 12px;
+        }
+        .feature-card h3 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.92em;
+        }
+
+        /* ---- SECTION HEADERS ---- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-header h2 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ---- CODE BLOCKS ---- */
+        .code-section { padding: 80px 0; }
+        .code-block {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            overflow-x: auto;
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.88em;
+            line-height: 1.8;
+        }
+        .code-block .comment { color: #6a9955; }
+        .code-block .keyword { color: #c586c0; }
+        .code-block .string { color: #ce9178; }
+        .code-block .func { color: #dcdcaa; }
+        .code-block .var { color: #9cdcfe; }
+        .code-block .num { color: #b5cea8; }
+
+        /* ---- RESULTS TABLE ---- */
+        .results-section { padding: 80px 0; }
+        .results-table-wrap {
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: #0f0f18;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        td { font-size: 0.95em; }
+        tr:last-child td { border-bottom: none; }
+        .metric-good { color: var(--accent); font-weight: 600; }
+        .metric-ok { color: var(--amber); font-weight: 600; }
+
+        /* ---- USE CASES ---- */
+        .use-cases { padding: 80px 0; }
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .use-case-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+        .use-case-card h3 {
+            font-size: 1.05em;
+            margin-bottom: 8px;
+        }
+        .use-case-card p {
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+        .use-case-card .tag {
+            display: inline-block;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 0.75em;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+
+        /* ---- HOW IT WORKS ---- */
+        .how-it-works { padding: 80px 0; }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            counter-reset: step;
+        }
+        .step {
+            position: relative;
+            padding-left: 0;
+        }
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.95em;
+            margin-bottom: 16px;
+        }
+        .step h3 { font-size: 1em; margin-bottom: 6px; }
+        .step p { color: var(--text-muted); font-size: 0.88em; }
+
+        /* ---- COMPARISON ---- */
+        .comparison { padding: 80px 0; }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .comparison-col {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+        .comparison-col h3 {
+            margin-bottom: 16px;
+            font-size: 1em;
+        }
+        .comparison-col ul {
+            list-style: none;
+            padding: 0;
+        }
+        .comparison-col li {
+            padding: 6px 0;
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+        .comparison-col.pinocchio { border-color: var(--accent-dim); }
+        .comparison-col.pinocchio h3 { color: var(--accent); }
+        .comparison-col.others h3 { color: var(--text-muted); }
+
+        /* ---- CITATION ---- */
+        .citation { padding: 80px 0; }
+        .cite-block {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85em;
+            line-height: 1.7;
+            overflow-x: auto;
+            color: var(--text-muted);
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85em;
+        }
+        footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2.2em; }
+            .hero .subtitle { font-size: 1.05em; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            nav .links { gap: 16px; font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="container">
+        <div class="logo">&#x1F9E5; Pinocchio</div>
+        <div class="links">
+            <a href="#features">Features</a>
+            <a href="#quickstart">Quickstart</a>
+            <a href="#results">Results</a>
+            <a href="#use-cases">Use Cases</a>
+            <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank">Demo</a>
+            <a href="https://github.com/KevinDavidHayes/pinocchio" target="_blank">GitHub</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <h1>LLMs don't know when they're wrong.<br><span class="accent">Pinocchio does.</span></h1>
+        <p class="subtitle">
+            Estimate the uncertainty of any LLM response in a single forward pass.
+            No access to model internals needed. Just pip install and go.
+        </p>
+        <div class="cta-row">
+            <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank" class="btn btn-primary">
+                Try the Demo
+            </a>
+            <a href="https://pypi.org/project/pinocchio-uq/" target="_blank" class="btn btn-secondary">
+                PyPI Package
+            </a>
+            <a href="https://huggingface.co/KevinDavidHayes/pinocchio-0.8b" target="_blank" class="btn btn-secondary">
+                Model Weights
+            </a>
+        </div>
+        <div class="install-snippet">$ pip install pinocchio-uq</div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Pinocchio?</h2>
+            <p>A lightweight uncertainty judge that works with any language model.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">&#x1F310;</div>
+                <h3>Any Model</h3>
+                <p>Works with GPT-5, Claude, Gemini, LLaMA, Qwen &mdash; anything that produces text. No model access needed.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#x26A1;</div>
+                <h3>Single Pass</h3>
+                <p>One forward pass through a tiny 0.8B model. No sampling, no multiple generations, no chain-of-thought.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#x1F3AF;</div>
+                <h3>Calibrated</h3>
+                <p>Returns real probabilities P(correct) &isin; [0, 1], not just yes/no. AUROC 0.878 across 20+ benchmarks.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#x1F4E6;</div>
+                <h3>Tiny &amp; Fast</h3>
+                <p>0.8B parameters. Runs on CPU (~2 GB RAM). No GPU required. ~25 MB LoRA download.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#x1F504;</div>
+                <h3>Cross-Model</h3>
+                <p>Trained on GPT-5, Qwen, and others. Generalizes to unseen models without retraining.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">&#x1F5BC;</div>
+                <h3>Multimodal</h3>
+                <p>Handles both text LLM and vision-language model (VLM) outputs. One model for everything.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUICKSTART -->
+<section class="code-section" id="quickstart">
+    <div class="container">
+        <div class="section-header">
+            <h2>Quickstart</h2>
+            <p>Three lines of code to score any LLM response.</p>
+        </div>
+        <div class="code-block">
+<span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI
+<span class="keyword">from</span> pinocchio <span class="keyword">import</span> Pinocchio
+
+<span class="var">client</span> = <span class="func">OpenAI</span>()
+<span class="var">judge</span> = <span class="func">Pinocchio</span>()  <span class="comment"># downloads weights automatically (~25 MB)</span>
+
+<span class="var">messages</span> = [{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"What is the capital of France?"</span>}]
+<span class="var">response</span> = client.chat.completions.<span class="func">create</span>(model=<span class="string">"gpt-5"</span>, messages=<span class="var">messages</span>)
+
+<span class="var">score</span> = judge.<span class="func">score</span>(<span class="var">response</span>, messages=<span class="var">messages</span>)
+<span class="func">print</span>(<span class="string">f"P(correct) = </span>{<span class="var">score</span>:<span class="string">.3f}</span><span class="string">"</span>)  <span class="comment"># P(correct) = 0.97</span>
+        </div>
+
+        <div style="margin-top: 32px;">
+            <div class="section-header" style="margin-bottom: 24px;">
+                <p>Works with any provider &mdash; just pass the question and answer.</p>
+            </div>
+            <div class="code-block">
+<span class="comment"># Score a Claude response</span>
+<span class="var">score</span> = judge.<span class="func">score</span>(
+    question=<span class="string">"Explain quantum entanglement"</span>,
+    answer=<span class="var">claude_response_text</span>,
+    source_model=<span class="string">"claude-4-sonnet"</span>,
+)
+
+<span class="comment"># Selective prediction: abstain when uncertain</span>
+<span class="keyword">if</span> <span class="var">score</span> &gt;= <span class="num">0.7</span>:
+    <span class="func">print</span>(<span class="var">response</span>)
+<span class="keyword">else</span>:
+    <span class="func">print</span>(<span class="string">"I'm not confident. Let me escalate."</span>)
+
+<span class="comment"># Batch scoring</span>
+<span class="var">scores</span> = judge.<span class="func">score_batch</span>([
+    {<span class="string">"question"</span>: <span class="string">"What is 2+2?"</span>, <span class="string">"answer"</span>: <span class="string">"4"</span>},
+    {<span class="string">"question"</span>: <span class="string">"What is 2+2?"</span>, <span class="string">"answer"</span>: <span class="string">"5"</span>},
+])
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Pinocchio scores responses in three simple steps.</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <h3>Ask Any LLM</h3>
+                <p>Send your question to GPT-5, Claude, Gemini, or any model via their normal API.</p>
+            </div>
+            <div class="step">
+                <h3>Pass to Pinocchio</h3>
+                <p>Give Pinocchio the question and the LLM's answer. It doesn't need model weights or logits.</p>
+            </div>
+            <div class="step">
+                <h3>Get P(correct)</h3>
+                <p>Pinocchio returns a calibrated probability. Use it for routing, filtering, or flagging.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results-section" id="results">
+    <div class="container">
+        <div class="section-header">
+            <h2>Results</h2>
+            <p>Evaluated on held-out test data with clean question-level splits (zero train/test overlap).</p>
+        </div>
+        <div class="results-table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AUROC (overall)</td>
+                        <td class="metric-good">0.878</td>
+                        <td>Combined text + vision, 1,953 test samples</td>
+                    </tr>
+                    <tr>
+                        <td>AUROC (GPT-5-mini)</td>
+                        <td class="metric-good">0.882</td>
+                        <td>95% CI: [0.857, 0.906]</td>
+                    </tr>
+                    <tr>
+                        <td>AUROC (GPT-5.2)</td>
+                        <td class="metric-good">0.877</td>
+                        <td>95% CI: [0.851, 0.900]</td>
+                    </tr>
+                    <tr>
+                        <td>AUROC (Qwen3.5)</td>
+                        <td class="metric-good">0.873</td>
+                        <td>95% CI: [0.844, 0.900]</td>
+                    </tr>
+                    <tr>
+                        <td>ECE (calibration)</td>
+                        <td class="metric-good">0.087</td>
+                        <td>Well-calibrated probabilities</td>
+                    </tr>
+                    <tr>
+                        <td>Brier Score</td>
+                        <td class="metric-good">0.151</td>
+                        <td>Lower is better</td>
+                    </tr>
+                    <tr>
+                        <td>vs. Verbalized Baseline</td>
+                        <td class="metric-good">+0.268</td>
+                        <td>0.878 vs 0.610 (p &lt; 0.001)</td>
+                    </tr>
+                    <tr>
+                        <td>Benchmarks Evaluated</td>
+                        <td>20+</td>
+                        <td>MMLU, GPQA, HLE, MATH, ARC, and more</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison">
+    <div class="container">
+        <div class="section-header">
+            <h2>Pinocchio vs. Alternatives</h2>
+        </div>
+        <div class="comparison-grid">
+            <div class="comparison-col pinocchio">
+                <h3>&#x2705; Pinocchio</h3>
+                <ul>
+                    <li>&#x2714; Works on closed-source models (GPT-5, Claude)</li>
+                    <li>&#x2714; Single forward pass (no sampling)</li>
+                    <li>&#x2714; 0.8B parameters, runs on CPU</li>
+                    <li>&#x2714; Cross-model transfer (train on A, eval on B)</li>
+                    <li>&#x2714; Handles text + vision</li>
+                    <li>&#x2714; Calibrated probabilities</li>
+                    <li>&#x2714; Open weights (Apache 2.0)</li>
+                </ul>
+            </div>
+            <div class="comparison-col others">
+                <h3>Other Approaches</h3>
+                <ul>
+                    <li>&#x2718; Logit-based: Requires model internals</li>
+                    <li>&#x2718; Semantic Entropy: Needs N generations ($$$)</li>
+                    <li>&#x2718; Self-Consistency: Needs N generations ($$$)</li>
+                    <li>&#x2718; Verbalized confidence: Poor calibration (0.61 AUROC)</li>
+                    <li>&#x2718; MC Dropout: Requires open weights + dropout</li>
+                    <li>&#x2718; Ensemble methods: Need multiple models</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-cases" id="use-cases">
+    <div class="container">
+        <div class="section-header">
+            <h2>Use Cases</h2>
+            <p>Practical applications for uncertainty-aware LLM systems.</p>
+        </div>
+        <div class="use-case-grid">
+            <div class="use-case-card">
+                <div class="tag">Production</div>
+                <h3>Selective Prediction</h3>
+                <p>Only serve answers above a confidence threshold. Abstain or escalate to a human when uncertain.</p>
+            </div>
+            <div class="use-case-card">
+                <div class="tag">Cost Saving</div>
+                <h3>Smart Model Routing</h3>
+                <p>Start with a cheap model. If Pinocchio flags low confidence, retry with a stronger (more expensive) model.</p>
+            </div>
+            <div class="use-case-card">
+                <div class="tag">Safety</div>
+                <h3>Error Detection</h3>
+                <p>Flag likely-wrong answers for human review in high-stakes domains: healthcare, legal, finance.</p>
+            </div>
+            <div class="use-case-card">
+                <div class="tag">Evaluation</div>
+                <h3>Benchmark-Free Accuracy</h3>
+                <p>Estimate model accuracy on new data without ground-truth labels. Rank models by predicted correctness.</p>
+            </div>
+            <div class="use-case-card">
+                <div class="tag">Research</div>
+                <h3>Active Learning</h3>
+                <p>Identify which examples a model struggles with. Focus annotation effort where it matters most.</p>
+            </div>
+            <div class="use-case-card">
+                <div class="tag">UX</div>
+                <h3>Confidence Indicators</h3>
+                <p>Show users a confidence score alongside each response. Build trust through transparency.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CITATION -->
+<section class="citation" id="citation">
+    <div class="container">
+        <div class="section-header">
+            <h2>Citation</h2>
+        </div>
+        <div class="cite-block">@inproceedings{hayes2026pinocchio,
+    title={Pinocchio: Estimating the Uncertainty of Black-Box Language Models},
+    author={Hayes, Kevin and Zhang, Haosong},
+    booktitle={ICML},
+    year={2026}
+}</div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="links">
+            <a href="https://pypi.org/project/pinocchio-uq/" target="_blank">PyPI</a>
+            <a href="https://huggingface.co/KevinDavidHayes/pinocchio-0.8b" target="_blank">HuggingFace</a>
+            <a href="https://github.com/KevinDavidHayes/pinocchio" target="_blank">GitHub</a>
+            <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank">Demo</a>
+        </div>
+        <p>Apache 2.0 License &bull; Pinocchio &copy; 2026</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Requirements for GPU orphan/brick test scripts
+#
+# Setup:
+#   conda create -n gputest python=3.11 -y
+#   conda activate gputest
+#   pip install -r gpu_test_requirements.txt
+#
+vllm>=0.16.0
+torch>=2.10.0
+transformers>=5.2.0
