@@ -186,11 +186,21 @@ class MMMUBenchmark(BaseBenchmark):
         gold = str(ex.target).strip().upper()
         got = str(pred.answer).strip().upper()
 
-        # Extract just the letter
+        # Extract gold letter (should be a single letter like "A", "B", etc.)
         gold_letter = re.sub(r"[^A-Z]", "", gold)[:1]
-        got_letter = re.sub(r"[^A-Z]", "", got)[:1]
-
-        correct = int(gold_letter == got_letter) if gold_letter else 0
+        if not gold_letter:
+            correct = 0
+        else:
+            # Try standalone letter match (last one, to handle "The answer is B")
+            standalone = re.findall(r'\b([A-J])\b', got)
+            if standalone:
+                got_letter = standalone[-1]
+            elif len(got) <= 5:
+                # Short response like "B" or "(B)" — extract first letter
+                got_letter = re.sub(r"[^A-Z]", "", got)[:1]
+            else:
+                got_letter = ""
+            correct = int(gold_letter == got_letter) if got_letter else 0
 
         out = {
             "correct": correct,

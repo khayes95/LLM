@@ -224,7 +224,8 @@ def filter_to_test(samples, split_info_path):
     with open(split_info_path) as f:
         split_info = json.load(f)
     test_ids = set(split_info["test_ids"])
-    filtered = [s for s in samples if s.id in test_ids]
+    filtered = [s for s in samples
+                if f"{s.benchmark}_{s.id}" in test_ids or s.id in test_ids]
     print(f"  Filtered {len(samples)} -> {len(filtered)} test-only samples")
     return filtered
 

@@ -131,13 +131,15 @@ def filter_scored_files(scored_dir: str, output_dir: str,
         bench_counts = defaultdict(lambda: {"test": 0, "train": 0, "unmatched": 0})
 
         for d in all_data:
-            sample_id = d["id"]
+            bare_id = d["id"]
             bench = d.get("benchmark", "unknown")
-
-            if sample_id in test_ids:
+            # Match using benchmark-prefixed ID to avoid cross-benchmark collisions
+            prefixed_id = f"{bench}_{bare_id}"
+            # Check prefixed first, fall back to bare for legacy split files
+            if prefixed_id in test_ids or (bare_id in test_ids and prefixed_id not in train_ids):
                 test_data.append(d)
                 bench_counts[bench]["test"] += 1
-            elif sample_id in train_ids:
+            elif prefixed_id in train_ids or bare_id in train_ids:
                 train_count += 1
                 bench_counts[bench]["train"] += 1
             else:

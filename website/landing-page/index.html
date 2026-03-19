@@ -3,557 +3,1626 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinocchio - LLM Uncertainty Estimation</title>
-    <meta name="description" content="Estimate the uncertainty of any LLM in a single forward pass. Works with GPT-5, Claude, Gemini, and more.">
+    <title>Pinocchio — Uncertainty Estimation for Black-Box LLMs</title>
+    <meta name="description" content="Estimate the uncertainty of any LLM response in a single forward pass. Works with GPT-5, Claude, Gemini. Open-source, 0.8B params, runs on CPU.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ================================================================
+           CSS CUSTOM PROPERTIES
+           ================================================================ */
         :root {
-            --bg: #0a0a0f;
-            --bg-card: #12121a;
-            --bg-code: #0d0d14;
-            --text: #e4e4e7;
-            --text-muted: #888;
-            --accent: #22c55e;
-            --accent-dim: #166534;
+            --bg: #fcfcfc;
+            --bg-alt: #f5f5f7;
+            --surface: #ffffff;
+            --text: #0a0a0a;
+            --text-2: #4a4a4a;
+            --text-3: #888;
+            --accent: #6366f1;
+            --accent-2: #818cf8;
+            --accent-bg: #eef2ff;
+            --green: #22c55e;
+            --green-bg: #f0fdf4;
             --amber: #f59e0b;
             --red: #ef4444;
-            --border: #222;
-            --max-w: 960px;
+            --border: #e5e5e5;
+            --border-2: #d4d4d4;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+            --max-w: 1100px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-lg: 16px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ================================================================
+           RESET & BASE
+           ================================================================ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+            font-family: var(--font);
             background: var(--bg);
             color: var(--text);
+            font-size: 15px;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
+        a:hover { color: var(--accent-2); }
 
-        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        img { max-width: 100%; display: block; }
 
-        /* ---- NAV ---- */
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+        /* ================================================================
+           SCROLL PROGRESS BAR
+           ================================================================ */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            z-index: 1001;
+            width: 0%;
+            transition: width 0.05s linear;
+        }
+
+        /* ================================================================
+           NAVIGATION
+           ================================================================ */
         nav {
-            border-bottom: 1px solid var(--border);
-            padding: 16px 0;
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 15, 0.92);
-            backdrop-filter: blur(12px);
-            z-index: 100;
+            z-index: 1000;
+            background: rgba(252, 252, 252, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            padding: 14px 0;
+        }
+        nav.scrolled {
+            border-bottom-color: var(--border);
+            box-shadow: 0 1px 8px rgba(0,0,0,0.04);
         }
         nav .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        nav .logo {
-            font-size: 1.3em;
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 700;
+            font-size: 1.15em;
             color: var(--text);
         }
-        nav .links { display: flex; gap: 24px; font-size: 0.95em; }
-        nav .links a { color: var(--text-muted); }
-        nav .links a:hover { color: var(--text); text-decoration: none; }
+        .nav-brand svg { width: 26px; height: 26px; }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a {
+            color: var(--text-2);
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 16px;
+            background: var(--text);
+            color: var(--bg);
+            border-radius: 100px;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .nav-links .nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            color: var(--bg);
+        }
+        .nav-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
 
-        /* ---- HERO ---- */
+        /* ================================================================
+           SIDE TABLE OF CONTENTS
+           ================================================================ */
+        .side-toc {
+            position: fixed;
+            left: max(20px, calc((100vw - var(--max-w)) / 2 - 180px));
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .side-toc.visible { opacity: 1; pointer-events: auto; }
+        .side-toc a {
+            display: block;
+            padding: 6px 0;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-3);
+            font-family: var(--mono);
+            transition: color 0.2s, transform 0.2s;
+        }
+        .side-toc a:hover { color: var(--text); transform: translateX(3px); }
+        .side-toc a.active { color: var(--accent); }
+
+        /* ================================================================
+           REVEAL ANIMATIONS
+           ================================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-d1 { transition-delay: 0.08s; }
+        .reveal-d2 { transition-delay: 0.16s; }
+        .reveal-d3 { transition-delay: 0.24s; }
+        .reveal-d4 { transition-delay: 0.32s; }
+        .reveal-d5 { transition-delay: 0.40s; }
+
+        /* ================================================================
+           HERO
+           ================================================================ */
         .hero {
+            padding: 100px 0 80px;
             text-align: center;
-            padding: 100px 0 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--accent-bg);
+            border: 1px solid rgba(99,102,241,0.15);
+            border-radius: 100px;
+            font-size: 0.82em;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 28px;
+            font-family: var(--mono);
         }
         .hero h1 {
-            font-size: 3.2em;
+            font-size: clamp(32px, 5vw, 52px);
             font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.15;
+            line-height: 1.12;
+            letter-spacing: -0.03em;
             margin-bottom: 20px;
+            color: var(--text);
         }
-        .hero h1 .accent { color: var(--accent); }
+        .hero h1 .accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         .hero .subtitle {
-            font-size: 1.25em;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 36px auto;
+            font-size: 1.2em;
+            color: var(--text-2);
+            max-width: 620px;
+            margin: 0 auto 36px;
+            line-height: 1.65;
         }
-        .hero .cta-row {
+        .hero-actions {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 32px;
         }
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 12px 28px;
-            border-radius: 8px;
-            font-size: 1em;
+            border-radius: 100px;
+            font-size: 0.95em;
             font-weight: 600;
             cursor: pointer;
             border: none;
-            transition: transform 0.1s, box-shadow 0.2s;
+            transition: transform 0.15s, box-shadow 0.2s;
+            font-family: var(--font);
         }
-        .btn:hover { transform: translateY(-1px); text-decoration: none; }
+        .btn:hover { transform: translateY(-2px); }
         .btn-primary {
-            background: var(--accent);
-            color: #000;
+            background: var(--text);
+            color: var(--bg);
+            box-shadow: var(--shadow-md);
         }
+        .btn-primary:hover { box-shadow: var(--shadow-lg); color: var(--bg); }
         .btn-secondary {
-            background: transparent;
+            background: var(--surface);
             color: var(--text);
             border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
         }
-        .install-snippet {
-            margin-top: 28px;
-            display: inline-block;
-            background: var(--bg-code);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+        .btn-secondary:hover { border-color: var(--border-2); box-shadow: var(--shadow-md); color: var(--text); }
+        .btn .arrow { transition: transform 0.2s; }
+        .btn:hover .arrow { transform: translateX(3px); }
+        .install-cmd {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px 24px;
-            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-            font-size: 0.95em;
-            color: var(--accent);
-            user-select: all;
-        }
-
-        /* ---- FEATURES ---- */
-        .features {
-            padding: 80px 0;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-        }
-        .feature-card {
-            background: var(--bg-card);
+            background: var(--bg-alt);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px;
+            border-radius: var(--radius-sm);
+            font-family: var(--mono);
+            font-size: 0.9em;
+            color: var(--text-2);
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
         }
-        .feature-card .icon {
-            font-size: 2em;
+        .install-cmd:hover { border-color: var(--accent); background: var(--accent-bg); }
+        .install-cmd code { color: var(--text); font-weight: 500; }
+        .install-cmd .copy-icon { color: var(--text-3); transition: color 0.2s; }
+        .install-cmd:hover .copy-icon { color: var(--accent); }
+
+        /* Author row */
+        .authors {
+            margin-top: 24px;
+            font-size: 0.92em;
+            color: var(--text-2);
+        }
+        .authors a { font-weight: 500; }
+
+        /* ================================================================
+           SECTION SHARED STYLES
+           ================================================================ */
+        section { padding: 80px 0; }
+        section:nth-child(odd of .alt-bg) { background: var(--bg-alt); }
+
+        .section-label {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
             margin-bottom: 12px;
         }
-        .feature-card h3 {
-            font-size: 1.1em;
-            margin-bottom: 8px;
+        .section-title {
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
         }
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.92em;
+        .section-desc {
+            font-size: 1.05em;
+            color: var(--text-2);
+            max-width: 600px;
+            line-height: 1.65;
         }
-
-        /* ---- SECTION HEADERS ---- */
         .section-header {
+            margin-bottom: 48px;
+        }
+        .section-header-center {
             text-align: center;
             margin-bottom: 48px;
         }
-        .section-header h2 {
-            font-size: 2em;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 1.05em;
-            max-width: 600px;
+        .section-header-center .section-desc {
             margin: 0 auto;
         }
 
-        /* ---- CODE BLOCKS ---- */
-        .code-section { padding: 80px 0; }
-        .code-block {
-            background: var(--bg-code);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px;
-            overflow-x: auto;
-            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-            font-size: 0.88em;
-            line-height: 1.8;
-        }
-        .code-block .comment { color: #6a9955; }
-        .code-block .keyword { color: #c586c0; }
-        .code-block .string { color: #ce9178; }
-        .code-block .func { color: #dcdcaa; }
-        .code-block .var { color: #9cdcfe; }
-        .code-block .num { color: #b5cea8; }
-
-        /* ---- RESULTS TABLE ---- */
-        .results-section { padding: 80px 0; }
-        .results-table-wrap {
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 14px 20px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-        th {
-            background: #0f0f18;
-            font-weight: 600;
-            font-size: 0.9em;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        td { font-size: 0.95em; }
-        tr:last-child td { border-bottom: none; }
-        .metric-good { color: var(--accent); font-weight: 600; }
-        .metric-ok { color: var(--amber); font-weight: 600; }
-
-        /* ---- USE CASES ---- */
-        .use-cases { padding: 80px 0; }
-        .use-case-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-        .use-case-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px;
-        }
-        .use-case-card h3 {
-            font-size: 1.05em;
-            margin-bottom: 8px;
-        }
-        .use-case-card p {
-            color: var(--text-muted);
-            font-size: 0.9em;
-        }
-        .use-case-card .tag {
-            display: inline-block;
-            background: var(--accent-dim);
-            color: var(--accent);
-            font-size: 0.75em;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 100px;
-            margin-bottom: 12px;
-        }
-
-        /* ---- HOW IT WORKS ---- */
-        .how-it-works { padding: 80px 0; }
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            counter-reset: step;
-        }
-        .step {
+        /* ================================================================
+           VIDEO / DEMO SECTION
+           ================================================================ */
+        .demo-section { background: var(--bg-alt); }
+        .demo-video-wrap {
             position: relative;
-            padding-left: 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            background: #0a0a0f;
+            aspect-ratio: 16 / 9;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .step::before {
-            counter-increment: step;
-            content: counter(step);
+        .demo-video-wrap video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .demo-video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            gap: 16px;
+            background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
+        }
+        .demo-video-placeholder .play-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--accent-dim);
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 0.95em;
-            margin-bottom: 16px;
+            border: 2px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
         }
-        .step h3 { font-size: 1em; margin-bottom: 6px; }
-        .step p { color: var(--text-muted); font-size: 0.88em; }
+        .demo-video-placeholder .play-icon:hover {
+            background: rgba(99,102,241,0.3);
+            transform: scale(1.05);
+        }
+        .demo-video-placeholder .play-icon svg { margin-left: 4px; }
+        .demo-video-placeholder p {
+            font-size: 0.95em;
+            color: #888;
+            max-width: 400px;
+            text-align: center;
+            line-height: 1.5;
+        }
 
-        /* ---- COMPARISON ---- */
-        .comparison { padding: 80px 0; }
-        .comparison-grid {
+        /* Terminal animation */
+        .terminal-window {
+            background: #1a1b26;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid #2a2b36;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .terminal-titlebar {
+            background: #13141f;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .terminal-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+        }
+        .terminal-dot.red { background: #ff5f57; }
+        .terminal-dot.yellow { background: #febc2e; }
+        .terminal-dot.green { background: #28c840; }
+        .terminal-titlebar span {
+            flex: 1;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            font-family: var(--mono);
+        }
+        .terminal-body {
+            padding: 24px;
+            font-family: var(--mono);
+            font-size: 13.5px;
+            line-height: 1.9;
+            color: #a9b1d6;
+            min-height: 320px;
+            position: relative;
+        }
+        .terminal-body .line {
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .terminal-body .line.shown {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .t-prompt { color: #7aa2f7; }
+        .t-comment { color: #565f89; }
+        .t-keyword { color: #bb9af7; }
+        .t-string { color: #9ece6a; }
+        .t-func { color: #e0af68; }
+        .t-var { color: #7dcfff; }
+        .t-output { color: #73daca; }
+        .t-num { color: #ff9e64; }
+        .t-dim { color: #565f89; }
+
+        /* ================================================================
+           FEATURES GRID
+           ================================================================ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-2);
+        }
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+        .feature-icon.purple { background: #eef2ff; color: var(--accent); }
+        .feature-icon.green { background: #f0fdf4; color: #16a34a; }
+        .feature-icon.amber { background: #fffbeb; color: #d97706; }
+        .feature-icon.rose { background: #fff1f2; color: #e11d48; }
+        .feature-icon.sky { background: #f0f9ff; color: #0284c7; }
+        .feature-icon.teal { background: #f0fdfa; color: #0d9488; }
+        .feature-card h3 {
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            font-size: 0.88em;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ================================================================
+           HOW IT WORKS — PIPELINE
+           ================================================================ */
+        .pipeline-section { background: var(--bg-alt); }
+        .pipeline {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .pipeline-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 32px 20px;
+        }
+        .pipeline-step-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            font-weight: 700;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+        }
+        .pipeline-step h3 {
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .pipeline-step p {
+            font-size: 0.85em;
+            color: var(--text-2);
+            line-height: 1.55;
+        }
+        .pipeline-connector {
+            position: absolute;
+            top: 52px;
+            right: -20px;
+            z-index: 1;
+            color: var(--border-2);
+        }
+        .pipeline-step:last-child .pipeline-connector { display: none; }
+
+        /* Pipeline animation dots */
+        .pipeline-dots {
+            position: absolute;
+            top: 52px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            z-index: 0;
+        }
+        .pipeline-dot-track {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0;
+            animation: pipelineDot 3s ease-in-out infinite;
+        }
+        @keyframes pipelineDot {
+            0% { left: 16%; opacity: 0; }
+            10% { opacity: 1; }
+            45% { left: 50%; opacity: 1; }
+            55% { left: 50%; opacity: 1; }
+            90% { opacity: 1; }
+            100% { left: 84%; opacity: 0; }
+        }
+
+        /* ================================================================
+           CODE EXAMPLE
+           ================================================================ */
+        .code-section-wrap {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 40px;
+            align-items: center;
         }
-        .comparison-col {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 28px;
+        .code-block {
+            background: #1a1b26;
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            overflow-x: auto;
+            font-family: var(--mono);
+            font-size: 13px;
+            line-height: 1.9;
+            color: #a9b1d6;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid #2a2b36;
         }
-        .comparison-col h3 {
+        .code-block .ln {
+            color: #3b3d52;
+            user-select: none;
+            display: inline-block;
+            width: 24px;
+            text-align: right;
+            margin-right: 16px;
+        }
+        .c-keyword { color: #bb9af7; }
+        .c-string { color: #9ece6a; }
+        .c-func { color: #e0af68; }
+        .c-var { color: #7dcfff; }
+        .c-comment { color: #565f89; }
+        .c-num { color: #ff9e64; }
+
+        .code-text h3 {
+            font-size: 1.3em;
+            font-weight: 700;
             margin-bottom: 16px;
-            font-size: 1em;
         }
-        .comparison-col ul {
+        .code-text p {
+            color: var(--text-2);
+            margin-bottom: 12px;
+            line-height: 1.65;
+        }
+        .code-text .highlight-list {
             list-style: none;
             padding: 0;
         }
-        .comparison-col li {
+        .code-text .highlight-list li {
             padding: 6px 0;
-            font-size: 0.9em;
-            color: var(--text-muted);
+            font-size: 0.92em;
+            color: var(--text-2);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
         }
-        .comparison-col.pinocchio { border-color: var(--accent-dim); }
-        .comparison-col.pinocchio h3 { color: var(--accent); }
-        .comparison-col.others h3 { color: var(--text-muted); }
+        .code-text .highlight-list li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
 
-        /* ---- CITATION ---- */
-        .citation { padding: 80px 0; }
-        .cite-block {
-            background: var(--bg-code);
+        /* ================================================================
+           RESULTS — INTERACTIVE TABS + BAR CHART
+           ================================================================ */
+        .results-section { background: var(--bg-alt); }
+        .results-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 32px;
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            font-family: 'SF Mono', 'Fira Code', monospace;
+            border-radius: var(--radius-sm);
+            padding: 4px;
+            width: fit-content;
+        }
+        .results-tab {
+            padding: 8px 20px;
+            border-radius: 6px;
             font-size: 0.85em;
-            line-height: 1.7;
-            overflow-x: auto;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: var(--text-2);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+            font-family: var(--font);
+        }
+        .results-tab:hover { color: var(--text); }
+        .results-tab.active {
+            background: var(--text);
+            color: var(--bg);
         }
 
-        /* ---- FOOTER ---- */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        .chart-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .chart-wrap h3 {
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+        .bar-chart { display: flex; flex-direction: column; gap: 14px; }
+        .bar-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 50px;
+            align-items: center;
+            gap: 12px;
+        }
+        .bar-label {
+            font-size: 12px;
+            font-family: var(--mono);
+            font-weight: 500;
+            color: var(--text-2);
+            text-align: right;
+        }
+        .bar-track {
+            height: 24px;
+            background: var(--bg-alt);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s cubic-bezier(.22,1,.36,1);
+            width: 0%;
+        }
+        .bar-fill.purple { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+        .bar-fill.green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+        .bar-fill.amber { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+        .bar-value {
+            font-size: 13px;
+            font-family: var(--mono);
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* Stats cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-value.accent { color: var(--accent); }
+        .stat-value.green { color: var(--green); }
+        .stat-label {
+            font-size: 0.8em;
+            color: var(--text-3);
+            font-weight: 500;
+        }
+
+        /* ================================================================
+           LIVE DEMO EMBED
+           ================================================================ */
+        .demo-embed-section { }
+        .hf-embed-wrap {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            background: var(--surface);
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        .hf-embed-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: var(--bg-alt);
+            border-bottom: 1px solid var(--border);
+        }
+        .hf-embed-header .hf-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82em;
+            font-weight: 600;
+            color: var(--text-2);
+            font-family: var(--mono);
+        }
+        .hf-embed-header a {
+            font-size: 0.82em;
+            font-weight: 500;
+        }
+        .hf-embed-wrap iframe {
+            width: 100%;
+            height: 620px;
+            border: none;
+        }
+        .hf-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+            gap: 16px;
+        }
+        .hf-fallback p { color: var(--text-2); font-size: 0.95em; }
+
+        /* ================================================================
+           COMPARISON TABLE
+           ================================================================ */
+        .comparison-table-wrap {
+            max-width: 860px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.88em;
+        }
+        .comparison-table th {
+            background: var(--bg-alt);
+            font-weight: 600;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-2);
+        }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table .check { color: var(--green); font-weight: 600; }
+        .comparison-table .cross { color: var(--red); font-weight: 600; }
+        .comparison-table .highlight-row {
+            background: var(--accent-bg);
+        }
+        .comparison-table .highlight-row td {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .comparison-table .highlight-row td:first-child { font-weight: 700; }
+
+        /* ================================================================
+           USE CASES
+           ================================================================ */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .use-case-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .use-case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .use-case-tag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 100px;
+            margin-bottom: 14px;
+        }
+        .use-case-tag.production { background: #f0fdf4; color: #16a34a; }
+        .use-case-tag.cost { background: #fffbeb; color: #d97706; }
+        .use-case-tag.safety { background: #fef2f2; color: #dc2626; }
+        .use-case-tag.eval { background: #eef2ff; color: var(--accent); }
+        .use-case-tag.research { background: #faf5ff; color: #9333ea; }
+        .use-case-tag.ux { background: #f0f9ff; color: #0284c7; }
+        .use-case-card h3 {
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .use-case-card p {
+            font-size: 0.85em;
+            color: var(--text-2);
+            line-height: 1.6;
+        }
+
+        /* ================================================================
+           CITATION
+           ================================================================ */
+        .citation-section { background: var(--bg-alt); }
+        .cite-block {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            font-family: var(--mono);
+            font-size: 0.82em;
+            line-height: 1.7;
+            color: var(--text-2);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+        .cite-copy {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            color: var(--text-3);
+            font-size: 11px;
+            font-family: var(--mono);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .cite-copy:hover { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); }
+
+        /* ================================================================
+           FOOTER
+           ================================================================ */
         footer {
             border-top: 1px solid var(--border);
-            padding: 40px 0;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85em;
+            padding: 48px 0;
         }
-        footer .links {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-brand {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 12px;
             display: flex;
-            justify-content: center;
-            gap: 24px;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-about {
+            font-size: 0.85em;
+            color: var(--text-2);
+            line-height: 1.6;
+            max-width: 300px;
+        }
+        .footer-col h4 {
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-3);
             margin-bottom: 16px;
         }
+        .footer-col a {
+            display: block;
+            padding: 4px 0;
+            font-size: 0.88em;
+            color: var(--text-2);
+        }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82em;
+            color: var(--text-3);
+        }
 
-        /* ---- RESPONSIVE ---- */
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+        @media (max-width: 1200px) {
+            .side-toc { display: none; }
+        }
+        @media (max-width: 900px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .use-cases-grid { grid-template-columns: repeat(2, 1fr); }
+            .results-grid { grid-template-columns: 1fr; }
+            .code-section-wrap { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .pipeline { flex-direction: column; gap: 0; }
+            .pipeline-connector { display: none !important; }
+            .hero h1 { font-size: clamp(28px, 6vw, 42px); }
+        }
         @media (max-width: 640px) {
-            .hero h1 { font-size: 2.2em; }
-            .hero .subtitle { font-size: 1.05em; }
-            .comparison-grid { grid-template-columns: 1fr; }
-            nav .links { gap: 16px; font-size: 0.85em; }
+            .features-grid { grid-template-columns: 1fr; }
+            .use-cases-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+            .hero-actions { flex-direction: column; align-items: center; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg);
+                padding: 20px;
+                border-bottom: 1px solid var(--border);
+                gap: 16px;
+            }
+            .nav-mobile-toggle { display: block; }
+            section { padding: 56px 0; }
+            .hf-embed-wrap iframe { height: 500px; }
+            .comparison-table th, .comparison-table td { padding: 10px 12px; font-size: 0.82em; }
         }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Side TOC -->
+<div class="side-toc" id="sideToc">
+    <a href="#demo-video" data-section="demo-video">Demo</a>
+    <a href="#features" data-section="features">Features</a>
+    <a href="#how-it-works" data-section="how-it-works">Pipeline</a>
+    <a href="#quickstart" data-section="quickstart">Code</a>
+    <a href="#results" data-section="results">Results</a>
+    <a href="#try-it" data-section="try-it">Try It</a>
+    <a href="#comparison" data-section="comparison">Compare</a>
+    <a href="#use-cases" data-section="use-cases">Use Cases</a>
+    <a href="#citation" data-section="citation">Cite</a>
+</div>
+
+<!-- ================================================================
+     NAVIGATION
+     ================================================================ -->
+<nav id="mainNav">
     <div class="container">
-        <div class="logo">&#x1F9E5; Pinocchio</div>
-        <div class="links">
+        <a href="#" class="nav-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Pinocchio
+        </a>
+        <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="#features">Features</a>
-            <a href="#quickstart">Quickstart</a>
             <a href="#results">Results</a>
+            <a href="#try-it">Demo</a>
             <a href="#use-cases">Use Cases</a>
-            <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank">Demo</a>
             <a href="https://github.com/KevinDavidHayes/pinocchio" target="_blank">GitHub</a>
+            <a href="https://pypi.org/project/pinocchio-uq/" target="_blank" class="nav-btn">
+                Install
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+            </a>
         </div>
     </div>
 </nav>
 
-<!-- HERO -->
+<!-- ================================================================
+     HERO
+     ================================================================ -->
 <section class="hero">
     <div class="container">
-        <h1>LLMs don't know when they're wrong.<br><span class="accent">Pinocchio does.</span></h1>
-        <p class="subtitle">
-            Estimate the uncertainty of any LLM response in a single forward pass.
-            No access to model internals needed. Just pip install and go.
+        <div class="reveal hero-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4m0-4h.01"/></svg>
+            ECCV 2026 &middot; Open Source &middot; Apache 2.0
+        </div>
+        <h1 class="reveal reveal-d1">
+            LLMs don't know when<br>they're wrong. <span class="accent">Pinocchio does.</span>
+        </h1>
+        <p class="subtitle reveal reveal-d2">
+            A tiny open-source model that estimates the uncertainty of <em>any</em> LLM response in a single forward pass. No model internals needed. Works with GPT-5, Claude, Gemini, and more.
         </p>
-        <div class="cta-row">
-            <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank" class="btn btn-primary">
-                Try the Demo
+        <div class="hero-actions reveal reveal-d3">
+            <a href="#try-it" class="btn btn-primary">
+                Try Live Demo
+                <span class="arrow">&rarr;</span>
             </a>
-            <a href="https://pypi.org/project/pinocchio-uq/" target="_blank" class="btn btn-secondary">
-                PyPI Package
+            <a href="https://github.com/KevinDavidHayes/pinocchio" target="_blank" class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                GitHub
             </a>
             <a href="https://huggingface.co/KevinDavidHayes/pinocchio-0.8b" target="_blank" class="btn btn-secondary">
-                Model Weights
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-2-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm4 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm-5 3c.5 2 2 3 3 3s2.5-1 3-3H9z"/></svg>
+                Model
             </a>
         </div>
-        <div class="install-snippet">$ pip install pinocchio-uq</div>
+        <div class="reveal reveal-d4" style="margin-top: 28px;">
+            <div class="install-cmd" onclick="navigator.clipboard.writeText('pip install pinocchio-uq'); this.querySelector('.copy-text').textContent='Copied!'">
+                <code>$ pip install pinocchio-uq</code>
+                <span class="copy-icon copy-text" style="font-size:12px;">Copy</span>
+            </div>
+        </div>
+        <div class="authors reveal reveal-d5">
+            <p>Kevin Hayes &middot; Haosong Zhang</p>
+        </div>
     </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features" id="features">
+<!-- ================================================================
+     DEMO VIDEO / TERMINAL ANIMATION
+     ================================================================ -->
+<section class="demo-section" id="demo-video">
     <div class="container">
-        <div class="section-header">
-            <h2>Why Pinocchio?</h2>
-            <p>A lightweight uncertainty judge that works with any language model.</p>
+        <div class="section-header-center">
+            <span class="section-label reveal">See It In Action</span>
+            <h2 class="section-title reveal reveal-d1">Add uncertainty to your GPT-5 code in 30 seconds</h2>
+            <p class="section-desc reveal reveal-d2">Three lines of code. That's all it takes to know when your LLM is guessing.</p>
         </div>
+
+        <div class="terminal-window reveal reveal-d3" id="terminalDemo">
+            <div class="terminal-titlebar">
+                <div class="terminal-dot red"></div>
+                <div class="terminal-dot yellow"></div>
+                <div class="terminal-dot green"></div>
+                <span>python main.py</span>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+                <div class="line" data-delay="200"><span class="t-comment"># Your existing GPT-5 code</span></div>
+                <div class="line" data-delay="600"><span class="t-keyword">from</span> openai <span class="t-keyword">import</span> OpenAI</div>
+                <div class="line" data-delay="800"><span class="t-keyword">from</span> pinocchio <span class="t-keyword">import</span> Pinocchio  <span class="t-comment"># &larr; add this</span></div>
+                <div class="line" data-delay="1200">&nbsp;</div>
+                <div class="line" data-delay="1400"><span class="t-var">client</span> = <span class="t-func">OpenAI</span>()</div>
+                <div class="line" data-delay="1600"><span class="t-var">judge</span>  = <span class="t-func">Pinocchio</span>()  <span class="t-comment"># downloads 25 MB model</span></div>
+                <div class="line" data-delay="2000">&nbsp;</div>
+                <div class="line" data-delay="2200"><span class="t-var">question</span> = <span class="t-string">"What is the half-life of Carbon-14?"</span></div>
+                <div class="line" data-delay="2600"><span class="t-var">response</span> = client.chat.completions.<span class="t-func">create</span>(</div>
+                <div class="line" data-delay="2800">    model=<span class="t-string">"gpt-5"</span>,</div>
+                <div class="line" data-delay="3000">    messages=[{<span class="t-string">"role"</span>: <span class="t-string">"user"</span>, <span class="t-string">"content"</span>: <span class="t-var">question</span>}]</div>
+                <div class="line" data-delay="3200">)</div>
+                <div class="line" data-delay="3600">&nbsp;</div>
+                <div class="line" data-delay="3800"><span class="t-comment"># Score the response</span></div>
+                <div class="line" data-delay="4000"><span class="t-var">score</span> = judge.<span class="t-func">score</span>(<span class="t-var">response</span>, messages=<span class="t-var">question</span>)</div>
+                <div class="line" data-delay="4400">&nbsp;</div>
+                <div class="line" data-delay="4600"><span class="t-keyword">if</span> <span class="t-var">score</span> >= <span class="t-num">0.7</span>:</div>
+                <div class="line" data-delay="4800">    <span class="t-func">print</span>(<span class="t-string">"Confident:"</span>, response.choices[<span class="t-num">0</span>].message.content)</div>
+                <div class="line" data-delay="5000"><span class="t-keyword">else</span>:</div>
+                <div class="line" data-delay="5200">    <span class="t-func">print</span>(<span class="t-string">"Low confidence &mdash; escalating to human review"</span>)</div>
+                <div class="line" data-delay="5800">&nbsp;</div>
+                <div class="line" data-delay="6000"><span class="t-dim">$</span> python main.py</div>
+                <div class="line" data-delay="6600"><span class="t-output">P(correct) = 0.94</span></div>
+                <div class="line" data-delay="7000"><span class="t-output">Confident: The half-life of Carbon-14 is approximately 5,730 years.</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     FEATURES
+     ================================================================ -->
+<section id="features">
+    <div class="container">
+        <div class="section-header-center">
+            <span class="section-label reveal">Why Pinocchio</span>
+            <h2 class="section-title reveal reveal-d1">Everything you need. Nothing you don't.</h2>
+            <p class="section-desc reveal reveal-d2">A single model that tells you when <em>any</em> LLM is probably wrong.</p>
+        </div>
+
         <div class="features-grid">
-            <div class="feature-card">
-                <div class="icon">&#x1F310;</div>
+            <div class="feature-card reveal">
+                <div class="feature-icon purple">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
                 <h3>Any Model</h3>
-                <p>Works with GPT-5, Claude, Gemini, LLaMA, Qwen &mdash; anything that produces text. No model access needed.</p>
+                <p>GPT-5, Claude, Gemini, LLaMA, Qwen &mdash; any LLM that produces text. No model internals needed.</p>
             </div>
-            <div class="feature-card">
-                <div class="icon">&#x26A1;</div>
-                <h3>Single Pass</h3>
-                <p>One forward pass through a tiny 0.8B model. No sampling, no multiple generations, no chain-of-thought.</p>
+            <div class="feature-card reveal reveal-d1">
+                <div class="feature-icon green">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <h3>Single Forward Pass</h3>
+                <p>One pass through a tiny model. No sampling, no chain-of-thought, no multiple generations.</p>
             </div>
-            <div class="feature-card">
-                <div class="icon">&#x1F3AF;</div>
-                <h3>Calibrated</h3>
-                <p>Returns real probabilities P(correct) &isin; [0, 1], not just yes/no. AUROC 0.878 across 20+ benchmarks.</p>
+            <div class="feature-card reveal reveal-d2">
+                <div class="feature-icon amber">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h3>Calibrated Probabilities</h3>
+                <p>Returns real P(correct) &isin; [0, 1], not just yes/no. AUROC 0.878 across 20+ benchmarks.</p>
             </div>
-            <div class="feature-card">
-                <div class="icon">&#x1F4E6;</div>
-                <h3>Tiny &amp; Fast</h3>
-                <p>0.8B parameters. Runs on CPU (~2 GB RAM). No GPU required. ~25 MB LoRA download.</p>
+            <div class="feature-card reveal reveal-d3">
+                <div class="feature-icon rose">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+                </div>
+                <h3>Runs on CPU</h3>
+                <p>0.8B parameters, ~2 GB RAM. No GPU required. Deploy anywhere &mdash; laptop, edge, CI pipeline.</p>
             </div>
-            <div class="feature-card">
-                <div class="icon">&#x1F504;</div>
-                <h3>Cross-Model</h3>
-                <p>Trained on GPT-5, Qwen, and others. Generalizes to unseen models without retraining.</p>
+            <div class="feature-card reveal reveal-d4">
+                <div class="feature-icon sky">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6m3-3h-6"/></svg>
+                </div>
+                <h3>Cross-Model Transfer</h3>
+                <p>Trained on GPT-5 + Qwen. Generalizes to unseen models &mdash; no retraining needed.</p>
             </div>
-            <div class="feature-card">
-                <div class="icon">&#x1F5BC;</div>
+            <div class="feature-card reveal reveal-d5">
+                <div class="feature-icon teal">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                </div>
                 <h3>Multimodal</h3>
-                <p>Handles both text LLM and vision-language model (VLM) outputs. One model for everything.</p>
+                <p>Handles both text LLM and vision-language model outputs. One model for everything.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- QUICKSTART -->
-<section class="code-section" id="quickstart">
+<!-- ================================================================
+     HOW IT WORKS — PIPELINE
+     ================================================================ -->
+<section class="pipeline-section" id="how-it-works">
     <div class="container">
-        <div class="section-header">
-            <h2>Quickstart</h2>
-            <p>Three lines of code to score any LLM response.</p>
-        </div>
-        <div class="code-block">
-<span class="keyword">from</span> openai <span class="keyword">import</span> OpenAI
-<span class="keyword">from</span> pinocchio <span class="keyword">import</span> Pinocchio
-
-<span class="var">client</span> = <span class="func">OpenAI</span>()
-<span class="var">judge</span> = <span class="func">Pinocchio</span>()  <span class="comment"># downloads weights automatically (~25 MB)</span>
-
-<span class="var">messages</span> = [{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"What is the capital of France?"</span>}]
-<span class="var">response</span> = client.chat.completions.<span class="func">create</span>(model=<span class="string">"gpt-5"</span>, messages=<span class="var">messages</span>)
-
-<span class="var">score</span> = judge.<span class="func">score</span>(<span class="var">response</span>, messages=<span class="var">messages</span>)
-<span class="func">print</span>(<span class="string">f"P(correct) = </span>{<span class="var">score</span>:<span class="string">.3f}</span><span class="string">"</span>)  <span class="comment"># P(correct) = 0.97</span>
+        <div class="section-header-center">
+            <span class="section-label reveal">How It Works</span>
+            <h2 class="section-title reveal reveal-d1">Three steps. Zero complexity.</h2>
+            <p class="section-desc reveal reveal-d2">Pinocchio acts as a second opinion on every LLM response.</p>
         </div>
 
-        <div style="margin-top: 32px;">
-            <div class="section-header" style="margin-bottom: 24px;">
-                <p>Works with any provider &mdash; just pass the question and answer.</p>
+        <div class="pipeline reveal reveal-d3">
+            <div class="pipeline-dots">
+                <div class="pipeline-dot-track"></div>
             </div>
-            <div class="code-block">
-<span class="comment"># Score a Claude response</span>
-<span class="var">score</span> = judge.<span class="func">score</span>(
-    question=<span class="string">"Explain quantum entanglement"</span>,
-    answer=<span class="var">claude_response_text</span>,
-    source_model=<span class="string">"claude-4-sonnet"</span>,
-)
-
-<span class="comment"># Selective prediction: abstain when uncertain</span>
-<span class="keyword">if</span> <span class="var">score</span> &gt;= <span class="num">0.7</span>:
-    <span class="func">print</span>(<span class="var">response</span>)
-<span class="keyword">else</span>:
-    <span class="func">print</span>(<span class="string">"I'm not confident. Let me escalate."</span>)
-
-<span class="comment"># Batch scoring</span>
-<span class="var">scores</span> = judge.<span class="func">score_batch</span>([
-    {<span class="string">"question"</span>: <span class="string">"What is 2+2?"</span>, <span class="string">"answer"</span>: <span class="string">"4"</span>},
-    {<span class="string">"question"</span>: <span class="string">"What is 2+2?"</span>, <span class="string">"answer"</span>: <span class="string">"5"</span>},
-])
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how-it-works" id="how-it-works">
-    <div class="container">
-        <div class="section-header">
-            <h2>How It Works</h2>
-            <p>Pinocchio scores responses in three simple steps.</p>
-        </div>
-        <div class="steps">
-            <div class="step">
+            <div class="pipeline-step">
+                <div class="pipeline-step-num">1</div>
                 <h3>Ask Any LLM</h3>
-                <p>Send your question to GPT-5, Claude, Gemini, or any model via their normal API.</p>
+                <p>Send your question to GPT-5, Claude, Gemini, or any model via their normal API. No changes to your existing code.</p>
+                <div class="pipeline-connector">
+                    <svg width="40" height="20" viewBox="0 0 40 20"><path d="M0 10h32m-8-6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
             </div>
-            <div class="step">
+            <div class="pipeline-step">
+                <div class="pipeline-step-num">2</div>
                 <h3>Pass to Pinocchio</h3>
-                <p>Give Pinocchio the question and the LLM's answer. It doesn't need model weights or logits.</p>
+                <p>Give Pinocchio the question and answer text. It doesn't need model weights, logits, or any internals.</p>
+                <div class="pipeline-connector">
+                    <svg width="40" height="20" viewBox="0 0 40 20"><path d="M0 10h32m-8-6l8 6-8 6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+                </div>
             </div>
-            <div class="step">
+            <div class="pipeline-step">
+                <div class="pipeline-step-num">3</div>
                 <h3>Get P(correct)</h3>
-                <p>Pinocchio returns a calibrated probability. Use it for routing, filtering, or flagging.</p>
+                <p>Pinocchio returns a calibrated probability. Route, filter, flag, or escalate based on the score.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- RESULTS -->
+<!-- ================================================================
+     QUICKSTART CODE
+     ================================================================ -->
+<section id="quickstart">
+    <div class="container">
+        <div class="code-section-wrap">
+            <div class="code-text reveal">
+                <span class="section-label">Quickstart</span>
+                <h3>Three lines of code</h3>
+                <p>Pinocchio wraps any LLM provider. Pass the question and answer, get a calibrated confidence score back.</p>
+                <ul class="highlight-list">
+                    <li>Auto-downloads model weights (~25 MB LoRA)</li>
+                    <li>Works with OpenAI, Anthropic, any provider</li>
+                    <li>Batch scoring for high-throughput pipelines</li>
+                    <li>Selective prediction: abstain when uncertain</li>
+                    <li>Full Python type hints and documentation</li>
+                </ul>
+            </div>
+            <div class="reveal reveal-d2">
+                <div class="code-block">
+<span class="ln">1</span><span class="c-keyword">from</span> openai <span class="c-keyword">import</span> OpenAI
+<span class="ln">2</span><span class="c-keyword">from</span> pinocchio <span class="c-keyword">import</span> Pinocchio
+<span class="ln">3</span>
+<span class="ln">4</span><span class="c-var">client</span> = <span class="c-func">OpenAI</span>()
+<span class="ln">5</span><span class="c-var">judge</span>  = <span class="c-func">Pinocchio</span>()
+<span class="ln">6</span>
+<span class="ln">7</span><span class="c-var">q</span> = <span class="c-string">"What is the capital of France?"</span>
+<span class="ln">8</span><span class="c-var">r</span> = client.chat.completions.<span class="c-func">create</span>(
+<span class="ln">9</span>    model=<span class="c-string">"gpt-5"</span>,
+<span class="ln">10</span>    messages=[{<span class="c-string">"role"</span>: <span class="c-string">"user"</span>, <span class="c-string">"content"</span>: <span class="c-var">q</span>}]
+<span class="ln">11</span>)
+<span class="ln">12</span>
+<span class="ln">13</span><span class="c-comment"># Score the response</span>
+<span class="ln">14</span><span class="c-var">score</span> = judge.<span class="c-func">score</span>(<span class="c-var">r</span>, messages=<span class="c-var">q</span>)
+<span class="ln">15</span><span class="c-func">print</span>(<span class="c-string">f"P(correct) = </span>{<span class="c-var">score</span>:<span class="c-string">.3f}</span><span class="c-string">"</span>)
+<span class="ln">16</span><span class="c-comment"># &rarr; P(correct) = 0.97</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     RESULTS — INTERACTIVE
+     ================================================================ -->
 <section class="results-section" id="results">
     <div class="container">
-        <div class="section-header">
-            <h2>Results</h2>
-            <p>Evaluated on held-out test data with clean question-level splits (zero train/test overlap).</p>
+        <div class="section-header-center">
+            <span class="section-label reveal">Results</span>
+            <h2 class="section-title reveal reveal-d1">Rigorously evaluated. Honestly reported.</h2>
+            <p class="section-desc reveal reveal-d2">Clean question-level train/test split. Zero data leakage. Bootstrap confidence intervals on all metrics.</p>
         </div>
-        <div class="results-table-wrap">
-            <table>
+
+        <!-- Stats cards -->
+        <div class="stats-grid reveal reveal-d3" style="margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+            <div class="stat-card">
+                <div class="stat-value accent">0.878</div>
+                <div class="stat-label">AUROC (combined)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">20+</div>
+                <div class="stat-label">Benchmarks evaluated</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value accent">0.087</div>
+                <div class="stat-label">ECE (calibration error)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">0%</div>
+                <div class="stat-label">Train/test question overlap</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="reveal reveal-d4" style="display: flex; justify-content: center; margin-bottom: 32px;">
+            <div class="results-tabs">
+                <button class="results-tab active" data-tab="models">By Model</button>
+                <button class="results-tab" data-tab="benchmarks">By Benchmark</button>
+                <button class="results-tab" data-tab="baselines">vs. Baselines</button>
+            </div>
+        </div>
+
+        <!-- Tab: By Model -->
+        <div class="results-panel" id="panel-models">
+            <div class="results-grid reveal">
+                <div class="chart-wrap">
+                    <h3>AUROC by Target Model</h3>
+                    <div class="bar-chart" id="chart-models">
+                        <div class="bar-row">
+                            <div class="bar-label">GPT-5-mini</div>
+                            <div class="bar-track"><div class="bar-fill purple" data-width="88.2"></div></div>
+                            <div class="bar-value">0.882</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">GPT-5.2</div>
+                            <div class="bar-track"><div class="bar-fill purple" data-width="87.7"></div></div>
+                            <div class="bar-value">0.877</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Qwen3.5</div>
+                            <div class="bar-track"><div class="bar-fill purple" data-width="87.3"></div></div>
+                            <div class="bar-value">0.873</div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-label">Combined</div>
+                            <div class="bar-track"><div class="bar-fill purple" data-width="87.8"></div></div>
+                            <div class="bar-value">0.878</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-wrap">
+                    <h3>Key Metrics</h3>
+                    <div style="display: flex; flex-direction: column; gap: 20px; padding: 8px 0;">
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 13px; font-weight: 500;">AUROC</span>
+                                <span style="font-size: 13px; font-family: var(--mono); font-weight: 600; color: var(--accent);">0.878 [0.863, 0.892]</span>
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-3);">95% bootstrap confidence interval</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 13px; font-weight: 500;">ECE</span>
+                                <span style="font-size: 13px; font-family: var(--mono); font-weight: 600; color: var(--green);">0.087</span>
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-3);">Expected calibration error (lower is better)</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 13px; font-weight: 500;">Brier Score</span>
+                                <span style="font-size: 13px; font-family: var(--mono); font-weight: 600; color: var(--green);">0.151</span>
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-3);">Proper scoring rule (lower is better)</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 13px; font-weight: 500;">Test Samples</span>
+                                <span style="font-size: 13px; font-family: var(--mono); font-weight: 600;">1,953</span>
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-3);">Question-level split, zero train/test overlap</div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                <span style="font-size: 13px; font-weight: 500;">Per-Benchmark Mean</span>
+                                <span style="font-size: 13px; font-family: var(--mono); font-weight: 600; color: var(--accent);">0.821</span>
+                            </div>
+                            <div style="font-size: 11px; color: var(--text-3);">Mean AUROC across 20 individual benchmarks</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: By Benchmark -->
+        <div class="results-panel" id="panel-benchmarks" style="display: none;">
+            <div class="chart-wrap reveal" style="max-width: 800px; margin: 0 auto;">
+                <h3>AUROC by Benchmark (selected)</h3>
+                <div class="bar-chart" id="chart-benchmarks">
+                    <div class="bar-row">
+                        <div class="bar-label">LiveBench</div>
+                        <div class="bar-track"><div class="bar-fill green" data-width="99.5"></div></div>
+                        <div class="bar-value">0.995</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">MathVista</div>
+                        <div class="bar-track"><div class="bar-fill green" data-width="95.4"></div></div>
+                        <div class="bar-value">0.954</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">OmniMath</div>
+                        <div class="bar-track"><div class="bar-fill green" data-width="92.9"></div></div>
+                        <div class="bar-value">0.929</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">RealWorldQA</div>
+                        <div class="bar-track"><div class="bar-fill green" data-width="91.0"></div></div>
+                        <div class="bar-value">0.910</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">ARC-AGI</div>
+                        <div class="bar-track"><div class="bar-fill green" data-width="90.1"></div></div>
+                        <div class="bar-value">0.901</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">BBEH</div>
+                        <div class="bar-track"><div class="bar-fill green" data-width="86.5"></div></div>
+                        <div class="bar-value">0.865</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">GPQA</div>
+                        <div class="bar-track"><div class="bar-fill amber" data-width="72.6"></div></div>
+                        <div class="bar-value">0.726</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">PRBench</div>
+                        <div class="bar-track"><div class="bar-fill amber" data-width="63.9"></div></div>
+                        <div class="bar-value">0.639</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">HLE</div>
+                        <div class="bar-track"><div class="bar-fill amber" data-width="61.6"></div></div>
+                        <div class="bar-value">0.616</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Baselines -->
+        <div class="results-panel" id="panel-baselines" style="display: none;">
+            <div class="chart-wrap reveal" style="max-width: 800px; margin: 0 auto;">
+                <h3>Pinocchio vs. Baseline Methods</h3>
+                <div class="bar-chart" id="chart-baselines">
+                    <div class="bar-row">
+                        <div class="bar-label" style="font-weight:600; color:var(--accent);">Pinocchio</div>
+                        <div class="bar-track"><div class="bar-fill purple" data-width="87.8"></div></div>
+                        <div class="bar-value" style="color:var(--accent);">0.878</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">Verbalized</div>
+                        <div class="bar-track"><div class="bar-fill amber" data-width="61.0"></div></div>
+                        <div class="bar-value">0.610</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">Proxy SE</div>
+                        <div class="bar-track"><div class="bar-fill amber" data-width="46.7"></div></div>
+                        <div class="bar-value">0.467</div>
+                    </div>
+                    <div class="bar-row">
+                        <div class="bar-label">Self-Consist.</div>
+                        <div class="bar-track"><div class="bar-fill amber" data-width="46.6"></div></div>
+                        <div class="bar-value">0.466</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; font-size: 0.82em; color: var(--text-3); line-height: 1.6;">
+                    All comparisons use the same test set (1,953 samples). Verbalized = asking the LLM "how confident are you?"
+                    Proxy SE / Self-Consistency use N=5 generations from a local model &mdash; both are <em>below</em> random chance for cross-model transfer. p &lt; 0.001 for all comparisons.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     LIVE DEMO EMBED
+     ================================================================ -->
+<section class="demo-embed-section" id="try-it">
+    <div class="container">
+        <div class="section-header-center">
+            <span class="section-label reveal">Live Demo</span>
+            <h2 class="section-title reveal reveal-d1">Try Pinocchio right now</h2>
+            <p class="section-desc reveal reveal-d2">Score any question-answer pair. Running the 0.8B model on CPU &mdash; no GPU needed.</p>
+        </div>
+
+        <div class="hf-embed-wrap reveal reveal-d3">
+            <div class="hf-embed-header">
+                <div class="hf-label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-2-9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm4 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm-5 3c.5 2 2 3 3 3s2.5-1 3-3H9z"/></svg>
+                    Hugging Face Spaces
+                </div>
+                <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank">Open in new tab &rarr;</a>
+            </div>
+            <iframe
+                src="https://huggingface.co/spaces/KevinDavidHayes/pinocchio"
+                title="Pinocchio Demo"
+                loading="lazy"
+                allow="clipboard-write"
+            ></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
+     COMPARISON TABLE
+     ================================================================ -->
+<section class="alt-bg" id="comparison" style="background: var(--bg-alt);">
+    <div class="container">
+        <div class="section-header-center">
+            <span class="section-label reveal">Comparison</span>
+            <h2 class="section-title reveal reveal-d1">How Pinocchio compares</h2>
+            <p class="section-desc reveal reveal-d2">The only method that is single-pass, cross-model, multimodal, and works on closed-source LLMs.</p>
+        </div>
+
+        <div class="comparison-table-wrap reveal reveal-d3">
+            <table class="comparison-table">
                 <thead>
                     <tr>
-                        <th>Metric</th>
-                        <th>Value</th>
-                        <th>Notes</th>
+                        <th>Method</th>
+                        <th>Closed-Source</th>
+                        <th>Single Pass</th>
+                        <th>Cross-Model</th>
+                        <th>Multimodal</th>
+                        <th>Open Weights</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>AUROC (overall)</td>
-                        <td class="metric-good">0.878</td>
-                        <td>Combined text + vision, 1,953 test samples</td>
+                    <tr class="highlight-row">
+                        <td>Pinocchio (ours)</td>
+                        <td class="check">&#10003;</td>
+                        <td class="check">&#10003;</td>
+                        <td class="check">&#10003;</td>
+                        <td class="check">&#10003;</td>
+                        <td class="check">&#10003;</td>
                     </tr>
                     <tr>
-                        <td>AUROC (GPT-5-mini)</td>
-                        <td class="metric-good">0.882</td>
-                        <td>95% CI: [0.857, 0.906]</td>
+                        <td>Logit-based (Kadavath et al.)</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="check">&#10003;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td>N/A</td>
                     </tr>
                     <tr>
-                        <td>AUROC (GPT-5.2)</td>
-                        <td class="metric-good">0.877</td>
-                        <td>95% CI: [0.851, 0.900]</td>
+                        <td>Semantic Entropy (Kuhn et al.)</td>
+                        <td class="check">&#10003;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td>N/A</td>
                     </tr>
                     <tr>
-                        <td>AUROC (Qwen3.5)</td>
-                        <td class="metric-good">0.873</td>
-                        <td>95% CI: [0.844, 0.900]</td>
+                        <td>Self-Consistency (Wang et al.)</td>
+                        <td class="check">&#10003;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td>N/A</td>
                     </tr>
                     <tr>
-                        <td>ECE (calibration)</td>
-                        <td class="metric-good">0.087</td>
-                        <td>Well-calibrated probabilities</td>
+                        <td>Verbalized Confidence</td>
+                        <td class="check">&#10003;</td>
+                        <td class="check">&#10003;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="check">&#10003;</td>
+                        <td>N/A</td>
                     </tr>
                     <tr>
-                        <td>Brier Score</td>
-                        <td class="metric-good">0.151</td>
-                        <td>Lower is better</td>
-                    </tr>
-                    <tr>
-                        <td>vs. Verbalized Baseline</td>
-                        <td class="metric-good">+0.268</td>
-                        <td>0.878 vs 0.610 (p &lt; 0.001)</td>
-                    </tr>
-                    <tr>
-                        <td>Benchmarks Evaluated</td>
-                        <td>20+</td>
-                        <td>MMLU, GPQA, HLE, MATH, ARC, and more</td>
+                        <td>MC Dropout (Gal & Ghahramani)</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td class="cross">&#10007;</td>
+                        <td>N/A</td>
                     </tr>
                 </tbody>
             </table>
@@ -561,75 +1630,45 @@
     </div>
 </section>
 
-<!-- COMPARISON -->
-<section class="comparison">
+<!-- ================================================================
+     USE CASES
+     ================================================================ -->
+<section id="use-cases">
     <div class="container">
-        <div class="section-header">
-            <h2>Pinocchio vs. Alternatives</h2>
+        <div class="section-header-center">
+            <span class="section-label reveal">Use Cases</span>
+            <h2 class="section-title reveal reveal-d1">Built for real-world deployment</h2>
+            <p class="section-desc reveal reveal-d2">From production pipelines to research workflows.</p>
         </div>
-        <div class="comparison-grid">
-            <div class="comparison-col pinocchio">
-                <h3>&#x2705; Pinocchio</h3>
-                <ul>
-                    <li>&#x2714; Works on closed-source models (GPT-5, Claude)</li>
-                    <li>&#x2714; Single forward pass (no sampling)</li>
-                    <li>&#x2714; 0.8B parameters, runs on CPU</li>
-                    <li>&#x2714; Cross-model transfer (train on A, eval on B)</li>
-                    <li>&#x2714; Handles text + vision</li>
-                    <li>&#x2714; Calibrated probabilities</li>
-                    <li>&#x2714; Open weights (Apache 2.0)</li>
-                </ul>
-            </div>
-            <div class="comparison-col others">
-                <h3>Other Approaches</h3>
-                <ul>
-                    <li>&#x2718; Logit-based: Requires model internals</li>
-                    <li>&#x2718; Semantic Entropy: Needs N generations ($$$)</li>
-                    <li>&#x2718; Self-Consistency: Needs N generations ($$$)</li>
-                    <li>&#x2718; Verbalized confidence: Poor calibration (0.61 AUROC)</li>
-                    <li>&#x2718; MC Dropout: Requires open weights + dropout</li>
-                    <li>&#x2718; Ensemble methods: Need multiple models</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- USE CASES -->
-<section class="use-cases" id="use-cases">
-    <div class="container">
-        <div class="section-header">
-            <h2>Use Cases</h2>
-            <p>Practical applications for uncertainty-aware LLM systems.</p>
-        </div>
-        <div class="use-case-grid">
-            <div class="use-case-card">
-                <div class="tag">Production</div>
+        <div class="use-cases-grid">
+            <div class="use-case-card reveal">
+                <div class="use-case-tag production">Production</div>
                 <h3>Selective Prediction</h3>
-                <p>Only serve answers above a confidence threshold. Abstain or escalate to a human when uncertain.</p>
+                <p>Only serve answers above a confidence threshold. Abstain or escalate to a human when uncertain. Up to 85% accuracy at 50% retention.</p>
             </div>
-            <div class="use-case-card">
-                <div class="tag">Cost Saving</div>
+            <div class="use-case-card reveal reveal-d1">
+                <div class="use-case-tag cost">Cost Saving</div>
                 <h3>Smart Model Routing</h3>
-                <p>Start with a cheap model. If Pinocchio flags low confidence, retry with a stronger (more expensive) model.</p>
+                <p>Start with a cheap model. If Pinocchio flags low confidence, retry with a stronger model. Pay for the big model only when needed.</p>
             </div>
-            <div class="use-case-card">
-                <div class="tag">Safety</div>
+            <div class="use-case-card reveal reveal-d2">
+                <div class="use-case-tag safety">Safety</div>
                 <h3>Error Detection</h3>
                 <p>Flag likely-wrong answers for human review in high-stakes domains: healthcare, legal, finance.</p>
             </div>
-            <div class="use-case-card">
-                <div class="tag">Evaluation</div>
-                <h3>Benchmark-Free Accuracy</h3>
-                <p>Estimate model accuracy on new data without ground-truth labels. Rank models by predicted correctness.</p>
+            <div class="use-case-card reveal reveal-d3">
+                <div class="use-case-tag eval">Evaluation</div>
+                <h3>Label-Free Accuracy</h3>
+                <p>Estimate model accuracy on new data without ground-truth labels. Rank models by predicted correctness. 0.90+ rank correlation.</p>
             </div>
-            <div class="use-case-card">
-                <div class="tag">Research</div>
-                <h3>Active Learning</h3>
-                <p>Identify which examples a model struggles with. Focus annotation effort where it matters most.</p>
+            <div class="use-case-card reveal reveal-d4">
+                <div class="use-case-tag research">Research</div>
+                <h3>Reward Modeling</h3>
+                <p>Use Pinocchio scores as reward signals for RLHF. Identify which examples a model struggles with most.</p>
             </div>
-            <div class="use-case-card">
-                <div class="tag">UX</div>
+            <div class="use-case-card reveal reveal-d5">
+                <div class="use-case-tag ux">User Experience</div>
                 <h3>Confidence Indicators</h3>
                 <p>Show users a confidence score alongside each response. Build trust through transparency.</p>
             </div>
@@ -637,33 +1676,208 @@
     </div>
 </section>
 
-<!-- CITATION -->
-<section class="citation" id="citation">
+<!-- ================================================================
+     CITATION
+     ================================================================ -->
+<section class="citation-section" id="citation">
     <div class="container">
-        <div class="section-header">
-            <h2>Citation</h2>
+        <div class="section-header-center">
+            <span class="section-label reveal">Citation</span>
+            <h2 class="section-title reveal reveal-d1">Use Pinocchio in your research</h2>
         </div>
-        <div class="cite-block">@inproceedings{hayes2026pinocchio,
-    title={Pinocchio: Estimating the Uncertainty of Black-Box Language Models},
-    author={Hayes, Kevin and Zhang, Haosong},
-    booktitle={ICML},
-    year={2026}
-}</div>
+
+        <div class="cite-block reveal reveal-d2">
+            <button class="cite-copy" onclick="navigator.clipboard.writeText(document.getElementById('bibtex').textContent); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy', 2000);">Copy</button>
+<pre id="bibtex" style="margin:0; white-space:pre-wrap;">@inproceedings{hayes2026pinocchio,
+    title     = {Pinocchio: Estimating the Uncertainty of
+                 Black-Box Language Models},
+    author    = {Hayes, Kevin and Zhang, Haosong},
+    booktitle = {Proceedings of the European Conference on
+                 Computer Vision (ECCV)},
+    year      = {2026}
+}</pre>
+        </div>
     </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
 <footer>
     <div class="container">
-        <div class="links">
-            <a href="https://pypi.org/project/pinocchio-uq/" target="_blank">PyPI</a>
-            <a href="https://huggingface.co/KevinDavidHayes/pinocchio-0.8b" target="_blank">HuggingFace</a>
-            <a href="https://github.com/KevinDavidHayes/pinocchio" target="_blank">GitHub</a>
-            <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank">Demo</a>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    Pinocchio
+                </div>
+                <p class="footer-about">Uncertainty estimation for black-box language models. Open-source, lightweight, and ready for production.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="https://pypi.org/project/pinocchio-uq/" target="_blank">PyPI Package</a>
+                <a href="https://huggingface.co/KevinDavidHayes/pinocchio-0.8b" target="_blank">Model Weights</a>
+                <a href="https://huggingface.co/spaces/KevinDavidHayes/pinocchio" target="_blank">Live Demo</a>
+                <a href="#quickstart">Quickstart</a>
+            </div>
+            <div class="footer-col">
+                <h4>Research</h4>
+                <a href="#results">Results</a>
+                <a href="#comparison">Comparison</a>
+                <a href="#citation">Citation</a>
+            </div>
+            <div class="footer-col">
+                <h4>Links</h4>
+                <a href="https://github.com/KevinDavidHayes/pinocchio" target="_blank">GitHub</a>
+                <a href="https://huggingface.co/KevinDavidHayes" target="_blank">HuggingFace</a>
+            </div>
         </div>
-        <p>Apache 2.0 License &bull; Pinocchio &copy; 2026</p>
+        <div class="footer-bottom">
+            <span>Apache 2.0 License &middot; &copy; 2026 Pinocchio</span>
+            <span>Built with care for the ML community</span>
+        </div>
     </div>
 </footer>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+(function() {
+    'use strict';
+
+    // --- Scroll progress bar ---
+    const progressBar = document.getElementById('scrollProgress');
+    function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBar.style.width = progress + '%';
+    }
+
+    // --- Nav scroll effect ---
+    const nav = document.getElementById('mainNav');
+    function updateNav() {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+    }
+
+    // --- Side TOC ---
+    const sideToc = document.getElementById('sideToc');
+    const tocLinks = sideToc.querySelectorAll('a');
+    const sections = [];
+    tocLinks.forEach(link => {
+        const id = link.getAttribute('data-section');
+        const el = document.getElementById(id);
+        if (el) sections.push({ id, el, link });
+    });
+
+    function updateToc() {
+        sideToc.classList.toggle('visible', window.scrollY > 400);
+        let current = '';
+        for (const s of sections) {
+            const rect = s.el.getBoundingClientRect();
+            if (rect.top <= 200) current = s.id;
+        }
+        tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-section') === current));
+    }
+
+    // --- Scroll handler (throttled) ---
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateProgress();
+                updateNav();
+                updateToc();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // --- Reveal on scroll (Intersection Observer) ---
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // --- Animate bar chart fills ---
+    const barFills = document.querySelectorAll('.bar-fill');
+    const barObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const width = entry.target.getAttribute('data-width');
+                entry.target.style.width = width + '%';
+                barObs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    barFills.forEach(el => barObs.observe(el));
+
+    // --- Results tabs ---
+    const tabs = document.querySelectorAll('.results-tab');
+    const panels = document.querySelectorAll('.results-panel');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const target = tab.getAttribute('data-tab');
+            panels.forEach(p => {
+                p.style.display = p.id === 'panel-' + target ? 'block' : 'none';
+            });
+            // Re-trigger bar animations for newly visible panel
+            const newBars = document.querySelectorAll('#panel-' + target + ' .bar-fill');
+            newBars.forEach(bar => {
+                bar.style.width = '0%';
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        bar.style.width = bar.getAttribute('data-width') + '%';
+                    });
+                });
+            });
+        });
+    });
+
+    // --- Terminal animation ---
+    const terminalBody = document.getElementById('terminalBody');
+    if (terminalBody) {
+        let animated = false;
+        const termObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animated) {
+                    animated = true;
+                    const lines = terminalBody.querySelectorAll('.line');
+                    lines.forEach(line => {
+                        const delay = parseInt(line.getAttribute('data-delay') || 0);
+                        setTimeout(() => line.classList.add('shown'), delay);
+                    });
+                    termObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        termObs.observe(terminalBody);
+    }
+
+    // --- Mobile nav toggle ---
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    }
+
+    // Initial state
+    updateProgress();
+    updateNav();
+})();
+</script>
 
 </body>
 </html>

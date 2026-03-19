@@ -49,10 +49,13 @@ def main():
     test_samples = []
     unmatched = 0
     for s in all_samples:
-        sid = s.get("id", "")
-        if sid in test_ids:
+        bare_id = s.get("id", "")
+        bench = s.get("benchmark", "unknown")
+        prefixed_id = f"{bench}_{bare_id}"
+        # Check prefixed first, fall back to bare for legacy split files
+        if prefixed_id in test_ids or (bare_id in test_ids and prefixed_id not in train_ids):
             test_samples.append(s)
-        elif sid in train_ids:
+        elif prefixed_id in train_ids or bare_id in train_ids:
             train_samples.append(s)
         else:
             unmatched += 1

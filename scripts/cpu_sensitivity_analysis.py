@@ -137,7 +137,8 @@ def load_predictions_from_dir(pred_file: Path) -> list:
 
 def load_training_questions(train_ids: set) -> dict:
     """Load question text for all training samples from runs/ directories.
-    Returns dict: sample_id -> question_text (truncated to 200 chars for preview matching)."""
+    Returns dict: prefixed_id -> question_text (truncated to 200 chars for preview matching).
+    Supports both benchmark-prefixed IDs (e.g. 'mmlu_104') and bare IDs ('104')."""
     train_questions = {}
 
     for model_name, config in DATA_SOURCES.items():
@@ -146,13 +147,15 @@ def load_training_questions(train_ids: set) -> dict:
             for bench_dir in sorted(combined_path.iterdir()):
                 if not bench_dir.is_dir() or bench_dir.name in EXCLUDED:
                     continue
+                benchmark = bench_dir.name
                 pred_file = bench_dir / "predictions.jsonl"
                 if not pred_file.exists():
                     continue
                 for sid, question in load_predictions_from_dir(pred_file):
-                    if sid in train_ids:
+                    prefixed_id = f"{benchmark}_{sid}"
+                    if prefixed_id in train_ids or sid in train_ids:
                         # Store the first 200 chars to match question_preview
-                        train_questions[sid] = question[:200]
+                        train_questions[prefixed_id] = question[:200]
         else:
             runs_path = Path(config["dir"])
             prefix = config["prefix"]
@@ -166,8 +169,9 @@ def load_training_questions(train_ids: set) -> dict:
                 if not pred_file.exists():
                     continue
                 for sid, question in load_predictions_from_dir(pred_file):
-                    if sid in train_ids:
-                        train_questions[sid] = question[:200]
+                    prefixed_id = f"{benchmark}_{sid}"
+                    if prefixed_id in train_ids or sid in train_ids:
+                        train_questions[prefixed_id] = question[:200]
 
     return train_questions
 

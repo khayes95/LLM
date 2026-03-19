@@ -96,7 +96,15 @@ def filter_test_only(samples: list, split_info_path: str) -> list:
     with open(split_info_path) as f:
         split_info = json.load(f)
     test_ids = set(split_info["test_ids"])
-    filtered = [s for s in samples if s["id"] in test_ids]
+    train_ids = set(split_info.get("train_ids", []))
+    # Support both benchmark-prefixed and bare IDs
+    filtered = []
+    for s in samples:
+        bare_id = s["id"]
+        bench = s.get("benchmark", "unknown")
+        prefixed_id = f"{bench}_{bare_id}"
+        if prefixed_id in test_ids or (bare_id in test_ids and prefixed_id not in train_ids):
+            filtered.append(s)
     print(f"  Filtered to {len(filtered):,} test-only samples "
           f"(from {len(test_ids):,} test IDs)")
     return filtered

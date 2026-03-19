@@ -4,6 +4,56 @@
 
 ---
 
+### 2026-03-18 — [RUNNING] Leave-One-Model-Out (LOMO) cross-model evaluation
+Why: Prior "cross-model" claim trains on all 3 models and tests on all 3 — not true transfer. LOMO trains on 2 models, tests on the held-out 3rd. Also includes ID collision fix (benchmark-prefixed IDs).
+Script: `scripts/train_best_uq.py --held_out_model` | SLURM job ID: 9484 | 1× A100, ~18-24h
+Config: r=32, alpha=64, 3 epochs, lr=1e-4, combined prompt, seed=42. Three sequential runs: hold out gpt5mini, gpt52, qwen35.
+Output: `uq_models/lomo_{gpt5mini,gpt52,qwen35}/`
+
+### 2026-03-18 — Code fixes applied (ID collision + grading bugs)
+Why: Audit found 687 cross-benchmark ID collisions in question-level split key, plus 4 grading bugs.
+Fixes:
+- `train_best_uq.py` + 8 downstream scripts: `s.id` → `f"{s.benchmark}_{s.id}"` for split grouping (backward compatible)
+- `simpleqa.py` + `hle.py`: removed overly permissive word-subset matching (15 label flips, 0.12%)
+- `mmmu.py` + 5 others: fixed letter extraction regex A-D → A-J with last-match heuristic (3 label flips, 0.02%)
+- `livebench.py`: added symmetric substring matching
+- Total: 18/12,972 label flips (0.14%) — consistent with prior audit. No retrain needed for grading alone.
+
+### 2026-03-16 — Retrain 0.8B with easy + impossible question data
+Why: 0.8B production model outputs ~0.70-0.80 for everything on trivial questions (easy correct: 0.735, easy incorrect: 0.651, impossible: 0.493). Adding calibration anchors at both extremes.
+Script: `scripts/train_best_uq.py` | SLURM job ID: 9272 | 1× A100, ~9h
+Data: 10.9K benchmark (v3 split) + 2K easy (downsampled from 9K) + 502 impossible = 13.4K total
+Output: `uq_models/best_0.8b_easy/`
+Result:
+- **Benchmark AUROC: 0.869** (up from 0.852), VLM=0.874, Text=0.861, ECE=0.073
+- **Impossible questions: 0.493 → 0.135** (big improvement, model learned skepticism)
+- **Easy incorrect: 0.651 → 0.273** (good improvement, e.g. "2+2=7" → 0.011)
+- **Easy correct: 0.735 → 0.719** (not improved — model didn't learn high-confidence outputs)
+- Remaining gap: easy correct still ~0.72 avg, not ~0.95. Likely needs more easy-correct samples or balanced label ratio.
+
+### 2026-03-16 — Retrain 0.8B v2: balanced easy + impossible + trivial correct
+Why: v1 was too skeptical (easy correct only 0.719). Added 751 diverse trivially-correct Q&A pairs (18 categories) to balance labels.
+Script: `scripts/train_best_uq.py` | SLURM job ID: 9289 | 1× A100, ~9.5h
+Data: 10.9K benchmark + 2K easy + 502 impossible + 751 trivial correct = 14.2K total
+Output: `uq_models/best_0.8b_easy_v2/`
+Result:
+- **Benchmark AUROC: 0.871** (up from 0.852 original, 0.869 v1). VLM=0.873, Text=0.864, ECE=0.067
+- **Easy correct: 0.735 → 0.809** (improved, e.g. "sky is blue" 0.895, "dog has 4 legs" 0.852)
+- **Impossible: 0.493 → 0.055** (essentially solved, "GDP of Atlantis" 0.001)
+- **Easy incorrect: 0.651 → 0.504** (partially improved but regressed from v1's 0.273)
+- Tradeoff: trivial correct data pushed confidence up broadly, helping correct answers but reducing skepticism on some wrong ones
+
+### 2026-03-17 — [RUNNING] r=128 LoRA ablation on 0.8B and 8B
+Why: Previous runs used r=16 (0.8B) or r=32 (8B) with no rank ablation. r=128 gives 8x more trainable params — may fix answer verification and improve headline AUROC.
+Script: `scripts/train_best_uq.py` | Jobs: 9346 (0.8B, 1×A100), 9347 (8B, 2×A100)
+Data: v3 split + all extra data (easy/impossible/trivial/adversarial). Same as v2 config (no metadata randomization).
+Config: r=128, alpha=256, LR=1e-4 (0.8B) / 5e-5 (8B)
+Output: `uq_models/best_0.8b_r128/`, `uq_models/best_8b_r128/`
+8B result: **AUROC=0.871 (−0.007 from r=32's 0.878)**. No improvement. Mixed per-bench: MMMU +4.5, HLE +3.7, but hallusionbench −6.6, BBEH −3.4. ECE worse (0.087→0.105). Likely slight overfitting. r=32 remains best for 8B.
+0.8B result: **AUROC=0.868** (same as r=16). Easy_correct improved to 0.922 (best yet), but impossible regressed to 0.326, adversarial 0.665. More capacity → more confident everywhere, less discriminating.
+
+**Conclusion:** Larger LoRA rank doesn't help either model on benchmark AUROC. r=32 is optimal for 8B, r=16 is fine for 0.8B. The easy/impossible calibration is a separate axis from benchmark discrimination — no single config wins on all axes. **v2 (r=16, no metadata randomization) remains the best 0.8B production model** with the best overall balance (benchmark 0.871, impossible 0.055, easy_correct 0.809).
+
 ### 2026-03-12 (evening) — Paper overhaul: 22 agents, all figures + content + fixes
 Why: Use remaining Claude compute to close all paper gaps before submission.
 

@@ -100,9 +100,17 @@ class MMStarBenchmark(BaseBenchmark):
         got = str(pred.answer).strip().upper()
 
         gold_letter = re.sub(r"[^A-Z]", "", gold)[:1]
-        got_letter = re.sub(r"[^A-Z]", "", got)[:1]
-
-        correct = int(gold_letter == got_letter) if gold_letter else 0
+        if not gold_letter:
+            correct = 0
+        else:
+            standalone = re.findall(r'\b([A-J])\b', got)
+            if standalone:
+                got_letter = standalone[-1]
+            elif len(got) <= 5:
+                got_letter = re.sub(r"[^A-Z]", "", got)[:1]
+            else:
+                got_letter = ""
+            correct = int(gold_letter == got_letter) if got_letter else 0
 
         out = {"correct": correct, "gold": gold, "predicted": pred.answer}
         if pred.confidence is not None:

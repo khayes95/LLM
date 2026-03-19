@@ -162,7 +162,8 @@ def load_all_test_samples(test_ids: set):
                     continue
                 samples.extend(load_predictions(pred_file, benchmark))
 
-        test_samples = [s for s in samples if s["id"] in test_ids]
+        test_samples = [s for s in samples
+                       if f"{s['benchmark']}_{s['id']}" in test_ids or s["id"] in test_ids]
         for s in test_samples:
             s["target_model"] = target
         print(f"  {target}: {len(test_samples)} test samples")

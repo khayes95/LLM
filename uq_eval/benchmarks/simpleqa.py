@@ -41,12 +41,6 @@ def answers_match(predicted: str, gold: str) -> bool:
     if gold_norm in pred_norm:
         return True
 
-    # Check if all words in gold appear in prediction
-    gold_words = set(gold_norm.split())
-    pred_words = set(pred_norm.split())
-    if gold_words and gold_words.issubset(pred_words):
-        return True
-
     return False
 
 

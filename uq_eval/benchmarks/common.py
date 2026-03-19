@@ -40,11 +40,11 @@ def extract_first_json_obj(text: str) -> dict | None:
         return None
 
 
-def extract_choice_letter(text: str, choices: str = "ABCD") -> str | None:
+def extract_choice_letter(text: str, choices: str = "ABCDEFGHIJ") -> str | None:
     if not text:
         return None
-    # Find standalone A/B/C/D
-    m = re.findall(r"\b([A-D])\b", text.upper())
+    # Find standalone choice letters (A-J to cover benchmarks with up to 10 options)
+    m = re.findall(r"\b([A-J])\b", text.upper())
     if m:
         c = m[-1]
         return c if c in choices else None

@@ -258,7 +258,8 @@ def load_qa_replay_samples(n_samples: int, seed: int = 42) -> list[Sample]:
                         if correct not in (0, 1):
                             continue
                         sid = str(pred.get("id", ""))
-                        if train_ids and sid not in train_ids:
+                        prefixed_id = f"{benchmark}_{sid}"
+                        if train_ids and prefixed_id not in train_ids and sid not in train_ids:
                             continue
                         question = extract_question_text(pred.get("input", {}))
                         response = pred.get("response_text", "") or str(pred.get("prediction", ""))
@@ -302,7 +303,8 @@ def load_qa_replay_samples(n_samples: int, seed: int = 42) -> list[Sample]:
                         if correct not in (0, 1):
                             continue
                         sid = str(pred.get("id", ""))
-                        if train_ids and sid not in train_ids:
+                        prefixed_id = f"{benchmark}_{sid}"
+                        if train_ids and prefixed_id not in train_ids and sid not in train_ids:
                             continue
                         question = extract_question_text(pred.get("input", {}))
                         response = pred.get("response_text", "")
@@ -846,8 +848,8 @@ def run_human_cv(args):
             "train_models": [m for m in human_data.keys() if m != held_out],
             "n_train": len(train_samples),
             "n_test": len(test_samples),
-            "train_ids": [s.id for s in train_samples],
-            "test_ids": [s.id for s in test_samples],
+            "train_ids": [f"{s.benchmark}_{s.id}" for s in train_samples],
+            "test_ids": [f"{s.benchmark}_{s.id}" for s in test_samples],
         }
         with open(Path(fold_dir) / "split_info.json", "w") as f:
             json.dump(split_info, f, indent=2)
@@ -939,8 +941,8 @@ def run_judge_only(args):
         "test_models": test_models,
         "n_train": len(train_samples),
         "n_test": len(test_samples),
-        "train_ids": [s.id for s in train_samples],
-        "test_ids": [s.id for s in test_samples],
+        "train_ids": [f"{s.benchmark}_{s.id}" for s in train_samples],
+        "test_ids": [f"{s.benchmark}_{s.id}" for s in test_samples],
     }
     with open(output_path / "split_info.json", "w") as f:
         json.dump(split_info, f, indent=2)
@@ -1034,8 +1036,8 @@ def run_combined(args):
         "n_qa_replay": n_qa,
         "n_train_total": len(train_samples),
         "n_test": len(test_samples),
-        "train_ids": [s.id for s in train_samples],
-        "test_ids": [s.id for s in test_samples],
+        "train_ids": [f"{s.benchmark}_{s.id}" for s in train_samples],
+        "test_ids": [f"{s.benchmark}_{s.id}" for s in test_samples],
     }
     with open(output_path / "split_info.json", "w") as f:
         json.dump(split_info, f, indent=2)

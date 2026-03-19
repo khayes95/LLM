@@ -720,6 +720,24 @@ def evaluate_model(model, processor, test_samples: list[Sample], device,
     if txt_l and len(set(txt_l)) > 1:
         results["text_auroc"] = float(roc_auc_score(txt_l, txt_p))
 
+    # Per-source-model aggregate (for LOMO evaluation)
+    per_model = defaultdict(lambda: {"preds": [], "labels": []})
+    for i, sample in enumerate(test_samples):
+        per_model[sample.source_model]["preds"].append(all_preds[i])
+        per_model[sample.source_model]["labels"].append(float(sample.is_correct))
+    results["per_source_model"] = {}
+    for model_name, data in sorted(per_model.items()):
+        mp, ml = np.array(data["preds"]), np.array(data["labels"])
+        entry = {"n_samples": len(ml), "accuracy": float(ml.mean())}
+        if len(set(ml)) > 1:
+            entry["auroc"] = float(roc_auc_score(ml, mp))
+            entry["auprc"] = float(average_precision_score(ml, mp))
+            entry["brier"] = float(brier_score_loss(ml, mp))
+        results["per_source_model"][model_name] = entry
+
+    # Store per-sample predictions for downstream analysis
+    results["_per_sample_preds"] = all_preds
+
     return results
 
 
@@ -752,6 +770,15 @@ def main():
                         help="Override base model (e.g., Qwen/Qwen3.5-9B)")
     parser.add_argument("--split_info", type=str, default=None,
                         help="Path to split_info.json to reuse exact train/test split")
+    parser.add_argument("--held_out_model", type=str, default=None,
+                        help="Hold out ALL samples from this source model (e.g., gpt5mini, gpt52, qwen35). "
+                             "Held-out samples go to test only. Remaining models get question-level split.")
+    parser.add_argument("--extra_data", type=str, nargs="+", default=None,
+                        help="Extra JSONL files to add to training set only (e.g., easy/impossible questions)")
+    parser.add_argument("--extra_max_samples", type=int, default=None,
+                        help="Max samples to take from each extra data file (for downsampling)")
+    parser.add_argument("--randomize_extra_metadata", action="store_true",
+                        help="Randomize benchmark/source_model for extra data to prevent metadata shortcuts")
     args = parser.parse_args()
     if args.lora_alpha is None:
         args.lora_alpha = 2 * args.lora_r
@@ -794,7 +821,62 @@ def main():
     prepare_all_images(all_samples)
 
     # --- Step 3: Train/test split ---
-    if args.split_info:
+    if args.held_out_model:
+        # LOMO (Leave-One-Model-Out): hold out ALL samples from one source model
+        held_out = args.held_out_model
+        available_models = sorted(set(s.source_model for s in all_samples))
+        if held_out not in available_models:
+            print(f"  ERROR: --held_out_model '{held_out}' not found. Available: {available_models}")
+            sys.exit(1)
+
+        held_out_samples = [s for s in all_samples if s.source_model == held_out]
+        remaining_samples = [s for s in all_samples if s.source_model != held_out]
+
+        print(f"\nSTEP 3: LOMO split — holding out '{held_out}'")
+        print(f"  Held-out ({held_out}): {len(held_out_samples)} samples -> test only")
+        print(f"  Remaining models: {sorted(set(s.source_model for s in remaining_samples))}")
+        print(f"  Remaining samples: {len(remaining_samples)} -> question-level train/test split")
+
+        # Question-level split on the remaining 2 models
+        from collections import OrderedDict as _OrderedDict
+        _strat_counts = defaultdict(int)
+        for s in remaining_samples:
+            _strat_counts[s.benchmark] += 1
+
+        _qid_to_indices = _OrderedDict()
+        for i, s in enumerate(remaining_samples):
+            _qid_to_indices.setdefault(f"{s.benchmark}_{s.id}", []).append(i)
+
+        _unique_qids = list(_qid_to_indices.keys())
+        _qid_strat = []
+        for qid in _unique_qids:
+            bench = remaining_samples[_qid_to_indices[qid][0]].benchmark
+            _qid_strat.append(bench if _strat_counts.get(bench, 0) >= 3 else "other")
+
+        try:
+            _train_qids, _val_qids = train_test_split(
+                _unique_qids, test_size=args.test_fraction, random_state=args.seed, stratify=_qid_strat
+            )
+        except ValueError:
+            _train_qids, _val_qids = train_test_split(
+                _unique_qids, test_size=args.test_fraction, random_state=args.seed
+            )
+
+        train_samples = [remaining_samples[i] for qid in _train_qids for i in _qid_to_indices[qid]]
+        _val_samples = [remaining_samples[i] for qid in _val_qids for i in _qid_to_indices[qid]]
+
+        # Test set = ALL held-out model samples + validation split from remaining models
+        test_samples = held_out_samples + _val_samples
+
+        # Verify no question-level overlap between train and val from remaining models
+        _overlap = set(_train_qids) & set(_val_qids)
+        assert len(_overlap) == 0, f"Question-level leakage in remaining models: {len(_overlap)} shared IDs!"
+        print(f"  Train: {len(train_samples)} samples ({len(_train_qids)} questions from "
+              f"{sorted(set(s.source_model for s in train_samples))})")
+        print(f"  Test:  {len(test_samples)} samples "
+              f"({len(held_out_samples)} held-out [{held_out}] + {len(_val_samples)} val)")
+
+    elif args.split_info:
         print(f"\nSTEP 3: Loading existing split from {args.split_info}...")
         with open(args.split_info) as f:
             existing_split = json.load(f)
@@ -802,12 +884,18 @@ def main():
         test_id_set = set(existing_split["test_ids"])
         train_id_set = set(existing_split["train_ids"])
 
+        # Detect whether the split file uses benchmark-prefixed IDs or bare IDs
+        _sample_id = next(iter(test_id_set), "")
+        uses_prefixed_ids = "_" in _sample_id and not _sample_id.isdigit()
+
         train_samples, test_samples = [], []
         unmatched = 0
         for s in all_samples:
-            if s.id in test_id_set:
+            # Build the lookup key matching the format in split_info.json
+            lookup_key = f"{s.benchmark}_{s.id}" if uses_prefixed_ids else s.id
+            if lookup_key in test_id_set:
                 test_samples.append(s)
-            elif s.id in train_id_set:
+            elif lookup_key in train_id_set:
                 train_samples.append(s)
             else:
                 train_samples.append(s)
@@ -817,7 +905,7 @@ def main():
         if unmatched:
             print(f"  ({unmatched} new samples added to training set)")
         # Verify no leakage
-        test_ids_in_train = set(s.id for s in test_samples) & set(s.id for s in train_samples)
+        test_ids_in_train = set(f"{s.benchmark}_{s.id}" for s in test_samples) & set(f"{s.benchmark}_{s.id}" for s in train_samples)
         if test_ids_in_train:
             print(f"  WARNING: {len(test_ids_in_train)} IDs appear in both train and test!")
     else:
@@ -839,7 +927,7 @@ def main():
         from collections import OrderedDict
         qid_to_indices = OrderedDict()
         for i, s in enumerate(all_samples):
-            qid_to_indices.setdefault(s.id, []).append(i)
+            qid_to_indices.setdefault(f"{s.benchmark}_{s.id}", []).append(i)
 
         unique_qids = list(qid_to_indices.keys())
         # Stratify by the benchmark of the first sample for each question
@@ -867,6 +955,57 @@ def main():
         assert len(overlap) == 0, f"Question-level leakage: {len(overlap)} shared question IDs!"
         print(f"  Question-level split: {len(train_qids)} train questions, {len(test_qids)} test questions, 0 overlap")
 
+    # Inject extra training data (easy questions, impossible questions, etc.)
+    if args.extra_data:
+        import random as _random
+        _rng = _random.Random(args.seed)
+        # Collect real benchmark/source_model names from training data for randomization
+        if args.randomize_extra_metadata:
+            real_benchmarks = sorted(set(s.benchmark for s in train_samples))
+            real_source_models = sorted(set(s.source_model for s in train_samples))
+            print(f"  Randomizing extra metadata across {len(real_benchmarks)} benchmarks, "
+                  f"{len(real_source_models)} source models")
+        extra_total = 0
+        for extra_path in args.extra_data:
+            extra_samples = []
+            with open(extra_path) as ef:
+                for line in ef:
+                    row = json.loads(line)
+                    # Parse model_response JSON if present
+                    resp = row.get("model_response", "")
+                    if isinstance(resp, str) and resp.startswith("{"):
+                        try:
+                            resp = json.loads(resp).get("answer", resp)
+                        except json.JSONDecodeError:
+                            pass
+                    # Assign random real metadata to prevent benchmark-name shortcuts
+                    if args.randomize_extra_metadata:
+                        bench = _rng.choice(real_benchmarks)
+                        src = _rng.choice(real_source_models)
+                    else:
+                        bench = row.get("benchmark", "extra")
+                        src = row.get("source_model", "synthetic")
+                    extra_samples.append(Sample(
+                        id=row["id"],
+                        benchmark=bench,
+                        source_model=src,
+                        question=row.get("input", ""),
+                        response=str(resp),
+                        is_correct=bool(row.get("correct", 0)),
+                        has_image=False,
+                    ))
+            # Downsample if requested
+            if args.extra_max_samples and len(extra_samples) > args.extra_max_samples:
+                _rng.shuffle(extra_samples)
+                extra_samples = extra_samples[:args.extra_max_samples]
+            n_correct = sum(1 for s in extra_samples if s.is_correct)
+            print(f"  Extra data: {extra_path} -> {len(extra_samples)} samples "
+                  f"({n_correct} correct, {len(extra_samples)-n_correct} incorrect)")
+            train_samples.extend(extra_samples)
+            extra_total += len(extra_samples)
+        print(f"  Total extra: {extra_total} samples added to training set")
+        print(f"  New training total: {len(train_samples)}")
+
     # Subsample training data for size ablation
     if args.max_train_samples and args.max_train_samples < len(train_samples):
         rng = np.random.RandomState(args.seed)
@@ -883,11 +1022,22 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Unique question IDs (no duplicates across source models)
-    train_question_ids = sorted(set(s.id for s in train_samples))
-    test_question_ids = sorted(set(s.id for s in test_samples))
+    # Unique question IDs (benchmark-prefixed to avoid cross-benchmark collisions)
+    train_question_ids = sorted(set(f"{s.benchmark}_{s.id}" for s in train_samples))
+    test_question_ids = sorted(set(f"{s.benchmark}_{s.id}" for s in test_samples))
     question_overlap = set(train_question_ids) & set(test_question_ids)
-    if question_overlap:
+    if args.held_out_model:
+        # In LOMO mode, question-level overlap across models is EXPECTED (same question,
+        # different source model). What matters is that no (question, model) pair leaks.
+        train_full_ids = set(f"{s.benchmark}_{s.id}_{s.source_model}" for s in train_samples)
+        test_full_ids = set(f"{s.benchmark}_{s.id}_{s.source_model}" for s in test_samples)
+        sample_leakage = train_full_ids & test_full_ids
+        if sample_leakage:
+            print(f"  FATAL: {len(sample_leakage)} (question, model) pairs in both train and test!")
+            sys.exit(1)
+        print(f"  Question overlap across models: {len(question_overlap)} (expected in LOMO)")
+        print(f"  Sample-level leakage: 0 (verified)")
+    elif question_overlap:
         print(f"  FATAL: {len(question_overlap)} question IDs in both train and test!")
         sys.exit(1)
 
@@ -899,9 +1049,16 @@ def main():
         "n_train_questions": len(train_question_ids),
         "n_test_questions": len(test_question_ids),
         "question_overlap": len(question_overlap),
-        "split_method": "question_level",
-        "train_ids": [s.id for s in train_samples],
-        "test_ids": [s.id for s in test_samples],
+        "split_method": "lomo" if args.held_out_model else "question_level",
+        "held_out_model": args.held_out_model,
+        "train_source_models": sorted(set(s.source_model for s in train_samples)),
+        "test_source_models": sorted(set(s.source_model for s in test_samples)),
+        "per_model_train_counts": {m: sum(1 for s in train_samples if s.source_model == m)
+                                    for m in set(s.source_model for s in train_samples)},
+        "per_model_test_counts": {m: sum(1 for s in test_samples if s.source_model == m)
+                                   for m in set(s.source_model for s in test_samples)},
+        "train_ids": [f"{s.benchmark}_{s.id}" for s in train_samples],
+        "test_ids": [f"{s.benchmark}_{s.id}" for s in test_samples],
         "train_question_ids": train_question_ids,
         "test_question_ids": test_question_ids,
     }
@@ -1069,9 +1226,30 @@ def main():
         else:
             print(f"  {bench:<20} {auroc} (n={data['n_samples']}){vlm_tag}")
 
-    # Save results
+    # Per-source-model results
+    if "per_source_model" in results:
+        print("\nPer-source-model:")
+        for model_name, data in sorted(results["per_source_model"].items()):
+            auroc = data.get("auroc", "N/A")
+            if isinstance(auroc, float):
+                print(f"  {model_name:<20} AUROC={auroc:.3f} (n={data['n_samples']})")
+            else:
+                print(f"  {model_name:<20} {auroc} (n={data['n_samples']})")
+
+    # LOMO summary
+    if args.held_out_model and "per_source_model" in results:
+        held_data = results["per_source_model"].get(args.held_out_model, {})
+        held_auroc = held_data.get("auroc", "N/A")
+        print(f"\n{'='*50}")
+        print(f"LOMO RESULT: held_out={args.held_out_model}")
+        print(f"  Held-out model AUROC: {held_auroc}")
+        print(f"  Held-out model samples: {held_data.get('n_samples', 0)}")
+        print(f"{'='*50}")
+
+    # Save results (exclude internal per-sample preds from saved file)
+    save_results = {k: v for k, v in results.items() if not k.startswith("_")}
     with open(output_dir / "results.json", "w") as f:
-        json.dump(results, f, indent=2)
+        json.dump(save_results, f, indent=2)
     print(f"\nResults saved to {output_dir / 'results.json'}")
 
 

@@ -214,8 +214,10 @@ def load_all_samples_for_target(target: str, config: dict):
 
 
 def filter_to_test_ids(samples: list, test_ids: set) -> list:
-    """Keep only samples whose ID is in the test set."""
-    return [s for s in samples if s["id"] in test_ids]
+    """Keep only samples whose ID is in the test set.
+    Supports both benchmark-prefixed IDs (e.g. 'mmlu_104') and bare IDs ('104')."""
+    return [s for s in samples
+            if f"{s.get('benchmark', 'unknown')}_{s['id']}" in test_ids or s["id"] in test_ids]
 
 
 # ============================================================

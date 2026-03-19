@@ -48,12 +48,19 @@ def check_mcq_answer(predicted: str, gold: str) -> bool:
     if pred_clean == gold_clean:
         return True
 
-    # Extract letter from various formats
-    pred_letter = re.sub(r"[^A-Z]", "", pred_clean)
-    gold_letter = re.sub(r"[^A-Z]", "", gold_clean)
+    # Extract standalone choice letter (last occurrence, to handle "The answer is B")
+    gold_letters = re.findall(r'\b([A-J])\b', gold_clean)
+    pred_letters = re.findall(r'\b([A-J])\b', pred_clean)
 
-    if pred_letter and gold_letter and pred_letter[0] == gold_letter[0]:
+    if gold_letters and pred_letters and gold_letters[-1] == pred_letters[-1]:
         return True
+
+    # Fallback for short responses like "(B)" where \b won't match inside parens
+    if not pred_letters and len(pred_clean) <= 5:
+        pred_letter = re.sub(r"[^A-Z]", "", pred_clean)[:1]
+        gold_letter = re.sub(r"[^A-Z]", "", gold_clean)[:1]
+        if pred_letter and gold_letter and pred_letter == gold_letter:
+            return True
 
     return False
 
@@ -69,12 +76,6 @@ def check_short_answer(predicted: str, gold: str) -> bool:
 
     # Gold contained in prediction
     if gold_norm and gold_norm in pred_norm:
-        return True
-
-    # All words in gold appear in prediction
-    gold_words = set(gold_norm.split())
-    pred_words = set(pred_norm.split())
-    if gold_words and gold_words.issubset(pred_words):
         return True
 
     return False

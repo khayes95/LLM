@@ -154,8 +154,8 @@ class LiveBenchBenchmark(BaseBenchmark):
         gold_norm = re.sub(r"\s+", " ", gold.lower())
         got_norm = re.sub(r"\s+", " ", got.lower())
 
-        # Check for exact match or containment
-        correct = int(gold_norm == got_norm or gold_norm in got_norm)
+        # Check for exact match or containment (both directions)
+        correct = int(gold_norm == got_norm or gold_norm in got_norm or got_norm in gold_norm)
 
         out = {
             "correct": correct,

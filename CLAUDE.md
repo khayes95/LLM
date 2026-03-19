@@ -382,6 +382,10 @@ gt_yes = ground_truth_lower in ["yes", "1", "true"]
 - **No nohup**: `/usr/bin/nohup` is permission denied. Use `bash script.sh &` instead of `nohup script.sh &`.
 - **vLLM Multi-GPU Issues**: vLLM 0.13.0 has WorkerProc initialization failures with tensor_parallel_size > 1 on this system. Use TP=1 and run models that fit on single GPU, or use alternative inference backends.
 - **Not root**: The user (`khayes`) is not the root user. Do not attempt `sudo`, `apt install`, or any other commands requiring root privileges. Use `pip install --user`, conda environments, or request the admin to install system packages.
+- **NFS CPU Environment**: `/scratch-nfs/khayes/uq_cpu/` is a lightweight conda env (Python 3.11 + numpy, scipy, sklearn, pandas, transformers, tqdm, matplotlib, Pillow, jsonlines) on the shared NFS filesystem, visible from **all nodes** including debug partition. Use this for CPU-only SLURM jobs on debug nodes. In SLURM scripts, use the full Python path: `/scratch-nfs/khayes/uq_cpu/bin/python`. Note: `/scratch/` is local to gpunode00 and NOT visible from debug nodes — CPU jobs must read/write data via `/scratch-nfs/` or copy data there first.
+- **Two-filesystem layout**:
+  - `/scratch/khayes/LLM/` (gpunode00 local) — main workspace, GPU training, large data
+  - `/scratch-nfs/khayes/LLM/` — mirror for CPU-only debug node jobs (sync data as needed)
 
 ---
 
@@ -402,7 +406,7 @@ gt_yes = ground_truth_lower in ["yes", "1", "true"]
   - For I/O-bound tasks (API calls, downloads), use `concurrent.futures.ThreadPoolExecutor` or `asyncio` with high concurrency.
   - For embarrassingly parallel tasks across files/datasets, split work across workers — do not process sequentially.
   - Set `num_workers` in PyTorch `DataLoader` to match available CPUs.
-- **SLURM template for CPU jobs:**
+- **SLURM template for CPU jobs (debug nodes):**
   ```bash
   #!/bin/bash
   #SBATCH --partition=debug
@@ -410,8 +414,19 @@ gt_yes = ground_truth_lower in ["yes", "1", "true"]
   #SBATCH --cpus-per-task=80
   #SBATCH --mem=64G
   #SBATCH --time=04:00:00
-  #SBATCH --output=logs/%x_%j.out
+  #SBATCH --output=/scratch-nfs/khayes/LLM/logs/%x_%j.out
+
+  cd /scratch-nfs/khayes/LLM
+  export PYTHONUNBUFFERED=1
+
+  /scratch-nfs/khayes/uq_cpu/bin/python scripts/your_script.py
   ```
+  **Rules for debug node jobs:**
+  - Debug nodes have **no GPUs** and **cannot see `/scratch/`**
+  - All input data, scripts, and output paths must be on `/scratch-nfs/khayes/LLM/`
+  - Sync data before submitting: `rsync -a /scratch/khayes/LLM/data/needed_dir/ /scratch-nfs/khayes/LLM/data/needed_dir/`
+  - Copy results back after: `rsync -a /scratch-nfs/khayes/LLM/results/ /scratch/khayes/LLM/results/`
+  - NFS is slower for heavy I/O — best for compute-bound CPU tasks (grading, analysis, contamination checks)
 - **Multi-node CPU jobs:** For very large tasks (processing millions of examples), request multiple debug nodes and split work across them.
 - CPU jobs do not require GPU discipline checks, but still check `squeue` to avoid overloading the scheduler.
 
