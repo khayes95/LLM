@@ -4,6 +4,57 @@
 
 ---
 
+### 2026-03-19 — State snapshot for reconstruction
+
+**Git:** commit `42a5553` pushed to `uq-eval/main`. Branch `uq-finetuning`.
+
+**Active SLURM jobs (as of 00:00 Mar 19):**
+| Job ID | Name | Status | Purpose |
+|--------|------|--------|---------|
+| 9484 | lomo_cross_model | RUNNING (~35% run 1/3) | LOMO cross-model eval (hold out each source model) |
+| 9492 | sft_v2r | RUNNING (~1h) | Unknown — check `logs/sft_v2r_9492.out` |
+| 9495 | fb_r32 | RUNNING (~40m) | Unknown — check logs |
+| 9496 | frontier_smo | RUNNING (~20m) | Unknown — check logs |
+| 9497 | eval_fw_v1 | RUNNING (~5m) | Unknown — check logs |
+| 9366 | eval_bench_v | PENDING (DependencyNeverSatisfied) | Dead — dependency will never resolve |
+| 9367 | uq_train_v2 | PENDING (Dependency) | Blocked on 9366 |
+| 9493 | eval_v2c | PENDING (Dependency) | Blocked on chain |
+| 9498 | eval_fw_v2 | PENDING (Dependency) | Blocked on chain |
+
+**Key checkpoints on disk (`uq_models/`):**
+- `best_v3_qsplit/` — **CURRENT BEST 8B** (AUROC 0.878, clean question-level split, r=32)
+- `best_0.8b_easy_v2/` — **CURRENT BEST 0.8B** (AUROC 0.871, easy/impossible/trivial data, r=16)
+- `best_v2_r32_combined/` — v2 8B (AUROC 0.898, LEAKED split — for reference only)
+- `best_unified/` — v1 8B (AUROC 0.831, superseded)
+- `best_0.8b_easy/` — 0.8B v1 (easy data, no trivial correct)
+- `best_0.8b_easy_v3/` — 0.8B v3 variant
+- `best_0.8b_r128/`, `best_8b_r128/` — r=128 ablation (no improvement)
+- `lomo_gpt5mini/`, `lomo_gpt52/` — LOMO partial (job 9484 still running)
+- `size_ablation/` — training data size ablation checkpoints
+
+**Key data on disk:**
+- `data/finetune/easy_questions/` — 11MB, easy/impossible/trivial/adversarial JSONL (not in git)
+- `data/use_cases/scored_test_only_v3/` — v3 scored test data (clean split, 1953 samples)
+- `data/use_cases/results_test_only_v3/` — all 11 use case results, bootstrap CIs, contamination report
+- `data/ablations/` — 19 ablation directories (no-metadata, truncation, multi-seed, elicitation, etc.)
+- `data/use_cases/CONTAMINATED_*/` — QUARANTINED, never use
+
+**To recreate from scratch (if cluster data lost):**
+1. Clone repo: `git clone` from `uq-eval/main`
+2. Retrain v3 8B: `python scripts/train_best_uq.py --output_dir uq_models/best_v3_qsplit --epochs 3 --lora_r 32 --lora_alpha 64 --learning_rate 1e-4 --prompt_variant combined` (4× A100, ~3h)
+3. Retrain 0.8B: same script with `--base_model Qwen/Qwen3-VL-0.8B --lora_r 16 --lora_alpha 32 --extra_data data/finetune/easy_questions/` (1× A100, ~9h)
+4. Score: `python scripts/filter_test_only.py` then per-model scoring scripts
+5. Evaluate: use case scripts in `scripts/` with `--scored_dir data/use_cases/scored_test_only_v3/`
+6. Paper: `overleaf/` submodule, pull from Overleaf git remote
+
+**Pending work (not yet started or incomplete):**
+- LOMO results (job 9484, ETA ~12-16h from now)
+- Jobs 9366/9367/9493/9498 have dead dependencies — need manual cleanup (`scancel`) and resubmission
+- Multi-seed v3 (job 8741 was [RUNNING] per MEMORY.md — check if finished)
+- Qwen3.5 model size ablation needs re-run with per-size HP tuning
+- True semantic entropy on Qwen3.5-397B (not yet attempted)
+- Paper not yet submitted (ECCV 2026 target)
+
 ### 2026-03-18 — [RUNNING] Leave-One-Model-Out (LOMO) cross-model evaluation
 Why: Prior "cross-model" claim trains on all 3 models and tests on all 3 — not true transfer. LOMO trains on 2 models, tests on the held-out 3rd. Also includes ID collision fix (benchmark-prefixed IDs).
 Script: `scripts/train_best_uq.py --held_out_model` | SLURM job ID: 9484 | 1× A100, ~18-24h
