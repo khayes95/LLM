@@ -4,6 +4,110 @@
 
 ---
 
+### 2026-03-30 — Cross-model transfer leakage analysis
+Why: v3 transfer AUROC (0.909-0.922) was suspiciously higher than Gemini-trained model (0.875). Investigated root cause.
+Finding: **79% of Gemini/Claude test questions were seen by v3 during training** (via GPT/Qwen responses to same questions). This inflates naive transfer AUROCs.
+Corrected results (clean questions only, n=133-137 per model):
+  - Claude Opus: v3=0.776 vs trained=0.812 (trained wins)
+  - Claude Sonnet: v3=0.825 vs trained=0.815 (~tied)
+  - Gemini Pro: v3=0.880 vs trained=0.875 (~tied)
+  - Gemini Flash: v3=0.864 vs trained=0.878 (trained wins)
+Conclusion: Transfer performs COMPARABLY to direct training on clean questions. Naive transfer numbers are inflated.
+Also found: Gemini training used wrong prompt template (baseline instead of combined, -5 pts known penalty).
+
+### 2026-03-30 15:24 — Gemini re-run complete + retrained (full data)
+Why: First Gemini run hit our own daily counter limit (4,500 shared between Pro+Flash). Cleaned failures, reset counter, re-ran missing samples, re-scored, retrained.
+Script: `slurm/gemini_g{1-8}.sh`, `slurm/gemini_flash_g{1-8}.sh` | Jobs: 10093-10112
+Result: Full data now — Pro 4,815 valid, Flash 4,813 valid. Total Gemini cost: ~$129 of $300 credit.
+  - Transfer AUROC (v3 calibrator, unseen): Pro **0.909**, Flash **0.888** (on all ~4,300 samples)
+  - Trained AUROC (held-out 15%): Pro **0.875** (n=646), Flash **0.878** (n=645)
+  - NOTE: Transfer > trained because different test sets (all samples vs 15% held-out) and v3 benefits from GPT+Qwen training diversity
+  - Old partial results (jobs 10056/10057, trained on 3002/909 samples) were OVERWRITTEN. Do not use old numbers (0.928/0.948).
+
+### 2026-03-29 ~18:00 — Individual source model training (4 models) — SUPERSEDED for Gemini
+Why: Train separate UQ models on each new source model, comparable to existing GPT/Qwen models.
+Script: `scripts/train_best_uq.py --sources <model>` | Jobs: 10054-10057
+Result: Claude models correct (full data). Gemini models SUPERSEDED by jobs 10111/10112 (had partial data).
+  - Claude Opus: AUROC 0.812 | Claude Sonnet: 0.815 (VALID — full data)
+  - ~~Gemini 3.1 Pro: 0.928 | Gemini 3 Flash: 0.948~~ (INVALID — partial data, replaced above)
+  - Checkpoints: `uq_models/train_{claude_opus,claude_sonnet,gemini31pro,gemini3flash}/`
+
+### 2026-03-29 13:10 — Gemini 3 Flash Preview benchmark evaluation
+Why: Evaluate transfer to Google's efficient reasoning model (pairs with Pro like GPT-5-mini/GPT-5.2).
+Script: `slurm/gemini_flash_g{1-8}.sh` | Jobs: 10045-10052 (Vertex AI)
+Result: 4,816 predictions, only 909 valid (3,435 hit shared daily counter limit — needs re-run).
+  - v3 calibrator AUROC: **0.877** (partial data)
+
+### 2026-03-29 11:00 — Gemini 3.1 Pro Preview benchmark evaluation
+Why: Evaluate Pinocchio transfer to Google's latest reasoning model (5th model family).
+Script: `slurm/gemini_g{1-8}.sh` | Jobs: 10026-10033 (8 parallel groups) | Vertex AI ($300 credit)
+Result: 4,816 predictions across 20 benchmarks. 3,002 valid (1,342 hit daily counter limit — needs re-run).
+  - v3 calibrator AUROC: **0.890** (unseen transfer, best of all model families)
+  - Cost: ~$95 of $300 Vertex AI credit
+
+### 2026-03-29 01:50 — Claude VLM re-run complete + full scoring
+Why: Complete the failed VLM benchmarks from March 24 budget exhaustion.
+Script: `slurm/run_claude_benchmarks.sh` | Jobs: 10005 (Opus), 10006 (Sonnet)
+Result: All 20 benchmarks complete for both models. Full AUROC (v3 calibrator, unseen):
+  - Claude Opus: **0.838** (4,287 samples) | Claude Sonnet: **0.866** (4,289 samples)
+  - Best per-bench: HallusionBench 0.933/0.928, MathVista 0.943/0.948, LiveBench 0.969/0.974
+
+### 2026-03-26 01:29 — Claude scored data + cross-model AUROC
+Why: Score Claude responses with v3 calibrator and compute transfer AUROC.
+Script: `slurm/score_claude.sh` | Job: 9915 | Output: `data/use_cases/scored_v3_all/claude_{opus,sonnet}_scored.jsonl`
+Result: On 1,946 real text-only responses per model:
+  - Claude Opus 4.6: AUROC **0.803** | Claude Sonnet 4.6: AUROC **0.824**
+  - Best per-bench: LiveBench 0.969/0.974 | Worst: GPQA 0.652/0.724
+  - Confirms cross-family transfer to Anthropic models (never in training)
+
+### 2026-03-24 18:14 — Claude API benchmark evaluation (Opus + Sonnet)
+Why: Evaluate Pinocchio transfer to unseen Anthropic models (Claude Opus 4.6, Claude Sonnet 4.6).
+Script: `slurm/run_claude_benchmarks.sh` | Jobs: 9881 (Opus), 9882 (Sonnet), 9913/9914 (hle_multimodal fix)
+Result: 8/20 benchmarks completed before API budget exhaustion. 3,892/8,680 real responses (55% failure rate).
+  - Budget limit hit mid-run — VLM benchmarks ran after text, so all VLM benchmarks failed (coincidental, not image bug)
+  - Text-only benchmarks: arc_agi, bbeh, chembench, gpqa, hle, hle_multimodal, livebench, omnimath — all 100% success
+  - Cost: ~$337 estimated for Opus alone. Budget resets 2026-04-01.
+  - NOTE: No advisor approval documented before spending. Policy violation flagged.
+
+### 2026-03-20 — Qwen3.5 model size ablation v3 complete (template fix applied)
+Why: 4B/9B produced near-random AUROC due to `<think>` template mismatch (not overfitting). Fixed with 3-line patch.
+Result: **0.8B=0.863, 2B=0.861, 4B=0.870, 9B=0.871** — proper scaling curve, larger models slightly better.
+Config: all r=16, alpha=32, lr=5e-5 (0.8B used lr=1e-4). Output: `data/ablations/qwen35_model_size_v3/`
+
+### 2026-03-20 — Multi-seed v3 training complete (5 seeds, seed fix applied)
+Why: Reviewer requires multi-seed training variance. Seed fix applied — each seed gets different train/test partition + training randomness.
+Script: `scripts/train_best_uq.py` | SLURM: `slurm/multi_seed_v3_parallel.sh`
+Jobs: 9594-9597 (seeds 123, 456, 789, 314) | 1× A100, ~2h50m each | All COMPLETED
+Output: `data/ablations/multi_seed_v3/seed_*/results.json`
+Result: **Mean AUROC: 0.861 ± 0.018** (5 seeds). Per-seed: 42=0.889, 314=0.867, 789=0.856, 456=0.852, 123=0.841.
+VLM mean: 0.866 ± 0.020 | Text mean: 0.854 ± 0.018. Seed 42 (paper default) is best.
+
+### 2026-03-19 22:00 — Comprehensive paper audit + code fixes (37 subagents)
+Why: Pre-submission audit of all paper numbers, code, and bibliography before ICML deadline.
+
+**Code fixes applied:**
+- `train_best_uq.py`: Fixed seed bug — `--seed` now properly seeds torch/numpy/random globals and `TrainingArguments`. Default split path had hardcoded `random_state=42`, now uses `args.seed`.
+- `regenerate_tall_figures.py`: Fixed v2→v3 scored data path.
+
+**Paper edits applied (overleaf/):**
+- experiments.tex: Fixed stale baseline AUROCs (isotonic 0.653→0.644, length 0.613→0.566, combined 0.641→0.649). Fixed UC-E/F/G numbers. "Best baseline" now correctly references combined (0.649).
+- appendix.tex: Fixed 12 per-model baseline cells, UC-F/G tables, healthcare (533→1006 samples, 0.834→0.898 AUROC), finance (896→1930 samples, 0.895→0.952 AUROC).
+- Added 18 benchmark/method citations, Hamidieh ICLR 2026 cross-model paper, lin2023generating, vashurin2025polygraph.
+- Softened 3 overclaims (abstract, intro, conclusion). Removed 7 duplicate bib entries.
+- NOTE: intro.tex and discussion.tex still have stale 0.653 references — need fixing.
+
+**Analysis outputs (not in paper yet):**
+- 8 LaTeX tables in `figures/paper/table_*.tex` (LOMO, baselines, use cases, ablations, contamination, model efficiency)
+- Multi-seed SLURM script ready: `slurm/multi_seed_v3_parallel.sh` (4 independent jobs, seed fix applied)
+- Page count: ~12 pages, need to cut ~4 for ICML 8-page limit
+- Simulated ICML review: borderline accept. Key issues: missing multi-seed variance, overclaimed "any model", metadata gives 5 free pts
+- Missing ICML responsibility checklist
+
+**Pending GPU work:**
+- Multi-seed v3 (4 seeds × 1 A100 × ~4.5h each) — script ready, not submitted
+- Qwen3.5 model size ablation with per-size HP tuning — not started
+- FineGRAIN re-run with v3 checkpoint — not started
+
 ### 2026-03-19 — State snapshot for reconstruction
 
 **Git:** commit `42a5553` pushed to `uq-eval/main`. Branch `uq-finetuning`.
@@ -55,11 +159,17 @@
 - True semantic entropy on Qwen3.5-397B (not yet attempted)
 - Paper not yet submitted (ECCV 2026 target)
 
-### 2026-03-18 — [RUNNING] Leave-One-Model-Out (LOMO) cross-model evaluation
+### 2026-03-18 — Leave-One-Model-Out (LOMO) cross-model evaluation
 Why: Prior "cross-model" claim trains on all 3 models and tests on all 3 — not true transfer. LOMO trains on 2 models, tests on the held-out 3rd. Also includes ID collision fix (benchmark-prefixed IDs).
-Script: `scripts/train_best_uq.py --held_out_model` | SLURM job ID: 9484 | 1× A100, ~18-24h
-Config: r=32, alpha=64, 3 epochs, lr=1e-4, combined prompt, seed=42. Three sequential runs: hold out gpt5mini, gpt52, qwen35.
+Script: `scripts/train_best_uq.py --held_out_model` | SLURM job ID: 9484 | 1× A100
+Config: r=32, alpha=64, 3 epochs, lr=1e-4, combined prompt, seed=42.
 Output: `uq_models/lomo_{gpt5mini,gpt52,qwen35}/`
+Result:
+- Hold out GPT-5-mini: **held-out AUROC 0.877** (overall 0.872)
+- Hold out GPT-5.2: **held-out AUROC 0.861** (overall 0.860)
+- Hold out Qwen3.5: **held-out AUROC 0.790** (overall 0.806)
+- **Mean held-out AUROC: 0.843** (vs 0.878 all-model baseline, vs 0.610 verbalized)
+- Same-family transfer (OpenAI→OpenAI) nearly lossless; cross-family (OpenAI→Qwen) drops ~9 pts but still strong.
 
 ### 2026-03-18 — Code fixes applied (ID collision + grading bugs)
 Why: Audit found 687 cross-benchmark ID collisions in question-level split key, plus 4 grading bugs.
@@ -104,6 +214,12 @@ Output: `uq_models/best_0.8b_r128/`, `uq_models/best_8b_r128/`
 0.8B result: **AUROC=0.868** (same as r=16). Easy_correct improved to 0.922 (best yet), but impossible regressed to 0.326, adversarial 0.665. More capacity → more confident everywhere, less discriminating.
 
 **Conclusion:** Larger LoRA rank doesn't help either model on benchmark AUROC. r=32 is optimal for 8B, r=16 is fine for 0.8B. The easy/impossible calibration is a separate axis from benchmark discrimination — no single config wins on all axes. **v2 (r=16, no metadata randomization) remains the best 0.8B production model** with the best overall balance (benchmark 0.871, impossible 0.055, easy_correct 0.809).
+
+### 2026-03-19 — Full fine-tune 0.8B (no LoRA) — WORSE than LoRA
+Why: Test whether full parameter access (859M params) fixes answer verification. LR=5e-6, 3 epochs, 1×A100 ~12h.
+Script: `scripts/train_best_uq.py --full_finetune` | Job 9499 | Output: `uq_models/best_0.8b_fullft/`
+Result: Catastrophic forgetting. easy_correct=0.723, easy_incorrect=0.613, impossible=0.424, adversarial=0.638. All compressed into 0.3-0.8. LoRA preserves base representations better.
+**FINAL: v2 LoRA (r=16) is the best 0.8B production model. Ship it.**
 
 ### 2026-03-12 (evening) — Paper overhaul: 22 agents, all figures + content + fixes
 Why: Use remaining Claude compute to close all paper gaps before submission.
