@@ -955,6 +955,148 @@
             transition: all 0.2s;
         }
         .cite-copy:hover { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); }
+        .cite-copy.copied { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+
+        /* ================================================================
+           SECTION TITLE UNDERLINE (borrowed from Sphere Encoder)
+           ================================================================ */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            border-radius: 2px;
+            margin-top: 12px;
+        }
+        .section-header-center .section-title::after {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ================================================================
+           FIGURE CAROUSEL
+           ================================================================ */
+        .carousel-section { background: var(--bg-alt); }
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+        }
+        .carousel-slide {
+            min-width: 100%;
+            padding: 32px;
+            text-align: center;
+        }
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 480px;
+            margin: 0 auto 16px;
+            border-radius: var(--radius-sm);
+            object-fit: contain;
+        }
+        .carousel-slide .slide-caption {
+            font-size: 0.9em;
+            color: var(--text-2);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            transition: transform 0.15s, box-shadow 0.2s, background 0.15s;
+            z-index: 10;
+        }
+        .carousel-btn:hover {
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: var(--shadow-lg);
+            background: var(--accent-bg);
+            color: var(--accent);
+        }
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px 0;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-2);
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            padding: 0;
+        }
+        .carousel-dot.active {
+            background: var(--accent);
+            transform: scale(1.25);
+        }
+        .carousel-dot:hover { background: var(--accent-2); }
+
+        @media (max-width: 640px) {
+            .carousel-slide { padding: 16px; }
+            .carousel-slide img { max-height: 300px; }
+            .carousel-btn { width: 36px; height: 36px; }
+        }
+
+        /* ================================================================
+           SCROLL-TO-TOP BUTTON
+           ================================================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-2);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
 
         /* ================================================================
            FOOTER
@@ -1055,6 +1197,11 @@
 <!-- Scroll progress bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- Scroll-to-top button -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
 <!-- Side TOC -->
 <div class="side-toc" id="sideToc">
     <a href="#demo-video" data-section="demo-video">Demo</a>
@@ -1062,6 +1209,7 @@
     <a href="#how-it-works" data-section="how-it-works">Pipeline</a>
     <a href="#quickstart" data-section="quickstart">Code</a>
     <a href="#results" data-section="results">Results</a>
+    <a href="#figures" data-section="figures">Figures</a>
     <a href="#try-it" data-section="try-it">Try It</a>
     <a href="#comparison" data-section="comparison">Compare</a>
     <a href="#use-cases" data-section="use-cases">Use Cases</a>
@@ -1524,9 +1672,64 @@
 </section>
 
 <!-- ================================================================
+     FIGURE CAROUSEL
+     ================================================================ -->
+<section class="carousel-section" id="figures">
+    <div class="container">
+        <div class="section-header-center">
+            <span class="section-label reveal">Paper Figures</span>
+            <h2 class="section-title reveal reveal-d1">Key results at a glance</h2>
+            <p class="section-desc reveal reveal-d2">Selected figures from the paper. Click arrows or dots to browse.</p>
+        </div>
+
+        <div class="carousel-container reveal reveal-d3" id="figureCarousel">
+            <button class="carousel-btn prev" aria-label="Previous figure">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="carousel-btn next" aria-label="Next figure">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="figures/paper/fig_roc_curves.png" alt="ROC Curves" loading="lazy">
+                    <div class="slide-caption">ROC curves across target models. Combined AUROC = 0.878 with zero train/test question overlap.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="figures/paper/fig_calibration_curve.png" alt="Calibration Curve" loading="lazy">
+                    <div class="slide-caption">Calibration curve showing well-calibrated predicted probabilities (ECE = 0.087).</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="figures/paper/fig_cross_model_transfer.png" alt="Cross-Model Transfer" loading="lazy">
+                    <div class="slide-caption">Leave-one-model-out transfer: train on 2 models, evaluate on the held-out 3rd. Mean AUROC = 0.843.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="figures/paper/fig_per_benchmark_heatmap.png" alt="Per-Benchmark Heatmap" loading="lazy">
+                    <div class="slide-caption">Per-benchmark AUROC heatmap across 20+ benchmarks and 3 target models.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="figures/paper/fig_training_size_ablation.png" alt="Training Size Ablation" loading="lazy">
+                    <div class="slide-caption">Training data ablation: 5,000 samples reach 96% of full performance. Steep gains up to N=1,000.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="figures/paper/fig_model_size_ablation.png" alt="Model Size Ablation" loading="lazy">
+                    <div class="slide-caption">Model size ablation: the 2B model retains 98% of 8B performance, enabling laptop deployment.</div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="figures/paper/fig_selective_prediction.png" alt="Selective Prediction" loading="lazy">
+                    <div class="slide-caption">Selective prediction: accuracy vs. coverage trade-off. Higher coverage at any accuracy threshold.</div>
+                </div>
+            </div>
+
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================
      LIVE DEMO EMBED
      ================================================================ -->
-<section class="demo-embed-section" id="try-it">
+<section class="demo-embed-section" id="try-it" style="background: var(--bg);">
     <div class="container">
         <div class="section-header-center">
             <span class="section-label reveal">Live Demo</span>
@@ -1687,7 +1890,7 @@
         </div>
 
         <div class="cite-block reveal reveal-d2">
-            <button class="cite-copy" onclick="navigator.clipboard.writeText(document.getElementById('bibtex').textContent); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy', 2000);">Copy</button>
+            <button class="cite-copy" id="citeCopy" onclick="navigator.clipboard.writeText(document.getElementById('bibtex').textContent); this.textContent='Copied!'; this.classList.add('copied'); setTimeout(()=>{this.textContent='Copy'; this.classList.remove('copied');}, 2000);">Copy</button>
 <pre id="bibtex" style="margin:0; white-space:pre-wrap;">@inproceedings{hayes2026pinocchio,
     title     = {Pinocchio: Estimating the Uncertainty of
                  Black-Box Language Models},
@@ -1873,9 +2076,75 @@
         });
     }
 
+    // --- Scroll-to-top button ---
+    const scrollTopBtn = document.getElementById('scrollTop');
+    function updateScrollTop() {
+        scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    }
+
+    // --- Figure carousel ---
+    const carousel = document.getElementById('figureCarousel');
+    if (carousel) {
+        const track = carousel.querySelector('.carousel-track');
+        const slides = track.querySelectorAll('.carousel-slide');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
+        const prevBtn = carousel.querySelector('.carousel-btn.prev');
+        const nextBtn = carousel.querySelector('.carousel-btn.next');
+        let currentSlide = 0;
+        let autoplayTimer;
+
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to figure ' + (i + 1));
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function goToSlide(index) {
+            currentSlide = ((index % slides.length) + slides.length) % slides.length;
+            track.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+            dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentSlide);
+            });
+            resetAutoplay();
+        }
+
+        prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+        nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+        // Keyboard navigation
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+            if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+        });
+        carousel.setAttribute('tabindex', '0');
+
+        // Autoplay (pause on hover)
+        function resetAutoplay() {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(() => goToSlide(currentSlide + 1), 6000);
+        }
+        carousel.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+        carousel.addEventListener('mouseleave', resetAutoplay);
+        resetAutoplay();
+    }
+
+    // --- Update scroll handler to include scroll-to-top ---
+    const origScroll = window.onscroll;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateScrollTop();
+            });
+        }
+    });
+
     // Initial state
     updateProgress();
     updateNav();
+    updateScrollTop();
 })();
 </script>
 

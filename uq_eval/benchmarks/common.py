@@ -81,8 +81,10 @@ def encode_image_to_base64(img: Image.Image, format: str = "PNG", max_size: int 
 def pil_to_data_url(img: Image.Image, format: str = "PNG", max_size: int = 1024) -> str:
     """Convert PIL Image to data URL for OpenAI vision API."""
     b64 = encode_image_to_base64(img, format=format, max_size=max_size)
-    mime = f"image/{format.lower()}"
-    return f"data:{mime};base64,{b64}"
+    # Map PIL format names to valid MIME types (e.g., "JPG" -> "jpeg")
+    fmt_lower = format.lower()
+    mime_type = "jpeg" if fmt_lower in ("jpg", "jpeg") else fmt_lower
+    return f"data:image/{mime_type};base64,{b64}"
 
 
 def build_vision_content(text: str, images: list[Image.Image], max_size: int = 1024) -> list[dict]:

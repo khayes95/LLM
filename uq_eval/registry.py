@@ -66,6 +66,8 @@ from .models.chat_completions_http_client import ChatCompletionsHTTPClient
 from .models.internvl_client import InternVLClient
 from .models.qwen3_vl_client import Qwen3VLClient
 from .models.qwen3_vl_vllm_client import Qwen3VLvLLMClient
+from .models.anthropic_client import AnthropicClient
+from .models.gemini_client import GeminiClient
 
 
 # Factory function for HLE multimodal variant
@@ -136,10 +138,12 @@ _BENCH_REGISTRY: dict[str, type[BaseBenchmark]] = {
 
 _MODEL_REGISTRY: dict[str, type[BaseModelClient]] = {
     "openai": OpenAIResponsesClient,
+    "anthropic": AnthropicClient,
     "chat_http": ChatCompletionsHTTPClient,
     "internvl": InternVLClient,
     "qwen3_vl": Qwen3VLClient,
     "qwen3_vl_vllm": Qwen3VLvLLMClient,
+    "gemini": GeminiClient,
 }
 
 
